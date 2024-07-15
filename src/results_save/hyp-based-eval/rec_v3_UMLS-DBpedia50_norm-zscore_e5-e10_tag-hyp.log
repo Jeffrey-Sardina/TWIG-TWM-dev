@@ -1,0 +1,3417 @@
+loading NN
+done loading NN
+loading dataset
+training TWIG with:
+dataset_to_run_ids
+{'DBpedia50': ['2.1', '2.2', '2.3', '2.4'], 'UMLS': ['2.1', '2.2', '2.3', '2.4'], 'CoDExSmall': ['2.1', '2.2', '2.3', '2.4'], 'OpenEA': ['2.1', '2.2', '2.3', '2.4'], 'Countries': ['2.1', '2.2', '2.3', '2.4'], 'Nations': ['2.1', '2.2', '2.3', '2.4'], 'Kinships': ['2.1', '2.2', '2.3', '2.4']}
+
+num_exps_to_select
+122
+
+Loading data for UMLS
+Loading the saved dataset...done
+Loading the saved dataset...done
+Loading the saved dataset...done
+Loading the saved dataset...done
+Loading data for DBpedia50
+Loading the saved dataset...done
+Loading the saved dataset...done
+Loading the saved dataset...done
+Loading the saved dataset...done
+block_randomisation_tensor
+[1123, 1182, 236, 701, 936, 689, 585, 593, 713, 482, 116, 852, 257, 60, 122, 63, 487, 757, 913, 805, 591, 935, 271, 302, 446, 448, 514, 728, 1120, 437, 263, 830, 1196, 235, 910, 436, 980, 208, 698, 464, 784, 991, 285, 579, 98, 653, 727, 883, 876, 874, 549, 649, 930, 1002, 650, 524, 253, 647, 798, 721, 127, 372, 646, 346, 1136, 636, 1195, 843, 1102, 258, 515, 543, 16, 242, 343, 369, 481, 64, 173, 245, 791, 528, 85, 71, 162, 862, 748, 512, 990, 452, 17, 612, 614, 617, 278, 1103, 897, 77, 501, 170, 786, 982, 199, 220, 19, 620, 775, 405, 872, 422, 342, 81, 333, 810, 750, 832, 616, 128, 572, 960, 570, 478, 658, 696, 1032, 191, 909, 321, 860, 718, 38, 416, 824, 552, 133, 212, 404, 341, 746, 10, 510, 541, 509, 957, 968, 866, 943, 826, 704, 294, 351, 70, 12, 508, 622, 742, 1192, 204, 751, 1059, 542, 37, 787, 630, 1075, 314, 624, 159, 361, 1005, 1040, 604, 625, 733, 554, 1105, 45, 965, 837, 950, 705, 188, 83, 638, 665, 11, 375, 958, 419, 1131, 730, 1106, 929, 398, 1093, 927, 513, 296, 894, 467, 389, 1021, 551, 1162, 503, 335, 1065, 580, 1077, 865, 592, 1135, 590, 424, 868, 477, 1076, 328, 884, 539, 377, 1042, 368, 1079, 104, 20, 193, 76, 1138, 632, 110, 438, 229, 898, 425, 226, 1188, 350, 1152, 318, 135, 765, 1139, 295, 719, 972, 948, 1114, 1149, 90, 256, 46, 740, 79, 217, 86, 62, 708, 430, 451, 287, 1147, 816, 922, 800, 164, 564, 613, 1190, 688, 568, 657, 557, 578, 663, 995, 352, 1133, 50, 556, 1029, 15, 399, 339, 427, 233, 259, 1036, 219, 367, 681, 1056, 88, 360, 492, 941, 998, 1044, 1052, 1084, 869, 772, 118, 1010, 1183, 945, 724, 345, 202, 167, 240, 873, 732, 629, 384, 223, 137, 639, 91, 870, 228, 29, 690, 900, 734, 99, 589, 35, 838, 576, 396, 763, 550, 1187, 69, 246, 959, 108, 1058, 970, 472, 961, 546, 985, 834, 888, 423, 174, 1082, 363, 992, 911, 184, 687, 488, 306, 186, 215, 139, 216, 799, 260, 1001, 1026, 1030, 937, 1097, 662, 270, 736, 338, 445, 652, 767, 807, 93, 916, 966, 731, 737, 582, 1007, 1046, 49, 468, 899, 631, 567, 856, 675, 454, 1101, 379, 1043, 923, 598, 993, 659, 1022, 21, 412, 606, 849, 879, 463, 210, 587, 1041, 33, 132, 274, 386, 1205, 686, 1006, 373, 917, 712, 1098, 818, 893, 753, 359, 51, 22, 490, 420, 23, 180, 252, 288, 605, 666, 555, 634, 886, 931, 670, 1031, 59, 1094, 42, 413, 1064, 878, 449, 759, 835, 565, 1206, 1038, 1184, 13, 205, 1048, 421, 476, 1080, 1054, 148, 364, 232, 796, 8, 298, 1169, 654, 254, 1129, 710, 536, 75, 147, 1118, 813, 1127, 234, 1155, 169, 707, 516, 433, 1143, 789, 48, 54, 322, 569, 5, 1203, 814, 87, 973, 563, 889, 519, 470, 165, 788, 680, 395, 547, 484, 812, 722, 926, 752, 34, 151, 279, 538, 540, 303, 206, 315, 534, 309, 231, 1156, 1153, 642, 725, 525, 907, 269, 439, 130, 597, 100, 871, 244, 1099, 310, 1057, 779, 833, 983, 955, 967, 443, 615, 1116, 1112, 1167, 963, 289, 175, 562, 474, 717, 1137, 25, 739, 176, 1028, 428, 601, 431, 720, 768, 121, 123, 1174, 1016, 89, 846, 273, 854, 1141, 460, 370, 1207, 891, 134, 280, 72, 627, 192, 989, 1066, 344, 103, 155, 371, 677, 249, 1119, 949, 697, 928, 106, 4, 197, 803, 55, 144, 817, 1121, 247, 1019, 1117, 429, 758, 559, 24, 952, 656, 264, 475, 655, 700, 880, 848, 857, 896, 378, 1090, 773, 633, 92, 827, 1208, 157, 669, 744, 334, 644, 1067, 575, 1091, 101, 1168, 842, 904, 455, 706, 156, 479, 469, 517, 610, 586, 699, 977, 115, 1, 1089, 493, 938, 1191, 994, 1211, 839, 924, 672, 491, 1018, 673, 711, 635, 895, 1015, 864, 129, 932, 331, 2, 65, 500, 453, 535, 385, 362, 1171, 912, 693, 96, 447, 112, 138, 218, 415, 1145, 523, 1008, 691, 465, 671, 498, 1177, 1214, 1113, 920, 505, 213, 347, 1061, 828, 529, 1100, 595, 714, 942, 109, 411, 282, 1148, 1037, 119, 14, 885, 577, 766, 141, 195, 861, 9, 804, 520, 623, 976, 694, 1068, 47, 1176, 561, 329, 185, 36, 152, 97, 573, 518, 105, 1062, 1166, 214, 166, 458, 626, 919, 381, 771, 1178, 1035, 299, 684, 1146, 1049, 221, 440, 1000, 1108, 532, 978, 153, 1163, 667, 594, 376, 327, 863, 26, 243, 1053, 969, 297, 820, 3, 678, 553, 1201, 301, 1151, 125, 390, 506, 58, 1071, 822, 1200, 794, 250, 142, 847, 1150, 178, 267, 637, 57, 581, 325, 1050, 194, 1173, 145, 641, 971, 915, 284, 311, 268, 102, 954, 1157, 1154, 628, 435, 382, 584, 27, 1078, 531, 406, 560, 544, 44, 84, 312, 337, 988, 1074, 383, 480, 126, 881, 790, 984, 1096, 1069, 651, 483, 40, 417, 761, 770, 336, 78, 224, 981, 607, 357, 735, 332, 921, 823, 340, 120, 1063, 313, 851, 286, 237, 1027, 729, 802, 808, 374, 1193, 1070, 326, 815, 1213, 154, 131, 1180, 608, 683, 1011, 304, 940, 901, 1210, 113, 611, 182, 1140, 1023, 905, 877, 434, 177, 1017, 290, 566, 366, 600, 819, 56, 902, 522, 979, 1009, 251, 0, 1107, 319, 825, 1083, 887, 853, 908, 307, 408, 892, 292, 1087, 32, 407, 496, 462, 1020, 227, 769, 324, 136, 1081, 320, 365, 709, 875, 316, 850, 450, 203, 1033, 776, 1109, 276, 939, 1144, 841, 1045, 457, 783, 94, 1039, 140, 277, 951, 209, 1199, 1111, 402, 356, 355, 619, 1110, 1186, 73, 1051, 934, 68, 387, 486, 533, 781, 444, 161, 947, 890, 858, 1128, 225, 741, 867, 596, 530, 602, 52, 836, 255, 1025, 583, 30, 1142, 1165, 358, 466, 146, 1122, 181, 588, 238, 442, 548, 603, 403, 41, 1134, 418, 6, 695, 964, 281, 388, 1185, 640, 760, 609, 330, 1158, 664, 305, 400, 248, 764, 394, 348, 262, 738, 674, 1164, 409, 53, 149, 1179, 801, 953, 643, 743, 944, 397, 114, 774, 1125, 1003, 117, 914, 39, 261, 222, 1132, 61, 1004, 521, 986, 537, 160, 1204, 1088, 1198, 168, 685, 882, 1175, 1172, 283, 95, 660, 903, 527, 755, 473, 163, 1115, 855, 574, 1024, 999, 1181, 456, 906, 275, 43, 1085, 504, 777, 1086, 198, 571, 780, 401, 143, 239, 1126, 111, 996, 1073, 207, 545, 747, 1160, 300, 809, 485, 497, 67, 183, 291, 745, 1072, 230, 80, 426, 754, 489, 1159, 495, 317, 459, 441, 308, 1161, 511, 974, 845, 676, 795, 1212, 526, 679, 661, 956, 150, 962, 1130, 471, 1197, 1092, 723, 494, 1104, 201, 1170, 31, 645, 189, 821, 1194, 187, 933, 172, 997, 782, 618, 749, 1013, 558, 797, 1209, 621, 716, 682, 507, 702, 179, 171, 859, 266, 7, 82, 987, 918, 715, 353, 66, 158, 391, 190, 432, 502, 461, 1034, 811, 293, 648, 844, 499, 74, 354, 1202, 762, 975, 1012, 265, 124, 946, 196, 28, 200, 726, 107, 1055, 18, 1189, 1047, 668, 703, 241, 392, 1060, 806, 692, 1124, 785, 925, 1014, 323, 1095, 272, 792, 831, 829, 778, 414, 380, 211, 840, 599, 410, 349, 793, 756, 393]
+
+UMLS
+2.1
+2.2
+2.3
+2.4
+DBpedia50
+2.1
+2.2
+2.3
+2.4
+training run IDs dict_keys(['2.1', '2.2', '2.3', '2.4'])
+training_data_x shape --> torch.Size([5701088, 33])
+training_data_y shape --> torch.Size([5701088])
+testing run IDs dict_keys(['2.1', '2.2', '2.3', '2.4'])
+testing_data_x shape --> torch.Size([636352, 33])
+testing_data_y shape --> torch.Size([636352])
+configuring batches; using training batch size 1304
+configuring batches; using testing batch size 1304
+training run IDs dict_keys(['2.1', '2.2', '2.3', '2.4'])
+training_data_x shape --> torch.Size([1075512, 33])
+training_data_y shape --> torch.Size([1075512])
+testing run IDs dict_keys(['2.1', '2.2', '2.3', '2.4'])
+testing_data_x shape --> torch.Size([120048, 33])
+testing_data_y shape --> torch.Size([120048])
+configuring batches; using training batch size 246
+configuring batches; using testing batch size 246
+done loading dataset
+running training and eval
+NeuralNetwork_HPs_v3(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=9, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+IMPORTANT WARNING :: all dataloaders should have a multiple of 1215 batches, but I calculated {num_batches} for {dataset_name}. THIS IS ONLY VALID IF YOU ARE USING THE "HYP" TESTING MODE. If you are not, this is a critical error and means that data was not loaded properly.
+validated training data for UMLS
+IMPORTANT WARNING :: all dataloaders should have a multiple of 1215 batches, but I calculated {num_batches} for {dataset_name}. THIS IS ONLY VALID IF YOU ARE USING THE "HYP" TESTING MODE. If you are not, this is a critical error and means that data was not loaded properly.
+validated training data for DBpedia50
+IMPORTANT WARNING :: all dataloaders should have a multiple of 1215 batches, but I calculated {num_batches} for {dataset_name}. THIS IS ONLY VALID IF YOU ARE USING THE "HYP" TESTING MODE. If you are not, this is a critical error and means that data was not loaded properly.
+validated training data for UMLS
+IMPORTANT WARNING :: all dataloaders should have a multiple of 1215 batches, but I calculated {num_batches} for {dataset_name}. THIS IS ONLY VALID IF YOU ARE USING THE "HYP" TESTING MODE. If you are not, this is a critical error and means that data was not loaded properly.
+validated training data for DBpedia50
+REC: Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- batch 0 / 8744 mrrl: 0.0; urll: 2.2364160940924194e-06; 
+	rank: pred, true, means tensor(0.4190, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.0074, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0; urll: 1.9721687749552075e-06; 
+	rank: pred, true, means tensor(0.4040, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.0127, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0182, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.0; urll: 1.1831522215288715e-06; 
+	rank: pred, true, means tensor(0.4566, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.0104, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0161, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0; urll: 6.700555559291388e-07; 
+	rank: pred, true, means tensor(0.4460, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.0091, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0165, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0; urll: 1.210471054946538e-06; 
+	rank: pred, true, means tensor(0.4542, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.0123, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0162, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.0; urll: 9.049972504726611e-07; 
+	rank: pred, true, means tensor(0.4468, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.0132, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0164, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0; urll: 9.171665169560583e-07; 
+	rank: pred, true, means tensor(0.4420, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.0130, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0166, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0; urll: 6.40998337075871e-07; 
+	rank: pred, true, means tensor(0.4660, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.0215, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0158, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0; urll: 7.562339874311874e-07; 
+	rank: pred, true, means tensor(0.4200, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.0153, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0; urll: 1.053512164617132e-06; 
+	rank: pred, true, means tensor(0.4338, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.0070, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0169, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0; urll: 6.482005687757919e-07; 
+	rank: pred, true, means tensor(0.1429, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.0135, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.0500, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.0; urll: 6.57141242754733e-07; 
+	rank: pred, true, means tensor(0.4306, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.0232, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0171, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0; urll: 1.156826897386054e-06; 
+	rank: pred, true, means tensor(0.4616, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.0465, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0161, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0; urll: 5.081296308162564e-07; 
+	rank: pred, true, means tensor(0.4610, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.0547, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0161, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0; urll: 1.1846423575434528e-07; 
+	rank: pred, true, means tensor(0.5902, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.0766, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0127, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0; urll: 2.9976169457768265e-07; 
+	rank: pred, true, means tensor(0.4482, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.1775, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0184, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0; urll: 8.247793061855191e-07; 
+	rank: pred, true, means tensor(0.4247, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.2297, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0218, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0; urll: 4.4951839583973197e-08; 
+	rank: pred, true, means tensor(0.4511, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.2394, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0204, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 2 -- batch 0 / 8744 mrrl: 0.0; urll: 3.0398371109185973e-07; 
+	rank: pred, true, means tensor(0.4455, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.2668, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0230, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0; urll: 4.038215024593228e-07; 
+	rank: pred, true, means tensor(0.4669, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.2805, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0219, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.0; urll: 2.0116567966965704e-08; 
+	rank: pred, true, means tensor(0.4391, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.2595, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0230, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0; urll: 2.3841860041784457e-08; 
+	rank: pred, true, means tensor(0.4455, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.2570, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0218, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0; urll: 4.6963495492491347e-07; 
+	rank: pred, true, means tensor(0.4546, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.2653, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0217, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.0; urll: 1.080334186553955e-06; 
+	rank: pred, true, means tensor(0.4674, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.2731, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0214, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0; urll: 5.411605457084079e-07; 
+	rank: pred, true, means tensor(0.4364, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.2581, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0223, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0; urll: 4.9918892131017856e-08; 
+	rank: pred, true, means tensor(0.4665, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.2602, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0201, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0; urll: 5.7121120278225135e-08; 
+	rank: pred, true, means tensor(0.4235, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.2388, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0222, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0; urll: 3.526608338688675e-08; 
+	rank: pred, true, means tensor(0.4500, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.2534, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0209, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0; urll: 1.2318294295710075e-07; 
+	rank: pred, true, means tensor(0.1786, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.2207, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.0840, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.0; urll: 2.2376578101557243e-07; 
+	rank: pred, true, means tensor(0.4235, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.2533, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0228, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0; urll: 4.522502763393277e-07; 
+	rank: pred, true, means tensor(0.4631, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.2676, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0206, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0; urll: 3.3825637046902557e-07; 
+	rank: pred, true, means tensor(0.4503, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.2605, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0212, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0; urll: 2.153217906197824e-07; 
+	rank: pred, true, means tensor(0.5711, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.2227, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0147, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0; urll: 2.1283825901718956e-07; 
+	rank: pred, true, means tensor(0.4461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.2527, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0209, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0; urll: 6.382664423654205e-07; 
+	rank: pred, true, means tensor(0.4283, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.2571, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0226, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0; urll: 1.9123158168099508e-08; 
+	rank: pred, true, means tensor(0.4512, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.2611, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 3 -- batch 0 / 8744 mrrl: 0.0; urll: 2.9901664788667404e-07; 
+	rank: pred, true, means tensor(0.4467, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.2789, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0227, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0; urll: 1.4503797274301178e-07; 
+	rank: pred, true, means tensor(0.4586, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.2699, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.0; urll: 1.1175871783564162e-08; 
+	rank: pred, true, means tensor(0.4334, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.2584, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0222, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0; urll: 1.1920930020892229e-08; 
+	rank: pred, true, means tensor(0.4440, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.2632, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0; urll: 4.008412588518695e-07; 
+	rank: pred, true, means tensor(0.4533, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.2671, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0211, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.0; urll: 5.456308826978784e-07; 
+	rank: pred, true, means tensor(0.4572, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.2834, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0220, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0; urll: 4.6963495492491347e-07; 
+	rank: pred, true, means tensor(0.4384, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.2582, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0; urll: 2.4586917390934104e-08; 
+	rank: pred, true, means tensor(0.4637, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.2655, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0202, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0; urll: 3.1789145538141383e-08; 
+	rank: pred, true, means tensor(0.4280, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.2403, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0; urll: 4.743536408113869e-08; 
+	rank: pred, true, means tensor(0.4485, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.2653, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0; urll: 7.947286206899662e-08; 
+	rank: pred, true, means tensor(0.1584, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.2197, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.1253, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.0; urll: 9.536744016713783e-08; 
+	rank: pred, true, means tensor(0.4295, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.2615, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0225, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0; urll: 4.6094260142126586e-07; 
+	rank: pred, true, means tensor(0.4634, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.2807, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0212, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0; urll: 2.2351743211856956e-07; 
+	rank: pred, true, means tensor(0.4555, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.2752, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0; urll: 5.257626867205545e-07; 
+	rank: pred, true, means tensor(0.5631, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.2410, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0154, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0; urll: 1.3982257485167793e-07; 
+	rank: pred, true, means tensor(0.4496, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.2673, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0212, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0; urll: 7.197261311375769e-07; 
+	rank: pred, true, means tensor(0.4267, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.2644, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0229, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0; urll: 6.581346667644539e-08; 
+	rank: pred, true, means tensor(0.4470, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.2646, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 4 -- batch 0 / 8744 mrrl: 0.0; urll: 9.760260866187309e-08; 
+	rank: pred, true, means tensor(0.4575, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.2892, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0222, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0; urll: 1.323719942547541e-07; 
+	rank: pred, true, means tensor(0.4580, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.2739, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.0; urll: 3.476937848745365e-09; 
+	rank: pred, true, means tensor(0.4355, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.2662, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0224, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0; urll: 3.005067839012554e-08; 
+	rank: pred, true, means tensor(0.4462, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.2687, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0215, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0; urll: 4.105270079435286e-07; 
+	rank: pred, true, means tensor(0.4537, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.2708, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.0; urll: 4.4777991092814773e-07; 
+	rank: pred, true, means tensor(0.4544, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.2906, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0225, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0; urll: 6.064772719582834e-07; 
+	rank: pred, true, means tensor(0.4353, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.2613, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0219, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0; urll: 4.420678223482355e-08; 
+	rank: pred, true, means tensor(0.4529, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.2653, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0209, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0; urll: 2.0364922193039092e-08; 
+	rank: pred, true, means tensor(0.4298, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.2475, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0215, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0; urll: 4.023313593393141e-08; 
+	rank: pred, true, means tensor(0.4495, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.2662, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0211, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0; urll: 1.6490619714204513e-07; 
+	rank: pred, true, means tensor(0.1529, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.1924, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.1115, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.0; urll: 7.202228147207279e-08; 
+	rank: pred, true, means tensor(0.4308, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.2620, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0223, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0; urll: 4.343688715380267e-07; 
+	rank: pred, true, means tensor(0.4627, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.2830, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0212, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0; urll: 2.2252402231970336e-07; 
+	rank: pred, true, means tensor(0.4559, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.2785, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0214, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0; urll: 2.8237701599209686e-07; 
+	rank: pred, true, means tensor(0.5707, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.2409, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0151, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0; urll: 2.769132549929054e-07; 
+	rank: pred, true, means tensor(0.4444, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.2699, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0217, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0; urll: 8.14348481981142e-07; 
+	rank: pred, true, means tensor(0.4250, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.2720, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0235, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0; urll: 4.5696896933122844e-08; 
+	rank: pred, true, means tensor(0.4485, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.2677, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0212, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 5 -- batch 0 / 8744 mrrl: 0.0; urll: 3.660718732589885e-07; 
+	rank: pred, true, means tensor(0.4456, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.2882, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0231, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0; urll: 7.078052277620372e-08; 
+	rank: pred, true, means tensor(0.4545, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.2732, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0211, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.0; urll: 1.2417634920325327e-08; 
+	rank: pred, true, means tensor(0.4321, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.2703, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0229, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0; urll: 2.1855036891338386e-08; 
+	rank: pred, true, means tensor(0.4452, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.2696, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0; urll: 4.706283789346344e-07; 
+	rank: pred, true, means tensor(0.4553, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.2709, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.0; urll: 3.958741956466838e-07; 
+	rank: pred, true, means tensor(0.4534, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.2851, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0222, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0; urll: 4.122654786442581e-07; 
+	rank: pred, true, means tensor(0.4400, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.2624, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0; urll: 5.4637592228345966e-08; 
+	rank: pred, true, means tensor(0.4520, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.2632, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0207, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0; urll: 2.4586917390934104e-08; 
+	rank: pred, true, means tensor(0.4245, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.2603, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0227, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0; urll: 6.929040097247707e-08; 
+	rank: pred, true, means tensor(0.4474, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.2670, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0; urll: 3.50177309371702e-08; 
+	rank: pred, true, means tensor(0.1602, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.1977, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.1037, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.0; urll: 3.725290653733282e-08; 
+	rank: pred, true, means tensor(0.4337, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.2658, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0222, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0; urll: 4.795690529135754e-07; 
+	rank: pred, true, means tensor(0.4639, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.2885, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0; urll: 2.8436383558982925e-07; 
+	rank: pred, true, means tensor(0.4532, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.2746, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0213, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0; urll: 1.708666559352423e-07; 
+	rank: pred, true, means tensor(0.5888, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.2554, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0150, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0; urll: 2.0737449801799812e-07; 
+	rank: pred, true, means tensor(0.4470, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.2710, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0216, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0; urll: 6.866952162454254e-07; 
+	rank: pred, true, means tensor(0.4275, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.2640, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0227, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0; urll: 4.9918892131017856e-08; 
+	rank: pred, true, means tensor(0.4484, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.2635, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Saving checkpoint at [1] epoch 5
+Done Training (dist)!
+Epoch 1 -- batch 0 / 8744 mrrl: 0.0015328922017943114; urll: 3.253420288729103e-07; 
+	rank: pred, true, means tensor(0.4466, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.2850, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0226, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 2.253779030070291e-06; urll: 9.264548680221196e-06; 
+	rank: pred, true, means tensor(0.5432, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4083, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0531, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.002936513046734035; urll: 5.5236123444046825e-06; 
+	rank: pred, true, means tensor(0.5050, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4210, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0631, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0010201179975410923; urll: 1.37473152790335e-05; 
+	rank: pred, true, means tensor(0.5606, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.4172, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0530, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.00018780770915327594; urll: 2.917970414273441e-05; 
+	rank: pred, true, means tensor(0.6129, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3992, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0443, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 4.7634625843784306e-05; urll: 3.38738173013553e-05; 
+	rank: pred, true, means tensor(0.6271, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.3901, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0439, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.00027904321541427635; urll: 2.7294458050164394e-05; 
+	rank: pred, true, means tensor(0.6354, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.3963, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0492, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0021527730859816074; urll: 6.212964945007116e-05; 
+	rank: pred, true, means tensor(0.7232, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.3908, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0582, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 4.9525501708558295e-05; urll: 6.66854321025312e-05; 
+	rank: pred, true, means tensor(0.7042, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.3906, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0539, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0002747928010649048; urll: 3.614103115978651e-05; 
+	rank: pred, true, means tensor(0.6568, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.3930, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0427, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 9.198710358759854e-05; urll: 0.00011782522778958082; 
+	rank: pred, true, means tensor(0.5386, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4521, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2275, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 6.5490127099110396e-06; urll: 5.087778117740527e-05; 
+	rank: pred, true, means tensor(0.6792, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3901, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0449, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0026961430558003485; urll: 6.655777542619035e-05; 
+	rank: pred, true, means tensor(0.7149, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.3760, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0342, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0019171994063071907; urll: 4.538099165074527e-05; 
+	rank: pred, true, means tensor(0.6931, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.3957, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0508, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.002744156518019736; urll: 0.000107583160570357; 
+	rank: pred, true, means tensor(0.9306, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.2286, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0368, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0028822803869843483; urll: 4.9966329243034124e-05; 
+	rank: pred, true, means tensor(0.6976, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.3983, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0565, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 7.491559699701611e-05; urll: 5.4075324442237616e-05; 
+	rank: pred, true, means tensor(0.7015, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4018, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0482, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0011631145025603473; urll: 4.910702773486264e-05; 
+	rank: pred, true, means tensor(0.6905, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.3920, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0547, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 2 -- batch 0 / 8744 mrrl: 0.0028180924709886312; urll: 5.5872154916869476e-05; 
+	rank: pred, true, means tensor(0.7141, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.3924, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0518, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 1.8413588804833125e-05; urll: 6.115039286669344e-05; 
+	rank: pred, true, means tensor(0.7092, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.3997, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0512, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 1.6494393548782682e-05; urll: 7.832373376004398e-05; 
+	rank: pred, true, means tensor(0.7343, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.3888, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0472, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.00010060041859105695; urll: 7.060269854264334e-05; 
+	rank: pred, true, means tensor(0.7233, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.3953, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0015708770661149174; urll: 7.979398651514202e-05; 
+	rank: pred, true, means tensor(0.7336, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3891, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0361, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 7.811648174538277e-05; urll: 7.909660780569538e-05; 
+	rank: pred, true, means tensor(0.7312, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.3927, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0433, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.00014325289157568477; urll: 5.581478399108164e-05; 
+	rank: pred, true, means tensor(0.7117, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4038, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0477, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0006341948028421029; urll: 6.277486681938171e-05; 
+	rank: pred, true, means tensor(0.7236, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4016, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0515, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0001129683278122684; urll: 8.301164052681997e-05; 
+	rank: pred, true, means tensor(0.7358, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.3942, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0483, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.00112384652311448; urll: 7.173021731432527e-05; 
+	rank: pred, true, means tensor(0.7402, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.3904, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0373, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.000637825287412852; urll: 0.00015706669364590198; 
+	rank: pred, true, means tensor(0.5966, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4590, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2324, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 4.200286980449164e-06; urll: 8.313656144309789e-05; 
+	rank: pred, true, means tensor(0.7461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3921, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0451, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.003103776543866843; urll: 8.698304736753926e-05; 
+	rank: pred, true, means tensor(0.7542, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.3845, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0330, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0025186652783304453; urll: 6.911630771355703e-05; 
+	rank: pred, true, means tensor(0.7464, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.3984, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0528, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0007729575736448169; urll: 0.00012662784138228744; 
+	rank: pred, true, means tensor(0.9602, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1787, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0290, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.007430536788888276; urll: 6.465216574724764e-05; 
+	rank: pred, true, means tensor(0.7298, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4106, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0668, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0002713207868509926; urll: 7.14575289748609e-05; 
+	rank: pred, true, means tensor(0.7386, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4046, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0507, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 4.517614797805436e-05; urll: 7.16532304068096e-05; 
+	rank: pred, true, means tensor(0.7400, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.3925, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 3 -- batch 0 / 8744 mrrl: 0.003334818175062537; urll: 7.082000956870615e-05; 
+	rank: pred, true, means tensor(0.7457, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.3972, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0533, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.00015245549548126291; urll: 7.982602255651727e-05; 
+	rank: pred, true, means tensor(0.7472, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4003, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0487, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 3.900624534480812e-07; urll: 9.491419041296467e-05; 
+	rank: pred, true, means tensor(0.7647, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.3900, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 8.436630309915927e-06; urll: 8.913353667594492e-05; 
+	rank: pred, true, means tensor(0.7587, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.3939, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0420, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.001592463959241286; urll: 9.317324293078855e-05; 
+	rank: pred, true, means tensor(0.7581, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3914, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0360, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 2.4274172005789296e-06; urll: 9.516080899629742e-05; 
+	rank: pred, true, means tensor(0.7602, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.3935, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0456, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0003069166632485576; urll: 6.597986066481099e-05; 
+	rank: pred, true, means tensor(0.7334, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4123, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0495, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0008577393600717187; urll: 7.449065742548555e-05; 
+	rank: pred, true, means tensor(0.7474, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4070, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0528, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.00015375777365989052; urll: 9.7296891908627e-05; 
+	rank: pred, true, means tensor(0.7612, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.3975, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0478, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0008676032302901149; urll: 8.151829388225451e-05; 
+	rank: pred, true, means tensor(0.7589, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.3968, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0386, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 8.773933586780913e-05; urll: 0.00025956134777516127; 
+	rank: pred, true, means tensor(0.7180, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4099, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2215, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 5.275109742797213e-05; urll: 9.056106500793248e-05; 
+	rank: pred, true, means tensor(0.7594, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3991, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0480, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0024440028937533498; urll: 9.480764856562018e-05; 
+	rank: pred, true, means tensor(0.7679, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.3879, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0350, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0024863576982170343; urll: 7.365694182226434e-05; 
+	rank: pred, true, means tensor(0.7554, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4016, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0527, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0003905986523022875; urll: 0.0001309188810409978; 
+	rank: pred, true, means tensor(0.9665, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1672, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0265, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.004917857586406171; urll: 6.618053157581016e-05; 
+	rank: pred, true, means tensor(0.7331, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4125, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0617, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.00018943337636301294; urll: 7.565120904473588e-05; 
+	rank: pred, true, means tensor(0.7469, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4063, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0498, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.00019840554159600288; urll: 7.611265027662739e-05; 
+	rank: pred, true, means tensor(0.7484, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.4012, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0484, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 4 -- batch 0 / 8744 mrrl: 0.002307705581188202; urll: 7.253314106492326e-05; 
+	rank: pred, true, means tensor(0.7492, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.3999, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0502, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.00012312427315919194; urll: 8.137326221913099e-05; 
+	rank: pred, true, means tensor(0.7502, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4035, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0491, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 5.042048769610119e-06; urll: 8.830503065837547e-05; 
+	rank: pred, true, means tensor(0.7527, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4016, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0466, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 1.3287984756971127e-05; urll: 9.173055877909064e-05; 
+	rank: pred, true, means tensor(0.7633, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.3981, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0418, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0017486033902969211; urll: 9.229258284904063e-05; 
+	rank: pred, true, means tensor(0.7565, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3966, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0354, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 2.056052153420751e-05; urll: 8.942882413975894e-05; 
+	rank: pred, true, means tensor(0.7500, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.4033, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0447, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0004719779099104926; urll: 5.76039201405365e-05; 
+	rank: pred, true, means tensor(0.7149, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4215, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0508, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0005130594581714831; urll: 7.02388642821461e-05; 
+	rank: pred, true, means tensor(0.7388, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4129, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0507, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.00046896941057639197; urll: 8.603732567280531e-05; 
+	rank: pred, true, means tensor(0.7412, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4072, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0448, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0006605128146475181; urll: 6.775459041818976e-05; 
+	rank: pred, true, means tensor(0.7316, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4097, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0398, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.00031402632885146886; urll: 0.0002524967130739242; 
+	rank: pred, true, means tensor(0.7103, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4185, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2300, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 2.447464453325665e-10; urll: 7.593855843879282e-05; 
+	rank: pred, true, means tensor(0.7321, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.4109, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0457, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0023397436598315835; urll: 7.896945317042992e-05; 
+	rank: pred, true, means tensor(0.7390, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4021, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0354, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.00290430907625705; urll: 5.5814289225963876e-05; 
+	rank: pred, true, means tensor(0.7169, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4215, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0540, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.00011296281627437565; urll: 0.00013580123777501285; 
+	rank: pred, true, means tensor(0.9736, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1522, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0236, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0045246692025102675; urll: 2.6599071134114638e-05; 
+	rank: pred, true, means tensor(0.6286, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4459, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0608, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.00023257944121723995; urll: 3.9934617234393954e-05; 
+	rank: pred, true, means tensor(0.6645, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4363, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0503, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 1.6568538967476343e-05; urll: 4.94847736263182e-05; 
+	rank: pred, true, means tensor(0.6905, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.4184, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0452, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 5 -- batch 0 / 8744 mrrl: 0.0022413439000956714; urll: 6.09085000178311e-05; 
+	rank: pred, true, means tensor(0.7245, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.4147, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0500, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0001454285029467428; urll: 6.685257540084422e-05; 
+	rank: pred, true, means tensor(0.7210, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4181, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0488, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 1.2069203876308165e-05; urll: 6.454910180764273e-05; 
+	rank: pred, true, means tensor(0.7058, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4206, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0470, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0001082967355614528; urll: 7.088830170687288e-05; 
+	rank: pred, true, means tensor(0.7237, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.4140, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0396, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0013163468975108117; urll: 7.286867185030133e-05; 
+	rank: pred, true, means tensor(0.7196, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.4144, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0372, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 2.4608466446807142e-05; urll: 6.923377804923803e-05; 
+	rank: pred, true, means tensor(0.7110, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.4189, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0445, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0006929035589564592; urll: 3.4341464925091714e-05; 
+	rank: pred, true, means tensor(0.6545, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4365, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0523, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0008188626088667661; urll: 5.005871571484022e-05; 
+	rank: pred, true, means tensor(0.6938, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4249, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0526, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.00022154175894684158; urll: 5.0042821385432035e-05; 
+	rank: pred, true, means tensor(0.6657, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4258, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0470, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0010127903806278482; urll: 5.467782830237411e-05; 
+	rank: pred, true, means tensor(0.7033, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4118, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0378, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 2.7047465209761867e-05; urll: 0.0002849588927347213; 
+	rank: pred, true, means tensor(0.7444, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4207, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2228, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 5.613862796849389e-07; urll: 4.569466182147153e-05; 
+	rank: pred, true, means tensor(0.6648, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.4258, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0460, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.002224105701316148; urll: 5.627697100862861e-05; 
+	rank: pred, true, means tensor(0.6918, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4121, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0357, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0025627933791838586; urll: 2.4662167561473325e-05; 
+	rank: pred, true, means tensor(0.6295, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4345, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0529, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.00010921839020738844; urll: 0.00013743490853812546; 
+	rank: pred, true, means tensor(0.9759, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1485, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0235, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.003056974965147674; urll: 2.7588755983742885e-05; 
+	rank: pred, true, means tensor(0.6327, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4368, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0570, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0002396093259449117; urll: 3.591701533878222e-05; 
+	rank: pred, true, means tensor(0.6535, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4310, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0504, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 2.6946713660436217e-05; urll: 2.542908077884931e-05; 
+	rank: pred, true, means tensor(0.6208, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.4337, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0456, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Saving checkpoint at [2] epoch 5
+Epoch 6 -- batch 0 / 8744 mrrl: 0.001526258565718308; urll: 3.52211318386253e-05; 
+	rank: pred, true, means tensor(0.6599, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.4280, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0474, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.00038001962820999324; urll: 4.3321153498254716e-05; 
+	rank: pred, true, means tensor(0.6660, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4260, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0464, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 6.089760518079856e-07; urll: 3.8948655856074765e-05; 
+	rank: pred, true, means tensor(0.6439, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4295, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0457, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 7.808110353835218e-06; urll: 4.544829425867647e-05; 
+	rank: pred, true, means tensor(0.6660, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.4239, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0420, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.0006191965803736821; urll: 4.400859324960038e-05; 
+	rank: pred, true, means tensor(0.6537, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.4286, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0408, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.00011010339221684262; urll: 2.2509198970510624e-05; 
+	rank: pred, true, means tensor(0.5861, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.4419, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0494, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0005407253047451377; urll: 2.0288676751079038e-05; 
+	rank: pred, true, means tensor(0.6063, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4435, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0513, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0006799941911594942; urll: 4.066725887241773e-05; 
+	rank: pred, true, means tensor(0.6697, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4283, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0518, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 8.929209798225202e-05; urll: 5.631968815578148e-05; 
+	rank: pred, true, means tensor(0.6802, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4269, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0487, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0003470158844720572; urll: 3.624360033427365e-05; 
+	rank: pred, true, means tensor(0.6555, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4265, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0420, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 4.2109249989152886e-05; urll: 0.00024825261789374053; 
+	rank: pred, true, means tensor(0.7063, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4226, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2224, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.00020302586563047953; urll: 2.6269259251421317e-05; 
+	rank: pred, true, means tensor(0.6072, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.4384, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0502, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0018727175483945757; urll: 5.695398067473434e-05; 
+	rank: pred, true, means tensor(0.6933, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4141, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0370, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0018242841179016978; urll: 2.3191423679236323e-05; 
+	rank: pred, true, means tensor(0.6241, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4360, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0504, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 1.6218207292695297e-05; urll: 0.00014121260028332472; 
+	rank: pred, true, means tensor(0.9813, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1337, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0215, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0035017362097278237; urll: 1.1907021871593315e-05; 
+	rank: pred, true, means tensor(0.5667, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4451, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0583, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.00032340296456823125; urll: 1.3615688658319414e-05; 
+	rank: pred, true, means tensor(0.5710, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4419, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0511, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.000116478004201781; urll: 1.1350463864800986e-05; 
+	rank: pred, true, means tensor(0.5595, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.4425, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0474, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 7 -- batch 0 / 8744 mrrl: 0.003429075295571238; urll: 1.4501562873192597e-05; 
+	rank: pred, true, means tensor(0.5827, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.4435, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0535, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.0001884524135675747; urll: 2.5024763090186752e-05; 
+	rank: pred, true, means tensor(0.6098, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4387, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0483, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 0.00010179021046496928; urll: 1.498311848990852e-05; 
+	rank: pred, true, means tensor(0.5588, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4439, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0491, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 3.8499501897604205e-05; urll: 1.9962340957135893e-05; 
+	rank: pred, true, means tensor(0.5859, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.4358, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0410, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.00047189038014039397; urll: 1.4052044207346626e-05; 
+	rank: pred, true, means tensor(0.5511, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.4399, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0418, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 1.6084396747828578e-06; urll: 1.5145540601224639e-05; 
+	rank: pred, true, means tensor(0.5552, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.4446, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0465, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.000595467172388453; urll: 4.011144483229145e-06; 
+	rank: pred, true, means tensor(0.5065, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.4453, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0516, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.0005610453445115127; urll: 1.2768557098752353e-05; 
+	rank: pred, true, means tensor(0.5692, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4412, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0511, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0005918116221437231; urll: 1.0548035788815469e-05; 
+	rank: pred, true, means tensor(0.5300, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4367, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0594, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 0.0006369467155309394; urll: 5.7369475143786985e-06; 
+	rank: pred, true, means tensor(0.5251, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4284, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0399, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0005208946095081046; urll: 0.00017988707986660302; 
+	rank: pred, true, means tensor(0.6259, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4489, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2316, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 4.829351382795721e-05; urll: 3.5991272397950524e-06; 
+	rank: pred, true, means tensor(0.4855, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.4298, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0479, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.001967508578673005; urll: 1.6106914699776098e-05; 
+	rank: pred, true, means tensor(0.5713, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4155, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0366, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0023440501536242664; urll: 3.89590877603041e-06; 
+	rank: pred, true, means tensor(0.5141, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4307, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0522, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.00018290356820216402; urll: 0.0001365423231618479; 
+	rank: pred, true, means tensor(0.9746, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1552, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0245, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0019010585674550384; urll: 2.0893912733299658e-06; 
+	rank: pred, true, means tensor(0.4802, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4245, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0533, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.0002442505683575291; urll: 1.910577339003794e-06; 
+	rank: pred, true, means tensor(0.4738, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.4233, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0504, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.00011965808880631812; urll: 1.5504658676945837e-06; 
+	rank: pred, true, means tensor(0.4645, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.4184, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0474, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 8 -- batch 0 / 8744 mrrl: 0.0018958158034365624; urll: 1.6664465647409088e-06; 
+	rank: pred, true, means tensor(0.4631, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.4177, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0488, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.00032096620998345315; urll: 4.293272922950564e-06; 
+	rank: pred, true, means tensor(0.4978, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4362, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0469, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 5.21433207723021e-07; urll: 2.1062792256998364e-06; 
+	rank: pred, true, means tensor(0.4646, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4154, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0462, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 3.880638033137984e-09; urll: 1.935660975505016e-06; 
+	rank: pred, true, means tensor(0.4663, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.4100, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0430, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 0.00019541481378837489; urll: 2.9027462460362585e-06; 
+	rank: pred, true, means tensor(0.4717, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.4211, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0442, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 5.9550088735704776e-05; urll: 2.5451183773839148e-06; 
+	rank: pred, true, means tensor(0.4688, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.4133, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0437, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0002702534220588859; urll: 2.92509798782703e-06; 
+	rank: pred, true, means tensor(0.4165, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.3984, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0491, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 0.00017909354937728494; urll: 1.8241505586047424e-06; 
+	rank: pred, true, means tensor(0.4618, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.4225, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0478, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 7.654683713553823e-06; urll: 1.3279418453748804e-06; 
+	rank: pred, true, means tensor(0.4299, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4115, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0508, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 9.754037819220684e-05; urll: 1.701712676549505e-06; 
+	rank: pred, true, means tensor(0.4692, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4207, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0448, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0005709796096198261; urll: 0.00013006056542508304; 
+	rank: pred, true, means tensor(0.5571, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4648, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2320, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 4.7183798415062483e-05; urll: 1.5204152532533044e-06; 
+	rank: pred, true, means tensor(0.4188, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3954, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0479, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.0009325317660113797; urll: 4.1762991713767406e-06; 
+	rank: pred, true, means tensor(0.4980, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4121, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0410, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0013951343134976923; urll: 2.3240845621330664e-06; 
+	rank: pred, true, means tensor(0.4413, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4094, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0487, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.0006970170215936378; urll: 0.00013320273137651384; 
+	rank: pred, true, means tensor(0.9699, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1599, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0119, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0016197681543417275; urll: 3.993262907897588e-06; 
+	rank: pred, true, means tensor(0.4066, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4031, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0523, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 0.00014164525964588393; urll: 2.4760763608355774e-06; 
+	rank: pred, true, means tensor(0.4151, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.3954, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0492, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.0002408706677670125; urll: 2.9588741199404467e-06; 
+	rank: pred, true, means tensor(0.4049, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.3819, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0488, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 9 -- batch 0 / 8744 mrrl: 0.0019322535081300884; urll: 4.295259714126587e-06; 
+	rank: pred, true, means tensor(0.4018, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.3820, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0489, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 0.00033943928428925574; urll: 2.0096699699934106e-06; 
+	rank: pred, true, means tensor(0.4652, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4240, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0468, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 6.578213287866674e-05; urll: 1.8469989981895196e-06; 
+	rank: pred, true, means tensor(0.4655, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.4008, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0434, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0001395191065967083; urll: 1.114110204980534e-06; 
+	rank: pred, true, means tensor(0.4361, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.3941, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0467, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 4.680859547079308e-05; urll: 9.844701480687945e-07; 
+	rank: pred, true, means tensor(0.4333, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3920, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0465, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 0.00025605017071939074; urll: 3.63538674719166e-06; 
+	rank: pred, true, means tensor(0.4873, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.3964, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0410, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.00026526737201493233; urll: 2.650171609275276e-06; 
+	rank: pred, true, means tensor(0.4138, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.3727, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0491, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 8.10159690445289e-05; urll: 1.0902683698077453e-06; 
+	rank: pred, true, means tensor(0.4566, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.3907, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0464, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0002454332570778206; urll: 1.6314288586727343e-06; 
+	rank: pred, true, means tensor(0.4593, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.3895, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0467, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 3.1099989428184927e-05; urll: 1.1468927141322638e-06; 
+	rank: pred, true, means tensor(0.4621, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.4009, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0009698396024759859; urll: 0.0001029188497341238; 
+	rank: pred, true, means tensor(0.5134, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4676, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2343, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.00012639083251997363; urll: 1.4161071248963708e-06; 
+	rank: pred, true, means tensor(0.4103, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3685, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0493, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.00041415019950363785; urll: 2.2001565866958117e-06; 
+	rank: pred, true, means tensor(0.4785, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.3934, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0442, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.0003197664409526624; urll: 2.9901664220233215e-06; 
+	rank: pred, true, means tensor(0.5130, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4007, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0426, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 9.11265942704631e-05; urll: 0.00012913570390082896; 
+	rank: pred, true, means tensor(0.9638, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1805, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0172, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.0009067682549357414; urll: 1.3038517181485076e-06; 
+	rank: pred, true, means tensor(0.4538, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4011, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0491, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 8.590928700868972e-05; urll: 8.761883236729773e-07; 
+	rank: pred, true, means tensor(0.4442, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.3806, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0484, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 8.8390252130921e-05; urll: 4.757196165883215e-06; 
+	rank: pred, true, means tensor(0.5218, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.3966, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0410, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Epoch 10 -- batch 0 / 8744 mrrl: 0.0012374180369079113; urll: 2.3206075638881885e-06; 
+	rank: pred, true, means tensor(0.4905, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4624, device='cuda:0')
+	rank: pred, true, stds tensor(0.4216, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2559, device='cuda:0')
+	pred, true, mrr tensor(0.0461, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0350, device='cuda:0')
+
+batch 500 / 8744 mrrl: 8.508570772391977e-06; urll: 1.817445081542246e-06; 
+	rank: pred, true, means tensor(0.4567, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4431, device='cuda:0')
+	rank: pred, true, stds tensor(0.4250, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2621, device='cuda:0')
+	pred, true, mrr tensor(0.0517, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0526, device='cuda:0')
+
+batch 1000 / 8744 mrrl: 5.2305313147371635e-06; urll: 2.470861090841936e-06; 
+	rank: pred, true, means tensor(0.4807, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4331, device='cuda:0')
+	rank: pred, true, stds tensor(0.3772, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2676, device='cuda:0')
+	pred, true, mrr tensor(0.0466, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0459, device='cuda:0')
+
+batch 1500 / 8744 mrrl: 0.0003423368252697401; urll: 1.5685956213928876e-06; 
+	rank: pred, true, means tensor(0.4718, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4386, device='cuda:0')
+	rank: pred, true, stds tensor(0.3714, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2589, device='cuda:0')
+	pred, true, mrr tensor(0.0488, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0429, device='cuda:0')
+
+batch 2000 / 8744 mrrl: 6.975923042773502e-05; urll: 3.2405059755546972e-06; 
+	rank: pred, true, means tensor(0.4857, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4291, device='cuda:0')
+	rank: pred, true, stds tensor(0.3731, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2641, device='cuda:0')
+	pred, true, mrr tensor(0.0460, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0487, device='cuda:0')
+
+batch 2500 / 8744 mrrl: 8.196498129109386e-05; urll: 8.293738574138843e-06; 
+	rank: pred, true, means tensor(0.5246, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4299, device='cuda:0')
+	rank: pred, true, stds tensor(0.3792, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2626, device='cuda:0')
+	pred, true, mrr tensor(0.0432, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0461, device='cuda:0')
+
+batch 3000 / 8744 mrrl: 0.0004272294245311059; urll: 5.905827151764242e-07; 
+	rank: pred, true, means tensor(0.4544, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4595, device='cuda:0')
+	rank: pred, true, stds tensor(0.3639, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2617, device='cuda:0')
+	pred, true, mrr tensor(0.0505, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+batch 3500 / 8744 mrrl: 5.9055309975519776e-05; urll: 3.8787725316069555e-06; 
+	rank: pred, true, means tensor(0.5172, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4567, device='cuda:0')
+	rank: pred, true, stds tensor(0.3756, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2541, device='cuda:0')
+	pred, true, mrr tensor(0.0460, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0436, device='cuda:0')
+
+batch 4000 / 8744 mrrl: 0.0010484386439202353; urll: 2.412075991742313e-05; 
+	rank: pred, true, means tensor(0.5928, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4270, device='cuda:0')
+	rank: pred, true, stds tensor(0.4090, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2686, device='cuda:0')
+	pred, true, mrr tensor(0.0414, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0517, device='cuda:0')
+
+batch 4500 / 8744 mrrl: 1.6279797137030982e-05; urll: 3.123035185126355e-06; 
+	rank: pred, true, means tensor(0.5076, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4536, device='cuda:0')
+	rank: pred, true, stds tensor(0.3783, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2669, device='cuda:0')
+	pred, true, mrr tensor(0.0466, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0479, device='cuda:0')
+
+batch 5000 / 8744 mrrl: 0.0014023573021404445; urll: 0.00012757132935803384; 
+	rank: pred, true, means tensor(0.5530, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.1661, device='cuda:0')
+	rank: pred, true, stds tensor(0.4759, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1933, device='cuda:0')
+	pred, true, mrr tensor(0.2363, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.2244, device='cuda:0')
+
+batch 5500 / 8744 mrrl: 0.00023536704247817397; urll: 3.5541754641599255e-06; 
+	rank: pred, true, means tensor(0.4925, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4376, device='cuda:0')
+	rank: pred, true, stds tensor(0.3996, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2591, device='cuda:0')
+	pred, true, mrr tensor(0.0506, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0457, device='cuda:0')
+
+batch 6000 / 8744 mrrl: 0.000622839797870256; urll: 1.673946826485917e-05; 
+	rank: pred, true, means tensor(0.5751, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4379, device='cuda:0')
+	rank: pred, true, stds tensor(0.4022, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2678, device='cuda:0')
+	pred, true, mrr tensor(0.0428, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0506, device='cuda:0')
+
+batch 6500 / 8744 mrrl: 0.001280952274100855; urll: 1.1574229574762285e-05; 
+	rank: pred, true, means tensor(0.5757, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4676, device='cuda:0')
+	rank: pred, true, stds tensor(0.4201, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2465, device='cuda:0')
+	pred, true, mrr tensor(0.0482, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0369, device='cuda:0')
+
+batch 7000 / 8744 mrrl: 0.000876046615303494; urll: 0.00012568384408950806; 
+	rank: pred, true, means tensor(0.9591, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.5835, device='cuda:0')
+	rank: pred, true, stds tensor(0.1797, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.1761, device='cuda:0')
+	pred, true, mrr tensor(0.0109, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0202, device='cuda:0')
+
+batch 7500 / 8744 mrrl: 0.001240231649717316; urll: 4.551808160613291e-06; 
+	rank: pred, true, means tensor(0.5230, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4598, device='cuda:0')
+	rank: pred, true, stds tensor(0.4026, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2576, device='cuda:0')
+	pred, true, mrr tensor(0.0507, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0395, device='cuda:0')
+
+batch 8000 / 8744 mrrl: 5.043143119110027e-05; urll: 5.0512453526607715e-06; 
+	rank: pred, true, means tensor(0.5239, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4534, device='cuda:0')
+	rank: pred, true, stds tensor(0.3903, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2662, device='cuda:0')
+	pred, true, mrr tensor(0.0477, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0455, device='cuda:0')
+
+batch 8500 / 8744 mrrl: 0.00021050294890301302; urll: 6.584326911251992e-06; 
+	rank: pred, true, means tensor(0.5352, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.4531, device='cuda:0')
+	rank: pred, true, stds tensor(0.3925, device='cuda:0', grad_fn=<StdBackward0>) tensor(0.2684, device='cuda:0')
+	pred, true, mrr tensor(0.0485, device='cuda:0', grad_fn=<MeanBackward0>) tensor(0.0439, device='cuda:0')
+
+Saving checkpoint at [2] epoch 10
+Done Training (mrr)!
+REC: Testing model with dataloader UMLS
+Testing: batch 0 / 488
+
+
+Testing data for dataloader(s) UMLS
+==========================================
+
+Predicted MRRs
+------------------------------------------
+0.024304663762450218
+0.04592890292406082
+0.2525808811187744
+0.04592890292406082
+0.04592890292406082
+0.2642856240272522
+0.21962065994739532
+0.28283873200416565
+0.04393596947193146
+0.04592890292406082
+0.04454133287072182
+0.02987745776772499
+0.04592890292406082
+0.026292044669389725
+0.20346194505691528
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.021274758502840996
+0.04592890292406082
+0.03878219053149223
+0.04592890292406082
+0.023905951529741287
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.2185705453157425
+0.018479054793715477
+0.2650662064552307
+0.04592890292406082
+0.2288089543581009
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.26941412687301636
+0.04592890292406082
+0.315731942653656
+0.22184397280216217
+0.04592890292406082
+0.04592890292406082
+0.034868255257606506
+0.02130143716931343
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.4244938790798187
+0.03937214985489845
+0.04592890292406082
+0.04353339970111847
+0.40208593010902405
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.028322063386440277
+0.04592890292406082
+0.04592890292406082
+0.30587679147720337
+0.251139760017395
+0.04592890292406082
+0.0406220443546772
+0.028285222128033638
+0.04592890292406082
+0.2215430587530136
+0.022708503529429436
+0.04592890292406082
+0.04592890292406082
+0.019865024834871292
+0.031000763177871704
+0.04592890292406082
+0.2182949036359787
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.03784528374671936
+0.2418121099472046
+0.028281737118959427
+0.04592890292406082
+0.04592890292406082
+0.044232070446014404
+0.32757699489593506
+0.04592890292406082
+0.2508232593536377
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.047898177057504654
+0.2534864842891693
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.21418620645999908
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.046372681856155396
+0.19354315102100372
+0.24589379131793976
+0.3200603425502777
+0.23787547647953033
+0.04366956651210785
+0.04592890292406082
+0.037908587604761124
+0.02298532985150814
+0.04592890292406082
+0.04592890292406082
+0.04050524905323982
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.26846593618392944
+0.04592890292406082
+0.2153201848268509
+0.04592890292406082
+0.04592890292406082
+0.04347803443670273
+0.04592890292406082
+0.04610809311270714
+0.04592890292406082
+0.21790257096290588
+0.023905951529741287
+0.24589379131793976
+0.041563086211681366
+0.022385086864233017
+0.21682734787464142
+0.03776933252811432
+0.04592890292406082
+0.04592890292406082
+0.03427344560623169
+0.2992395758628845
+0.226220041513443
+0.04592890292406082
+0.04592890292406082
+0.044969234615564346
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.205444797873497
+0.04592890292406082
+0.04592890292406082
+0.044291991740465164
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.22162628173828125
+0.19831061363220215
+0.04592890292406082
+0.1979057937860489
+0.04592890292406082
+0.04592890292406082
+0.03930065408349037
+0.022608717903494835
+0.03850999474525452
+0.04592890292406082
+0.2957470715045929
+0.04592890292406082
+0.020909326151013374
+0.04638068377971649
+0.030953459441661835
+0.04592890292406082
+0.04592890292406082
+0.02987745776772499
+0.022967524826526642
+0.04592890292406082
+0.04590329900383949
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.3148121237754822
+0.19959492981433868
+0.043463874608278275
+0.04592890292406082
+0.02861662395298481
+0.04325700178742409
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.20320671796798706
+0.04592890292406082
+0.04304875060915947
+0.026722857728600502
+0.0434119775891304
+0.04592890292406082
+0.04592890292406082
+0.24501793086528778
+0.2642272710800171
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04368996620178223
+0.04592890292406082
+0.04317628592252731
+0.04592890292406082
+0.04592890292406082
+0.04421639069914818
+0.22983485460281372
+0.19354315102100372
+0.04592890292406082
+0.0341947041451931
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.22652055323123932
+0.03514161333441734
+0.2707773745059967
+0.20835824310779572
+0.19886837899684906
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.022697504609823227
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.03145008906722069
+0.04318813607096672
+0.2144947052001953
+0.04592890292406082
+0.3096913695335388
+0.21896182000637054
+0.04592890292406082
+0.022614574059844017
+0.04592890292406082
+0.041903454810380936
+0.04089454561471939
+0.02387847751379013
+0.048293836414813995
+0.21203237771987915
+0.04592890292406082
+0.04592890292406082
+0.2307829111814499
+0.21990765631198883
+0.04592890292406082
+0.04143206775188446
+0.04592890292406082
+0.0442797914147377
+0.04592890292406082
+0.03823709860444069
+0.044819291681051254
+0.19959492981433868
+0.20480212569236755
+0.04592890292406082
+0.04592890292406082
+0.2255130112171173
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.21523188054561615
+0.33149731159210205
+0.04592890292406082
+0.3136800527572632
+0.044908199459314346
+0.04592890292406082
+0.04592890292406082
+0.22853820025920868
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.0267026349902153
+0.04375157877802849
+0.04030406475067139
+0.04592890292406082
+0.04592890292406082
+0.2960570454597473
+0.2247055619955063
+0.04620623216032982
+0.04592890292406082
+0.04592890292406082
+0.045282796025276184
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.28456631302833557
+0.20351898670196533
+0.04471364989876747
+0.20835824310779572
+0.02130143716931343
+0.3685460388660431
+0.04592890292406082
+0.2650662064552307
+0.04592890292406082
+0.19373120367527008
+0.025548500940203667
+0.04592890292406082
+0.04317628592252731
+0.04592890292406082
+0.24021461606025696
+0.04409662261605263
+0.24500222504138947
+0.04592890292406082
+0.23078693449497223
+0.04592890292406082
+0.0341947041451931
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.21996694803237915
+0.02123449370265007
+0.04592890292406082
+0.04011933505535126
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04583928361535072
+0.04592890292406082
+0.028044091537594795
+0.037625640630722046
+0.04592890292406082
+0.02884061075747013
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.022708503529429436
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.23619423806667328
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.03909563273191452
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.029962509870529175
+0.04592890292406082
+0.04592890292406082
+0.22388921678066254
+0.04452767223119736
+0.04592890292406082
+0.04035384580492973
+0.2186647206544876
+0.04592890292406082
+0.04148727282881737
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.03187090903520584
+0.04592890292406082
+0.03192385658621788
+0.20047035813331604
+0.20859716832637787
+0.020929835736751556
+0.269381046295166
+0.04592890292406082
+0.04592890292406082
+0.019848613068461418
+0.0224144347012043
+0.04592890292406082
+0.021420612931251526
+0.04592890292406082
+0.04592890292406082
+0.04808652400970459
+0.04592890292406082
+0.02643962763249874
+0.04592890292406082
+0.24039050936698914
+0.04627187177538872
+0.04592890292406082
+0.24021461606025696
+0.04318813607096672
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.21688364446163177
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.028972789645195007
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04416614770889282
+0.04592890292406082
+0.04592890292406082
+0.24613751471042633
+0.04592890292406082
+0.04325700178742409
+0.04592890292406082
+0.04592890292406082
+0.3034778833389282
+0.04592890292406082
+0.045063991099596024
+0.04452240467071533
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.038790393620729446
+0.22672966122627258
+0.04341975972056389
+0.04592890292406082
+0.04129978269338608
+0.04592890292406082
+0.24589379131793976
+0.30587679147720337
+0.04592890292406082
+0.04592890292406082
+0.20911231637001038
+0.021274758502840996
+0.04592890292406082
+0.029993422329425812
+0.04592890292406082
+0.02130143716931343
+0.04592890292406082
+0.04148727282881737
+0.1975339651107788
+0.04350791871547699
+0.026401501148939133
+0.21230152249336243
+0.023885734379291534
+0.2642272710800171
+0.04107489064335823
+0.04592890292406082
+0.04592890292406082
+0.04444340616464615
+0.028179196640849113
+0.04592890292406082
+0.2165493369102478
+0.039262544363737106
+0.04592890292406082
+0.020909326151013374
+0.04592890292406082
+0.04592890292406082
+0.23981311917304993
+0.04592890292406082
+0.044585250318050385
+0.04045909270644188
+0.28456631302833557
+0.019764238968491554
+0.04592890292406082
+0.02884061075747013
+0.028220711275935173
+0.04592890292406082
+0.04595629870891571
+0.019490964710712433
+0.22983485460281372
+0.04592890292406082
+0.22591491043567657
+0.026282280683517456
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.04592890292406082
+0.21409928798675537
+0.04592890292406082
+0.04113546386361122
+0.04592890292406082
+0.04592890292406082
+0.04438719153404236
+0.04454133287072182
+0.04592890292406082
+0.315731942653656
+0.04592890292406082
+0.0391881950199604
+0.04592890292406082
+0.2440294772386551
+0.04592890292406082
+0.04592890292406082
+0.047549210488796234
+0.03427344560623169
+0.029962509870529175
+0.04592890292406082
+
+True MRRs
+------------------------------------------
+0.024421753361821175
+0.040611956268548965
+0.2679971158504486
+0.05212536081671715
+0.04418471083045006
+0.2767186462879181
+0.22048406302928925
+0.28721752762794495
+0.05223089084029198
+0.05306162312626839
+0.04563980922102928
+0.04022475704550743
+0.05053471028804779
+0.028979113325476646
+0.20017242431640625
+0.0510750338435173
+0.04871068894863129
+0.05112357810139656
+0.022336235269904137
+0.04657765105366707
+0.022041138261556625
+0.04669781029224396
+0.025308234617114067
+0.05634297803044319
+0.051288798451423645
+0.045312363654375076
+0.1836642175912857
+0.022630177438259125
+0.2853279411792755
+0.04315338283777237
+0.27424508333206177
+0.05280361324548721
+0.046172138303518295
+0.05079720541834831
+0.2948368489742279
+0.04793421924114227
+0.527546763420105
+0.18888519704341888
+0.04690057039260864
+0.053239855915308
+0.02301979809999466
+0.024823836982250214
+0.04240609332919121
+0.05019450932741165
+0.03973282128572464
+0.40128597617149353
+0.020450986921787262
+0.046501316130161285
+0.035824958235025406
+0.3863733112812042
+0.037442646920681
+0.04658975079655647
+0.04466140270233154
+0.04720115661621094
+0.023695843294262886
+0.04595748335123062
+0.048142366111278534
+0.28033921122550964
+0.33485135436058044
+0.05115450546145439
+0.05082206428050995
+0.04955441504716873
+0.0440806970000267
+0.23015402257442474
+0.02608742006123066
+0.03636784851551056
+0.049725379794836044
+0.025708824396133423
+0.026334170252084732
+0.04558807611465454
+0.2479293793439865
+0.04712634161114693
+0.040464747697114944
+0.04882826283574104
+0.04723963886499405
+0.22773411870002747
+0.0244813933968544
+0.04258407652378082
+0.056084226816892624
+0.05319948121905327
+0.3022296130657196
+0.04110518842935562
+0.26948943734169006
+0.05067909508943558
+0.04224381595849991
+0.0344768762588501
+0.05653548985719681
+0.049590449780225754
+0.04402928054332733
+0.2644907534122467
+0.046916596591472626
+0.04364536330103874
+0.042520198971033096
+0.036633286625146866
+0.1829189509153366
+0.05245602875947952
+0.046704404056072235
+0.044600438326597214
+0.04878751188516617
+0.1921292245388031
+0.2184889167547226
+0.3020302951335907
+0.28487512469291687
+0.03500189259648323
+0.04417920857667923
+0.04369112104177475
+0.025355754420161247
+0.046175919473171234
+0.04695047810673714
+0.05438936874270439
+0.040812112390995026
+0.05566876381635666
+0.04574545472860336
+0.04642236605286598
+0.04651501402258873
+0.053789809346199036
+0.2733866274356842
+0.042412299662828445
+0.2161019891500473
+0.041785866022109985
+0.04549406096339226
+0.04712012782692909
+0.044846948236227036
+0.041892558336257935
+0.04077114164829254
+0.19106347858905792
+0.02659224160015583
+0.2326705902814865
+0.055132899433374405
+0.02398771420121193
+0.257141649723053
+0.04661177843809128
+0.04513619840145111
+0.047497618943452835
+0.020540304481983185
+0.31931763887405396
+0.21460142731666565
+0.04949665442109108
+0.043665289878845215
+0.05038877949118614
+0.04434331879019737
+0.0625285878777504
+0.04761948809027672
+0.04560064896941185
+0.04289785400032997
+0.21029964089393616
+0.03937029093503952
+0.05035090073943138
+0.04887067526578903
+0.045300744473934174
+0.04703718051314354
+0.048190899193286896
+0.2038814276456833
+0.21342837810516357
+0.04747121408581734
+0.18913963437080383
+0.05108555778861046
+0.04985865205526352
+0.019401853904128075
+0.02426147647202015
+0.04386865347623825
+0.047009244561195374
+0.3191469609737396
+0.0501236766576767
+0.02403700351715088
+0.04713285341858864
+0.025692986324429512
+0.05560091882944107
+0.04322371259331703
+0.049534499645233154
+0.024325493723154068
+0.03444935008883476
+0.042769789695739746
+0.04507102817296982
+0.053450532257556915
+0.048478659242391586
+0.054389588534832
+0.04955955222249031
+0.044545359909534454
+0.04860858991742134
+0.050046052783727646
+0.04503839462995529
+0.04805624857544899
+0.042269133031368256
+0.2736468017101288
+0.18969745934009552
+0.043019380420446396
+0.04187805578112602
+0.04608198255300522
+0.050533365458250046
+0.0517842099070549
+0.04908036068081856
+0.049056701362133026
+0.17155535519123077
+0.05153404921293259
+0.04880017042160034
+0.024883754551410675
+0.051359981298446655
+0.04060589522123337
+0.047532711178064346
+0.24110831320285797
+0.2757151126861572
+0.04730156809091568
+0.04566335678100586
+0.03843742609024048
+0.032100025564432144
+0.04725067690014839
+0.04970249533653259
+0.04906530678272247
+0.04797698184847832
+0.04460151121020317
+0.19750961661338806
+0.1896548718214035
+0.04045284911990166
+0.020513031631708145
+0.04786063730716705
+0.04818395897746086
+0.04734625294804573
+0.20219972729682922
+0.01934351585805416
+0.2913946211338043
+0.24572013318538666
+0.22162023186683655
+0.040517717599868774
+0.04414947330951691
+0.052420713007450104
+0.024798264726996422
+0.0435338020324707
+0.048338912427425385
+0.044794000685214996
+0.024865852668881416
+0.044878922402858734
+0.23919646441936493
+0.04898383468389511
+0.5602197647094727
+0.2105584591627121
+0.04920205846428871
+0.02421092614531517
+0.04785943403840065
+0.042082831263542175
+0.04207504913210869
+0.02485971711575985
+0.03978830575942993
+0.22230181097984314
+0.033027999103069305
+0.04515625536441803
+0.2626383304595947
+0.21250703930854797
+0.04535385221242905
+0.03238007426261902
+0.04401993378996849
+0.048866163939237595
+0.049575623124837875
+0.031288545578718185
+0.05846671760082245
+0.17705316841602325
+0.23405039310455322
+0.049988165497779846
+0.047820158302783966
+0.29858797788619995
+0.04478355869650841
+0.03733805567026138
+0.0508250817656517
+0.2505630850791931
+0.3190251290798187
+0.05430309846997261
+0.3127554655075073
+0.050930652767419815
+0.05450863018631935
+0.05162355303764343
+0.23369307816028595
+0.0531732514500618
+0.04480220377445221
+0.049185823649168015
+0.024183055385947227
+0.04071365296840668
+0.03566517308354378
+0.04787789657711983
+0.049477774649858475
+0.3050260543823242
+0.21868804097175598
+0.04244374856352806
+0.036997824907302856
+0.045153453946113586
+0.029200032353401184
+0.04347711801528931
+0.05071068927645683
+0.046009257435798645
+0.3013472855091095
+0.2202305644750595
+0.04249117895960808
+0.25488752126693726
+0.022353703156113625
+0.3855242431163788
+0.0466637909412384
+0.2780642807483673
+0.05608109012246132
+0.20262204110622406
+0.02654014341533184
+0.029790503904223442
+0.044636040925979614
+0.05125124007463455
+0.24062614142894745
+0.051547639071941376
+0.2337988317012787
+0.051067762076854706
+0.27478739619255066
+0.049478355795145035
+0.01991152949631214
+0.043791670352220535
+0.04810402914881706
+0.04397089406847954
+0.26408398151397705
+0.02640743926167488
+0.05192345753312111
+0.042579930275678635
+0.04946838319301605
+0.045790281146764755
+0.04213999584317207
+0.040611304342746735
+0.052033353596925735
+0.026832304894924164
+0.05297798663377762
+0.0422302670776844
+0.048724692314863205
+0.04800698161125183
+0.04827018827199936
+0.04539962857961655
+0.05274462327361107
+0.02614029124379158
+0.05319271236658096
+0.042487043887376785
+0.048115167766809464
+0.044078730046749115
+0.04069843515753746
+0.04834916442632675
+0.04630925506353378
+0.23726779222488403
+0.051867786794900894
+0.05287028104066849
+0.04021022468805313
+0.019861681386828423
+0.05025887116789818
+0.04123224318027496
+0.040559154003858566
+0.0422552190721035
+0.033059585839509964
+0.04915664345026016
+0.25031790137290955
+0.051255419850349426
+0.0497303307056427
+0.04302064701914787
+0.19302205741405487
+0.04350697994232178
+0.03117412142455578
+0.04827515408396721
+0.043603021651506424
+0.053982388228178024
+0.022925255820155144
+0.047289978712797165
+0.023285143077373505
+0.2114821821451187
+0.23118235170841217
+0.023495716974139214
+0.2682235836982727
+0.046504776924848557
+0.04016425088047981
+0.023664096370339394
+0.024514099583029747
+0.05522778630256653
+0.02779652737081051
+0.04133186861872673
+0.0480370931327343
+0.04507250711321831
+0.050911661237478256
+0.025021124631166458
+0.05102074518799782
+0.24480316042900085
+0.03806536644697189
+0.050381142646074295
+0.23918980360031128
+0.056644439697265625
+0.046999700367450714
+0.03916798159480095
+0.05127035081386566
+0.05439584329724312
+0.2030325084924698
+0.047273751348257065
+0.042119793593883514
+0.047489237040281296
+0.04196649417281151
+0.05479292944073677
+0.048049621284008026
+0.04806503653526306
+0.05261324718594551
+0.03899736329913139
+0.042528484016656876
+0.047544319182634354
+0.0458199717104435
+0.04482138156890869
+0.2688230574131012
+0.0538853295147419
+0.053283173590898514
+0.050001852214336395
+0.04686715453863144
+0.3149104118347168
+0.038145262748003006
+0.03321397677063942
+0.04110361263155937
+0.04956366866827011
+0.02964176796376705
+0.046684905886650085
+0.04906773194670677
+0.21872417628765106
+0.035455115139484406
+0.04126609489321709
+0.04594307765364647
+0.05194870010018349
+0.20304986834526062
+0.2884472608566284
+0.04389704763889313
+0.05259912833571434
+0.2063712626695633
+0.027109788730740547
+0.04465942084789276
+0.046785857528448105
+0.04414379224181175
+0.025343526154756546
+0.04883458465337753
+0.032708827406167984
+0.210621178150177
+0.03498902916908264
+0.028989793732762337
+0.2443627119064331
+0.024981852620840073
+0.29226770997047424
+0.04205162450671196
+0.05009705573320389
+0.050801727920770645
+0.055416952818632126
+0.025101356208324432
+0.04365615174174309
+0.23227831721305847
+0.02025243267416954
+0.04346780851483345
+0.027189644053578377
+0.047783251851797104
+0.04890083894133568
+0.23694628477096558
+0.04704683646559715
+0.060318365693092346
+0.04360857605934143
+0.31947681307792664
+0.02437218278646469
+0.03563481941819191
+0.05441431328654289
+0.025683920830488205
+0.04656463488936424
+0.03615206480026245
+0.027236703783273697
+0.23446635901927948
+0.04614027589559555
+0.2586989402770996
+0.025526531040668488
+0.04222304746508598
+0.04046820476651192
+0.04704149439930916
+0.041279878467321396
+0.0466274730861187
+0.24165078997612
+0.049526646733284
+0.04907853156328201
+0.05562041327357292
+0.04631710425019264
+0.036487091332674026
+0.044986605644226074
+0.04397793114185333
+0.515143096446991
+0.05072994902729988
+0.021167363971471786
+0.046446990221738815
+0.3001837432384491
+0.0502328984439373
+0.04836077243089676
+0.044561851769685745
+0.02108783833682537
+0.05100202187895775
+0.0473867692053318
+
+r_mrr = tensor([[1.0000, 0.9747],
+        [0.9747, 1.0000]])
+r2_mrr = 0.9453637003898621
+test_loss: 0.004726295940802957
+Done Testing!
+REC: Testing model with dataloader DBpedia50
+Testing: batch 0 / 488
+
+
+Testing data for dataloader(s) DBpedia50
+==========================================
+
+Predicted MRRs
+------------------------------------------
+0.2930058538913727
+0.048825621604919434
+0.10592874139547348
+0.00016553093155380338
+0.0001895450404845178
+0.00018301552336197346
+0.0001895450404845178
+0.11614834517240524
+0.1585976481437683
+0.0001895450404845178
+0.1025276780128479
+0.0001895450404845178
+0.0001895450404845178
+0.0001840012555476278
+0.0001895450404845178
+0.08723973482847214
+0.12043385207653046
+0.0001895450404845178
+0.014252372086048126
+0.08791427314281464
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00018829508917406201
+0.05070992931723595
+0.12388672679662704
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09291275590658188
+0.0001895450404845178
+0.0001895450404845178
+0.00018009239283856004
+0.0001895450404845178
+0.0001895450404845178
+0.1122262179851532
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.29196953773498535
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.10288204252719879
+0.09788136929273605
+0.10323093086481094
+0.0001895450404845178
+0.10379823297262192
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.10687647759914398
+0.09362383931875229
+0.10579580068588257
+0.103017657995224
+0.11712735146284103
+0.0985308289527893
+0.0001895450404845178
+0.2937900125980377
+0.0986727848649025
+0.0001895450404845178
+0.0001895450404845178
+0.09296201169490814
+0.19032631814479828
+0.0001895450404845178
+0.09147169440984726
+0.10692733526229858
+0.16434802114963531
+0.1589384227991104
+0.1281636506319046
+0.00020712547120638192
+0.0001895450404845178
+0.0001895450404845178
+0.10555247962474823
+0.16242825984954834
+0.00016701323329471052
+0.00018278975039720535
+0.00017537226085551083
+0.0001895450404845178
+0.0001895450404845178
+0.16349422931671143
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00017302067135460675
+0.0001895450404845178
+0.11341570317745209
+0.09585206210613251
+0.0001895450404845178
+0.00018089650257024914
+0.0001895450404845178
+0.19157521426677704
+0.00018027475744020194
+0.0001895450404845178
+0.0001895450404845178
+0.00018978124717250466
+0.00017601378203835338
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00018320359231438488
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09782335162162781
+0.0001895450404845178
+0.0001895450404845178
+0.11772064119577408
+0.00015977106522768736
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.11522813886404037
+0.10536404699087143
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00016530504217371345
+0.0001895450404845178
+0.14755955338478088
+0.0001895450404845178
+0.00017501311958767474
+0.11339636892080307
+0.0001895450404845178
+0.0001742174499668181
+0.0001895450404845178
+0.00015977106522768736
+0.0001895450404845178
+0.0001895450404845178
+0.09660518169403076
+0.10322164744138718
+0.10962934792041779
+0.10517570376396179
+0.0001895450404845178
+0.0001895450404845178
+0.17329798638820648
+0.0001895450404845178
+0.10856284201145172
+0.07302965968847275
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.25760963559150696
+0.15966130793094635
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.2132154107093811
+0.0001895450404845178
+0.12628860771656036
+0.27891066670417786
+0.06902474164962769
+0.0001895450404845178
+0.0001895450404845178
+0.25517264008522034
+0.2904666066169739
+0.29411935806274414
+0.0001895450404845178
+0.0001895450404845178
+0.00017231880337931216
+0.0001895450404845178
+0.0001895450404845178
+0.10437120497226715
+0.0001895450404845178
+0.0001895450404845178
+0.1281636506319046
+0.11849047243595123
+0.0001895450404845178
+0.0001895450404845178
+0.01038402784615755
+0.0001895450404845178
+0.0001895450404845178
+0.15884482860565186
+0.0001668405457166955
+0.0001895450404845178
+0.10702841728925705
+0.11712735146284103
+0.0001895450404845178
+0.10431738942861557
+0.0001895450404845178
+0.1605881005525589
+0.00017467951693106443
+0.11950656771659851
+0.09793838113546371
+0.00018380838446319103
+0.00018343007832299918
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.12627102434635162
+0.0001895450404845178
+0.09073913842439651
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.24771852791309357
+0.0001895450404845178
+0.0001895450404845178
+0.00018038100097328424
+0.10337337106466293
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001596558140590787
+0.1632121205329895
+0.0001895450404845178
+0.12388672679662704
+0.0001895450404845178
+0.09935113787651062
+0.047949645668268204
+0.0001895450404845178
+0.00018961077148560435
+0.0001895450404845178
+0.1057085171341896
+0.014292541891336441
+0.18246033787727356
+0.2927151620388031
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00019010955293197185
+0.0001760862796800211
+0.00019207471632398665
+0.00017351005226373672
+0.00018376889056526124
+0.0001895450404845178
+0.00017421953089069575
+0.0001895450404845178
+0.13630665838718414
+0.0001895450404845178
+0.0001895450404845178
+0.07302965968847275
+0.0001996366336243227
+0.0001895450404845178
+0.10702841728925705
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00015976952272467315
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.12388672679662704
+0.12634073197841644
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001754911500029266
+0.0001895450404845178
+0.0001895450404845178
+0.06902474164962769
+0.0001824545906856656
+0.12043385207653046
+0.18758222460746765
+0.0001895450404845178
+0.0001895450404845178
+0.17297467589378357
+0.0001895450404845178
+0.10691557824611664
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09590085595846176
+0.0001895450404845178
+0.10293668508529663
+0.0001895450404845178
+0.24771852791309357
+0.05044187977910042
+0.09340794384479523
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00018134423589799553
+0.0001895450404845178
+0.0001895450404845178
+0.0001834611757658422
+0.0001895450404845178
+0.047949645668268204
+0.0001895450404845178
+0.09791547060012817
+0.0001734101097099483
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09499003738164902
+0.0001895450404845178
+0.04936084896326065
+0.07904130220413208
+0.0001895450404845178
+0.1095748171210289
+0.0001895450404845178
+0.0001895450404845178
+0.00018320359231438488
+0.09227373450994492
+0.13048043847084045
+0.0001895450404845178
+0.05030142143368721
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.11707767844200134
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.24837210774421692
+0.09732457995414734
+0.010740888305008411
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00017870336887426674
+0.29168006777763367
+0.09315800666809082
+0.09655625373125076
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.12174086272716522
+0.09700782597064972
+0.0001895450404845178
+0.0001600909308763221
+0.0001895450404845178
+0.0001895450404845178
+0.0001889244158519432
+0.0001895450404845178
+0.10927753150463104
+0.0001895450404845178
+0.10175825655460358
+0.00018752019968815148
+0.0001840012555476278
+0.00016649860481265932
+0.0001895450404845178
+0.14772048592567444
+0.10374988615512848
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.11599849164485931
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.07470161467790604
+0.0001895450404845178
+0.2639416456222534
+0.0001895450404845178
+0.1150897890329361
+0.0001895450404845178
+0.0001895450404845178
+0.09367260336875916
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.25839540362358093
+0.0001895450404845178
+0.0001895450404845178
+0.15332579612731934
+0.0001895450404845178
+0.0001895450404845178
+0.09525804221630096
+0.10702841728925705
+0.0001895450404845178
+0.09660477191209793
+0.10592874139547348
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.00018374250794295222
+0.11341570317745209
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.014292541891336441
+0.00019855941354762763
+0.07097484916448593
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.1246306300163269
+0.11086656153202057
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.10560562461614609
+0.00019020946638192981
+0.0001895450404845178
+0.0001668405457166955
+0.1045013964176178
+0.00017537226085551083
+0.0001895450404845178
+0.0001727431226754561
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.10306304693222046
+0.00017433028551749885
+0.0001895450404845178
+0.2619183659553528
+0.09665113687515259
+0.15054619312286377
+0.0001895450404845178
+0.11208955943584442
+0.00018127540533896536
+0.0001895450404845178
+0.14166808128356934
+0.00016649860481265932
+0.0001895450404845178
+0.1414300948381424
+0.0001895450404845178
+0.09703761339187622
+0.0001895450404845178
+0.0001895450404845178
+0.00018844699661713094
+0.00018098628788720816
+0.0001895450404845178
+0.24837210774421692
+0.0001754911500029266
+0.0001895450404845178
+0.00018946353520732373
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0986727848649025
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.12263274192810059
+0.00018829508917406201
+0.19130584597587585
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.10947225242853165
+0.0001895450404845178
+0.0001895450404845178
+0.05613231286406517
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09788136929273605
+0.00015998241724446416
+0.0001895450404845178
+0.10431738942861557
+0.0001895450404845178
+0.0001895450404845178
+0.0001895450404845178
+0.09460916370153427
+
+True MRRs
+------------------------------------------
+0.3403540253639221
+0.0006592695717699826
+0.0626697912812233
+0.00019974750466644764
+0.00018763395200949162
+0.0005632748361676931
+0.0001647083117859438
+0.13904738426208496
+0.28218477964401245
+0.0001942867529578507
+0.11636991053819656
+0.00048800642252899706
+0.00027689256239682436
+0.0001937803317559883
+0.0003906715428456664
+0.11883270740509033
+0.05840856954455376
+0.00018027624173555523
+0.00021306867711246014
+0.11213765293359756
+0.0004136643838137388
+0.00030345437698997557
+0.00024765048874542117
+0.0005300845368765295
+0.0002072537608910352
+0.0011001594830304384
+0.09460091590881348
+0.00021010666387155652
+0.00016810408851597458
+0.000255975523032248
+0.08992549777030945
+0.0002536386309657246
+0.0002220240276074037
+0.0005258690798655152
+0.00018341041868552566
+0.0003378406981937587
+0.18915051221847534
+0.0001895991590572521
+0.0001540997182019055
+0.00033083069138228893
+0.0003925963246729225
+0.0003717112704180181
+0.31644147634506226
+0.00018756416102405638
+0.00028128776466473937
+0.00016006233636289835
+0.08653312921524048
+0.09373410046100616
+0.08872959017753601
+0.00017803213268052787
+0.07139813899993896
+0.00030800874810665846
+0.0002033751952694729
+0.000547452422324568
+0.00036946305772289634
+0.0004104692197870463
+0.0886678472161293
+0.10855128616094589
+0.104544997215271
+0.12469464540481567
+0.11562944948673248
+0.13902819156646729
+0.00016411601973231882
+0.3421948254108429
+0.08609068393707275
+0.00032544753048568964
+0.0003625195531640202
+0.1049068346619606
+0.15377599000930786
+0.00016826821956783533
+0.09439417719841003
+0.09773650020360947
+0.16873817145824432
+0.29426124691963196
+0.08161527663469315
+0.00019529148994479328
+0.00016843105549924076
+0.00021283543901517987
+0.13471874594688416
+0.15446463227272034
+0.00017783374642021954
+0.0008609134238213301
+0.0002788352721836418
+0.0002584480680525303
+0.00039169154479168355
+0.175756573677063
+0.0002258880267618224
+0.00028752931393682957
+0.0002644203486852348
+0.0002475570945534855
+0.00014379365893546492
+0.06448911875486374
+0.11012983322143555
+0.0003239568031858653
+0.0002066546876449138
+0.0011804674286395311
+0.22657105326652527
+0.00024298821517731994
+0.0006346747977659106
+0.0002449425228405744
+0.0003781054401770234
+0.00034906811197288334
+0.0009302489925175905
+0.00019033117860089988
+0.0010279945563524961
+0.00022123400412965566
+0.0002707413805183023
+0.00019250485638622195
+0.0003264355182182044
+0.0002855482744053006
+0.00017221635789610445
+0.00019890390103682876
+0.00021677036420442164
+0.00021703680977225304
+0.00020444620167836547
+0.09149134904146194
+0.00029158368124626577
+0.00028268774622119963
+0.1491166055202484
+0.00013590783055406064
+0.0002296908205607906
+0.0029390109702944756
+0.0002692411362659186
+0.00042734359158203006
+0.1122690960764885
+0.1095530316233635
+0.00018641659698914737
+0.00022913054272066802
+0.0008954581571742892
+0.0003338560927659273
+0.00021468244085554034
+0.14399802684783936
+0.00026383274234831333
+0.0005238116718828678
+0.07431610673666
+0.00031420279992744327
+0.000440690026152879
+0.0002828367578331381
+0.0008096987730823457
+0.00028306912281550467
+0.0004736343980766833
+0.09131556749343872
+0.09968171268701553
+0.13074536621570587
+0.07873577624559402
+0.00045435642823576927
+0.00035900124930776656
+0.1542327105998993
+0.00020344975928310305
+0.10322032123804092
+0.10125619173049927
+0.002334674121811986
+0.00031958575709722936
+0.000555225124116987
+0.0001455481833545491
+0.2563108801841736
+0.1480463147163391
+0.00030498835258185863
+0.0006382752326317132
+0.0006316648214124143
+0.24322493374347687
+0.0012178232427686453
+0.06074605882167816
+0.22153164446353912
+0.024570083245635033
+0.00027918725390918553
+0.0004231022612657398
+0.4019079804420471
+0.3093523383140564
+0.31234458088874817
+0.00035527697764337063
+0.00030996062560006976
+0.0002201391034759581
+0.00021286595438141376
+0.00017688261868897825
+0.09250698238611221
+0.000217176420846954
+0.00016985699767246842
+0.10947252810001373
+0.0733816847205162
+0.0002284339425386861
+0.0006192091386765242
+0.00010226784070255235
+0.0007705821772105992
+0.00026745072682388127
+0.15484990179538727
+0.0005873027257621288
+0.00015555557911284268
+0.07839455455541611
+0.11870948225259781
+0.00029058268410153687
+0.10143578797578812
+0.0003754924691747874
+0.31738969683647156
+0.00018884566088672727
+0.09303831309080124
+0.0961189717054367
+0.0002732926222961396
+0.0012308574514463544
+0.00033551096566952765
+0.00023550167679786682
+0.00032225140603259206
+0.00034281882108189166
+0.08117426931858063
+0.00026517469086684287
+0.10547231137752533
+0.00029026108677498996
+0.00018384226132184267
+0.000583011656999588
+0.00020665265037678182
+0.36600926518440247
+0.0003374307125341147
+0.00037018413422629237
+0.0011955058434978127
+0.0924823060631752
+0.00037553810398094356
+0.0003604289668146521
+0.00017019297229126096
+0.00016200267418753356
+0.17408640682697296
+0.00033906192402355373
+0.11758903414011002
+0.00022771915246266872
+0.09213852137327194
+0.004880256485193968
+0.00030657893512398005
+0.0011517290258780122
+0.00019398346194066107
+0.11833052337169647
+0.00010916514293057844
+0.21371474862098694
+0.33449187874794006
+0.0001638641842873767
+0.00039475865196436644
+0.00021674686286132783
+0.00027947878697887063
+0.00023764841898810118
+0.0003893153043463826
+0.0002717562310863286
+0.0002693832793738693
+0.00024712030426599085
+0.0002978444390464574
+0.00026726810028776526
+0.2700037956237793
+0.00022065317898523062
+0.00016033746942412108
+0.10410170257091522
+0.0003874992544297129
+0.00019624149717856199
+0.09275007992982864
+0.0002695814473554492
+0.00017279086750932038
+0.00019354841788299382
+0.0002096622047247365
+0.00026815335149876773
+0.001549475360661745
+0.00034381781006231904
+0.00013879813195671886
+0.09145840257406235
+0.046528130769729614
+0.0002571621735114604
+0.0003053164400625974
+0.0003819130652118474
+0.0003421043511480093
+0.0001580677053425461
+0.00020680033776443452
+0.0002528810000512749
+0.03523152321577072
+0.0001861114869825542
+0.0988781601190567
+0.16675986349582672
+0.0003566662489902228
+0.00027188804233446717
+0.1465083211660385
+0.00035275748814456165
+0.08132167905569077
+0.0003118352615274489
+0.0003539827303029597
+0.00021319616644177586
+0.00020806369138881564
+0.0004400421166792512
+0.08470606058835983
+0.00032444557291455567
+0.09872468560934067
+0.00027637032326310873
+0.3772662878036499
+0.0038443715311586857
+0.10099450498819351
+0.0004932010779157281
+0.0009751499746926129
+0.0004370971000753343
+0.00038514388143084943
+0.00039234894211404026
+0.00022106214601080865
+0.0002662616898305714
+0.0002376834163442254
+0.007862815633416176
+0.0004625506408046931
+0.08605920523405075
+0.00030973413959145546
+0.00026407401310279965
+0.0008814408211037517
+0.00018565365462563932
+0.00044774942216463387
+0.00029560457915067673
+0.0003394621890038252
+0.00029073740006424487
+0.00030863971915096045
+0.11175532639026642
+0.0003050306986551732
+0.0028923999052494764
+0.09133493900299072
+0.0009500718442723155
+0.07294531166553497
+0.0002879717212636024
+0.00036762916715815663
+0.00022267777239903808
+0.1005563959479332
+0.17668560147285461
+0.000502595619764179
+0.0014304985525086522
+0.0003457319689914584
+0.00019217387307435274
+0.00021831478807143867
+0.0004896470345556736
+0.10736669600009918
+0.00027867458993569016
+0.0003306633443571627
+0.0002471348852850497
+0.0003455373807810247
+0.0002768983831629157
+0.00022648034791927785
+0.0002604207838885486
+0.00034238974330946803
+0.24189890921115875
+0.0962601751089096
+7.119085057638586e-05
+0.0003558255557436496
+0.0003544759238138795
+0.00023964706633705646
+0.0007446216186508536
+0.00017608159396331757
+0.0004883545334450901
+0.341468870639801
+0.10135354846715927
+0.08189202845096588
+0.0002490185433998704
+0.00023030095326248556
+0.0005255744908936322
+0.00019406060164328665
+0.12828175723552704
+0.08724978566169739
+0.00019164431432727724
+0.00016968432464636862
+0.00033576658461242914
+0.00025455179275013506
+0.00031949079129844904
+0.00040402260492555797
+0.1458437144756317
+0.00020880646479781717
+0.08360912650823593
+0.000253426464041695
+0.0002444386191200465
+0.0001787518704077229
+0.0002074045332847163
+0.28248298168182373
+0.1130961999297142
+0.000670193403493613
+0.0005558046977967024
+0.00016607010911684483
+0.00030565736233256757
+0.00031318276887759566
+0.12745490670204163
+0.00020820485951844603
+0.0005410402081906796
+0.0001966004492715001
+0.00016440042236354202
+0.09788306802511215
+0.00023485541169065982
+0.31795984506607056
+0.0002995317045133561
+0.12514427304267883
+0.0002332911972189322
+0.0003132850397378206
+0.08618518710136414
+0.00017578348342794925
+0.0007290288922376931
+0.000476091488962993
+0.00023898814106360078
+0.3839627206325531
+0.00013824606139678508
+0.00016132430755533278
+0.2975161373615265
+0.000959529192186892
+0.0014837580965831876
+0.07461291551589966
+0.09793148934841156
+0.0002094386873068288
+0.09126187860965729
+0.08001317083835602
+0.000331878662109375
+0.00023809332924429327
+0.00011717824236257002
+0.00024130330712068826
+0.00041799855534918606
+0.05862240493297577
+0.00043540276237763464
+0.0002670574467629194
+0.00045595710980705917
+0.00013992840831633657
+0.00018514384282752872
+0.11834176629781723
+0.0006192474975250661
+0.00020510719332378358
+0.0002561831788625568
+0.00032820430351421237
+0.09329261630773544
+0.14241954684257507
+0.00017011904856190085
+0.0002597447601146996
+0.00021187202946748585
+0.00023963597777765244
+0.15007634460926056
+0.00047721940791234374
+0.00022059024195186794
+0.0006242123781703413
+0.07030460238456726
+0.0002466742880642414
+0.0002946557942777872
+0.0002435562200844288
+0.00040713115595281124
+0.00030288996640592813
+0.0002047219022642821
+0.06505776941776276
+0.00020325856166891754
+0.0006444037426263094
+0.26097366213798523
+0.1006443202495575
+0.10500338673591614
+0.0004274082602933049
+0.08076781779527664
+0.0003327779413666576
+0.0027566279750317335
+0.13267116248607635
+0.00026071100728586316
+0.00021570292301476002
+0.26196566224098206
+0.00021728023421019316
+0.08141856640577316
+0.00020269448577892035
+0.00018542665929999202
+0.00032145524164661765
+0.00024637009482830763
+0.00027982337633147836
+0.24464376270771027
+0.0003899778821505606
+0.00023302507179323584
+0.0002598034043330699
+0.00031274082721211016
+0.00030023077852092683
+0.00023793285072315484
+0.06266796588897705
+0.0002539804845582694
+0.0005166413029655814
+0.00017640551959630102
+0.0004282925510779023
+0.11346668004989624
+0.00019705692830029875
+0.17011307179927826
+0.0018558665178716183
+0.0002806514094118029
+0.00020005075202789158
+0.0002801169757731259
+0.08947863429784775
+0.00027001084527000785
+0.00033273029839619994
+0.02114587463438511
+0.00048540663556195796
+0.0003047025529667735
+0.0002457943046465516
+0.10122252255678177
+0.00025489265681244433
+0.0006435977411456406
+0.0852261409163475
+0.00019080603669863194
+0.0002600841980893165
+0.0004028298717457801
+0.08623157441616058
+
+r_mrr = tensor([[1.0000, 0.9492],
+        [0.9492, 1.0000]])
+r2_mrr = 0.8944332599639893
+test_loss: 0.0065551331888475005
+Done Testing!
+done with training and eval
+Experiments took 0 seconds

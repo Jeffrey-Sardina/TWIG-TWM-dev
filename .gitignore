@@ -1,0 +1,13 @@
+.vscode/
+*.gz
+docker_up.log
+twig.json
+twig.log
+*.pyc
+*.pt
+*.pkl
+*.negstats
+output/
+twig/TWIG/data_save/
+*.gexf
+__pycache__/
