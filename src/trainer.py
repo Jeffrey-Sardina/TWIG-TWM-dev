@@ -18,7 +18,7 @@ torch.manual_seed(17)
 Constant Definitions
 ====================
 '''
-device = "cuda"
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 '''
 ================
@@ -52,7 +52,7 @@ def d_hist(X, n_bins, min_val, max_val):
     freqs = freqs / torch.sum(freqs) #new
     return freqs
 
-def do_batch_v3(
+def do_batch(
         model,
         mrr_loss,
         unordered_rank_list_loss,
@@ -80,9 +80,7 @@ def do_batch_v3(
         mrr_true = torch.mean(1 / R_true)
 
     # get predicted data
-    R_pred, mrr_pred = model(X)
-    if mrr_pred is not None:
-        assert False, 'in this implementation this should not happen'
+    R_pred = model(X)
     if rescale_y:
         mrr_pred = torch.mean(1 / (1 + R_pred * (max_rank - 1))) # mrr from ranks on range [0,max]
     else:
@@ -153,7 +151,7 @@ def train_epoch(dataloaders,
             batch += 1
             X, y = next(it)
 
-            loss, _, _ = do_batch_v3(model,
+            loss, _, _ = do_batch(model,
                 mrr_loss,
                 unordered_rank_list_loss,
                 X,
@@ -211,7 +209,7 @@ def test(
                 if batch % 500 == 0 and verbose:
                     print(f'Testing: batch {batch} / {num_total_batches}')
                 
-                loss, mrr_pred, mrr_true = do_batch_v3(model,
+                loss, mrr_pred, mrr_true = do_batch(model,
                     mrr_loss,
                     unordered_rank_list_loss,
                     X,
@@ -266,7 +264,6 @@ def run_training(
         model,
         training_dataloaders_dict,
         testing_dataloaders_dict,
-        layers_to_freeze=[],
         first_epochs = 30,
         second_epochs = 60,
         lr=5e-3,
@@ -304,7 +301,7 @@ def run_training(
 
     alpha = 0
     gamma = 1
-    for layer in layers_to_freeze:
+    for layer in model.layers_to_freeze:
         layer.requires_grad_ = True
     for t in range(first_epochs):
         print(f"Epoch {t+1} -- ", end='')
@@ -334,9 +331,9 @@ def run_training(
     gamma = 1
     '''
     TODO: come back to this later.
-    it seems I had this reversed...any yet it still works amazingly. Interesting
+    it seems I had this reversed...and yet it still works amazingly. Interesting
     '''
-    for layer in layers_to_freeze:
+    for layer in model.layers_to_freeze:
         layer.requires_grad_ = False
     for t in range(second_epochs):
         print(f"Epoch {t+1} -- ", end='')

@@ -1,7 +1,6 @@
 # twig-twm imports
-from TWIG import twig_nn
-from TWIG.load_data import twm_load
-from TWIG.utils import get_triples, load_custom_dataset, calc_graph_stats
+from load_data import twm_load
+from utils import get_triples, load_custom_dataset, calc_graph_stats, invert_dict
 
 # external imports
 import networkx as nx
@@ -15,13 +14,9 @@ import ast
 import sys
 import os
 
-device = 'cuda'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def load_twig_fmt_data(dataset_name, norm_func_path):
-    # this is embarrassing but it's needed
-    # bc TWIG load_data uses a hardcodeed a local relative path
-    # so for now this work-around it ok
-    os.chdir('../TWIG/')
     twig_data, _ = twm_load(
         dataset_names=[dataset_name],
         normalisation='zscore',
@@ -32,14 +27,6 @@ def load_twig_fmt_data(dataset_name, norm_func_path):
     )
     os.chdir('../TWM/')
     return twig_data
-
-def invert_dict(dict_kv):
-    dict_vk = {}
-    for key in dict_kv:
-        val = dict_kv[key]
-        assert not val in dict_vk, f'This function assumes a structly 1:1 mapping, but that is not true for {key, val} in the original'
-        dict_vk[val] = key
-    return dict_vk
 
 def create_TWM_graph(
         dataset_name,
