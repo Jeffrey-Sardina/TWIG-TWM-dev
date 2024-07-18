@@ -82,6 +82,15 @@ class TWIG_Base(nn.Module):
                     - the hyperparameters used to learn link prediction for this triple (tehse may vary, as TWIG-I runs on sets of many hyperparameter combinations from various KGs)
                     - global graph stats that should be taken into account
                 - NOTE that these have a *very* strict order. The first element in the graph must be the global graph stats. There are `self.n_graph` of these -- currently only one feature is supported here, and that feature is not using in the NN. Instead, it represent the maximum rank that a link prediction query can be assigned, and is used later in processing the output of the NN. This is also why all output is passed through a sigmooid layer -- so they are on [0:1] before this multiply. After this must come ``self.n_struct`-many local structural features around a triple (including a flag to indicate which side of the triple is being currupted) and then finally `self.n_hps`-many features describing the hyperparameters used to create the link predictor that assigned a certain rank to this link prediction query. Since TWIG wants to predict that rank using this input, the hyperparameters are needed to tell is which settings TWIG is currently simulating.
+
+        The NN architecture is organised as so:
+            - input feature vectors are split into Tensors containing into their graph, structure, and hyperparameter features
+            - global graph structure features are ignored
+            - local structure features are run through 2 dense layers by themselves
+            - hyperparamter features are run through 1 dense layer by themselves
+            - both local structure and hyperparameter features are combined using 2 dense layers
+            - all layers are separated by ReLU activation
+            - at the end, all values are passed through a sigmoid layer before being returned.
         
         The values is returns are:
             - R_pred (torch.Tensor): all predicted ranks, in order, for each input link prediction query.
