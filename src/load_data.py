@@ -9,13 +9,6 @@ from torch.utils.data import TensorDataset, DataLoader
 import pickle
 
 '''
-===============
-Reproducibility
-===============
-'''
-torch.manual_seed(17)
-
-'''
 ==================================================
 Feature Counts (Not constant, but will be updated)
 ==================================================

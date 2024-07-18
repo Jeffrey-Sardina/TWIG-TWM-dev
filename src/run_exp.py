@@ -12,13 +12,6 @@ import random
 import pickle
 
 '''
-===============
-Reproducibility
-===============
-'''
-torch.manual_seed(17)
-
-'''
 ================
 Module Functions
 ================

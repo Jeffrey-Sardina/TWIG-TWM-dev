@@ -7,13 +7,6 @@ import os
 from scipy import stats
 
 '''
-===============
-Reproducibility
-===============
-'''
-torch.manual_seed(17)
-
-'''
 ====================
 Constant Definitions
 ====================
