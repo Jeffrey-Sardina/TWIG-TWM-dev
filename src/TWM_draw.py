@@ -17,7 +17,7 @@ import os
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def load_twig_fmt_data(dataset_name, norm_func_path):
-    twig_data, _ = twm_load(
+    twig_data = twm_load(
         dataset_names=[dataset_name],
         normalisation='zscore',
         rescale_y=True,
@@ -49,7 +49,7 @@ def create_TWM_graph(
 
     if TWIG_model:
         TWIG_model.eval()
-    for curr_exp_id, batch in enumerate(twig_data[dataset_name]['testing']): #trainig and testing are the same hee by manual design
+    for curr_exp_id, batch in enumerate(twig_data[dataset_name]): #trainig and testing are the same hee by manual design
         if curr_exp_id == exp_id_wanted:
             '''
             Note that if X[0,:] is the subject corruption rank being predicted,

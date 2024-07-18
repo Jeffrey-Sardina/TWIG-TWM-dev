@@ -65,10 +65,6 @@ def get_twm_data_augment(
     if incl_global_struct:
         max_rank = len(graph_stats['all']['degrees']) # = num nodes
         global_struct["max_rank"] = max_rank
-        # percentiles_wanted = [0, 5, 10, 25, 50, 75, 90, 95, 100]
-        # for p in percentiles_wanted:
-        #     global_struct[f'node_deg_p_{p}'] = graph_stats[struct_source]['percentiles'][p]
-        #     global_struct[f'rel_freq_p_{p}'] = graph_stats[struct_source]['total_rel_degree_percentiles'][p]
 
     for exp_id in iter_over:
         hps = grid[exp_id]
@@ -170,26 +166,6 @@ def get_twm_data_augment(
 
     return rank_data_df
 
-def prepare_data(
-        df,
-        target='rank',
-        categorical_cols=set()
-    ):
-
-    # separate target and data
-    y = df[target]
-    del df[target]
-    X = df
-
-    # one-hot code categorical vars: https://www.statology.org/pandas-get-dummies/
-    X = pd.get_dummies(X, columns=categorical_cols, drop_first=True)
-    X["margin"].fillna(0, inplace=True)
-
-    X = torch.tensor(X.to_numpy(dtype=np.float32))
-    y = torch.tensor(y.to_numpy(dtype=np.float32))
-
-    return X, y
-
 def load_and_prep_run_data(
         dataset_name,
         exp_dir,
@@ -211,11 +187,18 @@ def load_and_prep_run_data(
         incl_neighbour_structs=incl_neighbour_structs,
         randomise=randomise
     )
-    X, y = prepare_data(
-        rank_data_df,
-        categorical_cols=categorical_cols,
-        target="rank"
-    )
+
+    y = rank_data_df['rank']
+    del rank_data_df['rank']
+    X = rank_data_df
+
+    # one-hot code categorical vars: https://www.statology.org/pandas-get-dummies/
+    X = pd.get_dummies(X, columns=categorical_cols, drop_first=True)
+    X["margin"].fillna(0, inplace=True)
+
+    X = torch.tensor(X.to_numpy(dtype=np.float32))
+    y = torch.tensor(y.to_numpy(dtype=np.float32))
+
     return X, y
 
 def load_and_prep_dataset_data(
@@ -277,118 +260,6 @@ def load_and_prep_dataset_data(
     return dataset_data
 
 def get_norm_func(
-        base_data,
-        dataset_to_training_ids,
-        normalisation='none',
-        global_and_local_struct_norms=False,
-        norm_col_0=True
-    ):
-    assert normalisation in ('minmax', 'zscore', 'none')
-    if global_and_local_struct_norms:
-        assert False, "not implemented"
-    
-    if normalisation == 'none':
-        norm_func_data = {
-            'type' : normalisation,
-            'params': []
-        }
-        def norm_func(base_data):
-            return
-        return norm_func, norm_func_data
-
-    elif normalisation == 'minmax':
-        running_min = None
-        running_max = None
-        for dataset_name in base_data:
-            dataset_data = base_data[dataset_name]
-            if dataset_name in dataset_to_training_ids: #avoid data leakage!
-                for run_id in dataset_to_training_ids[dataset_name]:
-                    X = dataset_data[run_id]['X']
-                    if running_min is None:
-                        running_min = torch.min(X, dim=0).values
-                    else:
-                        running_min = torch.min(
-                            torch.stack(
-                                [torch.min(X, dim=0).values, running_min]
-                            ),
-                            dim=0
-                        ).values
-                    if running_max is None:
-                        running_max = torch.max(X, dim=0).values
-                    else:
-                        running_max = torch.max(
-                            torch.stack(
-                                [torch.max(X, dim=0).values, running_max]
-                            ),
-                            dim=0
-                        ).values
-
-        norm_func_data = {
-            'type' : normalisation,
-            'params': [running_min, running_max, norm_col_0]
-        }
-        def norm_func(base_data):
-            minmax_norm_func(
-                base_data,
-                running_min,
-                running_max,
-                norm_col_0=norm_col_0
-            )
-        
-        return norm_func, norm_func_data
-
-    elif normalisation == 'zscore':
-        # running average has been verified to be coreect
-        running_avg = None
-        num_samples = 0.
-        for dataset_name in base_data:
-            dataset_data = base_data[dataset_name]
-            if dataset_name in dataset_to_training_ids: #avoid data leakage!
-                for run_id in dataset_to_training_ids[dataset_name]:
-                    X = dataset_data[run_id]['X']
-                    num_samples += X.shape[0]
-                    if running_avg is None:
-                        running_avg = torch.sum(X, dim=0)
-                    else:
-                        running_avg += torch.sum(X, dim=0)
-        running_avg /= num_samples
-
-        # running std has been verified to be coreect
-        running_std = None
-        for dataset_name in base_data:
-            dataset_data = base_data[dataset_name]
-            if dataset_name in dataset_to_training_ids: #avoid data leakage!
-                for run_id in dataset_to_training_ids[dataset_name]:
-                    X = dataset_data[run_id]['X']
-                    if running_std is None:
-                        running_std = torch.sum(
-                            (X - running_avg) ** 2,
-                            dim=0
-                        )
-                    else:
-                        running_std += torch.sum(
-                            (X - running_avg) ** 2,
-                            dim=0
-                        )
-        running_std = torch.sqrt(
-            (1 / (num_samples - 1)) * running_std
-        )
-
-        norm_func_data = {
-            'type' : normalisation,
-            'params': [running_avg, running_std, norm_col_0]
-        }
-        def norm_func(base_data):
-            zscore_norm_func(
-                base_data,
-                running_avg,
-                running_std,
-                norm_col_0=norm_col_0
-            )
-        
-        return norm_func, norm_func_data
-
-def get_norm_func_hyp(
         base_data,
         normalisation='none',
         norm_col_0=True
@@ -542,105 +413,39 @@ def zscore_norm_func(base_data, train_mean, train_std, norm_col_0=True):
             dataset_data[run_id]['X'] = X_norm
             dataset_data[run_id]['y'] = dataset_data[run_id]['y']
 
-def load_and_prep_twig_data(
-        datasets,
-        normalisation='none',
-        rescale_y=False,
-        dataset_to_run_ids=None,
-        dataset_to_training_ids=None,
-        dataset_to_testing_ids=None,
-        randomise=True,
-        try_load=True,
-        exp_id=None,
-        norm_func=None
+def twm_load(
+        dataset_names,
+        normalisation,
+        rescale_y,
+        dataset_to_run_ids,
+        exp_id,
+        norm_func_path
     ):
-    '''
-    WARNING: loads of hardcoding ahead. Items will be parameterised (no magic numbers)
-    but this methods must be manually changed to afect different bahvious for the moment
-    '''
-    if not dataset_to_run_ids: dataset_to_run_ids = {
-        # larger datasets, more power-law-like structure
-        'DBpedia50': ['2.1', '2.2', '2.3', '2.4'],
-        'UMLS': ['2.1', '2.2', '2.3', '2.4'],
-        'CoDExSmall': ['2.1', '2.2', '2.3', '2.4'],
-        'OpenEA': ['2.1', '2.2', '2.3', '2.4'],
-
-        # smaller datasets, generally much more dense
-        'Countries': ['2.1', '2.2', '2.3', '2.4'],
-        'Nations': ['2.1', '2.2', '2.3', '2.4'],
-        'Kinships': ['2.1', '2.2', '2.3', '2.4'],
-    }
-    if not dataset_to_training_ids: dataset_to_training_ids = {
-        # larger datasets, more power-law-like structure
-        'DBpedia50': ['2.1', '2.2', '2.3'],
-        'UMLS': ['2.1', '2.2', '2.3'],
-        'CoDExSmall': ['2.1', '2.2', '2.3'],
-        'OpenEA': ['2.1', '2.2', '2.3'],
-
-        # smaller datasets, generally much more dense
-        'Countries': ['2.1', '2.2', '2.3'],
-        'Nations': ['2.1', '2.2', '2.3'],
-        'Kinships': ['2.1', '2.2', '2.3'],
-    }
-    if not dataset_to_testing_ids: dataset_to_testing_ids = {
-        # larger datasets, more power-law-like structure
-        'DBpedia50': ['2.4'],
-        'UMLS': ['2.4'],
-        'CoDExSmall': ['2.4'],
-        'OpenEA': ['2.4'],
-
-        # smaller datasets, generally much more dense
-        'Countries': ['2.4'],
-        'Nations': ['2.4'],
-        'Kinships': ['2.4'],
-    }
-
-    print('training TWIG with:')
-    print('dataset_to_run_ids')
-    print(dataset_to_run_ids)
-    print()
-    print('dataset_to_training_ids')
-    print(dataset_to_training_ids)
-    print()
-    print('dataset_to_testing_ids')
-    print(dataset_to_testing_ids)
-    print()
-
     num_hp_settings = 1215
 
     # load raw data for each dataset
     base_data = {}
-    for dataset_name in datasets:
+    for dataset_name in dataset_names:
         print(f'Loading data for {dataset_name}')
         # get the data for this dataset
         base_data[dataset_name] = load_and_prep_dataset_data(
             dataset_name,
             run_ids=dataset_to_run_ids[dataset_name],
-            randomise=randomise,
-            try_load=try_load,
+            randomise=False,
+            try_load=True,
             exp_id=exp_id
         )
 
-    # do normalisation (no change if normalisation == 'none')
-    print(f'Normalising data with strategy {normalisation}...', end='')
-
-    # this is identical in function to do_norm and more time and memory efficient
+    # do normalisation
+    print(f'Normalising data with strategy {normalisation}... and rescale_y = {rescale_y}', end='')
     if rescale_y:
         do_rescale_y(base_data)
-    if not norm_func: #sometimes one may be given from disk
-        norm_func, norm_func_data = get_norm_func(
-            base_data,
-            dataset_to_training_ids,
-            normalisation=normalisation,
-            norm_col_0=False
-        )
-    else:
-        norm_func_data = None
+    norm_func = load_norm_func_from_disk(norm_func_path)
     norm_func(base_data)
 
     # load data into Torch DataLoaers
     twig_data = {}
-    for dataset_name in datasets:
+    for dataset_name in dataset_names:
         # get the batch size for this dataset
         dataset_data = base_data[dataset_name]
         num_datapoints_per_run = dataset_data[f'2.1']['X'].shape[0]
@@ -653,103 +458,75 @@ def load_and_prep_twig_data(
             dataset_batch_size = num_datapoints_per_run
 
         # get training data
-        print('testing run IDs', dataset_to_training_ids[dataset_name])
-        training_data_x = None
-        training_data_y = None
-        for run_id in dataset_to_training_ids[dataset_name]:
-            if training_data_x is None and training_data_y is None:
-                training_data_x = dataset_data[run_id]['X']
-                training_data_y = dataset_data[run_id]['y']
+        print('run IDs', dataset_to_run_ids[dataset_name])
+        data_x = None
+        data_y = None
+        for run_id in dataset_to_run_ids[dataset_name]:
+            if data_x is None and data_y is None:
+                data_x = dataset_data[run_id]['X']
+                data_y = dataset_data[run_id]['y']
             else:
-                training_data_x = torch.concat(
-                    [training_data_x, dataset_data[run_id]['X']],
+                data_x = torch.concat(
+                    [data_x, dataset_data[run_id]['X']],
                     dim=0
                 )
-                training_data_y = torch.concat(
-                    [training_data_y, dataset_data[run_id]['y']],
-                    dim=0
-                )
-
-        # get testing data
-        print('testing run IDs', dataset_to_testing_ids[dataset_name])
-        testing_data_x = None
-        testing_data_y = None
-        for run_id in dataset_to_testing_ids[dataset_name]:
-            if testing_data_x is None and testing_data_y is None:
-                testing_data_x = dataset_data[run_id]['X']
-                testing_data_y = dataset_data[run_id]['y']
-            else:
-                testing_data_x = torch.concat(
-                    [testing_data_x, dataset_data[run_id]['X']],
-                    dim=0
-                )
-                testing_data_y = torch.concat(
-                    [testing_data_y, dataset_data[run_id]['y']],
+                data_y = torch.concat(
+                    [data_y, dataset_data[run_id]['y']],
                     dim=0
                 )
 
         twig_data[dataset_name] = {}
 
-        if training_data_x is not None and training_data_y is not None:
-            print(f'configuring batches; using training batch size {dataset_batch_size}')
-            training = TensorDataset(training_data_x, training_data_y)
-            training_dataloader = DataLoader(
-                training,
-                batch_size=dataset_batch_size
+        print(f'configuring batches; using training batch size {dataset_batch_size}')
+        training = TensorDataset(data_x, data_y)
+        training_dataloader = DataLoader(
+            training,
+            batch_size=dataset_batch_size
+        )
+        twig_data[dataset_name] = training_dataloader
+
+    return twig_data
+
+def load_norm_func_from_disk(norm_func_data_path):
+    with open(norm_func_data_path, 'rb') as cache:
+        print('loading model settings from cache:', norm_func_data_path)
+        norm_func_data = pickle.load(cache)
+
+    if norm_func_data['type'] == 'none':
+        def norm_func(base_data):
+            return
+        return norm_func
+    elif norm_func_data['type'] == 'minmax':
+        def norm_func(base_data):
+            minmax_norm_func(
+                base_data,
+                norm_func_data['params'][0],
+                norm_func_data['params'][1],
+                norm_col_0=norm_func_data['params'][2]
             )
-            twig_data[dataset_name]['training'] = training_dataloader
-        else:
-            print(f'No training data has been given to be loaded for {dataset_name}')
-            print('please check train and testing data definitions. This is not necessarily an issue')
-
-        if testing_data_x is not None and testing_data_y is not None:
-            print(f'configuring batches; using testing batch size {dataset_batch_size}')
-            testing = TensorDataset(testing_data_x, testing_data_y)
-            testing_dataloader = DataLoader(
-                testing,
-                batch_size=dataset_batch_size
+        return norm_func
+    elif norm_func_data['type'] == 'zscore':
+        def norm_func(base_data):
+            zscore_norm_func(
+                base_data,
+                norm_func_data['params'][0],
+                norm_func_data['params'][1],
+                norm_col_0=norm_func_data['params'][2]
             )
-            twig_data[dataset_name]['testing'] = testing_dataloader
-        else:
-            print(f'No testing data has been given to be loaded for {dataset_name}')
-            print('please check train and testing data definitions. This is not necessarily an issue')
+        return norm_func
+    else:
+        assert False, f'Unkown norm func type given: {norm_func_data["type"]}'
 
-    return twig_data, norm_func_data
-
-def load_and_prep_twig_data_hyp(
+def load_and_prep_twig_data(
         datasets,
-        normalisation='none',
-        rescale_y=False,
-        dataset_to_run_ids=None,
-        testing_percent=0.1,
-        try_load=True,
-        exp_id=None,
-        norm_func=None
-    ):
-    '''
-    WARNING: loads of hardcoding ahead. Items will be parameterised (no magic numbers)
-    but this methods must be manually changed to afect different bahvious for the moment
-    '''
-    if not dataset_to_run_ids: dataset_to_run_ids = {
-        # larger datasets, more power-law-like structure
-        'DBpedia50': ['2.1', '2.2', '2.3', '2.4'],
-        'UMLS': ['2.1', '2.2', '2.3', '2.4'],
-        'CoDExSmall': ['2.1', '2.2', '2.3', '2.4'],
-        'OpenEA': ['2.1', '2.2', '2.3', '2.4'],
-
-        # smaller datasets, generally much more dense
-        'Countries': ['2.1', '2.2', '2.3', '2.4'],
-        'Nations': ['2.1', '2.2', '2.3', '2.4'],
-        'Kinships': ['2.1', '2.2', '2.3', '2.4'],
-
-        'R100-E1000-T10000': ['2.1'],
-        'R100-E5000-T10000': ['2.1'],
-        'R10-E1000-T10000': ['2.1'],
-        'R10-E5000-T10000': ['2.1'],
-        'R50-E1000-T10000': ['2.1'],
-        'R50-E5000-T10000': ['2.1'],
-    }
-    
+        normalisation,
+        rescale_y,
+        dataset_to_run_ids,
+        testing_percent,
+        try_load,
+        exp_id,
+        norm_func
+    ):   
     '''
     Ok Future Jeffrey, here's the thing. There's this thing called code karma, and it has
     just caught up to you. You really thought you could get away with a hacky solution like
@@ -880,7 +657,7 @@ def load_and_prep_twig_data_hyp(
     if rescale_y:
         do_rescale_y(test_dataset_data_raw)
     if not norm_func: #sometimes one may be given from disk
-        norm_func, norm_func_data = get_norm_func_hyp(
+        norm_func, norm_func_data = get_norm_func(
             train_dataset_data_raw,
             normalisation=normalisation,
             norm_col_0=False
@@ -965,119 +742,43 @@ def load_and_prep_twig_data_hyp(
 
     return twig_data, norm_func_data
 
-def twm_load(
+def do_load(
         dataset_names,
         normalisation,
         rescale_y,
         dataset_to_run_ids,
-        exp_id,
-        norm_func_path
+        testing_percent
     ):
-    norm_func = load_norm_func_from_disk(norm_func_path)
-    twig_data = load_and_prep_twig_data(
+    '''
+    do_load() KGE results for all given KGs and processes them into a format that can be directly used for training by TWIG. It uses random hyperparameter combinations as a hold-out test set.
+
+    The arguments it accepts are:
+        - dataset_names (list of str): the names of all KGs TWIG should learn from. SPecifically, it will use this to load results from hyperparamter experiments by KGEs on those KGs, and load those results as data for TWIG to simulate.
+        - normalisation (str): the normalisation method to use when loading data. "zscore", "minmax", and "none" are supported.
+        - rescale_y (bool): True if the groun-truth data `y` was rescaled onto [0, 1] during data loading, False otherwise
+        - dataset_to_run_ids
+        - testing_percent (float): the percent of all hyperparameter combinations on each KG to reserve as a hold-out test set. If not given, defaults to 0.1.
+
+    The values it returns are:
+        - training_dataloaders (torch.Dataloader): a map for a KG name to the dataloader containing data to use for training TWIG to simulate KGEs on that KG
+        - testing_dataloaders (dict of str -> torch.Dataloader): a map for a KG name to the dataloader containing data to use for testing TWIG on simulating KGEs on that KG
+        - norm_func_data (dict of str -> any): a dictionary mapping parameters for normalisation (such as mean and standard deviaation) to their values so that a normaliation function can be directly construcgted from these values
+    '''
+    twig_data, norm_func_data = load_and_prep_twig_data(
         dataset_names,
         normalisation=normalisation,
         rescale_y=rescale_y,
         dataset_to_run_ids=dataset_to_run_ids,
-        dataset_to_training_ids=dataset_to_run_ids,
-        dataset_to_testing_ids=dataset_to_run_ids,
-        randomise=False,
-        try_load=True,
-        exp_id=exp_id,
-        norm_func=norm_func
+        testing_percent=testing_percent
     )
-    return twig_data
 
-def load_norm_func_from_disk(norm_func_data_path):
-    with open(norm_func_data_path, 'rb') as cache:
-        print('loading model settings from cache:', norm_func_data_path)
-        norm_func_data = pickle.load(cache)
+    training_dataloaders = {}
+    for dataset_name in twig_data:
+        if 'training' in twig_data[dataset_name]:
+            training_dataloaders[dataset_name] = twig_data[dataset_name]['training']
+    testing_dataloaders = {}
+    for dataset_name in twig_data:
+        if 'testing' in twig_data[dataset_name]:
+            testing_dataloaders[dataset_name] = twig_data[dataset_name]['testing']
 
-    if norm_func_data['type'] == 'none':
-        def norm_func(base_data):
-            return
-        return norm_func
-    elif norm_func_data['type'] == 'minmax':
-        def norm_func(base_data):
-            minmax_norm_func(
-                base_data,
-                norm_func_data['params'][0],
-                norm_func_data['params'][1],
-                norm_col_0=norm_func_data['params'][2]
-            )
-        return norm_func
-    elif norm_func_data['type'] == 'zscore':
-        def norm_func(base_data):
-            zscore_norm_func(
-                base_data,
-                norm_func_data['params'][0],
-                norm_func_data['params'][1],
-                norm_col_0=norm_func_data['params'][2]
-            )
-        return norm_func
-    else:
-        assert False, f'Unkown norm func type given: {norm_func_data["type"]}'
-
-def do_load(
-        dataset_names,
-        normalisation='none',
-        rescale_y=False,
-        dataset_to_run_ids=None,
-        dataset_to_training_ids=None,
-        dataset_to_testing_ids=None,
-        test_mode='exp',
-        testing_percent=None
-    ):
-    assert test_mode in ('exp', 'hyp'), test_mode
-    if test_mode == 'exp':
-        '''
-        In this case, exp 1-3 (for example) are used for training and exp 4 (for example)
-        is used for testing. Therefore, all regions of the graph have been seen, but are
-        linked to different ranks in each case.
-        '''
-        twig_data, norm_func_data = load_and_prep_twig_data(
-            dataset_names,
-            normalisation=normalisation,
-            rescale_y=rescale_y,
-            dataset_to_run_ids=dataset_to_run_ids,
-            dataset_to_training_ids=dataset_to_training_ids,
-            dataset_to_testing_ids=dataset_to_testing_ids
-        )
-
-        training_dataloaders = {}
-        for dataset_name in twig_data:
-            if 'training' in twig_data[dataset_name]:
-                training_dataloaders[dataset_name] = twig_data[dataset_name]['training']
-        testing_dataloaders = {}
-        for dataset_name in twig_data:
-            if 'testing' in twig_data[dataset_name]:
-                testing_dataloaders[dataset_name] = twig_data[dataset_name]['testing']
-
-        return training_dataloaders, testing_dataloaders, norm_func_data
-    elif test_mode == 'hyp':
-        '''
-        In this case, all exps (1-4 for example) are loaded. The same random runs (of the 1215 total)
-        are removed from each and placed in the test set. In this case, testing is therefore done on
-        parts of the graph that have never been directly seen before, as well as  with different ranks.
-
-        It is as such a harder protocol than the 'exp' protocol, which only requires test data come from
-        a previously unseen experiment.
-        '''
-        twig_data, norm_func_data = load_and_prep_twig_data_hyp(
-            dataset_names,
-            normalisation=normalisation,
-            rescale_y=rescale_y,
-            dataset_to_run_ids=dataset_to_run_ids,
-            testing_percent=testing_percent
-        )
-
-        training_dataloaders = {}
-        for dataset_name in twig_data:
-            if 'training' in twig_data[dataset_name]:
-                training_dataloaders[dataset_name] = twig_data[dataset_name]['training']
-        testing_dataloaders = {}
-        for dataset_name in twig_data:
-            if 'testing' in twig_data[dataset_name]:
-                testing_dataloaders[dataset_name] = twig_data[dataset_name]['testing']
-
-        return training_dataloaders, testing_dataloaders, norm_func_data
+    return training_dataloaders, testing_dataloaders, norm_func_data
