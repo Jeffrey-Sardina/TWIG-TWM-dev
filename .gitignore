@@ -11,3 +11,4 @@ output/
 twig/TWIG/data_save/
 *.gexf
 __pycache__/
+*.res

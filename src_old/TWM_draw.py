@@ -22,19 +22,18 @@ def load_twig_fmt_data(dataset_name, norm_func_path):
         normalisation='zscore',
         rescale_y=True,
         dataset_to_run_ids={dataset_name: ['2.1']},
-        exp_id=None,
         norm_func_path=norm_func_path
     )
-    os.chdir('../TWM/')
+    # os.chdir('../TWM/')
     return twig_data
 
 def create_TWM_graph(
         dataset_name,
         twig_data,
         exp_id_wanted,
+        rescale_y,
+        graph_split,
         TWIG_model=None,
-        rescale_y=True,
-        graph_split='valid'
     ):
     try:
         dataset = datasets.get_dataset(dataset=dataset_name)
@@ -286,9 +285,9 @@ def do_twm(
         dataset_name,
         twig_data,
         exp_id_wanted,
-        TWIG_model=TWIG_model if use_TWIG else None,
         rescale_y=True,
         graph_split='valid'
+        TWIG_model=TWIG_model if use_TWIG else None,
     )
     print(f'Predicted MRR for the given model configuration is: {mrr_pred}')
     

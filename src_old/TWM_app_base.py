@@ -9,15 +9,23 @@ from TWM_draw import do_twm, load_hyps_dict
 from flask import Flask, request, render_template
 import os
 
+# setup Flask
 app = Flask(__name__) 
 IMG_FOLDER = os.path.join("static", "images")
 app.config["UPLOAD_FOLDER"] = IMG_FOLDER
 hyp_selected = {}
 
-# A decorator used to tell the application
-# which URL is associated function
 @app.route('/', methods =["GET", "POST"])
 def twm_demo():
+    '''
+    twm_demo() runs a TWIG-TWM demo in Flask. It is very basic, build to show the most crucial aspects of TWIG only.
+
+    The arguments it accepts are:
+        - None
+
+    The values it returns are:
+        - None
+    '''
     global hyp_selected
     if request.method == "POST":
         err = ""
@@ -87,5 +95,8 @@ def twm_demo():
         )
 
 if __name__ == "__main__":
+    '''
+    This section allows starting the TWIG demo interface directly from the command line.
+    '''
     hyps_dict = load_hyps_dict("hyp.grid")
     app.run(debug=True)

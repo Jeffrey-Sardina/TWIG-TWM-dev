@@ -361,7 +361,7 @@ def get_results_dicts(exp_dir):
         
     '''
     results_file = glob.glob(os.path.join(exp_dir, '*.res'))
-    assert len(results_file) == 1, f"more than 1 (or no) results file found in {exp_dir}, unsure which to use"
+    assert len(results_file) == 1, f"more than 1 results file found in {exp_dir}, unsure which to use"
     results_file = results_file[0]
 
     with open(results_file, 'r') as res:
@@ -371,7 +371,7 @@ def get_results_dicts(exp_dir):
         triples_results = {}
         for line in res:
             if 'End of exp ' in line:
-                curr_exp = int(line.strip().replace('End of exp ', ''))
+                curr_exp = line.strip().replace('End of exp ', '')
                 overall_results[curr_exp] = {}
                 triples_results[curr_exp] = {}
             elif 'MR = ' in line:
@@ -419,14 +419,13 @@ def get_grid_dict(exp_dir):
         - exp_dir (str): the location of the KGE run resulFts who hyperparameter grid should be loaded
     
     The values it returns are:
-        - grid (dict of str -> list<any>): a dict that maps the each hyperparamter ID (as a string) to all hyperparameter values it represents (in a list, as numbers or strings)
+        - grid (dict of str -> list<any>): a dict that maps the each hyperparamter ID (as a strong) to all hyperparameter values it represents (in a list, as numbers or strings)
     '''
     grid_file = glob.glob(os.path.join(exp_dir, '*.grid'))[0]
     grid = {}
     with open(grid_file, 'r') as inp:
         for line in inp:
             curr_exp, hpo_dict_str = line.strip().split(' --> ')
-            curr_exp = int(curr_exp)
             hpo_dict = ast.literal_eval(hpo_dict_str)
             grid[curr_exp] = hpo_dict
     return grid
