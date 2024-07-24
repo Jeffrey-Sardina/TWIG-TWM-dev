@@ -135,16 +135,16 @@ def load_simulation_datasets(datasets_to_load):
     rank_data = {}
     hyperparameter_data = None
     for dataset_name in datasets_to_load:
-        global_data[dataset_name] = {}
-        local_data[dataset_name] = {}
         rank_data[dataset_name] = {}
         for run_id in datasets_to_load[dataset_name]:
             global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
                 dataset_name=dataset_name,
                 run_id=run_id
             )
-        global_data[dataset_name][run_id] = global_data_kg
-        local_data[dataset_name][run_id] = local_data_kg
+        if not dataset_name in global_data:
+            global_data[dataset_name] = global_data_kg
+        if not dataset_name in local_data:
+            local_data[dataset_name] = local_data_kg
         rank_data[dataset_name][run_id] = rank_data_kg
         if not hyperparameter_data:
             hyperparameter_data = hyperparameter_data_kg
@@ -205,8 +205,8 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
     return hyp_split_data, rank_split_data
 
 def get_batch(dataset_name, run_id, exp_id, mode, global_data, local_data, hyp_split_data, rank_split_data):
-    global_list = list(global_data[dataset_name][run_id].values())
-    local_list = list(local_data[dataset_name][run_id].values())
+    global_list = list(global_data[dataset_name].values())
+    local_list = list(local_data[dataset_name].values())
     hp_list = list(hyp_split_data[mode][exp_id].values())
     input_ft_vec = global_list + local_list + hp_list
 
