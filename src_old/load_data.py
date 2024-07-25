@@ -332,7 +332,11 @@ def get_norm_func(
                         (X - running_avg) ** 2,
                         dim=0
                     )
-                else:norm_func_data
+                else:
+                    running_std += torch.sum(
+                        (X - running_avg) ** 2,
+                        dim=0
+                    )
         running_std = torch.sqrt(
             (1 / (num_samples - 1)) * running_std
         )

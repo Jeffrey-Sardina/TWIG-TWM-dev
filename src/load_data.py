@@ -1,3 +1,7 @@
+# internal TWIG imports
+from normaliser import Normaliser
+
+# external imports
 from utils import gather_data
 import random
 import os
@@ -5,6 +9,48 @@ import numpy as np
 import torch
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+class TWIG_Data:
+    def __init__(
+            self,
+            structs,
+            max_ranks,
+            hyps,
+            head_ranks,
+            tail_ranks,
+            train_ids,
+            test_ids,
+            valid_ids,
+            normaliser
+        ):
+        self.structs = structs
+        self.max_ranks=max_ranks
+        self.hyps = hyps
+        self.head_ranks = head_ranks
+        self.tail_ranks = tail_ranks
+        self.train_ids = train_ids
+        self.test_ids = test_ids
+        self.valid_ids = valid_ids
+        self.normaliser = normaliser
+        self.head_flag, self.tail_flag = normaliser._get_lp_side_flags()
+        self.dataset_names = list(head_ranks.keys())
+        self.num_struct_fts = structs[self.dataset_names[0]].shape[1] # all tensors ahve the same shape so which one we access does not matter
+        self.num_hyp_fts = hyps['train'][0].shape[1] # mode = train, exp_id = 0. all tensors ahve the same shape so which one we access does not matter
+
+    def get_batch(self, dataset_name, run_id, exp_id, mode):
+        struct_tensor = self.structs[dataset_name]
+        struct_tensor_heads = torch.concat(
+            [self.head_flag, struct_tensor],
+            dim=0
+        )
+        struct_tensor_tails = torch.concat(
+            [self.tail_flag, struct_tensor],
+            dim=0
+        )
+        hyps_tensor = self.hyps[mode][exp_id]
+        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
+        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
+        return struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank
 
 def get_canonical_exp_dir(dataset_name, run_id):
     exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"
@@ -202,32 +248,68 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
         hyp_split_data['valid'][valid_id] = hyperparameter_data[valid_id]
 
 
-    return hyp_split_data, rank_split_data
+    return hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids
 
-def get_batch(dataset_name, run_id, exp_id, mode, global_data, local_data, hyp_split_data, rank_split_data):
-    global_list = list(global_data[dataset_name].values())
-    local_list = list(local_data[dataset_name].values())
-    hp_list = list(hyp_split_data[mode][exp_id].values())
-    input_ft_vec = global_list + local_list + hp_list
+def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
+    structs = {}
+    max_ranks = {}
+    for dataset_name in global_data:
+        global_data = list(global_data[dataset_name].values())
+        local_data = list(local_data[dataset_name].values())
+        structs[dataset_name] = torch.tensor(
+            local_data,
+            device=device
+        )
+        assert len(global_data) == 1, "global data currently only supports max rank"
+        max_ranks[dataset_name] = global_data[0]
 
-    X = []
-    y = []
-    triples_ids_to_ranks = rank_split_data[dataset_name][run_id][mode][exp_id]
-    for triple_id in triples_ids_to_ranks:
-        for side in triples_ids_to_ranks[triple_id]:
-            X.append(input_ft_vec)
-            y.append(triples_ids_to_ranks[triple_id][side])
-    X = torch.tensor(X, device=device)
-    y = torch.tensor(y, device=device)
+    hyps = {}
+    for mode in hyp_split_data:
+        hyps[mode] = {}
+        for exp_id in hyp_split_data[mode]:
+            hyps[mode][exp_id] = torch.tensor(
+                list(hyp_split_data[mode][exp_id].values()),
+                device=device
+            )
 
-    print(X.shape, y.shape)
+    head_ranks = {}
+    tail_ranks = {}
+    for dataset_name in rank_split_data:
+        head_ranks[dataset_name] = {}
+        tail_ranks[dataset_name] = {}
+        for run_id in rank_split_data[dataset_name]:
+            head_ranks[dataset_name][run_id] = {}
+            tail_ranks[dataset_name][run_id] = {}
+            for mode in rank_split_data[dataset_name][run_id]:
+                head_ranks[dataset_name][run_id][mode] = {}
+                tail_ranks[dataset_name][run_id][mode] = {}
+                for exp_id in rank_split_data[dataset_name][run_id][mode]:
+                    head_ranks[dataset_name][run_id][mode][exp_id] = []
+                    tail_ranks[dataset_name][run_id][mode][exp_id] = []
+                    for triple_id in rank_split_data[dataset_name][run_id][mode][exp_id]:
+                        head_ranks[dataset_name][run_id][mode][exp_id].append(
+                            rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['head_rank']
+                        )
+                        tail_ranks[dataset_name][run_id][mode][exp_id].append(
+                            rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['tail_rank']
+                        )
+                    head_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
+                        head_ranks[dataset_name][run_id][mode][exp_id],
+                        device=device
+                    )
+                    tail_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
+                        tail_ranks[dataset_name][run_id][mode][exp_id],
+                        device=device
+                    )
 
-    return X, y
+    return structs, max_ranks, hyps, head_ranks, tail_ranks
 
-def do_load(
+def _do_load(
     datasets_to_load,
     test_ratio,
     valid_ratio,
+    normalisation,
+    rescale_ranks
 ):
     '''
     do_load() loads all data.
@@ -236,6 +318,8 @@ def do_load(
         - datasets_to_load (dict of str -> list<str>): A dict that maps all dataset names to the run IDs of all KGE simulations done on those datasets
         - test_ratio (float): the proportion of hyperparameter combinations to hold out for the test set
         - valid_ratio (float): the proportion of hyperparameter combinations to hold out for the valid set
+        - normalisation (str): the normalisation to use for input data (not ranks). Options are "zscore", "minmax", and "none"
+        - rescale_ranks (bool): whether ranks should re rescaled to have a maximum value of 1.
 
     The values it returns are:
         - TBD
@@ -243,10 +327,40 @@ def do_load(
     global_data, local_data, hyperparameter_data, rank_data = load_simulation_datasets(
         datasets_to_load=datasets_to_load
     )
-    hyp_split_data, rank_split_data = train_test_split(
+    hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids = train_test_split(
         hyperparameter_data=hyperparameter_data,
         rank_data=rank_data,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio
     )
-    get_batch('UMLS', '2.1', 1214, 'train', global_data, local_data, hyp_split_data, rank_split_data)
+    structs, max_ranks, hyps, head_ranks, tail_ranks = to_tensors(
+        global_data=global_data,
+        local_data=local_data,
+        hyp_split_data=hyp_split_data,
+        rank_split_data=rank_split_data
+    )
+    normaliser = Normaliser(
+        method=normalisation,
+        rescale_ranks=rescale_ranks,
+        structs=structs,
+        hyps=hyps,
+        max_ranks=max_ranks
+    )
+    structs, hyps, head_ranks, tail_ranks = normaliser.normalise(
+        structs=structs,
+        hyps=hyps,
+        head_ranks=head_ranks,
+        tail_ranks=tail_ranks
+    )
+    twig_data = TWIG_Data(
+        structs=structs,
+        max_ranks=max_ranks,
+        hyps=hyps,
+        head_ranks=head_ranks,
+        tail_ranks=tail_ranks,
+        train_ids=train_ids,
+        test_ids=test_ids,
+        valid_ids=valid_ids,
+        normaliser=normaliser
+    )
+    return twig_data
