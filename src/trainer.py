@@ -71,13 +71,13 @@ def _do_batch(
     # get ground truth data
     rank_list_true = torch.concat(
         [head_rank, tail_rank],
-        dim=1
+        dim=0
     )
     if rank_dist_loss_coeff:
         min_rank_observed = float(torch.min(rank_list_true))
         max_rank_observed = float(torch.max(rank_list_true))
         rank_dist_true = _d_hist(
-            X=rank_dist_true,
+            X=rank_list_true,
             n_bins=n_bins,
             min_val=min_rank_observed,
             max_val=max_rank_observed
@@ -150,7 +150,8 @@ def _train_epoch(
                     max_rank_possible=twig_data.max_ranks[dataset_name],
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
-                    tail_rank=tail_rank
+                    tail_rank=tail_rank,
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
                 )
                 loss.backward()
                 optimizer.step()

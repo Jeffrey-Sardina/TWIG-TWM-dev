@@ -10,6 +10,15 @@ class Normaliser:
         self.rescale_ranks = rescale_ranks
         self.max_ranks = max_ranks
 
+        # calc num lp quries we are simulatuig per dataset. 2*structs since structs holds the number of triples
+        self.head_flags = {}
+        self.tail_flags = {}
+        for dataset_name in structs:
+            num_triples = structs[dataset_name].shape[0]
+            self.head_flags[dataset_name], self.tail_flags[dataset_name] = self._get_lp_side_flags(
+                num_triples=num_triples
+            )
+
         if method == 'zscore':
             # get the average of all structural data values
             struct_avg = None
@@ -176,10 +185,10 @@ class Normaliser:
             rescaled_ranks[dataset_name] = {}
             for run_id in ranks[dataset_name]:
                 rescaled_ranks[dataset_name][run_id] = {}
-                for mode in ranks[dataset_name]:
+                for mode in ranks[dataset_name][run_id]:
                     rescaled_ranks[dataset_name][run_id][mode] = {}
-                    for exp_id in ranks[dataset_name][mode]:
-                        rescaled_rank = ranks[dataset_name][mode][exp_id] / self.max_ranks[dataset_name]
+                    for exp_id in ranks[dataset_name][run_id][mode]:
+                        rescaled_rank = ranks[dataset_name][run_id][mode][exp_id] / self.max_ranks[dataset_name]
                         rescaled_ranks[dataset_name][run_id][mode][exp_id] = rescaled_rank
         return rescaled_ranks
 
@@ -208,19 +217,20 @@ class Normaliser:
         
         return structs_norm, hyps_norm, head_ranks_norm, tail_ranks_norm
 
-    def _get_lp_side_flags(self):
+    def _get_lp_side_flags(self, num_triples):
         if self.method == 'zscore':
-            flag_mean = torch.tensor(0.5, device=device) # mean if half are 1s and half are 0s
-            flag_std = torch.tensor(0.5002501876563868, device=device) # stdev if half are 1s and half are 0s
+            flag_mean = torch.tensor([0.5], dtype=torch.float32, device=device) # mean if half are 1s and half are 0s
+            flag_std = torch.tensor([0.5002501876563868], dtype=torch.float32, device=device) # stdev if half are 1s and half are 0s
             flag_true = (1 - flag_mean) / flag_std
             flag_false = (0 - flag_mean) / flag_std
         elif self.method == 'minmax':
-            flag_true = torch.tensor(1, device=device)
-            flag_false = torch.tensor(0, device=device)
+            flag_true = torch.tensor([1], dtype=torch.float32, device=device)
+            flag_false = torch.tensor([0], dtype=torch.float32, device=device)
         elif self.method == 'none':
-            flag_true = torch.tensor(1, device=device)
-            flag_false = torch.tensor(0, device=device)
+            flag_true = torch.tensor([1], dtype=torch.float32, device=device)
+            flag_false = torch.tensor([0], dtype=torch.float32, device=device)
         else:
             assert False, f"normalisation method must be one of {self.valid_norm_methods} but is {self.method}"
+        flag_true = flag_true.repeat(num_triples).unsqueeze(1)
+        flag_false = flag_false.repeat(num_triples).unsqueeze(1)
         return flag_true, flag_false
-

@@ -32,20 +32,21 @@ class TWIG_Data:
         self.test_ids = test_ids
         self.valid_ids = valid_ids
         self.normaliser = normaliser
-        self.head_flag, self.tail_flag = normaliser._get_lp_side_flags()
+        self.head_flags = normaliser.head_flags
+        self.tail_flags = normaliser.tail_flags
         self.dataset_names = list(head_ranks.keys())
-        self.num_struct_fts = structs[self.dataset_names[0]].shape[1] # all tensors ahve the same shape so which one we access does not matter
-        self.num_hyp_fts = hyps['train'][0].shape[1] # mode = train, exp_id = 0. all tensors ahve the same shape so which one we access does not matter
+        self.num_struct_fts = structs[self.dataset_names[0]].shape[0] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
+        self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
 
     def get_batch(self, dataset_name, run_id, exp_id, mode):
         struct_tensor = self.structs[dataset_name]
         struct_tensor_heads = torch.concat(
-            [self.head_flag, struct_tensor],
-            dim=0
+            [self.head_flags[dataset_name], struct_tensor],
+            dim=1
         )
         struct_tensor_tails = torch.concat(
-            [self.tail_flag, struct_tensor],
-            dim=0
+            [self.tail_flags[dataset_name], struct_tensor],
+            dim=1
         )
         hyps_tensor = self.hyps[mode][exp_id]
         head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
@@ -87,17 +88,18 @@ def load_local_data(triples_map, graph_stats):
     local_data = {}
     ents_to_triples = get_adj_data(triples_map)
     for triple_idx in triples_map:
+        local_data[triple_idx] = {}
         s, p, o = triples_map[triple_idx]
 
-        local_data['s_deg'] = graph_stats['train']['degrees'][s]
-        local_data['o_deg'] = graph_stats['train']['degrees'][o]
-        local_data['p_freq'] = graph_stats['train']['pred_freqs'][p]
+        local_data[triple_idx]['s_deg'] = graph_stats['train']['degrees'][s]
+        local_data[triple_idx]['o_deg'] = graph_stats['train']['degrees'][o]
+        local_data[triple_idx]['p_freq'] = graph_stats['train']['pred_freqs'][p]
 
-        local_data['s_p_cofreq'] = graph_stats['train']['subj_relationship_degrees'][(s,p)] \
+        local_data[triple_idx]['s_p_cofreq'] = graph_stats['train']['subj_relationship_degrees'][(s,p)] \
             if (s,p) in graph_stats['train']['subj_relationship_degrees'] else 0
-        local_data['o_p_cofreq'] = graph_stats['train']['obj_relationship_degrees'][(o,p)] \
+        local_data[triple_idx]['o_p_cofreq'] = graph_stats['train']['obj_relationship_degrees'][(o,p)] \
             if (o,p) in graph_stats['train']['obj_relationship_degrees'] else 0
-        local_data['s_o_cofreq'] = graph_stats['train']['subj_obj_cofreqs'][(s,o)] \
+        local_data[triple_idx]['s_o_cofreq'] = graph_stats['train']['subj_obj_cofreqs'][(s,o)] \
             if (s,o) in graph_stats['train']['subj_obj_cofreqs'] else 0
 
         target_dict = {'s': s, 'o': o}
@@ -113,15 +115,15 @@ def load_local_data(triples_map, graph_stats):
                 if not ent in neighbour_nodes:
                     neighbour_nodes[ent] = graph_stats['train']['degrees'][ent]
 
-            local_data[f'{target_name} min deg neighbnour'] = np.min(list(neighbour_nodes.values()))
-            local_data[f'{target_name} max deg neighbnour'] = np.max(list(neighbour_nodes.values()))
-            local_data[f'{target_name} mean deg neighbnour'] = np.mean(list(neighbour_nodes.values()))
-            local_data[f'{target_name} num neighbnours'] = len(neighbour_nodes)
+            local_data[triple_idx][f'{target_name} min deg neighbnour'] = np.min(list(neighbour_nodes.values()))
+            local_data[triple_idx][f'{target_name} max deg neighbnour'] = np.max(list(neighbour_nodes.values()))
+            local_data[triple_idx][f'{target_name} mean deg neighbnour'] = np.mean(list(neighbour_nodes.values()))
+            local_data[triple_idx][f'{target_name} num neighbnours'] = len(neighbour_nodes)
 
-            local_data[f'{target_name} min freq rel'] = np.min(list(neighbour_preds.values()))
-            local_data[f'{target_name} max freq rel'] = np.max(list(neighbour_preds.values()))
-            local_data[f'{target_name} mean freq rel'] = np.mean(list(neighbour_preds.values()))
-            local_data[f'{target_name} num rels'] = len(neighbour_preds)
+            local_data[triple_idx][f'{target_name} min freq rel'] = np.min(list(neighbour_preds.values()))
+            local_data[triple_idx][f'{target_name} max freq rel'] = np.max(list(neighbour_preds.values()))
+            local_data[triple_idx][f'{target_name} mean freq rel'] = np.mean(list(neighbour_preds.values()))
+            local_data[triple_idx][f'{target_name} num rels'] = len(neighbour_preds)
     return local_data
 
 def load_hyperparamter_data(grid):
@@ -251,17 +253,26 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
     return hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids
 
 def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
-    structs = {}
     max_ranks = {}
     for dataset_name in global_data:
-        global_data = list(global_data[dataset_name].values())
-        local_data = list(local_data[dataset_name].values())
+        global_vec = list(global_data[dataset_name].values())
+        assert len(global_vec) == 1, "global data currently only supports max rank"
+        max_ranks[dataset_name] = global_vec[0]
+
+    structs = {}
+    for dataset_name in local_data:
+        structs[dataset_name] = {}
+        triple_ids = list(local_data[dataset_name].keys())
+        random.shuffle(triple_ids)
+        local_vecs = []
+        for triple_id in triple_ids:
+            local_vec = list(local_data[dataset_name][triple_id].values())
+            local_vecs.append(local_vec)
         structs[dataset_name] = torch.tensor(
-            local_data,
+            local_vecs,
+            dtype=torch.float32,
             device=device
         )
-        assert len(global_data) == 1, "global data currently only supports max rank"
-        max_ranks[dataset_name] = global_data[0]
 
     hyps = {}
     for mode in hyp_split_data:
@@ -269,6 +280,7 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
         for exp_id in hyp_split_data[mode]:
             hyps[mode][exp_id] = torch.tensor(
                 list(hyp_split_data[mode][exp_id].values()),
+                dtype=torch.float32,
                 device=device
             )
 
@@ -295,10 +307,12 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
                         )
                     head_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
                         head_ranks[dataset_name][run_id][mode][exp_id],
+                        dtype=torch.float32,
                         device=device
                     )
                     tail_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
                         tail_ranks[dataset_name][run_id][mode][exp_id],
+                        dtype=torch.float32,
                         device=device
                     )
 

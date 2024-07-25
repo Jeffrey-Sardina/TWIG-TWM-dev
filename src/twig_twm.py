@@ -18,7 +18,6 @@ def load_nn(version, twig_data):
     The values it returns are:
         - model (torch.nn.Module): the initialised TWIG neural netowrk model
     '''
-    print('loading NN')
     n_struct = twig_data.num_struct_fts
     n_hps = twig_data.num_hyp_fts
     if version == 'base':
@@ -28,7 +27,6 @@ def load_nn(version, twig_data):
         )
     else:
         assert False, f"Invald NN version given: {version}"
-    print("done loading NN")
     return model
 
 if __name__ == '__main__':
@@ -46,7 +44,8 @@ if __name__ == '__main__':
     # load model
     version = 'base'
     model = load_nn(
-        version=version
+        version=version,
+        twig_data=twig_data
     )
 
     # load optimizer
