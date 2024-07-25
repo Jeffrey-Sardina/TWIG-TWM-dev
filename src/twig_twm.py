@@ -7,6 +7,7 @@ from twig_nn import *
 import sys
 import torch
 import random
+import time
 
 def load_nn(version, twig_data):
     '''
@@ -30,6 +31,7 @@ def load_nn(version, twig_data):
     return model
 
 if __name__ == '__main__':
+    start = time.time()
     datasets_to_load={
         "UMLS": ["2.1"]
     }
@@ -58,6 +60,7 @@ if __name__ == '__main__':
     checkpoint_id = str(int(random.random() * 10**16))
     model_name_prefix = f'chkpt-ID_{checkpoint_id}_v{version}_{"-".join(d for d in datasets_to_load.keys())}'
 
+    train_start = time.time()
     r2_scores, test_losses, mrr_preds_all, mrr_trues_all = _train_and_eval(
         model=model,
         twig_data=twig_data,
@@ -69,3 +72,6 @@ if __name__ == '__main__':
         model_name_prefix=model_name_prefix,
         checkpoint_every_n=5
     )
+    end = time.time()
+    print(f'total time taken: {end - start}')
+    print(f'training time taken: {end - train_start}')

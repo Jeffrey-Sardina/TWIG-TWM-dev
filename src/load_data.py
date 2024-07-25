@@ -35,7 +35,7 @@ class TWIG_Data:
         self.head_flags = normaliser.head_flags
         self.tail_flags = normaliser.tail_flags
         self.dataset_names = list(head_ranks.keys())
-        self.num_struct_fts = structs[self.dataset_names[0]].shape[0] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
+        self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
 
     def get_batch(self, dataset_name, run_id, exp_id, mode):

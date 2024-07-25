@@ -87,6 +87,8 @@ def _do_batch(
             mrr_true = mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
         else:
             mrr_true = torch.mean(1 / rank_list_true)
+    else:
+        mrr_true = None
 
     # get predicted data
     ranks_head_pred = model(struct_tensor_heads, hyps_tensor)
@@ -104,8 +106,10 @@ def _do_batch(
         )
     if mrr_loss_coeff:
         mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
+    else:
+        mrr_pred = None
 
-
+    # compute the loss values
     if not mrr_loss_coeff:
         # use only rdl (i.e. in phase 1 of training)
         loss = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
@@ -129,9 +133,12 @@ def _train_epoch(
         optimizer
 ):
     mode = 'train'
+    batch_num = 0
     for dataset_name in twig_data.dataset_names:
         for run_id in twig_data.head_ranks[dataset_name]:
             for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
+                if batch_num % 25 == 0:
+                    print(f'running bactch: {batch_num}')
                 struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
@@ -156,6 +163,7 @@ def _train_epoch(
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
+                batch_num += 1
 
 def _eval(
         model,
@@ -176,30 +184,34 @@ def _eval(
     with torch.no_grad():
         for run_id in twig_data.head_ranks[dataset_name]:
             for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
-                struct_tensor, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
-                dataset_name=dataset_name,
-                run_id=run_id,
-                exp_id=exp_id,
-                mode=mode
-            )
-            loss, mrr_pred, mrr_true = _do_batch(
-                model=model,
-                mrr_loss=mrr_loss,
-                rank_dist_loss=rank_dist_loss,
-                mrr_loss_coeff=mrr_loss_coeff,
-                rank_dist_loss_coeff=rank_dist_loss_coeff,
-                n_bins=n_bins,
-                struct_tensor=struct_tensor,
-                hyps_tensor=hyps_tensor,
-                head_rank=head_rank,
-                tail_rank=tail_rank
-            )
-            test_loss += loss.item()
-            mrr_preds.append(float(mrr_pred))
-            mrr_trues.append(float(mrr_true))
+                struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
+                    dataset_name=dataset_name,
+                    run_id=run_id,
+                    exp_id=exp_id,
+                    mode=mode
+                )
+                loss, mrr_pred, mrr_true = _do_batch(
+                    model=model,
+                    mrr_loss=mrr_loss,
+                    rank_dist_loss=rank_dist_loss,
+                    mrr_loss_coeff=mrr_loss_coeff,
+                    rank_dist_loss_coeff=rank_dist_loss_coeff,
+                    n_bins=n_bins,
+                    struct_tensor_heads=struct_tensor_heads,
+                    struct_tensor_tails=struct_tensor_tails,
+                    max_rank_possible=twig_data.max_ranks[dataset_name],
+                    hyps_tensor=hyps_tensor,
+                    head_rank=head_rank,
+                    tail_rank=tail_rank,
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
+                )
+                test_loss += loss.item()
+                mrr_preds.append(float(mrr_pred))
+                mrr_trues.append(float(mrr_true))
 
     # validations and data collection
-    assert len(mrr_preds) > 1, "TWIG should be running inference for multiple runs, not just one, here"
+    print(mrr_preds)
+    assert len(mrr_preds) > 1, f"TWIG should be running inference for multiple runs, not just one, here"
     # spearman_r = stats.spearmanr(mrr_preds, mrr_trues)
     r2_mrr = r2_score(
         torch.tensor(mrr_preds),
