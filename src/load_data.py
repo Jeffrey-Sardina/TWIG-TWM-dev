@@ -37,6 +37,18 @@ class TWIG_Data:
         self.dataset_names = list(head_ranks.keys())
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
+        self.precalc_hyps_per_dataset()
+
+    def precalc_hyps_per_dataset(self):
+        hyps_precalc = {}
+        for mode in self.hyps:
+            hyps_precalc[mode] = {}
+            for dataset_name in self.dataset_names:
+                num_triples = self.structs[dataset_name].shape[0]
+                hyps_precalc[mode][dataset_name] = {}
+                for exp_id in self.hyps[mode]:
+                    hyps_precalc[mode][dataset_name][exp_id] = self.hyps[mode][exp_id].repeat(num_triples, 1)
+        self.hyps = hyps_precalc
 
     def get_batch(self, dataset_name, run_id, exp_id, mode):
         struct_tensor = self.structs[dataset_name]
@@ -48,7 +60,7 @@ class TWIG_Data:
             [self.tail_flags[dataset_name], struct_tensor],
             dim=1
         )
-        hyps_tensor = self.hyps[mode][exp_id]
+        hyps_tensor = self.hyps[mode][dataset_name][exp_id]
         head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
         tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
         return struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank
@@ -189,11 +201,11 @@ def load_simulation_datasets(datasets_to_load):
                 dataset_name=dataset_name,
                 run_id=run_id
             )
+            rank_data[dataset_name][run_id] = rank_data_kg
         if not dataset_name in global_data:
             global_data[dataset_name] = global_data_kg
         if not dataset_name in local_data:
             local_data[dataset_name] = local_data_kg
-        rank_data[dataset_name][run_id] = rank_data_kg
         if not hyperparameter_data:
             hyperparameter_data = hyperparameter_data_kg
         else:

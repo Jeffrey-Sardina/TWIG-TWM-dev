@@ -33,7 +33,7 @@ def load_nn(version, twig_data):
 if __name__ == '__main__':
     start = time.time()
     datasets_to_load={
-        "UMLS": ["2.1"]
+        "UMLS": ["2.1", "2.2"]
     }
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
@@ -66,7 +66,7 @@ if __name__ == '__main__':
         twig_data=twig_data,
         mrr_loss_coeffs = [0, 10],
         rank_dist_loss_coeffs = [1, 1],
-        epochs=[5, 10],
+        epochs=[1, 10],
         n_bins=30,
         optimizer=optimizer,
         model_name_prefix=model_name_prefix,

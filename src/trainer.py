@@ -9,7 +9,7 @@ from torch import nn
 from torcheval.metrics.functional import r2_score
 import torch.nn.functional as F
 import os
-from scipy import stats
+import time
 
 '''
 ====================
@@ -66,8 +66,9 @@ def _do_batch(
         hyps_tensor,
         head_rank,
         tail_rank,
-        ranks_are_rescaled
-):
+        ranks_are_rescaled,
+        batch_num
+):  
     # get ground truth data
     rank_list_true = torch.concat(
         [head_rank, tail_rank],
@@ -113,14 +114,21 @@ def _do_batch(
     if not mrr_loss_coeff:
         # use only rdl (i.e. in phase 1 of training)
         loss = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+        rdl = loss.item()
+        mrrl = 0
     elif not rank_dist_loss_coeff:
-        loss = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+        loss = mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+        rdl = 0
+        mrrl = loss.item()
     else:
         # compute mrr loss
         mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
         rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
         loss = mrrl + rdl
-    return loss, mrr_pred, mrr_true    
+        rdl = rdl.item()
+        mrrl = mrrl.item()
+
+    return loss, mrrl, rdl, mrr_pred, mrr_true    
 
 def _train_epoch(
         model,
@@ -134,18 +142,24 @@ def _train_epoch(
 ):
     mode = 'train'
     batch_num = 0
+    loss_sum = 0
+    mrrl_sum = 0
+    rdl_sum = 0
+    print_batch_on = 100
+    epoch_start_time = time.time()
     for dataset_name in twig_data.dataset_names:
         for run_id in twig_data.head_ranks[dataset_name]:
             for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
-                if batch_num % 25 == 0:
-                    print(f'running bactch: {batch_num}')
+                batch_start_time = time.time()
+
+                # run batch
                 struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
                     exp_id=exp_id,
                     mode=mode
                 )
-                loss, _, _ = _do_batch(
+                loss, mrrl, rdl, _, _ = _do_batch(
                     model=model,
                     mrr_loss=mrr_loss,
                     rank_dist_loss=rank_dist_loss,
@@ -158,12 +172,39 @@ def _train_epoch(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks,
+                    batch_num=batch_num
                 )
+
+                # collect data
+                loss_sum += loss.item()
+                mrrl_sum += mrrl
+                rdl_sum += rdl
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
                 batch_num += 1
+
+                # print results
+                if batch_num % print_batch_on == 0:
+                    batch_end_time = time.time()
+                    print(f'running bactch: {batch_num}')
+                    print(f'\tloss coeffs [mrrl, rdl]: {[mrr_loss_coeff, rank_dist_loss_coeff]}')
+                    loss_data = f"\t\tloss: {round(float(loss_sum / print_batch_on), 10)}\n"
+                    loss_data += f"\t\tmrrl: {round(float(mrrl_sum / print_batch_on), 10)}\n"
+                    loss_data += f"\t\trdl: {round(float(rdl_sum / print_batch_on), 10)}"
+                    print(f'\tloss values:\n{loss_data}')
+                    print(f'\tbatch time: {round(batch_end_time - batch_start_time, 3)}')
+                    print()
+                    loss_sum = 0
+                    mrrl_sum = 0
+                    rdl_sum = 0
+    
+    # print epoch results
+    epoch_end_time = time.time()
+    print('Epoch over!')
+    print(f'\tepoch time: {round(epoch_end_time - epoch_start_time, 3)}')
+    print()
 
 def _eval(
         model,
@@ -180,7 +221,9 @@ def _eval(
     test_loss = 0
     mrr_preds = []
     mrr_trues = []
+    batch_num = 0
     print(f'Running eval on the {mode} set')
+    test_start_time = time.time()
     with torch.no_grad():
         for run_id in twig_data.head_ranks[dataset_name]:
             for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
@@ -190,7 +233,7 @@ def _eval(
                     exp_id=exp_id,
                     mode=mode
                 )
-                loss, mrr_pred, mrr_true = _do_batch(
+                loss, _, _, mrr_pred, mrr_true = _do_batch(
                     model=model,
                     mrr_loss=mrr_loss,
                     rank_dist_loss=rank_dist_loss,
@@ -203,24 +246,24 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks,
+                    batch_num=batch_num
                 )
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))
                 mrr_trues.append(float(mrr_true))
+                batch_num += 1
 
     # validations and data collection
     print(mrr_preds)
     assert len(mrr_preds) > 1, f"TWIG should be running inference for multiple runs, not just one, here"
-    # spearman_r = stats.spearmanr(mrr_preds, mrr_trues)
     r2_mrr = r2_score(
         torch.tensor(mrr_preds),
         torch.tensor(mrr_trues),
     )
+    test_end_time = time.time()
 
     # data output
-    print()
-    print()
     print(f'Testing data for dataloader(s) {dataset_name}')
     print("=" * 42)
     print()
@@ -229,17 +272,15 @@ def _eval(
     for x in mrr_preds:
         print(x)
     print()
-
     print("True MRRs")
     print('-' * 42)
     for x in mrr_trues:
         print(x)
     print()
-
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')
     print(f'r2_mrr = {r2_mrr}')
-    # print(f'spearman_r = {spearman_r.statistic}; p = {spearman_r.pvalue}')
     print(f"test_loss: {test_loss}")
+    print(f'\ttest time: {round(test_end_time - test_start_time, 3)}')
 
     return r2_mrr, test_loss, mrr_preds, mrr_trues
 
@@ -269,7 +310,7 @@ def _train_and_eval(
         mrr_loss_coeff = mrr_loss_coeffs[phase]
         rank_dist_loss_coeff = rank_dist_loss_coeffs[phase]
         for t in range(epochs[phase]):
-            print(f"Epoch {t+1} -- ", end='')
+            print(f"Epoch {t+1} -- ")
             _train_epoch(
                 model=model,
                 twig_data=twig_data,
