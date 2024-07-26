@@ -21,7 +21,8 @@ class TWIG_Data:
             train_ids,
             test_ids,
             valid_ids,
-            normaliser
+            normaliser,
+            run_ids
         ):
         self.structs = structs
         self.max_ranks=max_ranks
@@ -34,21 +35,29 @@ class TWIG_Data:
         self.normaliser = normaliser
         self.head_flags = normaliser.head_flags
         self.tail_flags = normaliser.tail_flags
-        self.dataset_names = list(head_ranks.keys())
+        self.run_ids = run_ids
+        self.dataset_names = list(run_ids.keys())
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
-        self.precalc_hyps_per_dataset()
 
-    def precalc_hyps_per_dataset(self):
-        hyps_precalc = {}
-        for mode in self.hyps:
-            hyps_precalc[mode] = {}
-            for dataset_name in self.dataset_names:
-                num_triples = self.structs[dataset_name].shape[0]
-                hyps_precalc[mode][dataset_name] = {}
-                for exp_id in self.hyps[mode]:
-                    hyps_precalc[mode][dataset_name][exp_id] = self.hyps[mode][exp_id].repeat(num_triples, 1)
-        self.hyps = hyps_precalc
+    def shuffled_train_iterators(self):
+        # shuffle datasets
+        dataset_names = [x for x in self.dataset_names]
+        random.shuffle(dataset_names)
+
+        # shuffle run ids
+        run_ids = {}
+        for dataset_name in dataset_names:
+            dataeset_run_ids = [x for x in self.run_ids[dataset_name]]
+            random.shuffle(dataeset_run_ids)
+            run_ids[dataset_name] = dataeset_run_ids
+
+        #shuffle train ids
+        train_ids = [x for x in self.train_ids]
+        random.shuffle(train_ids)
+
+        # return shuffled values (TWIG_Data instance vars are not changed)
+        return dataset_names, run_ids, train_ids
 
     def get_batch(self, dataset_name, run_id, exp_id, mode):
         struct_tensor = self.structs[dataset_name]
@@ -60,7 +69,7 @@ class TWIG_Data:
             [self.tail_flags[dataset_name], struct_tensor],
             dim=1
         )
-        hyps_tensor = self.hyps[mode][dataset_name][exp_id]
+        hyps_tensor = self.hyps[mode][exp_id]
         head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
         tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
         return struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank
@@ -387,6 +396,7 @@ def _do_load(
         train_ids=train_ids,
         test_ids=test_ids,
         valid_ids=valid_ids,
-        normaliser=normaliser
+        normaliser=normaliser,
+        run_ids=datasets_to_load
     )
     return twig_data

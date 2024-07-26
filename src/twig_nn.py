@@ -68,7 +68,7 @@ class TWIG_Base(nn.Module):
         X_hps = self.linear_hps_1(X_hps)
         X_hps = self.relu_3(X_hps)
 
-        # X_hps = X_hps.repeat(X_struct.shape[0], 1)
+        X_hps = X_hps.repeat(X_struct.shape[0], 1)
         X = self.linear_integrate_1(
             torch.concat(
                 [X_struct, X_hps],

@@ -10,6 +10,7 @@ from torcheval.metrics.functional import r2_score
 import torch.nn.functional as F
 import os
 import time
+import random
 
 '''
 ====================
@@ -66,30 +67,25 @@ def _do_batch(
         hyps_tensor,
         head_rank,
         tail_rank,
-        ranks_are_rescaled,
-        batch_num
-):  
+        ranks_are_rescaled
+    ):  
     # get ground truth data
     rank_list_true = torch.concat(
         [head_rank, tail_rank],
         dim=0
     )
-    if rank_dist_loss_coeff:
-        min_rank_observed = float(torch.min(rank_list_true))
-        max_rank_observed = float(torch.max(rank_list_true))
-        rank_dist_true = _d_hist(
-            X=rank_list_true,
-            n_bins=n_bins,
-            min_val=min_rank_observed,
-            max_val=max_rank_observed
-        )
-    if mrr_loss_coeff:
-        if ranks_are_rescaled:
-            mrr_true = mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
-        else:
-            mrr_true = torch.mean(1 / rank_list_true)
+    min_rank_observed = float(torch.min(rank_list_true))
+    max_rank_observed = float(torch.max(rank_list_true))
+    rank_dist_true = _d_hist(
+        X=rank_list_true,
+        n_bins=n_bins,
+        min_val=min_rank_observed,
+        max_val=max_rank_observed
+    )
+    if ranks_are_rescaled:
+        mrr_true = mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
     else:
-        mrr_true = None
+        mrr_true = torch.mean(1 / rank_list_true)
 
     # get predicted data
     ranks_head_pred = model(struct_tensor_heads, hyps_tensor)
@@ -98,36 +94,20 @@ def _do_batch(
         [ranks_head_pred, ranks_tail_pred],
         dim=1
     )
-    if rank_dist_loss_coeff:
-        rank_dist_pred = _d_hist(
-            X=rank_list_pred,
-            n_bins=n_bins,
-            min_val=min_rank_observed,
-            max_val=max_rank_observed
-        )
-    if mrr_loss_coeff:
-        mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
-    else:
-        mrr_pred = None
+    rank_dist_pred = _d_hist(
+        X=rank_list_pred,
+        n_bins=n_bins,
+        min_val=min_rank_observed,
+        max_val=max_rank_observed
+    )
+    mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
 
-    # compute the loss values
-    if not mrr_loss_coeff:
-        # use only rdl (i.e. in phase 1 of training)
-        loss = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
-        rdl = loss.item()
-        mrrl = 0
-    elif not rank_dist_loss_coeff:
-        loss = mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
-        rdl = 0
-        mrrl = loss.item()
-    else:
-        # compute mrr loss
-        mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
-        rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
-        loss = mrrl + rdl
-        rdl = rdl.item()
-        mrrl = mrrl.item()
-
+    # compute loss
+    mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+    loss = mrrl + rdl
+    rdl = rdl
+    mrrl = mrrl
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
 def _train_epoch(
@@ -142,23 +122,27 @@ def _train_epoch(
 ):
     mode = 'train'
     batch_num = 0
+    loss_sum_local = 0
+    mrrl_sum_local = 0
+    rdl_sum_local = 0
     loss_sum = 0
     mrrl_sum = 0
     rdl_sum = 0
     print_batch_on = 100
     epoch_start_time = time.time()
-    for dataset_name in twig_data.dataset_names:
-        for run_id in twig_data.head_ranks[dataset_name]:
-            for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
-                batch_start_time = time.time()
-
+    dataset_names, run_ids, train_ids = twig_data.shuffled_train_iterators()
+    for exp_id in train_ids:
+        for dataset_name in dataset_names:
+            for run_id in run_ids[dataset_name]:
                 # run batch
+                batch_start_time = time.time()
                 struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
                     exp_id=exp_id,
                     mode=mode
                 )
+                batch_time_2 = time.time()
                 loss, mrrl, rdl, _, _ = _do_batch(
                     model=model,
                     mrr_loss=mrr_loss,
@@ -172,38 +156,50 @@ def _train_epoch(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks,
-                    batch_num=batch_num
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
                 )
+                batch_time_3 = time.time()
 
                 # collect data
+                loss_sum_local += loss.item()
+                mrrl_sum_local += mrrl.item()
+                rdl_sum_local += rdl.item()
                 loss_sum += loss.item()
-                mrrl_sum += mrrl
-                rdl_sum += rdl
+                mrrl_sum += mrrl.item()
+                rdl_sum += rdl.item()
+
+                # backprop
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
-                batch_num += 1
+                batch_end_time = time.time()
 
                 # print results
                 if batch_num % print_batch_on == 0:
-                    batch_end_time = time.time()
                     print(f'running bactch: {batch_num}')
-                    print(f'\tloss coeffs [mrrl, rdl]: {[mrr_loss_coeff, rank_dist_loss_coeff]}')
-                    loss_data = f"\t\tloss: {round(float(loss_sum / print_batch_on), 10)}\n"
-                    loss_data += f"\t\tmrrl: {round(float(mrrl_sum / print_batch_on), 10)}\n"
-                    loss_data += f"\t\trdl: {round(float(rdl_sum / print_batch_on), 10)}"
-                    print(f'\tloss values:\n{loss_data}')
-                    print(f'\tbatch time: {round(batch_end_time - batch_start_time, 3)}')
+                    loss_data = f"\t\tloss: {round(float(loss_sum_local / print_batch_on), 10)}\n"
+                    loss_data += f"\t\tmrrl: {round(float(mrrl_sum_local / print_batch_on), 10)}\n"
+                    loss_data += f"\t\trdl: {round(float(rdl_sum_local / print_batch_on), 10)}"
+                    print(f'\taverage loss values (last {print_batch_on} batches):\n{loss_data}')
+                    print('\tlast-batch time data:')
+                    print(f'\t\tload: {round(batch_time_2 - batch_start_time, 3)}')
+                    print(f'\t\tbatch: {round(batch_time_3 - batch_time_2, 3)}')
+                    print(f'\t\tbackprop: {round(batch_end_time - batch_time_3, 3)}')
+                    print(f'\t\ttotal: {round(batch_end_time - batch_start_time, 3)}')
                     print()
-                    loss_sum = 0
-                    mrrl_sum = 0
-                    rdl_sum = 0
+                    loss_sum_local = 0
+                    mrrl_sum_local = 0
+                    rdl_sum_local = 0
+                batch_num += 1
     
     # print epoch results
     epoch_end_time = time.time()
     print('Epoch over!')
     print(f'\tepoch time: {round(epoch_end_time - epoch_start_time, 3)}')
+    loss_data = f"\t\tloss: {round(float(loss_sum / print_batch_on), 10)}\n"
+    loss_data += f"\t\tmrrl: {round(float(mrrl_sum / print_batch_on), 10)}\n"
+    loss_data += f"\t\trdl: {round(float(rdl_sum / print_batch_on), 10)}"
+    print(f'\tloss values:\n{loss_data}')
     print()
 
 def _eval(
@@ -246,8 +242,7 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks,
-                    batch_num=batch_num
+                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
                 )
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))
