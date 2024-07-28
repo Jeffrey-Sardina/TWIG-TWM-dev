@@ -284,7 +284,6 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
     for dataset_name in local_data:
         structs[dataset_name] = {}
         triple_ids = list(local_data[dataset_name].keys())
-        random.shuffle(triple_ids)
         local_vecs = []
         for triple_id in triple_ids:
             local_vec = list(local_data[dataset_name][triple_id].values())

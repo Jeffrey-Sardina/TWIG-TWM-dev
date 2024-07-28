@@ -176,7 +176,7 @@ def _train_epoch(
 
                 # print results
                 if batch_num % print_batch_on == 0:
-                    print(f'running bactch: {batch_num}')
+                    print(f'running batch: {batch_num}')
                     loss_data = f"\t\tloss: {round(float(loss_sum_local / print_batch_on), 10)}\n"
                     loss_data += f"\t\tmrrl: {round(float(mrrl_sum_local / print_batch_on), 10)}\n"
                     loss_data += f"\t\trdl: {round(float(rdl_sum_local / print_batch_on), 10)}"
@@ -250,7 +250,6 @@ def _eval(
                 batch_num += 1
 
     # validations and data collection
-    print(mrr_preds)
     assert len(mrr_preds) > 1, f"TWIG should be running inference for multiple runs, not just one, here"
     r2_mrr = r2_score(
         torch.tensor(mrr_preds),
