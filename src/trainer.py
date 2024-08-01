@@ -38,7 +38,7 @@ def _d_hist(X, n_bins, min_val, max_val):
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
     freqs = torch.zeros(size=(n_bins,)).to(device)
     last_val = None
-    sharpness = 1
+    sharpness = 2
     for i, curr_val in enumerate(bins):
         if i == 0:
             # count (X < min bucket val)
@@ -81,7 +81,7 @@ def _do_batch(
         hyps_tensor,
         head_rank,
         tail_rank,
-        do_print=False
+        do_print
     ):  
     # get ground truth data
     rank_list_true = torch.concat(
@@ -98,7 +98,7 @@ def _do_batch(
     )
     mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
-    # get predicted data
+    # get predicted data (do a half pre-run with just hyps for time opt!)
     ranks_head_pred = model(struct_tensor_heads, hyps_tensor)
     ranks_tail_pred = model(struct_tensor_tails, hyps_tensor)
     rank_list_pred = torch.concat(
@@ -191,6 +191,13 @@ def _train_epoch(
 
         # backprop
         loss.backward()
+        # if batch_num % print_batch_on == 0:
+        #     if batch_num > 0:
+        #         print((model.linear_struct_1.weight.grad))
+        #         print((model.linear_struct_2.weight.grad))
+        #         print((model.linear_hps_1.weight.grad))
+        #         print((model.linear_integrate_1.weight.grad))
+        #         print((model.linear_final.weight.grad))
         optimizer.step()
         optimizer.zero_grad()
 
@@ -254,6 +261,7 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
+                    do_print=True
                 )
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))

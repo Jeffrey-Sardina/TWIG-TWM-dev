@@ -173,9 +173,18 @@ def load_hyperparamter_data(grid):
                 hp_val = float(hp_val)
                 hyperparameter_data[exp_id][hp_name] = hp_val
             except:
-                # if we cannot, we need to encode as a number
+                # # if we cannot, we need to encode as a number
+                # hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
+                # hyperparameter_data[exp_id][hp_name] = hp_val_id
+                
+                # if we cannot, one-hot code as a categorical variable
+                onehot_len = len(hp_names_to_vals_sorted[hp_name]) - 1
                 hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
-                hyperparameter_data[exp_id][hp_name] = hp_val_id
+                bin_str = np.binary_repr(hp_val_id) #get binary val (one-hot proto-vector)
+                bin_str = bin_str.rjust(onehot_len, '0') # pad with 0s to constant length (full one-hot vector)
+                for oneshot_idx in range(onehot_len):
+                    oneshot_name = hp_name + str(oneshot_idx)
+                    hyperparameter_data[exp_id][oneshot_name] = int(bin_str[oneshot_idx])
     
     return hyperparameter_data
 
