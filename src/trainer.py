@@ -152,7 +152,7 @@ def _train_epoch(
     batch_num = 0
     mrrl_sum = 0
     rdl_sum = 0
-    print_batch_on = 500
+    print_batch_on = 50
     epoch_start_time = time.time()
     epoch_batches = twig_data.shuffle_epoch()
     for dataset_name, run_id, exp_id in epoch_batches:
@@ -236,11 +236,15 @@ def _eval(
     mrr_preds = []
     mrr_trues = []
     batch_num = 0
+    print_batch_on = 50
     print(f'Running eval on the {mode} set')
     test_start_time = time.time()
     with torch.no_grad():
         for run_id in twig_data.head_ranks[dataset_name]:
             for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
+                if do_print and batch_num % print_batch_on == 0:
+                    print(f'running batch: {batch_num}')
+
                 struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
@@ -260,8 +264,11 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    do_print=do_print
+                    do_print=do_print and batch_num % print_batch_on == 0
                 )
+                if do_print and batch_num % print_batch_on == 0:
+                    print()
+
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))
                 mrr_trues.append(float(mrr_true))
