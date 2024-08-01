@@ -33,14 +33,13 @@ def load_nn(version, twig_data):
 if __name__ == '__main__':
     start = time.time()
     datasets_to_load={
-        "UMLS": ["2.1", "2.2", "2.3", "2.4"]
+        "UMLS": ["2.1", "2.2"]
     }
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
         test_ratio=0.1,
         valid_ratio=0.01,
-        normalisation='zscore',
-        rescale_ranks=True
+        normalisation='zscore'
     )
 
     # load model

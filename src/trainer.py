@@ -35,17 +35,19 @@ def _d_hist(X, n_bins, min_val, max_val):
     The values it returns are:
         - freqs (torch.Tensor): the bin frequencies of the histogram constructed from the input ranks list.
     '''
-    # n_elems = torch.prod(torch.tensor(X.shape))
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
     freqs = torch.zeros(size=(n_bins,)).to(device)
     last_val = None
     sharpness = 1
     for i, curr_val in enumerate(bins):
         if i == 0:
+            # count (X < min bucket val)
             count = F.sigmoid(sharpness * (curr_val - X))
         elif i == len(bins) - 1:
+            # count (X > max bucket val)
             count = F.sigmoid(sharpness * (X - last_val))
         else:
+            # count (X > bucket left and X < bucket right)
             count = F.sigmoid(sharpness * (X - last_val)) \
                 * F.sigmoid(sharpness * (curr_val - X))
         count = torch.sum(count)
@@ -53,6 +55,18 @@ def _d_hist(X, n_bins, min_val, max_val):
         last_val = curr_val
     freqs = freqs / torch.sum(freqs) # put on [0, 1]
     return freqs
+
+def _plot_hist(dist1, dist2, n_bins):
+    import matplotlib.pyplot as plt
+    fig, axs = plt.subplots(
+        1, 2,
+        sharex=False,
+        sharey=False,
+        tight_layout=True
+    )
+    axs[0].hist(dist1, bins=n_bins)
+    axs[1].hist(dist2, bins=n_bins)
+    plt.show()
 
 def _do_batch(
         model,
@@ -67,33 +81,30 @@ def _do_batch(
         hyps_tensor,
         head_rank,
         tail_rank,
-        ranks_are_rescaled
+        do_print=False
     ):  
     # get ground truth data
     rank_list_true = torch.concat(
         [head_rank, tail_rank],
         dim=0
     )
-    min_rank_observed = float(torch.min(rank_list_true))
-    max_rank_observed = float(torch.max(rank_list_true))
+    min_rank_observed = torch.min(rank_list_true)
+    max_rank_observed = torch.max(rank_list_true)
     rank_dist_true = _d_hist(
         X=rank_list_true,
         n_bins=n_bins,
         min_val=min_rank_observed,
         max_val=max_rank_observed
     )
-    if ranks_are_rescaled:
-        mrr_true = mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
-    else:
-        mrr_true = torch.mean(1 / rank_list_true)
+    mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
     # get predicted data
     ranks_head_pred = model(struct_tensor_heads, hyps_tensor)
     ranks_tail_pred = model(struct_tensor_tails, hyps_tensor)
     rank_list_pred = torch.concat(
         [ranks_head_pred, ranks_tail_pred],
-        dim=1
-    )
+        dim=0
+    ).squeeze()
     rank_dist_pred = _d_hist(
         X=rank_list_pred,
         n_bins=n_bins,
@@ -102,12 +113,25 @@ def _do_batch(
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
 
+    # print state
+    if do_print:
+        pred_mean = round(float(torch.mean(rank_list_pred)), 3)
+        true_mean = round(float(torch.mean(rank_list_true)), 3)
+        pred_std = round(float(torch.std(rank_list_pred)), 3)
+        true_std = round(float(torch.std(rank_list_true)), 3)
+        print(f'rank avg (pred, true): {pred_mean, true_mean}')
+        print(f'rank std (pred, true): {pred_std, true_std}')
+        print(f'mrr (pred, true): {round(mrr_pred.item(), 3), round(mrr_true.item(), 3)}')
+        # _plot_hist(
+        #     dist1=rank_list_true.cpu(),
+        #     dist2=rank_list_pred.detach().cpu(),
+        #     n_bins=n_bins
+        # )
+
     # compute loss
     mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
     rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
     loss = mrrl + rdl
-    rdl = rdl
-    mrrl = mrrl
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
 def _train_epoch(
@@ -119,87 +143,75 @@ def _train_epoch(
         rank_dist_loss_coeff,
         n_bins,
         optimizer
-):
+    ):
     mode = 'train'
     batch_num = 0
-    loss_sum_local = 0
     mrrl_sum_local = 0
     rdl_sum_local = 0
-    loss_sum = 0
     mrrl_sum = 0
     rdl_sum = 0
-    print_batch_on = 100
+    print_batch_on = 500
     epoch_start_time = time.time()
-    dataset_names, run_ids, train_ids = twig_data.shuffled_train_iterators()
-    for exp_id in train_ids:
-        for dataset_name in dataset_names:
-            for run_id in run_ids[dataset_name]:
-                # run batch
-                batch_start_time = time.time()
-                struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
-                    dataset_name=dataset_name,
-                    run_id=run_id,
-                    exp_id=exp_id,
-                    mode=mode
-                )
-                batch_time_2 = time.time()
-                loss, mrrl, rdl, _, _ = _do_batch(
-                    model=model,
-                    mrr_loss=mrr_loss,
-                    rank_dist_loss=rank_dist_loss,
-                    mrr_loss_coeff=mrr_loss_coeff,
-                    rank_dist_loss_coeff=rank_dist_loss_coeff,
-                    n_bins=n_bins,
-                    struct_tensor_heads=struct_tensor_heads,
-                    struct_tensor_tails=struct_tensor_tails,
-                    max_rank_possible=twig_data.max_ranks[dataset_name],
-                    hyps_tensor=hyps_tensor,
-                    head_rank=head_rank,
-                    tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
-                )
-                batch_time_3 = time.time()
+    epoch_batches = twig_data.shuffle_epoch()
+    for dataset_name, run_id, exp_id in epoch_batches:
+        # print state
+        if batch_num % print_batch_on == 0:
+            print(f'running batch: {batch_num}')
+            
+        # load batch data
+        struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
+            dataset_name=dataset_name,
+            run_id=run_id,
+            exp_id=exp_id,
+            mode=mode
+        )
 
-                # collect data
-                loss_sum_local += loss.item()
-                mrrl_sum_local += mrrl.item()
-                rdl_sum_local += rdl.item()
-                loss_sum += loss.item()
-                mrrl_sum += mrrl.item()
-                rdl_sum += rdl.item()
+        # run batch
+        loss, mrrl, rdl, _, _ = _do_batch(
+            model=model,
+            mrr_loss=mrr_loss,
+            rank_dist_loss=rank_dist_loss,
+            mrr_loss_coeff=mrr_loss_coeff,
+            rank_dist_loss_coeff=rank_dist_loss_coeff,
+            n_bins=n_bins,
+            struct_tensor_heads=struct_tensor_heads,
+            struct_tensor_tails=struct_tensor_tails,
+            max_rank_possible=twig_data.max_ranks[dataset_name],
+            hyps_tensor=hyps_tensor,
+            head_rank=head_rank,
+            tail_rank=tail_rank,
+            do_print=batch_num % print_batch_on == 0
+        )
 
-                # backprop
-                loss.backward()
-                optimizer.step()
-                optimizer.zero_grad()
-                batch_end_time = time.time()
+        # collect data
+        mrrl_sum_local += mrrl.item()
+        rdl_sum_local += rdl.item()
+        mrrl_sum += mrrl.item()
+        rdl_sum += rdl.item()
 
-                # print results
-                if batch_num % print_batch_on == 0:
-                    print(f'running batch: {batch_num}')
-                    loss_data = f"\t\tloss: {round(float(loss_sum_local / print_batch_on), 10)}\n"
-                    loss_data += f"\t\tmrrl: {round(float(mrrl_sum_local / print_batch_on), 10)}\n"
-                    loss_data += f"\t\trdl: {round(float(rdl_sum_local / print_batch_on), 10)}"
-                    print(f'\taverage loss values (last {print_batch_on} batches):\n{loss_data}')
-                    print('\tlast-batch time data:')
-                    print(f'\t\tload: {round(batch_time_2 - batch_start_time, 3)}')
-                    print(f'\t\tbatch: {round(batch_time_3 - batch_time_2, 3)}')
-                    print(f'\t\tbackprop: {round(batch_end_time - batch_time_3, 3)}')
-                    print(f'\t\ttotal: {round(batch_end_time - batch_start_time, 3)}')
-                    print()
-                    loss_sum_local = 0
-                    mrrl_sum_local = 0
-                    rdl_sum_local = 0
-                batch_num += 1
+        # backprop
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+        # print results
+        if batch_num % print_batch_on == 0:
+            divisor = print_batch_on if batch_num > 0 else 1
+            mrrl_avg = round(float(mrrl_sum_local / divisor), 10)
+            rdl_avg = round(float(rdl_sum_local / divisor), 10)
+            print(f'avg loss (last {divisor} batches) (mrrl, rdl): {mrrl_avg, rdl_avg}')
+            print()
+            mrrl_sum_local = 0
+            rdl_sum_local = 0
+        batch_num += 1
     
     # print epoch results
     epoch_end_time = time.time()
     print('Epoch over!')
-    print(f'\tepoch time: {round(epoch_end_time - epoch_start_time, 3)}')
-    loss_data = f"\t\tloss: {round(float(loss_sum / print_batch_on), 10)}\n"
-    loss_data += f"\t\tmrrl: {round(float(mrrl_sum / print_batch_on), 10)}\n"
-    loss_data += f"\t\trdl: {round(float(rdl_sum / print_batch_on), 10)}"
-    print(f'\tloss values:\n{loss_data}')
+    print(f'epoch time: {round(epoch_end_time - epoch_start_time, 3)}')
+    loss_data = f"\tmrrl: {round(float(mrrl_sum / batch_num), 10)}\n"
+    loss_data += f"\trdl: {round(float(rdl_sum / batch_num), 10)}"
+    print(f'loss values:\n{loss_data}')
     print()
 
 def _eval(
@@ -242,7 +254,6 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    ranks_are_rescaled=twig_data.normaliser.rescale_ranks
                 )
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))
@@ -320,11 +331,11 @@ def _train_and_eval(
                 state_data = f'e{t+1}-e0'
                 torch.save(
                     model,
-                        os.path.join(
-                            checkpoint_dir,
-                            f'{model_name_prefix}_{state_data}.pt'
-                        )
+                    os.path.join(
+                        checkpoint_dir,
+                        f'{model_name_prefix}_{state_data}.pt'
                     )
+                )
         print("Done training phase: ", phase)
 
     # Testing

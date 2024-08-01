@@ -40,25 +40,17 @@ class TWIG_Data:
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
 
-    def shuffled_train_iterators(self):
-        # shuffle datasets
-        dataset_names = [x for x in self.dataset_names]
-        random.shuffle(dataset_names)
-
-        # shuffle run ids
-        run_ids = {}
-        for dataset_name in dataset_names:
-            dataeset_run_ids = [x for x in self.run_ids[dataset_name]]
-            random.shuffle(dataeset_run_ids)
-            run_ids[dataset_name] = dataeset_run_ids
-
-        #shuffle train ids
-        train_ids = [x for x in self.train_ids]
-        random.shuffle(train_ids)
+    def shuffle_epoch(self):
+        epoch_data = []
+        for dataset_name in self.dataset_names:
+            for run_id in self.run_ids[dataset_name]:
+                for train_id in self.train_ids:
+                    epoch_data.append((dataset_name, run_id, train_id))
+        random.shuffle(epoch_data)
 
         # return shuffled values (TWIG_Data instance vars are not changed)
-        return dataset_names, run_ids, train_ids
-
+        return epoch_data
+    
     def get_batch(self, dataset_name, run_id, exp_id, mode):
         struct_tensor = self.structs[dataset_name]
         struct_tensor_heads = torch.concat(
@@ -283,9 +275,8 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
     structs = {}
     for dataset_name in local_data:
         structs[dataset_name] = {}
-        triple_ids = list(local_data[dataset_name].keys())
         local_vecs = []
-        for triple_id in triple_ids:
+        for triple_id in sorted(list(local_data[dataset_name].keys())):
             local_vec = list(local_data[dataset_name][triple_id].values())
             local_vecs.append(local_vec)
         structs[dataset_name] = torch.tensor(
@@ -318,7 +309,7 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
                 for exp_id in rank_split_data[dataset_name][run_id][mode]:
                     head_ranks[dataset_name][run_id][mode][exp_id] = []
                     tail_ranks[dataset_name][run_id][mode][exp_id] = []
-                    for triple_id in rank_split_data[dataset_name][run_id][mode][exp_id]:
+                    for triple_id in sorted(list(rank_split_data[dataset_name][run_id][mode][exp_id].keys())):
                         head_ranks[dataset_name][run_id][mode][exp_id].append(
                             rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['head_rank']
                         )
@@ -342,8 +333,7 @@ def _do_load(
     datasets_to_load,
     test_ratio,
     valid_ratio,
-    normalisation,
-    rescale_ranks
+    normalisation
 ):
     '''
     do_load() loads all data.
@@ -353,7 +343,6 @@ def _do_load(
         - test_ratio (float): the proportion of hyperparameter combinations to hold out for the test set
         - valid_ratio (float): the proportion of hyperparameter combinations to hold out for the valid set
         - normalisation (str): the normalisation to use for input data (not ranks). Options are "zscore", "minmax", and "none"
-        - rescale_ranks (bool): whether ranks should re rescaled to have a maximum value of 1.
 
     The values it returns are:
         - TBD
@@ -375,7 +364,7 @@ def _do_load(
     )
     normaliser = Normaliser(
         method=normalisation,
-        rescale_ranks=rescale_ranks,
+        rescale_ranks=True,
         structs=structs,
         hyps=hyps,
         max_ranks=max_ranks
