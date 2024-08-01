@@ -69,7 +69,8 @@ if __name__ == '__main__':
         n_bins=30,
         optimizer=optimizer,
         model_name_prefix=model_name_prefix,
-        checkpoint_every_n=5
+        checkpoint_every_n=5,
+        do_print=True
     )
     end = time.time()
     print(f'total time taken: {end - start}')

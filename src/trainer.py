@@ -38,7 +38,7 @@ def _d_hist(X, n_bins, min_val, max_val):
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
     freqs = torch.zeros(size=(n_bins,)).to(device)
     last_val = None
-    sharpness = 2
+    sharpness = 5
     for i, curr_val in enumerate(bins):
         if i == 0:
             # count (X < min bucket val)
@@ -98,9 +98,10 @@ def _do_batch(
     )
     mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
-    # get predicted data (do a half pre-run with just hyps for time opt!)
-    ranks_head_pred = model(struct_tensor_heads, hyps_tensor)
-    ranks_tail_pred = model(struct_tensor_tails, hyps_tensor)
+    # get predicted data
+    model(struct_tensor_heads, hyps_tensor, hps_only=True) # build hps cache
+    ranks_head_pred = model(struct_tensor_heads, hyps_tensor, hps_only=False) # use hps cache (faster)
+    ranks_tail_pred = model(struct_tensor_tails, hyps_tensor, hps_only=False) # use hps cache (faster)
     rank_list_pred = torch.concat(
         [ranks_head_pred, ranks_tail_pred],
         dim=0
@@ -115,13 +116,15 @@ def _do_batch(
 
     # print state
     if do_print:
-        pred_mean = round(float(torch.mean(rank_list_pred)), 3)
-        true_mean = round(float(torch.mean(rank_list_true)), 3)
-        pred_std = round(float(torch.std(rank_list_pred)), 3)
-        true_std = round(float(torch.std(rank_list_true)), 3)
-        print(f'rank avg (pred, true): {pred_mean, true_mean}')
-        print(f'rank std (pred, true): {pred_std, true_std}')
-        print(f'mrr (pred, true): {round(mrr_pred.item(), 3), round(mrr_true.item(), 3)}')
+        pred_mean = str(round(float(torch.mean(rank_list_pred)), 3)).ljust(5, '0')
+        true_mean = str(round(float(torch.mean(rank_list_true)), 3)).ljust(5, '0')
+        pred_std = str(round(float(torch.std(rank_list_pred)), 3)).ljust(5, '0')
+        true_std = str(round(float(torch.std(rank_list_true)), 3)).ljust(5, '0')
+        mrr_pred_str = str(round(mrr_pred.item(), 3)).ljust(5, '0')
+        mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
+        print(f'rank avg (pred, true): {pred_mean}, {true_mean}')
+        print(f'rank std (pred, true): {pred_std}, {true_std}')
+        print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
         # _plot_hist(
         #     dist1=rank_list_true.cpu(),
         #     dist2=rank_list_pred.detach().cpu(),
@@ -142,12 +145,11 @@ def _train_epoch(
         rank_dist_loss,
         rank_dist_loss_coeff,
         n_bins,
-        optimizer
+        optimizer,
+        do_print
     ):
     mode = 'train'
     batch_num = 0
-    mrrl_sum_local = 0
-    rdl_sum_local = 0
     mrrl_sum = 0
     rdl_sum = 0
     print_batch_on = 500
@@ -180,18 +182,16 @@ def _train_epoch(
             hyps_tensor=hyps_tensor,
             head_rank=head_rank,
             tail_rank=tail_rank,
-            do_print=batch_num % print_batch_on == 0
+            do_print=do_print and batch_num % print_batch_on == 0
         )
 
         # collect data
-        mrrl_sum_local += mrrl.item()
-        rdl_sum_local += rdl.item()
         mrrl_sum += mrrl.item()
         rdl_sum += rdl.item()
 
         # backprop
         loss.backward()
-        # if batch_num % print_batch_on == 0:
+        # if do_print and batch_num % print_batch_on == 0:
         #     if batch_num > 0:
         #         print((model.linear_struct_1.weight.grad))
         #         print((model.linear_struct_2.weight.grad))
@@ -202,14 +202,12 @@ def _train_epoch(
         optimizer.zero_grad()
 
         # print results
-        if batch_num % print_batch_on == 0:
+        if do_print and batch_num % print_batch_on == 0:
             divisor = print_batch_on if batch_num > 0 else 1
-            mrrl_avg = round(float(mrrl_sum_local / divisor), 10)
-            rdl_avg = round(float(rdl_sum_local / divisor), 10)
-            print(f'avg loss (last {divisor} batches) (mrrl, rdl): {mrrl_avg, rdl_avg}')
+            mrrl_print = round(float(mrrl / divisor), 10)
+            rdl_print = round(float(rdl / divisor), 10)
+            print(f'losses (mrrl, rdl): {mrrl_print}, {rdl_print}')
             print()
-            mrrl_sum_local = 0
-            rdl_sum_local = 0
         batch_num += 1
     
     # print epoch results
@@ -230,7 +228,8 @@ def _eval(
         rank_dist_loss,
         rank_dist_loss_coeff,
         n_bins,
-        mode
+        mode,
+        do_print
 ):
     model.eval()
     test_loss = 0
@@ -261,7 +260,7 @@ def _eval(
                     hyps_tensor=hyps_tensor,
                     head_rank=head_rank,
                     tail_rank=tail_rank,
-                    do_print=True
+                    do_print=do_print
                 )
                 test_loss += loss.item()
                 mrr_preds.append(float(mrr_pred))
@@ -306,7 +305,8 @@ def _train_and_eval(
         n_bins,
         optimizer,
         model_name_prefix,
-        checkpoint_every_n
+        checkpoint_every_n,
+        do_print
 ):
     model.to(device)
     mrr_loss = nn.MSELoss()
@@ -332,7 +332,8 @@ def _train_and_eval(
                 rank_dist_loss=rank_dist_loss,
                 rank_dist_loss_coeff=rank_dist_loss_coeff,
                 n_bins=n_bins,
-                optimizer=optimizer
+                optimizer=optimizer,
+                do_print=do_print
             )
             if (t+1) % checkpoint_every_n == 0:
                 print(f'Saving checkpoint at [1] epoch {t+1}')
@@ -363,7 +364,8 @@ def _train_and_eval(
             rank_dist_loss,
             rank_dist_loss_coeff,
             n_bins,
-            mode='test'
+            mode='test',
+            do_print=do_print
         )
         print(f"Done Testing dataset {dataset_name}")
 

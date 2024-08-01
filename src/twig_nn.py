@@ -57,27 +57,55 @@ class TWIG_Base(nn.Module):
             self.linear_hps_1,
             self.linear_integrate_1,
         ]
+        self._hps_cache = None
 
-    def forward(self, X_struct, X_hps):
-        X_struct = self.linear_struct_1(X_struct)
-        X_struct = self.relu_1(X_struct)
+    def forward(self, X_struct, X_hps, hps_only):
+        if hps_only:
+            # create hps cache
+            self._hps_cache = self.linear_hps_1(X_hps)
+            self._hps_cache  = self.relu_3(self._hps_cache)
+            self._hps_cache  = self._hps_cache.repeat(X_struct.shape[0], 1)
+            return None
+        else:
+            # use existing hps cache
+            X_struct = self.linear_struct_1(X_struct)
+            X_struct = self.relu_1(X_struct)
 
-        X_struct = self.linear_struct_2(X_struct)
-        X_struct = self.relu_2(X_struct)
+            X_struct = self.linear_struct_2(X_struct)
+            X_struct = self.relu_2(X_struct)
 
-        X_hps = self.linear_hps_1(X_hps)
-        X_hps = self.relu_3(X_hps)
+            X = self.linear_integrate_1(
+                torch.concat(
+                    [X_struct, self._hps_cache],
+                    dim=1
+                ),
+            )
+            X = self.relu_4(X)
 
-        X_hps = X_hps.repeat(X_struct.shape[0], 1)
-        X = self.linear_integrate_1(
-            torch.concat(
-                [X_struct, X_hps],
-                dim=1
-            ),
-        )
-        X = self.relu_4(X)
+            R_pred = self.linear_final(X)
+            R_pred = self.sigmoid_final(R_pred)
 
-        R_pred = self.linear_final(X)
-        R_pred = self.sigmoid_final(R_pred)
+            return R_pred
 
-        return R_pred
+        # X_struct = self.linear_struct_1(X_struct)
+        # X_struct = self.relu_1(X_struct)
+
+        # X_struct = self.linear_struct_2(X_struct)
+        # X_struct = self.relu_2(X_struct)
+
+        # X_hps = self.linear_hps_1(X_hps)
+        # X_hps = self.relu_3(X_hps)
+
+        # X_hps = X_hps.repeat(X_struct.shape[0], 1)
+        # X = self.linear_integrate_1(
+        #     torch.concat(
+        #         [X_struct, X_hps],
+        #         dim=1
+        #     ),
+        # )
+        # X = self.relu_4(X)
+
+        # R_pred = self.linear_final(X)
+        # R_pred = self.sigmoid_final(R_pred)
+
+        # return R_pred
