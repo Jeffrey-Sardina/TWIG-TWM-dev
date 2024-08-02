@@ -1,5 +1,5 @@
 # twig-twm imports
-from KGE_pipeline import get_hp_grid, run_exp
+from kge_pipeline import get_hp_grid, run_exp
 
 # external imports
 import sys

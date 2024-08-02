@@ -10,7 +10,6 @@ from torcheval.metrics.functional import r2_score
 import torch.nn.functional as F
 import os
 import time
-import random
 
 '''
 ====================
@@ -99,13 +98,18 @@ def _do_batch(
     mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
     # get predicted data
-    model(struct_tensor_heads, hyps_tensor, hps_only=True) # build hps cache
-    ranks_head_pred = model(struct_tensor_heads, hyps_tensor, hps_only=False) # use hps cache (faster)
-    ranks_tail_pred = model(struct_tensor_tails, hyps_tensor, hps_only=False) # use hps cache (faster)
-    rank_list_pred = torch.concat(
-        [ranks_head_pred, ranks_tail_pred],
+    # model(struct_tensor_heads, hyps_tensor, hps_only=True) # build hps cache
+    # ranks_head_pred = model(struct_tensor_heads, hyps_tensor, hps_only=False) # use hps cache (faster)
+    # ranks_tail_pred = model(struct_tensor_tails, hyps_tensor, hps_only=False) # use hps cache (faster)
+    # rank_list_pred = torch.concat(
+    #     [ranks_head_pred, ranks_tail_pred],
+    #     dim=0
+    # ).squeeze()
+    struct_tensor = torch.concat(
+        [struct_tensor_heads, struct_tensor_tails],
         dim=0
-    ).squeeze()
+    )
+    rank_list_pred = model(struct_tensor, hyps_tensor, hps_only=False)
     rank_dist_pred = _d_hist(
         X=rank_list_pred,
         n_bins=n_bins,
@@ -135,6 +139,7 @@ def _do_batch(
     mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
     rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
     loss = mrrl + rdl
+
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
 def _train_epoch(
@@ -191,6 +196,13 @@ def _train_epoch(
 
         # backprop
         loss.backward()
+        # if do_print and batch_num % print_batch_on == 0:
+        #     if batch_num > 0:
+        #         print((model.linear_struct_1.weight.grad))
+        #         print((model.linear_struct_2.weight.grad))
+        #         print((model.linear_hps_1.weight.grad))
+        #         print((model.linear_integrate_1.weight.grad))
+        #         print((model.linear_final.weight.grad))
         optimizer.step()
         optimizer.zero_grad()
 
@@ -279,15 +291,10 @@ def _eval(
     print(f'Testing data for dataloader(s) {dataset_name}')
     print("=" * 42)
     print()
-    print("Predicted MRRs")
+    print("Predicted MRRs \t True MRRs")
     print('-' * 42)
-    for x in mrr_preds:
-        print(x)
-    print()
-    print("True MRRs")
-    print('-' * 42)
-    for x in mrr_trues:
-        print(x)
+    for i in range(len(mrr_preds)):
+        print(f"{mrr_preds[i]} \t {mrr_trues[i]}")
     print()
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')
     print(f'r2_mrr = {r2_mrr}')

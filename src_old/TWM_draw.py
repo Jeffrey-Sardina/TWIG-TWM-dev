@@ -12,7 +12,6 @@ from pykeen import datasets
 import torch
 import ast
 import sys
-import os
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -80,47 +79,31 @@ def create_TWM_graph(
         else:
             pass
 
-    '''
-    R preds has the form
-        s corr rank
-        o corr rank
-        s corr rank
-        o corr rank
-        ....
-
-    We need to turn this into triple learnability. That is --   
-        avg((1 / s corr rank), (1 / o corr rank))
-        or the average of sided learnabilities
-    '''
     assert len(R_preds) % 2 == 0, "should be a multiple of 2 for s and o corruption ranks"
 
     learnabilities = []
-    method = 'inv'
-    print(f'Using method: {method}. Note: "inv" is the method outlined in the TWM paper, and should be used to generate all images')
     for i in range(0, len(R_preds), 2):
-        if method == 'inv':
-            if TWIG_model:
-                R_pred_s = (float(R_preds[i]) + 1 / max_possible_rank) * max_possible_rank
-                R_pred_o = (float(R_preds[i+1]) + 1 / max_possible_rank) * max_possible_rank
-            else:
-                R_pred_s = (float(R_preds[i])) * max_possible_rank
-                R_pred_o = (float(R_preds[i+1])) * max_possible_rank
-            s_learnability = 1 / R_pred_s
-            o_learnability = 1 / R_pred_o
-            learnability = (s_learnability + o_learnability) / 2
-            assert learnability == learnability, 'Learnability should not be NaN!'
-            learnability = round(float(learnability), 2)
-            print(
-                learnability,
-                round(float(R_pred_s), 2),
-                round(float(R_pred_o), 2),
-                round(float(s_learnability), 2),
-                round(float(o_learnability), 2),
-                sep="\t"
-            )
-            learnabilities.append(learnability)
+        if TWIG_model:
+            assert False, "must be changed for the new TWIG dataloader"
+            R_pred_s = (float(R_preds[i]) + 1 / max_possible_rank) * max_possible_rank
+            R_pred_o = (float(R_preds[i+1]) + 1 / max_possible_rank) * max_possible_rank
         else:
-            assert False, f"invalid method: {method}"
+            R_pred_s = (float(R_preds[i])) * max_possible_rank
+            R_pred_o = (float(R_preds[i+1])) * max_possible_rank
+        s_learnability = 1 / R_pred_s
+        o_learnability = 1 / R_pred_o
+        learnability = (s_learnability + o_learnability) / 2
+        assert learnability == learnability, 'Learnability should not be NaN!'
+        learnability = round(float(learnability), 2)
+        print(
+            learnability,
+            round(float(R_pred_s), 2),
+            round(float(R_pred_o), 2),
+            round(float(s_learnability), 2),
+            round(float(o_learnability), 2),
+            sep="\t"
+        )
+        learnabilities.append(learnability)
     assert len(learnabilities) * 2 == len(R_preds), f"new version should have exactly half the size -- at the  triple level not subj and obj level. But itr was {len(learnabilities)}, len{len(R_preds)}"
         
     '''
@@ -129,21 +112,9 @@ def create_TWM_graph(
     '''
     graph_stats = calc_graph_stats(triples_dicts, do_print=False)
     twm = nx.MultiDiGraph()
-    # min_rank = min(R_preds) #also max learnability
-    # max_rank = max(R_preds) #also min learnability
     for triple_id, triple in enumerate(triples_dicts[graph_split]):
         s, p, o = triple
         learnability = learnabilities[triple_id]
-
-        # get edge data
-        # R_pred = float(R_preds[triple_id])
-        # rank_norm = (R_pred - min_rank) / (max_rank - min_rank)
-        # if min_rank == max_rank:
-        #     learnability = 0
-        # else:
-        #     learnability = 1 - rank_norm
-        # assert learnability == learnability, 'Learnability should not be NaN!'
-        # learnability = round(float(learnability), 2)
 
         # get pred data
         pred_freq = graph_stats['train']['pred_freqs'][p]
