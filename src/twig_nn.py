@@ -60,6 +60,7 @@ class TWIG_Base(nn.Module):
         self._hps_cache = None
 
     def forward(self, X_struct, X_hps, hps_only):
+        # return torch.rand(X_struct.shape[0], 1, device='cuda', dtype=torch.float32, requires_grad=True)
         if hps_only:
             # create hps cache
             self._hps_cache = self.linear_hps_1(X_hps)

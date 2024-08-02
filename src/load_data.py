@@ -225,13 +225,19 @@ def load_simulation_datasets(datasets_to_load):
     return global_data, local_data, hyperparameter_data, rank_data
 
 def split_by_hyperparameters(exp_ids, test_ratio, valid_ratio):
-    test_num = int(test_ratio * len(exp_ids))
-    valid_num = int(valid_ratio * len(exp_ids))
+    random_ids = [x for x in exp_ids]
+    random.shuffle(random_ids)
+    test_num = int(test_ratio * len(random_ids))
+    valid_num = int(valid_ratio * len(random_ids))
 
-    test_ids = exp_ids[:test_num]
-    valid_ids = exp_ids[test_num:valid_num]
-    train_ids = exp_ids[(test_num+valid_num):]
+    test_ids = random_ids[:test_num]
+    valid_ids = random_ids[test_num:valid_num]
+    train_ids = random_ids[(test_num+valid_num):]
 
+    print('using splits:')
+    print(f'test_ids ({len(test_ids)}): {test_ids}')
+    print(f'valid_ids ({len(valid_ids)}): {valid_ids}')
+    print(f'train_ids ({len(train_ids)}): {train_ids}')
     return train_ids, test_ids, valid_ids
 
 def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):

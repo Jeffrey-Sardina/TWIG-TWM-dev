@@ -38,7 +38,7 @@ def _d_hist(X, n_bins, min_val, max_val):
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
     freqs = torch.zeros(size=(n_bins,)).to(device)
     last_val = None
-    sharpness = 5
+    sharpness = 1
     for i, curr_val in enumerate(bins):
         if i == 0:
             # count (X < min bucket val)
@@ -152,7 +152,7 @@ def _train_epoch(
     batch_num = 0
     mrrl_sum = 0
     rdl_sum = 0
-    print_batch_on = 50
+    print_batch_on = 500
     epoch_start_time = time.time()
     epoch_batches = twig_data.shuffle_epoch()
     for dataset_name, run_id, exp_id in epoch_batches:
@@ -191,13 +191,6 @@ def _train_epoch(
 
         # backprop
         loss.backward()
-        # if do_print and batch_num % print_batch_on == 0:
-        #     if batch_num > 0:
-        #         print((model.linear_struct_1.weight.grad))
-        #         print((model.linear_struct_2.weight.grad))
-        #         print((model.linear_hps_1.weight.grad))
-        #         print((model.linear_integrate_1.weight.grad))
-        #         print((model.linear_final.weight.grad))
         optimizer.step()
         optimizer.zero_grad()
 
@@ -236,7 +229,7 @@ def _eval(
     mrr_preds = []
     mrr_trues = []
     batch_num = 0
-    print_batch_on = 50
+    print_batch_on = 500
     print(f'Running eval on the {mode} set')
     test_start_time = time.time()
     with torch.no_grad():

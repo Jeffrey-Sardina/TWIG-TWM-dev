@@ -1,0 +1,4615 @@
+using splits:
+test_ids (121): [858, 369, 132, 93, 815, 806, 818, 362, 839, 382, 307, 242, 145, 296, 530, 32, 945, 285, 716, 865, 442, 918, 1177, 122, 1009, 742, 640, 124, 315, 850, 901, 723, 455, 441, 1199, 777, 175, 1078, 85, 1205, 264, 548, 1132, 789, 574, 846, 407, 584, 1209, 848, 349, 159, 449, 827, 965, 915, 797, 215, 576, 747, 899, 448, 271, 639, 413, 54, 394, 717, 419, 284, 237, 838, 435, 452, 302, 546, 997, 687, 202, 321, 1181, 562, 297, 564, 672, 607, 572, 509, 756, 121, 487, 1026, 170, 709, 1010, 586, 676, 667, 283, 748, 327, 409, 478, 164, 527, 421, 961, 233, 671, 619, 388, 978, 116, 627, 309, 956, 92, 1185, 91, 905, 1174]
+valid_ids (0): []
+train_ids (1082): [1111, 331, 451, 354, 943, 511, 861, 534, 528, 517, 209, 1025, 985, 1156, 807, 914, 1125, 377, 660, 967, 30, 847, 583, 1057, 964, 540, 300, 1004, 295, 107, 1158, 763, 406, 52, 267, 35, 490, 57, 128, 200, 779, 796, 129, 1102, 246, 876, 794, 274, 1160, 45, 1112, 739, 400, 651, 4, 1045, 609, 272, 0, 697, 821, 250, 1015, 1113, 552, 311, 617, 1172, 1079, 608, 365, 181, 786, 908, 345, 631, 438, 318, 718, 870, 1017, 661, 368, 352, 902, 1080, 898, 808, 1189, 277, 474, 1055, 570, 197, 624, 596, 1101, 58, 1089, 21, 1013, 536, 46, 599, 330, 1059, 759, 994, 105, 84, 290, 189, 744, 191, 675, 969, 1099, 831, 948, 48, 1137, 634, 1093, 1155, 491, 811, 773, 56, 1091, 281, 926, 446, 822, 518, 259, 1190, 957, 778, 144, 817, 533, 1166, 950, 222, 255, 656, 632, 234, 998, 802, 896, 1044, 971, 944, 781, 257, 22, 556, 1175, 976, 1178, 185, 992, 578, 1180, 1186, 398, 891, 1114, 1036, 991, 872, 193, 638, 1050, 350, 196, 340, 1083, 1173, 829, 239, 476, 683, 752, 303, 270, 69, 557, 67, 1046, 587, 253, 252, 682, 11, 910, 101, 454, 269, 955, 100, 353, 1150, 977, 178, 543, 19, 721, 98, 14, 115, 803, 87, 544, 326, 232, 941, 664, 867, 1019, 598, 782, 238, 475, 1206, 282, 342, 312, 141, 935, 156, 585, 764, 753, 674, 1081, 323, 1097, 919, 731, 749, 430, 1051, 798, 754, 1176, 484, 1140, 856, 306, 732, 1207, 465, 180, 685, 165, 644, 198, 770, 874, 1064, 710, 1049, 713, 719, 702, 468, 1043, 40, 758, 9, 929, 862, 412, 813, 622, 408, 276, 439, 535, 496, 836, 414, 801, 445, 450, 275, 355, 160, 171, 157, 857, 606, 1117, 906, 214, 633, 1148, 184, 88, 1110, 529, 63, 741, 643, 832, 912, 555, 715, 843, 785, 646, 960, 1022, 38, 111, 654, 559, 524, 581, 425, 135, 494, 738, 958, 182, 248, 762, 550, 118, 461, 705, 395, 842, 489, 43, 1073, 942, 909, 691, 1194, 776, 659, 1164, 689, 516, 397, 743, 890, 1086, 59, 925, 464, 372, 612, 662, 954, 139, 453, 1188, 41, 878, 1107, 251, 545, 920, 618, 1058, 320, 155, 341, 711, 379, 332, 380, 292, 213, 243, 1135, 885, 936, 883, 526, 755, 1133, 279, 404, 601, 1179, 1153, 519, 147, 301, 72, 1072, 938, 823, 525, 924, 228, 1182, 223, 642, 981, 6, 1128, 1169, 334, 959, 440, 1027, 795, 434, 432, 780, 947, 66, 304, 386, 966, 877, 460, 150, 1120, 824, 50, 1029, 1063, 219, 262, 729, 810, 1003, 571, 503, 703, 293, 728, 767, 1213, 322, 1020, 420, 31, 611, 266, 692, 324, 36, 501, 833, 740, 916, 835, 670, 1053, 577, 235, 1048, 897, 79, 652, 325, 869, 988, 816, 547, 537, 774, 112, 479, 541, 1096, 735, 343, 172, 629, 769, 680, 133, 373, 937, 1076, 333, 882, 1085, 42, 17, 1134, 403, 498, 328, 841, 260, 946, 217, 483, 241, 913, 568, 668, 690, 485, 482, 2, 240, 1162, 1, 1060, 1121, 1163, 187, 999, 881, 423, 249, 61, 931, 987, 117, 775, 152, 357, 783, 953, 866, 1202, 371, 136, 7, 1090, 681, 212, 972, 472, 1183, 459, 1197, 569, 1002, 567, 686, 623, 210, 1161, 99, 814, 1170, 761, 595, 1016, 163, 859, 793, 113, 367, 75, 90, 169, 12, 542, 86, 650, 1095, 986, 1039, 888, 493, 347, 1147, 751, 621, 201, 33, 469, 615, 704, 192, 109, 949, 768, 980, 108, 254, 24, 605, 299, 565, 206, 1070, 604, 337, 221, 1005, 1077, 28, 174, 873, 712, 51, 359, 166, 226, 211, 1123, 889, 227, 647, 298, 417, 968, 554, 89, 1157, 826, 447, 16, 186, 444, 860, 653, 29, 205, 921, 772, 982, 384, 531, 560, 880, 922, 125, 286, 514, 78, 849, 1024, 507, 696, 746, 310, 402, 1074, 1033, 714, 1171, 361, 561, 784, 1018, 649, 1139, 1023, 939, 1108, 23, 263, 1154, 401, 399, 666, 1127, 834, 844, 1034, 984, 679, 1165, 1040, 830, 3, 1214, 600, 488, 603, 1035, 34, 481, 895, 316, 1130, 462, 750, 80, 356, 120, 10, 677, 344, 348, 688, 1087, 27, 575, 231, 727, 610, 505, 411, 360, 1031, 81, 94, 726, 1061, 480, 658, 1056, 684, 387, 305, 930, 635, 904, 1149, 884, 130, 470, 1030, 597, 655, 1118, 1145, 458, 1141, 1119, 1131, 291, 207, 436, 499, 630, 65, 868, 828, 167, 863, 551, 229, 1032, 44, 510, 110, 224, 49, 97, 1092, 183, 1136, 351, 1008, 71, 433, 396, 522, 837, 1094, 20, 887, 1191, 678, 720, 375, 68, 582, 1001, 508, 114, 96, 549, 799, 1168, 456, 177, 426, 137, 590, 812, 663, 473, 1167, 852, 513, 840, 140, 771, 1122, 1052, 500, 76, 614, 422, 733, 695, 261, 1115, 1144, 313, 973, 520, 907, 851, 1047, 463, 730, 1109, 790, 1028, 928, 792, 886, 636, 74, 1106, 457, 845, 437, 358, 1066, 190, 558, 146, 641, 673, 247, 77, 258, 665, 1210, 563, 391, 126, 143, 194, 737, 825, 892, 1129, 236, 800, 39, 1038, 1184, 278, 427, 657, 566, 1193, 204, 791, 424, 134, 903, 1142, 95, 864, 1065, 142, 405, 745, 443, 431, 363, 492, 591, 927, 923, 951, 1116, 532, 390, 1084, 1126, 149, 1151, 335, 176, 515, 911, 1152, 83, 103, 645, 62, 1211, 497, 429, 1212, 428, 168, 734, 308, 1143, 374, 708, 1041, 1124, 975, 188, 370, 127, 757, 1067, 195, 225, 203, 616, 265, 273, 256, 1201, 317, 588, 700, 1198, 699, 131, 123, 329, 648, 268, 393, 900, 853, 787, 854, 820, 637, 1187, 102, 1105, 871, 280, 1042, 613, 963, 707, 1006, 766, 974, 979, 161, 104, 917, 760, 220, 153, 573, 875, 512, 82, 64, 990, 216, 894, 1021, 55, 53, 287, 70, 693, 628, 962, 154, 418, 25, 173, 1007, 1203, 523, 119, 378, 701, 162, 706, 5, 466, 934, 288, 1208, 932, 158, 933, 592, 1012, 495, 788, 993, 580, 289, 1195, 620, 625, 602, 471, 338, 13, 385, 502, 346, 366, 1200, 314, 725, 506, 319, 765, 383, 1204, 1104, 416, 539, 381, 1088, 26, 15, 294, 626, 364, 589, 1196, 1098, 245, 392, 1069, 893, 179, 855, 199, 389, 467, 37, 1138, 148, 208, 594, 1068, 669, 1082, 989, 1054, 8, 1014, 415, 736, 804, 538, 477, 805, 106, 339, 410, 940, 1000, 809, 722, 1100, 151, 230, 336, 970, 553, 819, 694, 593, 996, 983, 698, 60, 1159, 521, 1103, 138, 995, 952, 1192, 47, 879, 1062, 1075, 376]
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=9, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0
+rank avg (pred, true): 0.568, 0.439
+rank std (pred, true): 0.004, 0.261
+mrr vals (pred, true): 0.013, 0.045
+losses (mrrl, rdl): 0.0, 1.52568e-05
+
+running batch: 50
+rank avg (pred, true): 0.409, 0.180
+rank std (pred, true): 0.030, 0.203
+mrr vals (pred, true): 0.018, 0.205
+losses (mrrl, rdl): 0.0, 9.338e-07
+
+running batch: 100
+rank avg (pred, true): 0.406, 0.423
+rank std (pred, true): 0.026, 0.263
+mrr vals (pred, true): 0.018, 0.051
+losses (mrrl, rdl): 0.0, 1.8e-08
+
+running batch: 150
+rank avg (pred, true): 0.422, 0.164
+rank std (pred, true): 0.029, 0.200
+mrr vals (pred, true): 0.017, 0.218
+losses (mrrl, rdl): 0.0, 1.179e-06
+
+running batch: 200
+rank avg (pred, true): 0.414, 0.452
+rank std (pred, true): 0.034, 0.263
+mrr vals (pred, true): 0.018, 0.040
+losses (mrrl, rdl): 0.0, 3.81e-08
+
+running batch: 250
+rank avg (pred, true): 0.435, 0.439
+rank std (pred, true): 0.029, 0.253
+mrr vals (pred, true): 0.017, 0.046
+losses (mrrl, rdl): 0.0, 1.15e-08
+
+running batch: 300
+rank avg (pred, true): 0.410, 0.487
+rank std (pred, true): 0.031, 0.229
+mrr vals (pred, true): 0.018, 0.031
+losses (mrrl, rdl): 0.0, 1.139e-07
+
+running batch: 350
+rank avg (pred, true): 0.346, 0.167
+rank std (pred, true): 0.038, 0.202
+mrr vals (pred, true): 0.021, 0.291
+losses (mrrl, rdl): 0.0, 5.766e-07
+
+running batch: 400
+rank avg (pred, true): 0.435, 0.433
+rank std (pred, true): 0.020, 0.262
+mrr vals (pred, true): 0.017, 0.046
+losses (mrrl, rdl): 0.0, 1.3e-08
+
+running batch: 450
+rank avg (pred, true): 0.312, 0.453
+rank std (pred, true): 0.049, 0.252
+mrr vals (pred, true): 0.024, 0.043
+losses (mrrl, rdl): 0.0, 3.576e-07
+
+running batch: 500
+rank avg (pred, true): 0.349, 0.459
+rank std (pred, true): 0.038, 0.261
+mrr vals (pred, true): 0.021, 0.040
+losses (mrrl, rdl): 0.0, 2.207e-07
+
+running batch: 550
+rank avg (pred, true): 0.386, 0.497
+rank std (pred, true): 0.039, 0.224
+mrr vals (pred, true): 0.019, 0.030
+losses (mrrl, rdl): 0.0, 2.217e-07
+
+running batch: 600
+rank avg (pred, true): 0.444, 0.431
+rank std (pred, true): 0.025, 0.269
+mrr vals (pred, true): 0.017, 0.056
+losses (mrrl, rdl): 0.0, 1.73e-08
+
+running batch: 650
+rank avg (pred, true): 0.356, 0.520
+rank std (pred, true): 0.040, 0.211
+mrr vals (pred, true): 0.021, 0.023
+losses (mrrl, rdl): 0.0, 4.761e-07
+
+running batch: 700
+rank avg (pred, true): 0.357, 0.469
+rank std (pred, true): 0.046, 0.250
+mrr vals (pred, true): 0.021, 0.037
+losses (mrrl, rdl): 0.0, 2.309e-07
+
+running batch: 750
+rank avg (pred, true): 0.404, 0.475
+rank std (pred, true): 0.035, 0.248
+mrr vals (pred, true): 0.018, 0.034
+losses (mrrl, rdl): 0.0, 9.66e-08
+
+running batch: 800
+rank avg (pred, true): 0.329, 0.454
+rank std (pred, true): 0.066, 0.267
+mrr vals (pred, true): 0.023, 0.051
+losses (mrrl, rdl): 0.0, 2.825e-07
+
+running batch: 850
+rank avg (pred, true): 0.351, 0.176
+rank std (pred, true): 0.051, 0.204
+mrr vals (pred, true): 0.021, 0.225
+losses (mrrl, rdl): 0.0, 5.489e-07
+
+running batch: 900
+rank avg (pred, true): 0.371, 0.451
+rank std (pred, true): 0.054, 0.263
+mrr vals (pred, true): 0.020, 0.044
+losses (mrrl, rdl): 0.0, 1.243e-07
+
+running batch: 950
+rank avg (pred, true): 0.426, 0.171
+rank std (pred, true): 0.029, 0.198
+mrr vals (pred, true): 0.017, 0.206
+losses (mrrl, rdl): 0.0, 1.1632e-06
+
+running batch: 1000
+rank avg (pred, true): 0.401, 0.199
+rank std (pred, true): 0.041, 0.215
+mrr vals (pred, true): 0.019, 0.201
+losses (mrrl, rdl): 0.0, 7.261e-07
+
+running batch: 1050
+rank avg (pred, true): 0.430, 0.449
+rank std (pred, true): 0.031, 0.258
+mrr vals (pred, true): 0.017, 0.043
+losses (mrrl, rdl): 0.0, 1.87e-08
+
+running batch: 1100
+rank avg (pred, true): 0.405, 0.439
+rank std (pred, true): 0.039, 0.263
+mrr vals (pred, true): 0.018, 0.050
+losses (mrrl, rdl): 0.0, 3.3e-08
+
+running batch: 1150
+rank avg (pred, true): 0.355, 0.149
+rank std (pred, true): 0.060, 0.180
+mrr vals (pred, true): 0.021, 0.239
+losses (mrrl, rdl): 0.0, 7.236e-07
+
+running batch: 1200
+rank avg (pred, true): 0.401, 0.424
+rank std (pred, true): 0.043, 0.270
+mrr vals (pred, true): 0.019, 0.052
+losses (mrrl, rdl): 0.0, 2.32e-08
+
+running batch: 1250
+rank avg (pred, true): 0.352, 0.140
+rank std (pred, true): 0.060, 0.179
+mrr vals (pred, true): 0.022, 0.246
+losses (mrrl, rdl): 0.0, 7.866e-07
+
+running batch: 1300
+rank avg (pred, true): 0.409, 0.442
+rank std (pred, true): 0.040, 0.266
+mrr vals (pred, true): 0.018, 0.046
+losses (mrrl, rdl): 0.0, 3.18e-08
+
+running batch: 1350
+rank avg (pred, true): 0.396, 0.434
+rank std (pred, true): 0.048, 0.261
+mrr vals (pred, true): 0.019, 0.047
+losses (mrrl, rdl): 0.0, 3.71e-08
+
+running batch: 1400
+rank avg (pred, true): 0.420, 0.453
+rank std (pred, true): 0.037, 0.254
+mrr vals (pred, true): 0.018, 0.041
+losses (mrrl, rdl): 0.0, 3.05e-08
+
+running batch: 1450
+rank avg (pred, true): 0.388, 0.422
+rank std (pred, true): 0.051, 0.263
+mrr vals (pred, true): 0.019, 0.058
+losses (mrrl, rdl): 0.0, 3.29e-08
+
+running batch: 1500
+rank avg (pred, true): 0.397, 0.506
+rank std (pred, true): 0.047, 0.206
+mrr vals (pred, true): 0.019, 0.026
+losses (mrrl, rdl): 0.0, 2.103e-07
+
+running batch: 1550
+rank avg (pred, true): 0.411, 0.109
+rank std (pred, true): 0.041, 0.160
+mrr vals (pred, true): 0.018, 0.309
+losses (mrrl, rdl): 0.0, 1.649e-06
+
+running batch: 1600
+rank avg (pred, true): 0.397, 0.196
+rank std (pred, true): 0.044, 0.216
+mrr vals (pred, true): 0.019, 0.199
+losses (mrrl, rdl): 0.0, 7.136e-07
+
+running batch: 1650
+rank avg (pred, true): 0.397, 0.448
+rank std (pred, true): 0.048, 0.260
+mrr vals (pred, true): 0.019, 0.042
+losses (mrrl, rdl): 0.0, 5.78e-08
+
+running batch: 1700
+rank avg (pred, true): 0.403, 0.451
+rank std (pred, true): 0.046, 0.264
+mrr vals (pred, true): 0.018, 0.047
+losses (mrrl, rdl): 0.0, 5.23e-08
+
+running batch: 1750
+rank avg (pred, true): 0.395, 0.439
+rank std (pred, true): 0.052, 0.260
+mrr vals (pred, true): 0.019, 0.045
+losses (mrrl, rdl): 0.0, 4.53e-08
+
+running batch: 1800
+rank avg (pred, true): 0.400, 0.427
+rank std (pred, true): 0.048, 0.262
+mrr vals (pred, true): 0.019, 0.059
+losses (mrrl, rdl): 0.0, 2.48e-08
+
+running batch: 1850
+rank avg (pred, true): 0.400, 0.178
+rank std (pred, true): 0.047, 0.203
+mrr vals (pred, true): 0.019, 0.224
+losses (mrrl, rdl): 0.0, 8.694e-07
+
+running batch: 1900
+rank avg (pred, true): 0.409, 0.449
+rank std (pred, true): 0.044, 0.257
+mrr vals (pred, true): 0.018, 0.041
+losses (mrrl, rdl): 0.0, 3.92e-08
+
+running batch: 1950
+rank avg (pred, true): 0.418, 0.494
+rank std (pred, true): 0.040, 0.204
+mrr vals (pred, true): 0.018, 0.026
+losses (mrrl, rdl): 0.0, 1.034e-07
+
+running batch: 2000
+rank avg (pred, true): 0.384, 0.435
+rank std (pred, true): 0.057, 0.262
+mrr vals (pred, true): 0.020, 0.051
+losses (mrrl, rdl): 0.0, 5.79e-08
+
+running batch: 2050
+rank avg (pred, true): 0.397, 0.423
+rank std (pred, true): 0.048, 0.264
+mrr vals (pred, true): 0.019, 0.056
+losses (mrrl, rdl): 0.0, 2.44e-08
+
+running batch: 2100
+rank avg (pred, true): 0.386, 0.450
+rank std (pred, true): 0.053, 0.268
+mrr vals (pred, true): 0.019, 0.046
+losses (mrrl, rdl): 0.0, 8.24e-08
+
+running batch: 2150
+rank avg (pred, true): 0.407, 0.463
+rank std (pred, true): 0.044, 0.266
+mrr vals (pred, true): 0.018, 0.037
+losses (mrrl, rdl): 0.0, 6.59e-08
+
+Epoch over!
+epoch time: 42.883
+loss values:
+	mrrl: 0.0
+	rdl: 1.57739e-05
+
+Epoch 2 -- 
+running batch: 0
+rank avg (pred, true): 0.411, 0.140
+rank std (pred, true): 0.041, 0.186
+mrr vals (pred, true): 0.018, 0.260
+losses (mrrl, rdl): 0.0, 6.58736e-05
+
+running batch: 50
+rank avg (pred, true): 0.392, 0.437
+rank std (pred, true): 0.053, 0.261
+mrr vals (pred, true): 0.019, 0.047
+losses (mrrl, rdl): 0.0, 4.71e-08
+
+running batch: 100
+rank avg (pred, true): 0.391, 0.465
+rank std (pred, true): 0.052, 0.257
+mrr vals (pred, true): 0.019, 0.045
+losses (mrrl, rdl): 0.0, 1.053e-07
+
+running batch: 150
+rank avg (pred, true): 0.332, 0.435
+rank std (pred, true): 0.082, 0.260
+mrr vals (pred, true): 0.024, 0.044
+losses (mrrl, rdl): 0.0, 1.956e-07
+
+running batch: 200
+rank avg (pred, true): 0.381, 0.443
+rank std (pred, true): 0.057, 0.267
+mrr vals (pred, true): 0.020, 0.052
+losses (mrrl, rdl): 0.0, 7.99e-08
+
+running batch: 250
+rank avg (pred, true): 0.412, 0.451
+rank std (pred, true): 0.041, 0.266
+mrr vals (pred, true): 0.018, 0.044
+losses (mrrl, rdl): 0.0, 3.91e-08
+
+running batch: 300
+rank avg (pred, true): 0.392, 0.143
+rank std (pred, true): 0.052, 0.185
+mrr vals (pred, true): 0.019, 0.280
+losses (mrrl, rdl): 0.0, 1.1147e-06
+
+running batch: 350
+rank avg (pred, true): 0.389, 0.598
+rank std (pred, true): 0.053, 0.181
+mrr vals (pred, true): 0.019, 0.019
+losses (mrrl, rdl): 0.0, 7.549e-07
+
+running batch: 400
+rank avg (pred, true): 0.399, 0.151
+rank std (pred, true): 0.048, 0.188
+mrr vals (pred, true): 0.019, 0.242
+losses (mrrl, rdl): 0.0, 1.1051e-06
+
+running batch: 450
+rank avg (pred, true): 0.382, 0.513
+rank std (pred, true): 0.058, 0.207
+mrr vals (pred, true): 0.020, 0.025
+losses (mrrl, rdl): 0.0, 2.981e-07
+
+running batch: 500
+rank avg (pred, true): 0.373, 0.453
+rank std (pred, true): 0.063, 0.260
+mrr vals (pred, true): 0.020, 0.042
+losses (mrrl, rdl): 0.0, 1.21e-07
+
+running batch: 550
+rank avg (pred, true): 0.367, 0.170
+rank std (pred, true): 0.067, 0.212
+mrr vals (pred, true): 0.021, 0.278
+losses (mrrl, rdl): 0.0, 6.987e-07
+
+running batch: 600
+rank avg (pred, true): 0.379, 0.177
+rank std (pred, true): 0.061, 0.205
+mrr vals (pred, true): 0.020, 0.273
+losses (mrrl, rdl): 0.0, 7.354e-07
+
+running batch: 650
+rank avg (pred, true): 0.379, 0.458
+rank std (pred, true): 0.061, 0.264
+mrr vals (pred, true): 0.020, 0.044
+losses (mrrl, rdl): 0.0, 1.225e-07
+
+running batch: 700
+rank avg (pred, true): 0.389, 0.449
+rank std (pred, true): 0.055, 0.263
+mrr vals (pred, true): 0.019, 0.051
+losses (mrrl, rdl): 0.0, 7.56e-08
+
+running batch: 750
+rank avg (pred, true): 0.422, 0.179
+rank std (pred, true): 0.036, 0.199
+mrr vals (pred, true): 0.018, 0.200
+losses (mrrl, rdl): 0.0, 1.0545e-06
+
+running batch: 800
+rank avg (pred, true): 0.395, 0.449
+rank std (pred, true): 0.051, 0.253
+mrr vals (pred, true): 0.019, 0.042
+losses (mrrl, rdl): 0.0, 6.07e-08
+
+running batch: 850
+rank avg (pred, true): 0.359, 0.425
+rank std (pred, true): 0.071, 0.270
+mrr vals (pred, true): 0.022, 0.053
+losses (mrrl, rdl): 0.0, 8.57e-08
+
+running batch: 900
+rank avg (pred, true): 0.391, 0.440
+rank std (pred, true): 0.055, 0.278
+mrr vals (pred, true): 0.019, 0.055
+losses (mrrl, rdl): 0.0, 5.74e-08
+
+running batch: 950
+rank avg (pred, true): 0.369, 0.457
+rank std (pred, true): 0.067, 0.263
+mrr vals (pred, true): 0.021, 0.037
+losses (mrrl, rdl): 0.0, 1.472e-07
+
+running batch: 1000
+rank avg (pred, true): 0.407, 0.451
+rank std (pred, true): 0.046, 0.264
+mrr vals (pred, true): 0.018, 0.043
+losses (mrrl, rdl): 0.0, 4.71e-08
+
+running batch: 1050
+rank avg (pred, true): 0.395, 0.188
+rank std (pred, true): 0.052, 0.206
+mrr vals (pred, true): 0.019, 0.209
+losses (mrrl, rdl): 0.0, 7.421e-07
+
+running batch: 1100
+rank avg (pred, true): 0.389, 0.435
+rank std (pred, true): 0.057, 0.246
+mrr vals (pred, true): 0.019, 0.042
+losses (mrrl, rdl): 0.0, 4.64e-08
+
+running batch: 1150
+rank avg (pred, true): 0.399, 0.103
+rank std (pred, true): 0.051, 0.172
+mrr vals (pred, true): 0.019, 0.377
+losses (mrrl, rdl): 0.0, 1.5707e-06
+
+running batch: 1200
+rank avg (pred, true): 0.413, 0.449
+rank std (pred, true): 0.043, 0.265
+mrr vals (pred, true): 0.018, 0.043
+losses (mrrl, rdl): 0.0, 3.56e-08
+
+running batch: 1250
+rank avg (pred, true): 0.393, 0.520
+rank std (pred, true): 0.053, 0.209
+mrr vals (pred, true): 0.019, 0.024
+losses (mrrl, rdl): 0.0, 2.89e-07
+
+running batch: 1300
+rank avg (pred, true): 0.412, 0.152
+rank std (pred, true): 0.043, 0.193
+mrr vals (pred, true): 0.018, 0.246
+losses (mrrl, rdl): 0.0, 1.2009e-06
+
+running batch: 1350
+rank avg (pred, true): 0.351, 0.584
+rank std (pred, true): 0.076, 0.181
+mrr vals (pred, true): 0.022, 0.023
+losses (mrrl, rdl): 0.0, 9.506e-07
+
+running batch: 1400
+rank avg (pred, true): 0.413, 0.433
+rank std (pred, true): 0.043, 0.261
+mrr vals (pred, true): 0.018, 0.048
+losses (mrrl, rdl): 0.0, 1.91e-08
+
+running batch: 1450
+rank avg (pred, true): 0.411, 0.455
+rank std (pred, true): 0.043, 0.260
+mrr vals (pred, true): 0.018, 0.046
+losses (mrrl, rdl): 0.0, 4.59e-08
+
+running batch: 1500
+rank avg (pred, true): 0.407, 0.443
+rank std (pred, true): 0.046, 0.263
+mrr vals (pred, true): 0.018, 0.041
+losses (mrrl, rdl): 0.0, 3.53e-08
+
+running batch: 1550
+rank avg (pred, true): 0.404, 0.436
+rank std (pred, true): 0.048, 0.260
+mrr vals (pred, true): 0.018, 0.053
+losses (mrrl, rdl): 0.0, 2.89e-08
+
+running batch: 1600
+rank avg (pred, true): 0.392, 0.450
+rank std (pred, true): 0.056, 0.268
+mrr vals (pred, true): 0.019, 0.054
+losses (mrrl, rdl): 0.0, 7e-08
+
+running batch: 1650
+rank avg (pred, true): 0.348, 0.522
+rank std (pred, true): 0.083, 0.206
+mrr vals (pred, true): 0.023, 0.027
+losses (mrrl, rdl): 0.0, 5.258e-07
+
+running batch: 1700
+rank avg (pred, true): 0.389, 0.522
+rank std (pred, true): 0.059, 0.212
+mrr vals (pred, true): 0.019, 0.024
+losses (mrrl, rdl): 0.0, 3.068e-07
+
+running batch: 1750
+rank avg (pred, true): 0.380, 0.444
+rank std (pred, true): 0.066, 0.263
+mrr vals (pred, true): 0.020, 0.045
+losses (mrrl, rdl): 0.0, 8.27e-08
+
+running batch: 1800
+rank avg (pred, true): 0.387, 0.446
+rank std (pred, true): 0.061, 0.265
+mrr vals (pred, true): 0.020, 0.050
+losses (mrrl, rdl): 0.0, 7.2e-08
+
+running batch: 1850
+rank avg (pred, true): 0.387, 0.433
+rank std (pred, true): 0.063, 0.255
+mrr vals (pred, true): 0.020, 0.045
+losses (mrrl, rdl): 0.0, 4.63e-08
+
+running batch: 1900
+rank avg (pred, true): 0.369, 0.176
+rank std (pred, true): 0.075, 0.210
+mrr vals (pred, true): 0.021, 0.226
+losses (mrrl, rdl): 0.0, 6.61e-07
+
+running batch: 1950
+rank avg (pred, true): 0.409, 0.432
+rank std (pred, true): 0.048, 0.262
+mrr vals (pred, true): 0.018, 0.049
+losses (mrrl, rdl): 0.0, 2.16e-08
+
+running batch: 2000
+rank avg (pred, true): 0.381, 0.457
+rank std (pred, true): 0.067, 0.257
+mrr vals (pred, true): 0.020, 0.040
+losses (mrrl, rdl): 0.0, 1.126e-07
+
+running batch: 2050
+rank avg (pred, true): 0.385, 0.445
+rank std (pred, true): 0.062, 0.264
+mrr vals (pred, true): 0.020, 0.046
+losses (mrrl, rdl): 0.0, 7.29e-08
+
+running batch: 2100
+rank avg (pred, true): 0.358, 0.440
+rank std (pred, true): 0.083, 0.270
+mrr vals (pred, true): 0.022, 0.051
+losses (mrrl, rdl): 0.0, 1.261e-07
+
+running batch: 2150
+rank avg (pred, true): 0.377, 0.576
+rank std (pred, true): 0.071, 0.182
+mrr vals (pred, true): 0.021, 0.020
+losses (mrrl, rdl): 0.0, 6.875e-07
+
+Epoch over!
+epoch time: 44.346
+loss values:
+	mrrl: 0.0
+	rdl: 1.51054e-05
+
+Epoch 3 -- 
+running batch: 0
+rank avg (pred, true): 0.400, 0.437
+rank std (pred, true): 0.055, 0.263
+mrr vals (pred, true): 0.019, 0.049
+losses (mrrl, rdl): 0.0, 1.7328e-06
+
+running batch: 50
+rank avg (pred, true): 0.386, 0.459
+rank std (pred, true): 0.064, 0.253
+mrr vals (pred, true): 0.020, 0.045
+losses (mrrl, rdl): 0.0, 1.025e-07
+
+running batch: 100
+rank avg (pred, true): 0.396, 0.150
+rank std (pred, true): 0.056, 0.197
+mrr vals (pred, true): 0.019, 0.253
+losses (mrrl, rdl): 0.0, 1.0965e-06
+
+running batch: 150
+rank avg (pred, true): 0.379, 0.153
+rank std (pred, true): 0.069, 0.187
+mrr vals (pred, true): 0.020, 0.241
+losses (mrrl, rdl): 0.0, 9.025e-07
+
+running batch: 200
+rank avg (pred, true): 0.371, 0.447
+rank std (pred, true): 0.077, 0.261
+mrr vals (pred, true): 0.021, 0.046
+losses (mrrl, rdl): 0.0, 1.114e-07
+
+running batch: 250
+rank avg (pred, true): 0.427, 0.446
+rank std (pred, true): 0.037, 0.265
+mrr vals (pred, true): 0.017, 0.043
+losses (mrrl, rdl): 0.0, 1.95e-08
+
+running batch: 300
+rank avg (pred, true): 0.415, 0.453
+rank std (pred, true): 0.045, 0.257
+mrr vals (pred, true): 0.018, 0.043
+losses (mrrl, rdl): 0.0, 3.79e-08
+
+running batch: 350
+rank avg (pred, true): 0.400, 0.158
+rank std (pred, true): 0.052, 0.205
+mrr vals (pred, true): 0.019, 0.322
+losses (mrrl, rdl): 0.0, 1.0556e-06
+
+running batch: 400
+rank avg (pred, true): 0.387, 0.443
+rank std (pred, true): 0.061, 0.259
+mrr vals (pred, true): 0.020, 0.042
+losses (mrrl, rdl): 0.0, 6.72e-08
+
+running batch: 450
+rank avg (pred, true): 0.393, 0.442
+rank std (pred, true): 0.056, 0.266
+mrr vals (pred, true): 0.019, 0.046
+losses (mrrl, rdl): 0.0, 5.26e-08
+
+running batch: 500
+rank avg (pred, true): 0.384, 0.141
+rank std (pred, true): 0.065, 0.182
+mrr vals (pred, true): 0.020, 0.256
+losses (mrrl, rdl): 0.0, 1.0556e-06
+
+running batch: 550
+rank avg (pred, true): 0.387, 0.152
+rank std (pred, true): 0.064, 0.188
+mrr vals (pred, true): 0.020, 0.232
+losses (mrrl, rdl): 0.0, 9.427e-07
+
+running batch: 600
+rank avg (pred, true): 0.390, 0.445
+rank std (pred, true): 0.062, 0.264
+mrr vals (pred, true): 0.020, 0.050
+losses (mrrl, rdl): 0.0, 6.48e-08
+
+running batch: 650
+rank avg (pred, true): 0.393, 0.173
+rank std (pred, true): 0.060, 0.198
+mrr vals (pred, true): 0.019, 0.213
+losses (mrrl, rdl): 0.0, 8.742e-07
+
+running batch: 700
+rank avg (pred, true): 0.389, 0.159
+rank std (pred, true): 0.060, 0.195
+mrr vals (pred, true): 0.019, 0.253
+losses (mrrl, rdl): 0.0, 9.321e-07
+
+running batch: 750
+rank avg (pred, true): 0.401, 0.137
+rank std (pred, true): 0.055, 0.179
+mrr vals (pred, true): 0.019, 0.278
+losses (mrrl, rdl): 0.0, 1.226e-06
+
+running batch: 800
+rank avg (pred, true): 0.392, 0.195
+rank std (pred, true): 0.061, 0.205
+mrr vals (pred, true): 0.019, 0.184
+losses (mrrl, rdl): 0.0, 6.89e-07
+
+running batch: 850
+rank avg (pred, true): 0.397, 0.497
+rank std (pred, true): 0.057, 0.197
+mrr vals (pred, true): 0.019, 0.024
+losses (mrrl, rdl): 0.0, 1.747e-07
+
+running batch: 900
+rank avg (pred, true): 0.406, 0.492
+rank std (pred, true): 0.049, 0.206
+mrr vals (pred, true): 0.018, 0.025
+losses (mrrl, rdl): 0.0, 1.318e-07
+
+running batch: 950
+rank avg (pred, true): 0.347, 0.435
+rank std (pred, true): 0.095, 0.261
+mrr vals (pred, true): 0.025, 0.055
+losses (mrrl, rdl): 0.0, 1.425e-07
+
+running batch: 1000
+rank avg (pred, true): 0.390, 0.449
+rank std (pred, true): 0.062, 0.250
+mrr vals (pred, true): 0.019, 0.033
+losses (mrrl, rdl): 0.0, 6.81e-08
+
+running batch: 1050
+rank avg (pred, true): 0.385, 0.427
+rank std (pred, true): 0.067, 0.259
+mrr vals (pred, true): 0.020, 0.053
+losses (mrrl, rdl): 0.0, 4.16e-08
+
+running batch: 1100
+rank avg (pred, true): 0.378, 0.432
+rank std (pred, true): 0.069, 0.261
+mrr vals (pred, true): 0.020, 0.051
+losses (mrrl, rdl): 0.0, 6.2e-08
+
+running batch: 1150
+rank avg (pred, true): 0.398, 0.151
+rank std (pred, true): 0.057, 0.186
+mrr vals (pred, true): 0.019, 0.301
+losses (mrrl, rdl): 0.0, 1.0743e-06
+
+running batch: 1200
+rank avg (pred, true): 0.393, 0.505
+rank std (pred, true): 0.062, 0.217
+mrr vals (pred, true): 0.019, 0.030
+losses (mrrl, rdl): 0.0, 2.218e-07
+
+running batch: 1250
+rank avg (pred, true): 0.402, 0.430
+rank std (pred, true): 0.055, 0.264
+mrr vals (pred, true): 0.019, 0.055
+losses (mrrl, rdl): 0.0, 2.56e-08
+
+running batch: 1300
+rank avg (pred, true): 0.365, 0.434
+rank std (pred, true): 0.084, 0.260
+mrr vals (pred, true): 0.022, 0.049
+losses (mrrl, rdl): 0.0, 9.34e-08
+
+running batch: 1350
+rank avg (pred, true): 0.389, 0.447
+rank std (pred, true): 0.066, 0.264
+mrr vals (pred, true): 0.020, 0.043
+losses (mrrl, rdl): 0.0, 7.08e-08
+
+running batch: 1400
+rank avg (pred, true): 0.384, 0.453
+rank std (pred, true): 0.068, 0.264
+mrr vals (pred, true): 0.020, 0.046
+losses (mrrl, rdl): 0.0, 9.51e-08
+
+running batch: 1450
+rank avg (pred, true): 0.390, 0.433
+rank std (pred, true): 0.063, 0.252
+mrr vals (pred, true): 0.020, 0.050
+losses (mrrl, rdl): 0.0, 4.14e-08
+
+running batch: 1500
+rank avg (pred, true): 0.333, 0.127
+rank std (pred, true): 0.106, 0.170
+mrr vals (pred, true): 0.029, 0.287
+losses (mrrl, rdl): 0.0, 7.719e-07
+
+running batch: 1550
+rank avg (pred, true): 0.374, 0.505
+rank std (pred, true): 0.081, 0.208
+mrr vals (pred, true): 0.021, 0.021
+losses (mrrl, rdl): 0.0, 2.971e-07
+
+running batch: 1600
+rank avg (pred, true): 0.375, 0.444
+rank std (pred, true): 0.080, 0.261
+mrr vals (pred, true): 0.021, 0.049
+losses (mrrl, rdl): 0.0, 9.32e-08
+
+running batch: 1650
+rank avg (pred, true): 0.420, 0.445
+rank std (pred, true): 0.045, 0.260
+mrr vals (pred, true): 0.018, 0.040
+losses (mrrl, rdl): 0.0, 2.24e-08
+
+running batch: 1700
+rank avg (pred, true): 0.415, 0.433
+rank std (pred, true): 0.049, 0.265
+mrr vals (pred, true): 0.018, 0.053
+losses (mrrl, rdl): 0.0, 1.83e-08
+
+running batch: 1750
+rank avg (pred, true): 0.402, 0.099
+rank std (pred, true): 0.058, 0.163
+mrr vals (pred, true): 0.019, 0.386
+losses (mrrl, rdl): 0.0, 1.6335e-06
+
+running batch: 1800
+rank avg (pred, true): 0.362, 0.151
+rank std (pred, true): 0.089, 0.178
+mrr vals (pred, true): 0.023, 0.219
+losses (mrrl, rdl): 0.0, 7.82e-07
+
+running batch: 1850
+rank avg (pred, true): 0.386, 0.428
+rank std (pred, true): 0.072, 0.269
+mrr vals (pred, true): 0.020, 0.055
+losses (mrrl, rdl): 0.0, 4.19e-08
+
+running batch: 1900
+rank avg (pred, true): 0.401, 0.446
+rank std (pred, true): 0.061, 0.264
+mrr vals (pred, true): 0.019, 0.048
+losses (mrrl, rdl): 0.0, 4.68e-08
+
+running batch: 1950
+rank avg (pred, true): 0.389, 0.190
+rank std (pred, true): 0.071, 0.209
+mrr vals (pred, true): 0.020, 0.202
+losses (mrrl, rdl): 0.0, 6.975e-07
+
+running batch: 2000
+rank avg (pred, true): 0.380, 0.452
+rank std (pred, true): 0.078, 0.259
+mrr vals (pred, true): 0.021, 0.045
+losses (mrrl, rdl): 0.0, 1.001e-07
+
+running batch: 2050
+rank avg (pred, true): 0.379, 0.467
+rank std (pred, true): 0.080, 0.254
+mrr vals (pred, true): 0.021, 0.039
+losses (mrrl, rdl): 0.0, 1.422e-07
+
+running batch: 2100
+rank avg (pred, true): 0.401, 0.179
+rank std (pred, true): 0.063, 0.197
+mrr vals (pred, true): 0.019, 0.206
+losses (mrrl, rdl): 0.0, 8.762e-07
+
+running batch: 2150
+rank avg (pred, true): 0.401, 0.439
+rank std (pred, true): 0.064, 0.262
+mrr vals (pred, true): 0.019, 0.047
+losses (mrrl, rdl): 0.0, 3.65e-08
+
+Epoch over!
+epoch time: 45.448
+loss values:
+	mrrl: 0.0
+	rdl: 1.5098e-05
+
+Epoch 4 -- 
+running batch: 0
+rank avg (pred, true): 0.402, 0.423
+rank std (pred, true): 0.063, 0.269
+mrr vals (pred, true): 0.019, 0.048
+losses (mrrl, rdl): 0.0, 1.016e-06
+
+running batch: 50
+rank avg (pred, true): 0.413, 0.433
+rank std (pred, true): 0.056, 0.256
+mrr vals (pred, true): 0.018, 0.050
+losses (mrrl, rdl): 0.0, 1.82e-08
+
+running batch: 100
+rank avg (pred, true): 0.391, 0.441
+rank std (pred, true): 0.074, 0.263
+mrr vals (pred, true): 0.020, 0.047
+losses (mrrl, rdl): 0.0, 5.45e-08
+
+running batch: 150
+rank avg (pred, true): 0.387, 0.149
+rank std (pred, true): 0.078, 0.188
+mrr vals (pred, true): 0.020, 0.296
+losses (mrrl, rdl): 0.0, 1.0143e-06
+
+running batch: 200
+rank avg (pred, true): 0.395, 0.176
+rank std (pred, true): 0.073, 0.198
+mrr vals (pred, true): 0.020, 0.225
+losses (mrrl, rdl): 0.0, 8.488e-07
+
+running batch: 250
+rank avg (pred, true): 0.392, 0.525
+rank std (pred, true): 0.076, 0.208
+mrr vals (pred, true): 0.020, 0.024
+losses (mrrl, rdl): 0.0, 3.094e-07
+
+running batch: 300
+rank avg (pred, true): 0.388, 0.483
+rank std (pred, true): 0.080, 0.250
+mrr vals (pred, true): 0.020, 0.040
+losses (mrrl, rdl): 0.0, 1.641e-07
+
+running batch: 350
+rank avg (pred, true): 0.403, 0.438
+rank std (pred, true): 0.068, 0.266
+mrr vals (pred, true): 0.019, 0.048
+losses (mrrl, rdl): 0.0, 3.3e-08
+
+running batch: 400
+rank avg (pred, true): 0.401, 0.440
+rank std (pred, true): 0.071, 0.257
+mrr vals (pred, true): 0.019, 0.045
+losses (mrrl, rdl): 0.0, 3.68e-08
+
+running batch: 450
+rank avg (pred, true): 0.404, 0.426
+rank std (pred, true): 0.069, 0.261
+mrr vals (pred, true): 0.019, 0.051
+losses (mrrl, rdl): 0.0, 1.95e-08
+
+running batch: 500
+rank avg (pred, true): 0.372, 0.437
+rank std (pred, true): 0.096, 0.261
+mrr vals (pred, true): 0.023, 0.047
+losses (mrrl, rdl): 0.0, 8.3e-08
+
+running batch: 550
+rank avg (pred, true): 0.385, 0.490
+rank std (pred, true): 0.087, 0.192
+mrr vals (pred, true): 0.021, 0.022
+losses (mrrl, rdl): 0.0, 1.9e-07
+
+running batch: 600
+rank avg (pred, true): 0.388, 0.441
+rank std (pred, true): 0.085, 0.263
+mrr vals (pred, true): 0.021, 0.044
+losses (mrrl, rdl): 0.0, 5.81e-08
+
+running batch: 650
+rank avg (pred, true): 0.351, 0.170
+rank std (pred, true): 0.114, 0.212
+mrr vals (pred, true): 0.029, 0.278
+losses (mrrl, rdl): 0.0, 5.952e-07
+
+running batch: 700
+rank avg (pred, true): 0.410, 0.167
+rank std (pred, true): 0.069, 0.198
+mrr vals (pred, true): 0.019, 0.292
+losses (mrrl, rdl): 0.0, 1.0232e-06
+
+running batch: 750
+rank avg (pred, true): 0.396, 0.441
+rank std (pred, true): 0.082, 0.265
+mrr vals (pred, true): 0.020, 0.046
+losses (mrrl, rdl): 0.0, 4.57e-08
+
+running batch: 800
+rank avg (pred, true): 0.418, 0.434
+rank std (pred, true): 0.064, 0.270
+mrr vals (pred, true): 0.018, 0.044
+losses (mrrl, rdl): 0.0, 1.7e-08
+
+running batch: 850
+rank avg (pred, true): 0.398, 0.499
+rank std (pred, true): 0.082, 0.211
+mrr vals (pred, true): 0.020, 0.026
+losses (mrrl, rdl): 0.0, 1.821e-07
+
+running batch: 900
+rank avg (pred, true): 0.409, 0.437
+rank std (pred, true): 0.073, 0.260
+mrr vals (pred, true): 0.019, 0.044
+losses (mrrl, rdl): 0.0, 2.51e-08
+
+running batch: 950
+rank avg (pred, true): 0.388, 0.436
+rank std (pred, true): 0.092, 0.267
+mrr vals (pred, true): 0.021, 0.053
+losses (mrrl, rdl): 0.0, 5.04e-08
+
+running batch: 1000
+rank avg (pred, true): 0.402, 0.434
+rank std (pred, true): 0.081, 0.260
+mrr vals (pred, true): 0.020, 0.049
+losses (mrrl, rdl): 0.0, 2.78e-08
+
+running batch: 1050
+rank avg (pred, true): 0.392, 0.449
+rank std (pred, true): 0.092, 0.264
+mrr vals (pred, true): 0.021, 0.048
+losses (mrrl, rdl): 0.0, 6.73e-08
+
+running batch: 1100
+rank avg (pred, true): 0.389, 0.429
+rank std (pred, true): 0.095, 0.268
+mrr vals (pred, true): 0.022, 0.049
+losses (mrrl, rdl): 0.0, 3.89e-08
+
+running batch: 1150
+rank avg (pred, true): 0.368, 0.447
+rank std (pred, true): 0.113, 0.249
+mrr vals (pred, true): 0.027, 0.037
+losses (mrrl, rdl): 0.0, 1.115e-07
+
+running batch: 1200
+rank avg (pred, true): 0.351, 0.452
+rank std (pred, true): 0.126, 0.267
+mrr vals (pred, true): 0.034, 0.047
+losses (mrrl, rdl): 0.0, 1.834e-07
+
+running batch: 1250
+rank avg (pred, true): 0.396, 0.449
+rank std (pred, true): 0.095, 0.265
+mrr vals (pred, true): 0.021, 0.045
+losses (mrrl, rdl): 0.0, 5.87e-08
+
+running batch: 1300
+rank avg (pred, true): 0.371, 0.149
+rank std (pred, true): 0.115, 0.202
+mrr vals (pred, true): 0.027, 0.302
+losses (mrrl, rdl): 0.0, 8.724e-07
+
+running batch: 1350
+rank avg (pred, true): 0.400, 0.189
+rank std (pred, true): 0.094, 0.211
+mrr vals (pred, true): 0.021, 0.242
+losses (mrrl, rdl): 0.0, 8.022e-07
+
+running batch: 1400
+rank avg (pred, true): 0.374, 0.430
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.027, 0.050
+losses (mrrl, rdl): 0.0, 6.22e-08
+
+running batch: 1450
+rank avg (pred, true): 0.391, 0.440
+rank std (pred, true): 0.104, 0.267
+mrr vals (pred, true): 0.023, 0.051
+losses (mrrl, rdl): 0.0, 5.06e-08
+
+running batch: 1500
+rank avg (pred, true): 0.392, 0.196
+rank std (pred, true): 0.105, 0.207
+mrr vals (pred, true): 0.023, 0.179
+losses (mrrl, rdl): 0.0, 6.926e-07
+
+running batch: 1550
+rank avg (pred, true): 0.369, 0.431
+rank std (pred, true): 0.124, 0.262
+mrr vals (pred, true): 0.031, 0.052
+losses (mrrl, rdl): 0.0, 7.19e-08
+
+running batch: 1600
+rank avg (pred, true): 0.391, 0.454
+rank std (pred, true): 0.110, 0.266
+mrr vals (pred, true): 0.024, 0.043
+losses (mrrl, rdl): 0.0, 7.84e-08
+
+running batch: 1650
+rank avg (pred, true): 0.412, 0.432
+rank std (pred, true): 0.095, 0.261
+mrr vals (pred, true): 0.020, 0.051
+losses (mrrl, rdl): 0.0, 1.68e-08
+
+running batch: 1700
+rank avg (pred, true): 0.366, 0.441
+rank std (pred, true): 0.131, 0.268
+mrr vals (pred, true): 0.035, 0.047
+losses (mrrl, rdl): 0.0, 1.041e-07
+
+running batch: 1750
+rank avg (pred, true): 0.349, 0.441
+rank std (pred, true): 0.143, 0.264
+mrr vals (pred, true): 0.048, 0.052
+losses (mrrl, rdl): 0.0, 1.525e-07
+
+running batch: 1800
+rank avg (pred, true): 0.364, 0.158
+rank std (pred, true): 0.136, 0.185
+mrr vals (pred, true): 0.038, 0.212
+losses (mrrl, rdl): 0.0, 7.667e-07
+
+running batch: 1850
+rank avg (pred, true): 0.359, 0.487
+rank std (pred, true): 0.140, 0.230
+mrr vals (pred, true): 0.042, 0.034
+losses (mrrl, rdl): 0.0, 2.812e-07
+
+running batch: 1900
+rank avg (pred, true): 0.387, 0.155
+rank std (pred, true): 0.124, 0.177
+mrr vals (pred, true): 0.028, 0.222
+losses (mrrl, rdl): 0.0, 9.548e-07
+
+running batch: 1950
+rank avg (pred, true): 0.377, 0.458
+rank std (pred, true): 0.133, 0.264
+mrr vals (pred, true): 0.034, 0.043
+losses (mrrl, rdl): 0.0, 1.19e-07
+
+running batch: 2000
+rank avg (pred, true): 0.396, 0.116
+rank std (pred, true): 0.122, 0.163
+mrr vals (pred, true): 0.026, 0.307
+losses (mrrl, rdl): 0.0, 1.3784e-06
+
+running batch: 2050
+rank avg (pred, true): 0.399, 0.437
+rank std (pred, true): 0.122, 0.262
+mrr vals (pred, true): 0.026, 0.048
+losses (mrrl, rdl): 0.0, 3.24e-08
+
+running batch: 2100
+rank avg (pred, true): 0.385, 0.432
+rank std (pred, true): 0.133, 0.255
+mrr vals (pred, true): 0.032, 0.044
+losses (mrrl, rdl): 0.0, 4.16e-08
+
+running batch: 2150
+rank avg (pred, true): 0.391, 0.429
+rank std (pred, true): 0.131, 0.267
+mrr vals (pred, true): 0.031, 0.055
+losses (mrrl, rdl): 0.0, 3.22e-08
+
+Epoch over!
+epoch time: 44.426
+loss values:
+	mrrl: 0.0
+	rdl: 1.48994e-05
+
+Epoch 5 -- 
+running batch: 0
+rank avg (pred, true): 0.373, 0.431
+rank std (pred, true): 0.143, 0.265
+mrr vals (pred, true): 0.041, 0.050
+losses (mrrl, rdl): 0.0, 3.1479e-06
+
+running batch: 50
+rank avg (pred, true): 0.382, 0.438
+rank std (pred, true): 0.140, 0.265
+mrr vals (pred, true): 0.036, 0.046
+losses (mrrl, rdl): 0.0, 5.93e-08
+
+running batch: 100
+rank avg (pred, true): 0.364, 0.136
+rank std (pred, true): 0.152, 0.187
+mrr vals (pred, true): 0.051, 0.280
+losses (mrrl, rdl): 0.0, 9.427e-07
+
+running batch: 150
+rank avg (pred, true): 0.365, 0.451
+rank std (pred, true): 0.153, 0.267
+mrr vals (pred, true): 0.053, 0.046
+losses (mrrl, rdl): 0.0, 1.326e-07
+
+running batch: 200
+rank avg (pred, true): 0.393, 0.445
+rank std (pred, true): 0.139, 0.266
+mrr vals (pred, true): 0.034, 0.046
+losses (mrrl, rdl): 0.0, 5.39e-08
+
+running batch: 250
+rank avg (pred, true): 0.399, 0.439
+rank std (pred, true): 0.137, 0.261
+mrr vals (pred, true): 0.032, 0.047
+losses (mrrl, rdl): 0.0, 3.28e-08
+
+running batch: 300
+rank avg (pred, true): 0.386, 0.463
+rank std (pred, true): 0.147, 0.258
+mrr vals (pred, true): 0.040, 0.043
+losses (mrrl, rdl): 0.0, 1.049e-07
+
+running batch: 350
+rank avg (pred, true): 0.363, 0.426
+rank std (pred, true): 0.161, 0.273
+mrr vals (pred, true): 0.064, 0.053
+losses (mrrl, rdl): 0.0, 7.4e-08
+
+running batch: 400
+rank avg (pred, true): 0.380, 0.462
+rank std (pred, true): 0.154, 0.272
+mrr vals (pred, true): 0.048, 0.047
+losses (mrrl, rdl): 0.0, 1.183e-07
+
+running batch: 450
+rank avg (pred, true): 0.390, 0.158
+rank std (pred, true): 0.151, 0.205
+mrr vals (pred, true): 0.042, 0.322
+losses (mrrl, rdl): 0.0, 9.691e-07
+
+running batch: 500
+rank avg (pred, true): 0.399, 0.422
+rank std (pred, true): 0.147, 0.254
+mrr vals (pred, true): 0.038, 0.053
+losses (mrrl, rdl): 0.0, 1.39e-08
+
+running batch: 550
+rank avg (pred, true): 0.396, 0.427
+rank std (pred, true): 0.151, 0.262
+mrr vals (pred, true): 0.041, 0.048
+losses (mrrl, rdl): 0.0, 2.07e-08
+
+running batch: 600
+rank avg (pred, true): 0.389, 0.051
+rank std (pred, true): 0.157, 0.125
+mrr vals (pred, true): 0.048, 0.550
+losses (mrrl, rdl): 0.0, 2.0153e-06
+
+running batch: 650
+rank avg (pred, true): 0.377, 0.442
+rank std (pred, true): 0.165, 0.262
+mrr vals (pred, true): 0.062, 0.047
+losses (mrrl, rdl): 0.0, 7.59e-08
+
+running batch: 700
+rank avg (pred, true): 0.367, 0.453
+rank std (pred, true): 0.171, 0.261
+mrr vals (pred, true): 0.077, 0.047
+losses (mrrl, rdl): 0.0, 1.282e-07
+
+running batch: 750
+rank avg (pred, true): 0.399, 0.442
+rank std (pred, true): 0.158, 0.257
+mrr vals (pred, true): 0.045, 0.047
+losses (mrrl, rdl): 0.0, 3.5e-08
+
+running batch: 800
+rank avg (pred, true): 0.409, 0.433
+rank std (pred, true): 0.153, 0.256
+mrr vals (pred, true): 0.039, 0.050
+losses (mrrl, rdl): 0.0, 1.47e-08
+
+running batch: 850
+rank avg (pred, true): 0.387, 0.454
+rank std (pred, true): 0.168, 0.263
+mrr vals (pred, true): 0.061, 0.042
+losses (mrrl, rdl): 0.0, 7.94e-08
+
+running batch: 900
+rank avg (pred, true): 0.379, 0.456
+rank std (pred, true): 0.174, 0.257
+mrr vals (pred, true): 0.075, 0.040
+losses (mrrl, rdl): 0.0, 1.049e-07
+
+running batch: 950
+rank avg (pred, true): 0.378, 0.446
+rank std (pred, true): 0.176, 0.259
+mrr vals (pred, true): 0.079, 0.047
+losses (mrrl, rdl): 0.0, 8.11e-08
+
+running batch: 1000
+rank avg (pred, true): 0.380, 0.447
+rank std (pred, true): 0.176, 0.263
+mrr vals (pred, true): 0.078, 0.045
+losses (mrrl, rdl): 0.0, 7.89e-08
+
+running batch: 1050
+rank avg (pred, true): 0.386, 0.118
+rank std (pred, true): 0.175, 0.165
+mrr vals (pred, true): 0.073, 0.320
+losses (mrrl, rdl): 0.0, 1.2995e-06
+
+running batch: 1100
+rank avg (pred, true): 0.399, 0.458
+rank std (pred, true): 0.171, 0.256
+mrr vals (pred, true): 0.061, 0.043
+losses (mrrl, rdl): 0.0, 6.11e-08
+
+running batch: 1150
+rank avg (pred, true): 0.399, 0.179
+rank std (pred, true): 0.173, 0.197
+mrr vals (pred, true): 0.063, 0.206
+losses (mrrl, rdl): 0.0, 8.586e-07
+
+running batch: 1200
+rank avg (pred, true): 0.411, 0.451
+rank std (pred, true): 0.168, 0.259
+mrr vals (pred, true): 0.052, 0.044
+losses (mrrl, rdl): 0.0, 3e-08
+
+running batch: 1250
+rank avg (pred, true): 0.389, 0.482
+rank std (pred, true): 0.182, 0.230
+mrr vals (pred, true): 0.084, 0.033
+losses (mrrl, rdl): 0.0, 1.482e-07
+
+running batch: 1300
+rank avg (pred, true): 0.400, 0.457
+rank std (pred, true): 0.178, 0.265
+mrr vals (pred, true): 0.070, 0.049
+losses (mrrl, rdl): 0.0, 5.88e-08
+
+running batch: 1350
+rank avg (pred, true): 0.388, 0.154
+rank std (pred, true): 0.185, 0.192
+mrr vals (pred, true): 0.090, 0.243
+losses (mrrl, rdl): 0.0, 9.704e-07
+
+running batch: 1400
+rank avg (pred, true): 0.380, 0.456
+rank std (pred, true): 0.190, 0.256
+mrr vals (pred, true): 0.105, 0.041
+losses (mrrl, rdl): 0.0, 9.59e-08
+
+running batch: 1450
+rank avg (pred, true): 0.395, 0.459
+rank std (pred, true): 0.185, 0.270
+mrr vals (pred, true): 0.086, 0.050
+losses (mrrl, rdl): 0.0, 7.36e-08
+
+running batch: 1500
+rank avg (pred, true): 0.398, 0.455
+rank std (pred, true): 0.185, 0.265
+mrr vals (pred, true): 0.084, 0.043
+losses (mrrl, rdl): 0.0, 5.69e-08
+
+running batch: 1550
+rank avg (pred, true): 0.389, 0.459
+rank std (pred, true): 0.190, 0.254
+mrr vals (pred, true): 0.100, 0.037
+losses (mrrl, rdl): 0.0, 8.35e-08
+
+running batch: 1600
+rank avg (pred, true): 0.398, 0.436
+rank std (pred, true): 0.188, 0.272
+mrr vals (pred, true): 0.088, 0.049
+losses (mrrl, rdl): 0.0, 2.65e-08
+
+running batch: 1650
+rank avg (pred, true): 0.404, 0.152
+rank std (pred, true): 0.186, 0.183
+mrr vals (pred, true): 0.082, 0.280
+losses (mrrl, rdl): 0.0, 1.1061e-06
+
+running batch: 1700
+rank avg (pred, true): 0.395, 0.433
+rank std (pred, true): 0.192, 0.261
+mrr vals (pred, true): 0.099, 0.048
+losses (mrrl, rdl): 0.0, 2.57e-08
+
+running batch: 1750
+rank avg (pred, true): 0.396, 0.122
+rank std (pred, true): 0.193, 0.162
+mrr vals (pred, true): 0.100, 0.307
+losses (mrrl, rdl): 0.0, 1.2748e-06
+
+running batch: 1800
+rank avg (pred, true): 0.401, 0.148
+rank std (pred, true): 0.192, 0.177
+mrr vals (pred, true): 0.095, 0.228
+losses (mrrl, rdl): 0.0, 1.1449e-06
+
+running batch: 1850
+rank avg (pred, true): 0.370, 0.439
+rank std (pred, true): 0.204, 0.266
+mrr vals (pred, true): 0.145, 0.056
+losses (mrrl, rdl): 0.0, 8e-08
+
+running batch: 1900
+rank avg (pred, true): 0.366, 0.441
+rank std (pred, true): 0.205, 0.263
+mrr vals (pred, true): 0.154, 0.041
+losses (mrrl, rdl): 0.0, 9.47e-08
+
+running batch: 1950
+rank avg (pred, true): 0.384, 0.452
+rank std (pred, true): 0.202, 0.268
+mrr vals (pred, true): 0.129, 0.045
+losses (mrrl, rdl): 0.0, 7.79e-08
+
+running batch: 2000
+rank avg (pred, true): 0.371, 0.428
+rank std (pred, true): 0.206, 0.266
+mrr vals (pred, true): 0.151, 0.049
+losses (mrrl, rdl): 0.0, 5.34e-08
+
+running batch: 2050
+rank avg (pred, true): 0.382, 0.494
+rank std (pred, true): 0.204, 0.196
+mrr vals (pred, true): 0.137, 0.023
+losses (mrrl, rdl): 0.0, 2.103e-07
+
+running batch: 2100
+rank avg (pred, true): 0.378, 0.437
+rank std (pred, true): 0.206, 0.261
+mrr vals (pred, true): 0.145, 0.044
+losses (mrrl, rdl): 0.0, 5.73e-08
+
+running batch: 2150
+rank avg (pred, true): 0.361, 0.471
+rank std (pred, true): 0.210, 0.258
+mrr vals (pred, true): 0.173, 0.037
+losses (mrrl, rdl): 0.0, 2.032e-07
+
+Epoch over!
+epoch time: 44.681
+loss values:
+	mrrl: 0.0
+	rdl: 1.45666e-05
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0
+rank avg (pred, true): 0.355, 0.437
+rank std (pred, true): 0.211, 0.268
+mrr vals (pred, true): 0.183, 0.054
+losses (mrrl, rdl): 0.1667086482, 5.6808e-06
+
+running batch: 50
+rank avg (pred, true): 0.434, 0.485
+rank std (pred, true): 0.174, 0.239
+mrr vals (pred, true): 0.073, 0.030
+losses (mrrl, rdl): 0.0003550838, 4.36e-08
+
+running batch: 100
+rank avg (pred, true): 0.434, 0.432
+rank std (pred, true): 0.175, 0.264
+mrr vals (pred, true): 0.079, 0.050
+losses (mrrl, rdl): 0.0001677194, 4.6e-09
+
+running batch: 150
+rank avg (pred, true): 0.421, 0.431
+rank std (pred, true): 0.182, 0.263
+mrr vals (pred, true): 0.101, 0.043
+losses (mrrl, rdl): 0.0006720404, 4.9e-09
+
+running batch: 200
+rank avg (pred, true): 0.407, 0.437
+rank std (pred, true): 0.188, 0.263
+mrr vals (pred, true): 0.120, 0.053
+losses (mrrl, rdl): 0.0008958768, 1.67e-08
+
+running batch: 250
+rank avg (pred, true): 0.466, 0.146
+rank std (pred, true): 0.153, 0.186
+mrr vals (pred, true): 0.057, 0.242
+losses (mrrl, rdl): 0.0068652951, 1.8262e-06
+
+running batch: 300
+rank avg (pred, true): 0.450, 0.423
+rank std (pred, true): 0.163, 0.262
+mrr vals (pred, true): 0.076, 0.052
+losses (mrrl, rdl): 0.0001176689, 1.87e-08
+
+running batch: 350
+rank avg (pred, true): 0.439, 0.462
+rank std (pred, true): 0.169, 0.262
+mrr vals (pred, true): 0.092, 0.045
+losses (mrrl, rdl): 0.0004387154, 1.34e-08
+
+running batch: 400
+rank avg (pred, true): 0.457, 0.430
+rank std (pred, true): 0.158, 0.265
+mrr vals (pred, true): 0.074, 0.047
+losses (mrrl, rdl): 0.0001456047, 1.92e-08
+
+running batch: 450
+rank avg (pred, true): 0.428, 0.438
+rank std (pred, true): 0.175, 0.263
+mrr vals (pred, true): 0.103, 0.044
+losses (mrrl, rdl): 0.0006974986, 5.5e-09
+
+running batch: 500
+rank avg (pred, true): 0.437, 0.495
+rank std (pred, true): 0.169, 0.239
+mrr vals (pred, true): 0.097, 0.035
+losses (mrrl, rdl): 0.0007583734, 5.76e-08
+
+running batch: 550
+rank avg (pred, true): 0.452, 0.163
+rank std (pred, true): 0.161, 0.194
+mrr vals (pred, true): 0.083, 0.227
+losses (mrrl, rdl): 0.0041392939, 1.4879e-06
+
+running batch: 600
+rank avg (pred, true): 0.431, 0.449
+rank std (pred, true): 0.172, 0.259
+mrr vals (pred, true): 0.103, 0.041
+losses (mrrl, rdl): 0.0007781968, 8.9e-09
+
+running batch: 650
+rank avg (pred, true): 0.452, 0.484
+rank std (pred, true): 0.160, 0.225
+mrr vals (pred, true): 0.085, 0.029
+losses (mrrl, rdl): 0.0006282831, 1.78e-08
+
+running batch: 700
+rank avg (pred, true): 0.442, 0.438
+rank std (pred, true): 0.166, 0.266
+mrr vals (pred, true): 0.096, 0.048
+losses (mrrl, rdl): 0.0004542779, 5.8e-09
+
+running batch: 750
+rank avg (pred, true): 0.443, 0.468
+rank std (pred, true): 0.165, 0.258
+mrr vals (pred, true): 0.095, 0.040
+losses (mrrl, rdl): 0.000611317, 1.38e-08
+
+running batch: 800
+rank avg (pred, true): 0.458, 0.183
+rank std (pred, true): 0.157, 0.207
+mrr vals (pred, true): 0.082, 0.219
+losses (mrrl, rdl): 0.0037627041, 1.3511e-06
+
+running batch: 850
+rank avg (pred, true): 0.447, 0.441
+rank std (pred, true): 0.163, 0.266
+mrr vals (pred, true): 0.092, 0.045
+losses (mrrl, rdl): 0.0004465208, 6.5e-09
+
+running batch: 900
+rank avg (pred, true): 0.465, 0.444
+rank std (pred, true): 0.154, 0.266
+mrr vals (pred, true): 0.075, 0.047
+losses (mrrl, rdl): 0.0001543615, 1.49e-08
+
+running batch: 950
+rank avg (pred, true): 0.449, 0.443
+rank std (pred, true): 0.162, 0.267
+mrr vals (pred, true): 0.090, 0.054
+losses (mrrl, rdl): 0.0002596368, 6.6e-09
+
+running batch: 1000
+rank avg (pred, true): 0.433, 0.176
+rank std (pred, true): 0.169, 0.204
+mrr vals (pred, true): 0.107, 0.225
+losses (mrrl, rdl): 0.0027740726, 1.171e-06
+
+running batch: 1050
+rank avg (pred, true): 0.438, 0.448
+rank std (pred, true): 0.166, 0.258
+mrr vals (pred, true): 0.104, 0.044
+losses (mrrl, rdl): 0.0007158867, 5.4e-09
+
+running batch: 1100
+rank avg (pred, true): 0.439, 0.449
+rank std (pred, true): 0.166, 0.261
+mrr vals (pred, true): 0.104, 0.044
+losses (mrrl, rdl): 0.0007144094, 5.9e-09
+
+running batch: 1150
+rank avg (pred, true): 0.466, 0.174
+rank std (pred, true): 0.153, 0.199
+mrr vals (pred, true): 0.079, 0.280
+losses (mrrl, rdl): 0.0081129959, 1.519e-06
+
+running batch: 1200
+rank avg (pred, true): 0.458, 0.183
+rank std (pred, true): 0.157, 0.199
+mrr vals (pred, true): 0.088, 0.195
+losses (mrrl, rdl): 0.0022543981, 1.3365e-06
+
+running batch: 1250
+rank avg (pred, true): 0.470, 0.157
+rank std (pred, true): 0.152, 0.190
+mrr vals (pred, true): 0.075, 0.229
+losses (mrrl, rdl): 0.0047756527, 1.7365e-06
+
+running batch: 1300
+rank avg (pred, true): 0.452, 0.161
+rank std (pred, true): 0.160, 0.190
+mrr vals (pred, true): 0.095, 0.267
+losses (mrrl, rdl): 0.0059760273, 1.4534e-06
+
+running batch: 1350
+rank avg (pred, true): 0.440, 0.438
+rank std (pred, true): 0.165, 0.261
+mrr vals (pred, true): 0.104, 0.050
+losses (mrrl, rdl): 0.0005980268, 4.9e-09
+
+running batch: 1400
+rank avg (pred, true): 0.465, 0.437
+rank std (pred, true): 0.152, 0.268
+mrr vals (pred, true): 0.081, 0.057
+losses (mrrl, rdl): 0.0001204512, 2.08e-08
+
+running batch: 1450
+rank avg (pred, true): 0.458, 0.172
+rank std (pred, true): 0.156, 0.197
+mrr vals (pred, true): 0.088, 0.217
+losses (mrrl, rdl): 0.0033572416, 1.4412e-06
+
+running batch: 1500
+rank avg (pred, true): 0.437, 0.439
+rank std (pred, true): 0.167, 0.264
+mrr vals (pred, true): 0.106, 0.048
+losses (mrrl, rdl): 0.0006538422, 5e-09
+
+running batch: 1550
+rank avg (pred, true): 0.454, 0.168
+rank std (pred, true): 0.158, 0.194
+mrr vals (pred, true): 0.094, 0.218
+losses (mrrl, rdl): 0.0030819413, 1.4525e-06
+
+running batch: 1600
+rank avg (pred, true): 0.462, 0.482
+rank std (pred, true): 0.156, 0.194
+mrr vals (pred, true): 0.088, 0.026
+losses (mrrl, rdl): 0.0007646528, 6.5e-09
+
+running batch: 1650
+rank avg (pred, true): 0.457, 0.433
+rank std (pred, true): 0.158, 0.257
+mrr vals (pred, true): 0.093, 0.045
+losses (mrrl, rdl): 0.0004602906, 1.62e-08
+
+running batch: 1700
+rank avg (pred, true): 0.473, 0.442
+rank std (pred, true): 0.152, 0.267
+mrr vals (pred, true): 0.077, 0.050
+losses (mrrl, rdl): 0.0001464549, 2.42e-08
+
+running batch: 1750
+rank avg (pred, true): 0.451, 0.475
+rank std (pred, true): 0.161, 0.262
+mrr vals (pred, true): 0.097, 0.036
+losses (mrrl, rdl): 0.0007533775, 1.33e-08
+
+running batch: 1800
+rank avg (pred, true): 0.447, 0.458
+rank std (pred, true): 0.162, 0.258
+mrr vals (pred, true): 0.101, 0.041
+losses (mrrl, rdl): 0.0007246569, 6.3e-09
+
+running batch: 1850
+rank avg (pred, true): 0.466, 0.426
+rank std (pred, true): 0.154, 0.257
+mrr vals (pred, true): 0.087, 0.051
+losses (mrrl, rdl): 0.0002527257, 3.44e-08
+
+running batch: 1900
+rank avg (pred, true): 0.458, 0.490
+rank std (pred, true): 0.158, 0.207
+mrr vals (pred, true): 0.094, 0.026
+losses (mrrl, rdl): 0.0009264606, 1.67e-08
+
+running batch: 1950
+rank avg (pred, true): 0.463, 0.440
+rank std (pred, true): 0.156, 0.261
+mrr vals (pred, true): 0.090, 0.047
+losses (mrrl, rdl): 0.0003763567, 1.53e-08
+
+running batch: 2000
+rank avg (pred, true): 0.466, 0.192
+rank std (pred, true): 0.155, 0.216
+mrr vals (pred, true): 0.088, 0.205
+losses (mrrl, rdl): 0.0027519942, 1.3173e-06
+
+running batch: 2050
+rank avg (pred, true): 0.472, 0.103
+rank std (pred, true): 0.152, 0.172
+mrr vals (pred, true): 0.082, 0.377
+losses (mrrl, rdl): 0.0173854399, 2.4128e-06
+
+running batch: 2100
+rank avg (pred, true): 0.454, 0.429
+rank std (pred, true): 0.159, 0.275
+mrr vals (pred, true): 0.098, 0.060
+losses (mrrl, rdl): 0.0002821662, 1.99e-08
+
+running batch: 2150
+rank avg (pred, true): 0.465, 0.433
+rank std (pred, true): 0.155, 0.256
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.0003191329, 2.38e-08
+
+Epoch over!
+epoch time: 45.214
+loss values:
+	mrrl: 0.0887299748
+	rdl: 1.80804e-05
+
+Epoch 2 -- 
+running batch: 0
+rank avg (pred, true): 0.467, 0.468
+rank std (pred, true): 0.154, 0.258
+mrr vals (pred, true): 0.088, 0.040
+losses (mrrl, rdl): 0.0232356302, 2.628e-07
+
+running batch: 50
+rank avg (pred, true): 0.471, 0.457
+rank std (pred, true): 0.153, 0.265
+mrr vals (pred, true): 0.084, 0.043
+losses (mrrl, rdl): 0.0003461904, 1.03e-08
+
+running batch: 100
+rank avg (pred, true): 0.472, 0.439
+rank std (pred, true): 0.153, 0.268
+mrr vals (pred, true): 0.083, 0.048
+losses (mrrl, rdl): 0.0002533404, 2.61e-08
+
+running batch: 150
+rank avg (pred, true): 0.467, 0.446
+rank std (pred, true): 0.154, 0.263
+mrr vals (pred, true): 0.088, 0.047
+losses (mrrl, rdl): 0.000324925, 1.5e-08
+
+running batch: 200
+rank avg (pred, true): 0.476, 0.434
+rank std (pred, true): 0.151, 0.259
+mrr vals (pred, true): 0.080, 0.047
+losses (mrrl, rdl): 0.0002253686, 3.73e-08
+
+running batch: 250
+rank avg (pred, true): 0.477, 0.450
+rank std (pred, true): 0.151, 0.263
+mrr vals (pred, true): 0.079, 0.044
+losses (mrrl, rdl): 0.0002486834, 1.92e-08
+
+running batch: 300
+rank avg (pred, true): 0.452, 0.157
+rank std (pred, true): 0.163, 0.192
+mrr vals (pred, true): 0.100, 0.244
+losses (mrrl, rdl): 0.004167628, 1.5402e-06
+
+running batch: 350
+rank avg (pred, true): 0.455, 0.179
+rank std (pred, true): 0.158, 0.213
+mrr vals (pred, true): 0.099, 0.221
+losses (mrrl, rdl): 0.002951307, 1.3736e-06
+
+running batch: 400
+rank avg (pred, true): 0.440, 0.444
+rank std (pred, true): 0.164, 0.263
+mrr vals (pred, true): 0.109, 0.045
+losses (mrrl, rdl): 0.0008097504, 5.1e-09
+
+running batch: 450
+rank avg (pred, true): 0.457, 0.148
+rank std (pred, true): 0.157, 0.188
+mrr vals (pred, true): 0.100, 0.317
+losses (mrrl, rdl): 0.0094227185, 1.6191e-06
+
+running batch: 500
+rank avg (pred, true): 0.458, 0.184
+rank std (pred, true): 0.157, 0.205
+mrr vals (pred, true): 0.099, 0.207
+losses (mrrl, rdl): 0.002329374, 1.3419e-06
+
+running batch: 550
+rank avg (pred, true): 0.464, 0.153
+rank std (pred, true): 0.155, 0.190
+mrr vals (pred, true): 0.094, 0.228
+losses (mrrl, rdl): 0.0035519516, 1.7344e-06
+
+running batch: 600
+rank avg (pred, true): 0.473, 0.428
+rank std (pred, true): 0.153, 0.262
+mrr vals (pred, true): 0.086, 0.054
+losses (mrrl, rdl): 0.0002165671, 4.38e-08
+
+running batch: 650
+rank avg (pred, true): 0.479, 0.425
+rank std (pred, true): 0.151, 0.269
+mrr vals (pred, true): 0.081, 0.054
+losses (mrrl, rdl): 0.0001451851, 5.98e-08
+
+running batch: 700
+rank avg (pred, true): 0.480, 0.195
+rank std (pred, true): 0.151, 0.217
+mrr vals (pred, true): 0.079, 0.195
+losses (mrrl, rdl): 0.0027024511, 1.451e-06
+
+running batch: 750
+rank avg (pred, true): 0.469, 0.459
+rank std (pred, true): 0.154, 0.266
+mrr vals (pred, true): 0.091, 0.049
+losses (mrrl, rdl): 0.0003514939, 8.5e-09
+
+running batch: 800
+rank avg (pred, true): 0.452, 0.447
+rank std (pred, true): 0.160, 0.251
+mrr vals (pred, true): 0.104, 0.045
+losses (mrrl, rdl): 0.0006892903, 4.6e-09
+
+running batch: 850
+rank avg (pred, true): 0.461, 0.430
+rank std (pred, true): 0.157, 0.263
+mrr vals (pred, true): 0.098, 0.051
+losses (mrrl, rdl): 0.0004464655, 2.37e-08
+
+running batch: 900
+rank avg (pred, true): 0.462, 0.448
+rank std (pred, true): 0.157, 0.254
+mrr vals (pred, true): 0.098, 0.041
+losses (mrrl, rdl): 0.0006524027, 8.8e-09
+
+running batch: 950
+rank avg (pred, true): 0.456, 0.446
+rank std (pred, true): 0.158, 0.260
+mrr vals (pred, true): 0.103, 0.044
+losses (mrrl, rdl): 0.0006975766, 7.2e-09
+
+running batch: 1000
+rank avg (pred, true): 0.470, 0.170
+rank std (pred, true): 0.154, 0.198
+mrr vals (pred, true): 0.093, 0.221
+losses (mrrl, rdl): 0.0032625603, 1.5811e-06
+
+running batch: 1050
+rank avg (pred, true): 0.474, 0.122
+rank std (pred, true): 0.153, 0.176
+mrr vals (pred, true): 0.090, 0.311
+losses (mrrl, rdl): 0.0098349098, 2.2058e-06
+
+running batch: 1100
+rank avg (pred, true): 0.471, 0.434
+rank std (pred, true): 0.154, 0.264
+mrr vals (pred, true): 0.093, 0.047
+losses (mrrl, rdl): 0.0004285814, 3.13e-08
+
+running batch: 1150
+rank avg (pred, true): 0.471, 0.428
+rank std (pred, true): 0.154, 0.263
+mrr vals (pred, true): 0.093, 0.053
+losses (mrrl, rdl): 0.0003088645, 4.09e-08
+
+running batch: 1200
+rank avg (pred, true): 0.466, 0.176
+rank std (pred, true): 0.156, 0.206
+mrr vals (pred, true): 0.097, 0.216
+losses (mrrl, rdl): 0.0028602742, 1.4966e-06
+
+running batch: 1250
+rank avg (pred, true): 0.476, 0.438
+rank std (pred, true): 0.153, 0.263
+mrr vals (pred, true): 0.088, 0.047
+losses (mrrl, rdl): 0.0003388982, 3.3e-08
+
+running batch: 1300
+rank avg (pred, true): 0.483, 0.433
+rank std (pred, true): 0.151, 0.261
+mrr vals (pred, true): 0.082, 0.046
+losses (mrrl, rdl): 0.0002620522, 5.15e-08
+
+running batch: 1350
+rank avg (pred, true): 0.483, 0.424
+rank std (pred, true): 0.152, 0.256
+mrr vals (pred, true): 0.082, 0.053
+losses (mrrl, rdl): 0.0001652742, 6.88e-08
+
+running batch: 1400
+rank avg (pred, true): 0.486, 0.428
+rank std (pred, true): 0.151, 0.265
+mrr vals (pred, true): 0.078, 0.049
+losses (mrrl, rdl): 0.0001704191, 6.73e-08
+
+running batch: 1450
+rank avg (pred, true): 0.493, 0.446
+rank std (pred, true): 0.148, 0.270
+mrr vals (pred, true): 0.069, 0.049
+losses (mrrl, rdl): 7.52427e-05, 4.79e-08
+
+running batch: 1500
+rank avg (pred, true): 0.479, 0.430
+rank std (pred, true): 0.153, 0.263
+mrr vals (pred, true): 0.087, 0.050
+losses (mrrl, rdl): 0.000270929, 5.06e-08
+
+running batch: 1550
+rank avg (pred, true): 0.471, 0.453
+rank std (pred, true): 0.156, 0.268
+mrr vals (pred, true): 0.094, 0.048
+losses (mrrl, rdl): 0.000426335, 1.26e-08
+
+running batch: 1600
+rank avg (pred, true): 0.459, 0.445
+rank std (pred, true): 0.159, 0.261
+mrr vals (pred, true): 0.102, 0.043
+losses (mrrl, rdl): 0.0007113167, 9.1e-09
+
+running batch: 1650
+rank avg (pred, true): 0.449, 0.449
+rank std (pred, true): 0.161, 0.263
+mrr vals (pred, true): 0.108, 0.047
+losses (mrrl, rdl): 0.0007620305, 5.4e-09
+
+running batch: 1700
+rank avg (pred, true): 0.480, 0.444
+rank std (pred, true): 0.140, 0.264
+mrr vals (pred, true): 0.082, 0.047
+losses (mrrl, rdl): 0.0002528117, 3.02e-08
+
+running batch: 1750
+rank avg (pred, true): 0.482, 0.434
+rank std (pred, true): 0.139, 0.261
+mrr vals (pred, true): 0.081, 0.047
+losses (mrrl, rdl): 0.0002250004, 4.94e-08
+
+running batch: 1800
+rank avg (pred, true): 0.457, 0.427
+rank std (pred, true): 0.156, 0.253
+mrr vals (pred, true): 0.103, 0.043
+losses (mrrl, rdl): 0.0007193591, 2.14e-08
+
+running batch: 1850
+rank avg (pred, true): 0.451, 0.461
+rank std (pred, true): 0.158, 0.250
+mrr vals (pred, true): 0.107, 0.036
+losses (mrrl, rdl): 0.0009852223, 5.2e-09
+
+running batch: 1900
+rank avg (pred, true): 0.472, 0.416
+rank std (pred, true): 0.153, 0.265
+mrr vals (pred, true): 0.092, 0.053
+losses (mrrl, rdl): 0.0003113047, 6.25e-08
+
+running batch: 1950
+rank avg (pred, true): 0.483, 0.511
+rank std (pred, true): 0.149, 0.216
+mrr vals (pred, true): 0.080, 0.028
+losses (mrrl, rdl): 0.0005493159, 1.37e-08
+
+running batch: 2000
+rank avg (pred, true): 0.483, 0.425
+rank std (pred, true): 0.150, 0.259
+mrr vals (pred, true): 0.081, 0.052
+losses (mrrl, rdl): 0.0001722454, 6.68e-08
+
+running batch: 2050
+rank avg (pred, true): 0.477, 0.436
+rank std (pred, true): 0.152, 0.265
+mrr vals (pred, true): 0.087, 0.046
+losses (mrrl, rdl): 0.0003376037, 3.78e-08
+
+running batch: 2100
+rank avg (pred, true): 0.482, 0.453
+rank std (pred, true): 0.150, 0.256
+mrr vals (pred, true): 0.083, 0.044
+losses (mrrl, rdl): 0.0002891406, 2.03e-08
+
+running batch: 2150
+rank avg (pred, true): 0.475, 0.434
+rank std (pred, true): 0.152, 0.268
+mrr vals (pred, true): 0.089, 0.044
+losses (mrrl, rdl): 0.0003999066, 3.84e-08
+
+Epoch over!
+epoch time: 42.675
+loss values:
+	mrrl: 0.0869139189
+	rdl: 2.03938e-05
+
+Epoch 3 -- 
+running batch: 0
+rank avg (pred, true): 0.474, 0.434
+rank std (pred, true): 0.152, 0.260
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0156409498, 1.7449e-06
+
+running batch: 50
+rank avg (pred, true): 0.481, 0.441
+rank std (pred, true): 0.150, 0.265
+mrr vals (pred, true): 0.083, 0.052
+losses (mrrl, rdl): 0.0001973688, 3.61e-08
+
+running batch: 100
+rank avg (pred, true): 0.481, 0.449
+rank std (pred, true): 0.150, 0.263
+mrr vals (pred, true): 0.083, 0.051
+losses (mrrl, rdl): 0.0001963862, 2.52e-08
+
+running batch: 150
+rank avg (pred, true): 0.483, 0.522
+rank std (pred, true): 0.149, 0.211
+mrr vals (pred, true): 0.082, 0.025
+losses (mrrl, rdl): 0.0006425673, 2.67e-08
+
+running batch: 200
+rank avg (pred, true): 0.482, 0.449
+rank std (pred, true): 0.149, 0.255
+mrr vals (pred, true): 0.082, 0.047
+losses (mrrl, rdl): 0.000252885, 2.54e-08
+
+running batch: 250
+rank avg (pred, true): 0.479, 0.103
+rank std (pred, true): 0.150, 0.172
+mrr vals (pred, true): 0.085, 0.377
+losses (mrrl, rdl): 0.0170902349, 2.5065e-06
+
+running batch: 300
+rank avg (pred, true): 0.468, 0.145
+rank std (pred, true): 0.153, 0.186
+mrr vals (pred, true): 0.093, 0.240
+losses (mrrl, rdl): 0.0043056831, 1.853e-06
+
+running batch: 350
+rank avg (pred, true): 0.459, 0.428
+rank std (pred, true): 0.154, 0.259
+mrr vals (pred, true): 0.102, 0.045
+losses (mrrl, rdl): 0.0006457883, 2.39e-08
+
+running batch: 400
+rank avg (pred, true): 0.475, 0.574
+rank std (pred, true): 0.151, 0.182
+mrr vals (pred, true): 0.089, 0.020
+losses (mrrl, rdl): 0.000931963, 1.64e-07
+
+running batch: 450
+rank avg (pred, true): 0.469, 0.578
+rank std (pred, true): 0.152, 0.177
+mrr vals (pred, true): 0.095, 0.020
+losses (mrrl, rdl): 0.0011048908, 2.026e-07
+
+running batch: 500
+rank avg (pred, true): 0.478, 0.461
+rank std (pred, true): 0.150, 0.250
+mrr vals (pred, true): 0.086, 0.036
+losses (mrrl, rdl): 0.000490569, 1.07e-08
+
+running batch: 550
+rank avg (pred, true): 0.475, 0.436
+rank std (pred, true): 0.150, 0.260
+mrr vals (pred, true): 0.089, 0.050
+losses (mrrl, rdl): 0.0003057977, 3.41e-08
+
+running batch: 600
+rank avg (pred, true): 0.479, 0.426
+rank std (pred, true): 0.149, 0.258
+mrr vals (pred, true): 0.086, 0.050
+losses (mrrl, rdl): 0.0002508677, 5.66e-08
+
+running batch: 650
+rank avg (pred, true): 0.471, 0.127
+rank std (pred, true): 0.151, 0.170
+mrr vals (pred, true): 0.092, 0.287
+losses (mrrl, rdl): 0.0076205377, 2.1269e-06
+
+running batch: 700
+rank avg (pred, true): 0.476, 0.499
+rank std (pred, true): 0.149, 0.211
+mrr vals (pred, true): 0.087, 0.026
+losses (mrrl, rdl): 0.0007629748, 9.5e-09
+
+running batch: 750
+rank avg (pred, true): 0.471, 0.459
+rank std (pred, true): 0.150, 0.268
+mrr vals (pred, true): 0.091, 0.046
+losses (mrrl, rdl): 0.0004058992, 9.9e-09
+
+running batch: 800
+rank avg (pred, true): 0.469, 0.191
+rank std (pred, true): 0.150, 0.209
+mrr vals (pred, true): 0.093, 0.207
+losses (mrrl, rdl): 0.0026053207, 1.3516e-06
+
+running batch: 850
+rank avg (pred, true): 0.463, 0.439
+rank std (pred, true): 0.151, 0.258
+mrr vals (pred, true): 0.097, 0.048
+losses (mrrl, rdl): 0.0004915334, 1.63e-08
+
+running batch: 900
+rank avg (pred, true): 0.469, 0.451
+rank std (pred, true): 0.150, 0.269
+mrr vals (pred, true): 0.093, 0.050
+losses (mrrl, rdl): 0.0003687773, 1.29e-08
+
+running batch: 950
+rank avg (pred, true): 0.482, 0.461
+rank std (pred, true): 0.147, 0.273
+mrr vals (pred, true): 0.083, 0.048
+losses (mrrl, rdl): 0.0002477777, 1.63e-08
+
+running batch: 1000
+rank avg (pred, true): 0.479, 0.445
+rank std (pred, true): 0.148, 0.264
+mrr vals (pred, true): 0.085, 0.050
+losses (mrrl, rdl): 0.0002502515, 2.84e-08
+
+running batch: 1050
+rank avg (pred, true): 0.473, 0.435
+rank std (pred, true): 0.150, 0.269
+mrr vals (pred, true): 0.089, 0.054
+losses (mrrl, rdl): 0.0002451511, 3.42e-08
+
+running batch: 1100
+rank avg (pred, true): 0.479, 0.437
+rank std (pred, true): 0.148, 0.252
+mrr vals (pred, true): 0.085, 0.042
+losses (mrrl, rdl): 0.0003756072, 3.64e-08
+
+running batch: 1150
+rank avg (pred, true): 0.466, 0.192
+rank std (pred, true): 0.151, 0.201
+mrr vals (pred, true): 0.093, 0.186
+losses (mrrl, rdl): 0.0017231585, 1.2865e-06
+
+running batch: 1200
+rank avg (pred, true): 0.458, 0.454
+rank std (pred, true): 0.152, 0.264
+mrr vals (pred, true): 0.103, 0.043
+losses (mrrl, rdl): 0.000712208, 6.5e-09
+
+running batch: 1250
+rank avg (pred, true): 0.463, 0.163
+rank std (pred, true): 0.150, 0.192
+mrr vals (pred, true): 0.097, 0.249
+losses (mrrl, rdl): 0.0046122847, 1.5921e-06
+
+running batch: 1300
+rank avg (pred, true): 0.458, 0.448
+rank std (pred, true): 0.151, 0.252
+mrr vals (pred, true): 0.100, 0.041
+losses (mrrl, rdl): 0.0007059, 6.6e-09
+
+running batch: 1350
+rank avg (pred, true): 0.470, 0.434
+rank std (pred, true): 0.150, 0.260
+mrr vals (pred, true): 0.093, 0.049
+losses (mrrl, rdl): 0.0003861217, 2.92e-08
+
+running batch: 1400
+rank avg (pred, true): 0.483, 0.529
+rank std (pred, true): 0.146, 0.214
+mrr vals (pred, true): 0.083, 0.026
+losses (mrrl, rdl): 0.0006581104, 3.67e-08
+
+running batch: 1450
+rank avg (pred, true): 0.468, 0.432
+rank std (pred, true): 0.150, 0.262
+mrr vals (pred, true): 0.092, 0.046
+losses (mrrl, rdl): 0.000433019, 3.01e-08
+
+running batch: 1500
+rank avg (pred, true): 0.469, 0.420
+rank std (pred, true): 0.150, 0.259
+mrr vals (pred, true): 0.092, 0.051
+losses (mrrl, rdl): 0.0003286876, 4.8e-08
+
+running batch: 1550
+rank avg (pred, true): 0.473, 0.463
+rank std (pred, true): 0.148, 0.267
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0003744748, 8.9e-09
+
+running batch: 1600
+rank avg (pred, true): 0.478, 0.466
+rank std (pred, true): 0.147, 0.251
+mrr vals (pred, true): 0.085, 0.035
+losses (mrrl, rdl): 0.0004949136, 7.8e-09
+
+running batch: 1650
+rank avg (pred, true): 0.467, 0.432
+rank std (pred, true): 0.149, 0.264
+mrr vals (pred, true): 0.092, 0.048
+losses (mrrl, rdl): 0.0003811834, 2.92e-08
+
+running batch: 1700
+rank avg (pred, true): 0.473, 0.418
+rank std (pred, true): 0.147, 0.259
+mrr vals (pred, true): 0.087, 0.050
+losses (mrrl, rdl): 0.0002794172, 6.06e-08
+
+running batch: 1750
+rank avg (pred, true): 0.473, 0.429
+rank std (pred, true): 0.147, 0.267
+mrr vals (pred, true): 0.087, 0.055
+losses (mrrl, rdl): 0.0002023941, 4.25e-08
+
+running batch: 1800
+rank avg (pred, true): 0.471, 0.440
+rank std (pred, true): 0.147, 0.270
+mrr vals (pred, true): 0.088, 0.049
+losses (mrrl, rdl): 0.0002990752, 2.47e-08
+
+running batch: 1850
+rank avg (pred, true): 0.471, 0.170
+rank std (pred, true): 0.146, 0.212
+mrr vals (pred, true): 0.087, 0.278
+losses (mrrl, rdl): 0.0072727394, 1.6093e-06
+
+running batch: 1900
+rank avg (pred, true): 0.479, 0.432
+rank std (pred, true): 0.144, 0.260
+mrr vals (pred, true): 0.084, 0.046
+losses (mrrl, rdl): 0.0002836736, 4.7e-08
+
+running batch: 1950
+rank avg (pred, true): 0.461, 0.172
+rank std (pred, true): 0.148, 0.200
+mrr vals (pred, true): 0.093, 0.240
+losses (mrrl, rdl): 0.0043250239, 1.4177e-06
+
+running batch: 2000
+rank avg (pred, true): 0.450, 0.422
+rank std (pred, true): 0.150, 0.254
+mrr vals (pred, true): 0.105, 0.047
+losses (mrrl, rdl): 0.0006745876, 1.99e-08
+
+running batch: 2050
+rank avg (pred, true): 0.464, 0.437
+rank std (pred, true): 0.144, 0.270
+mrr vals (pred, true): 0.090, 0.048
+losses (mrrl, rdl): 0.0003389667, 2.07e-08
+
+running batch: 2100
+rank avg (pred, true): 0.473, 0.137
+rank std (pred, true): 0.137, 0.182
+mrr vals (pred, true): 0.085, 0.288
+losses (mrrl, rdl): 0.0082463613, 2.0318e-06
+
+running batch: 2150
+rank avg (pred, true): 0.472, 0.446
+rank std (pred, true): 0.136, 0.269
+mrr vals (pred, true): 0.085, 0.046
+losses (mrrl, rdl): 0.000311315, 2.09e-08
+
+Epoch over!
+epoch time: 47.135
+loss values:
+	mrrl: 0.0870825522
+	rdl: 2.07335e-05
+
+Epoch 4 -- 
+running batch: 0
+rank avg (pred, true): 0.474, 0.438
+rank std (pred, true): 0.136, 0.267
+mrr vals (pred, true): 0.085, 0.051
+losses (mrrl, rdl): 0.0114356242, 1.5517e-06
+
+running batch: 50
+rank avg (pred, true): 0.477, 0.453
+rank std (pred, true): 0.136, 0.268
+mrr vals (pred, true): 0.084, 0.048
+losses (mrrl, rdl): 0.0002631946, 1.83e-08
+
+running batch: 100
+rank avg (pred, true): 0.467, 0.461
+rank std (pred, true): 0.137, 0.265
+mrr vals (pred, true): 0.086, 0.047
+losses (mrrl, rdl): 0.0002987078, 8.2e-09
+
+running batch: 150
+rank avg (pred, true): 0.448, 0.450
+rank std (pred, true): 0.146, 0.243
+mrr vals (pred, true): 0.098, 0.035
+losses (mrrl, rdl): 0.0008064894, 4e-09
+
+running batch: 200
+rank avg (pred, true): 0.452, 0.455
+rank std (pred, true): 0.145, 0.262
+mrr vals (pred, true): 0.096, 0.043
+losses (mrrl, rdl): 0.0005749826, 6.7e-09
+
+running batch: 250
+rank avg (pred, true): 0.452, 0.161
+rank std (pred, true): 0.145, 0.199
+mrr vals (pred, true): 0.096, 0.256
+losses (mrrl, rdl): 0.0051345872, 1.4477e-06
+
+running batch: 300
+rank avg (pred, true): 0.467, 0.454
+rank std (pred, true): 0.142, 0.265
+mrr vals (pred, true): 0.086, 0.044
+losses (mrrl, rdl): 0.0003432845, 1.02e-08
+
+running batch: 350
+rank avg (pred, true): 0.469, 0.449
+rank std (pred, true): 0.142, 0.263
+mrr vals (pred, true): 0.084, 0.042
+losses (mrrl, rdl): 0.0003595217, 1.47e-08
+
+running batch: 400
+rank avg (pred, true): 0.465, 0.434
+rank std (pred, true): 0.142, 0.260
+mrr vals (pred, true): 0.086, 0.047
+losses (mrrl, rdl): 0.000305427, 2.32e-08
+
+running batch: 450
+rank avg (pred, true): 0.471, 0.432
+rank std (pred, true): 0.141, 0.264
+mrr vals (pred, true): 0.084, 0.048
+losses (mrrl, rdl): 0.0002547354, 3.45e-08
+
+running batch: 500
+rank avg (pred, true): 0.478, 0.177
+rank std (pred, true): 0.139, 0.205
+mrr vals (pred, true): 0.080, 0.273
+losses (mrrl, rdl): 0.0074127303, 1.6178e-06
+
+running batch: 550
+rank avg (pred, true): 0.470, 0.494
+rank std (pred, true): 0.141, 0.197
+mrr vals (pred, true): 0.084, 0.024
+losses (mrrl, rdl): 0.0007242659, 9.6e-09
+
+running batch: 600
+rank avg (pred, true): 0.470, 0.437
+rank std (pred, true): 0.141, 0.261
+mrr vals (pred, true): 0.084, 0.044
+losses (mrrl, rdl): 0.0003156134, 2.68e-08
+
+running batch: 650
+rank avg (pred, true): 0.472, 0.447
+rank std (pred, true): 0.141, 0.267
+mrr vals (pred, true): 0.084, 0.044
+losses (mrrl, rdl): 0.0003224476, 1.93e-08
+
+running batch: 700
+rank avg (pred, true): 0.452, 0.145
+rank std (pred, true): 0.145, 0.186
+mrr vals (pred, true): 0.093, 0.300
+losses (mrrl, rdl): 0.0085645225, 1.6342e-06
+
+running batch: 750
+rank avg (pred, true): 0.447, 0.219
+rank std (pred, true): 0.146, 0.226
+mrr vals (pred, true): 0.100, 0.180
+losses (mrrl, rdl): 0.001287848, 9.126e-07
+
+running batch: 800
+rank avg (pred, true): 0.453, 0.429
+rank std (pred, true): 0.145, 0.262
+mrr vals (pred, true): 0.094, 0.052
+losses (mrrl, rdl): 0.0003604851, 1.78e-08
+
+running batch: 850
+rank avg (pred, true): 0.459, 0.447
+rank std (pred, true): 0.142, 0.261
+mrr vals (pred, true): 0.088, 0.045
+losses (mrrl, rdl): 0.0003767459, 9.5e-09
+
+running batch: 900
+rank avg (pred, true): 0.454, 0.437
+rank std (pred, true): 0.143, 0.262
+mrr vals (pred, true): 0.091, 0.048
+losses (mrrl, rdl): 0.0003689479, 1.26e-08
+
+running batch: 950
+rank avg (pred, true): 0.453, 0.441
+rank std (pred, true): 0.143, 0.268
+mrr vals (pred, true): 0.091, 0.052
+losses (mrrl, rdl): 0.0003142416, 1.02e-08
+
+running batch: 1000
+rank avg (pred, true): 0.470, 0.187
+rank std (pred, true): 0.136, 0.210
+mrr vals (pred, true): 0.083, 0.209
+losses (mrrl, rdl): 0.0031432237, 1.4052e-06
+
+running batch: 1050
+rank avg (pred, true): 0.463, 0.417
+rank std (pred, true): 0.139, 0.253
+mrr vals (pred, true): 0.085, 0.042
+losses (mrrl, rdl): 0.0003762654, 4.28e-08
+
+running batch: 1100
+rank avg (pred, true): 0.459, 0.463
+rank std (pred, true): 0.139, 0.257
+mrr vals (pred, true): 0.087, 0.041
+losses (mrrl, rdl): 0.000414706, 6.4e-09
+
+running batch: 1150
+rank avg (pred, true): 0.462, 0.148
+rank std (pred, true): 0.138, 0.186
+mrr vals (pred, true): 0.085, 0.243
+losses (mrrl, rdl): 0.0049590063, 1.7365e-06
+
+running batch: 1200
+rank avg (pred, true): 0.447, 0.442
+rank std (pred, true): 0.142, 0.265
+mrr vals (pred, true): 0.092, 0.051
+losses (mrrl, rdl): 0.0003364453, 7.7e-09
+
+running batch: 1250
+rank avg (pred, true): 0.456, 0.432
+rank std (pred, true): 0.138, 0.263
+mrr vals (pred, true): 0.087, 0.043
+losses (mrrl, rdl): 0.0003808155, 1.79e-08
+
+running batch: 1300
+rank avg (pred, true): 0.457, 0.449
+rank std (pred, true): 0.137, 0.264
+mrr vals (pred, true): 0.086, 0.046
+losses (mrrl, rdl): 0.0003130765, 8.7e-09
+
+running batch: 1350
+rank avg (pred, true): 0.448, 0.440
+rank std (pred, true): 0.139, 0.253
+mrr vals (pred, true): 0.090, 0.034
+losses (mrrl, rdl): 0.0006298575, 6.9e-09
+
+running batch: 1400
+rank avg (pred, true): 0.441, 0.525
+rank std (pred, true): 0.140, 0.212
+mrr vals (pred, true): 0.093, 0.023
+losses (mrrl, rdl): 0.0009789371, 1.196e-07
+
+running batch: 1450
+rank avg (pred, true): 0.427, 0.440
+rank std (pred, true): 0.142, 0.267
+mrr vals (pred, true): 0.104, 0.051
+losses (mrrl, rdl): 0.0005636793, 9.6e-09
+
+running batch: 1500
+rank avg (pred, true): 0.449, 0.442
+rank std (pred, true): 0.137, 0.264
+mrr vals (pred, true): 0.087, 0.052
+losses (mrrl, rdl): 0.0002474675, 8.4e-09
+
+running batch: 1550
+rank avg (pred, true): 0.452, 0.142
+rank std (pred, true): 0.132, 0.185
+mrr vals (pred, true): 0.085, 0.308
+losses (mrrl, rdl): 0.0099481167, 1.6676e-06
+
+running batch: 1600
+rank avg (pred, true): 0.439, 0.457
+rank std (pred, true): 0.138, 0.263
+mrr vals (pred, true): 0.092, 0.037
+losses (mrrl, rdl): 0.0005902378, 1.23e-08
+
+running batch: 1650
+rank avg (pred, true): 0.439, 0.499
+rank std (pred, true): 0.137, 0.198
+mrr vals (pred, true): 0.091, 0.022
+losses (mrrl, rdl): 0.0009624488, 6.21e-08
+
+running batch: 1700
+rank avg (pred, true): 0.441, 0.441
+rank std (pred, true): 0.137, 0.269
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0004021438, 8.2e-09
+
+running batch: 1750
+rank avg (pred, true): 0.448, 0.464
+rank std (pred, true): 0.135, 0.263
+mrr vals (pred, true): 0.086, 0.041
+losses (mrrl, rdl): 0.0003978371, 1.09e-08
+
+running batch: 1800
+rank avg (pred, true): 0.445, 0.154
+rank std (pred, true): 0.135, 0.204
+mrr vals (pred, true): 0.087, 0.258
+losses (mrrl, rdl): 0.0058343653, 1.5064e-06
+
+running batch: 1850
+rank avg (pred, true): 0.445, 0.443
+rank std (pred, true): 0.135, 0.267
+mrr vals (pred, true): 0.087, 0.054
+losses (mrrl, rdl): 0.0002071595, 8e-09
+
+running batch: 1900
+rank avg (pred, true): 0.456, 0.162
+rank std (pred, true): 0.132, 0.199
+mrr vals (pred, true): 0.083, 0.239
+losses (mrrl, rdl): 0.0048760995, 1.5111e-06
+
+running batch: 1950
+rank avg (pred, true): 0.440, 0.432
+rank std (pred, true): 0.135, 0.263
+mrr vals (pred, true): 0.088, 0.045
+losses (mrrl, rdl): 0.0003828939, 8.3e-09
+
+running batch: 2000
+rank avg (pred, true): 0.445, 0.425
+rank std (pred, true): 0.133, 0.254
+mrr vals (pred, true): 0.085, 0.049
+losses (mrrl, rdl): 0.0002661943, 1.36e-08
+
+running batch: 2050
+rank avg (pred, true): 0.448, 0.452
+rank std (pred, true): 0.132, 0.262
+mrr vals (pred, true): 0.085, 0.045
+losses (mrrl, rdl): 0.0003113907, 7.6e-09
+
+running batch: 2100
+rank avg (pred, true): 0.442, 0.435
+rank std (pred, true): 0.132, 0.264
+mrr vals (pred, true): 0.086, 0.048
+losses (mrrl, rdl): 0.0002860523, 8.8e-09
+
+running batch: 2150
+rank avg (pred, true): 0.431, 0.446
+rank std (pred, true): 0.133, 0.266
+mrr vals (pred, true): 0.089, 0.051
+losses (mrrl, rdl): 0.0002997314, 1.15e-08
+
+Epoch over!
+epoch time: 42.784
+loss values:
+	mrrl: 0.0868994355
+	rdl: 1.86426e-05
+
+Epoch 5 -- 
+running batch: 0
+rank avg (pred, true): 0.435, 0.470
+rank std (pred, true): 0.132, 0.244
+mrr vals (pred, true): 0.087, 0.035
+losses (mrrl, rdl): 0.0276165381, 1.212e-06
+
+running batch: 50
+rank avg (pred, true): 0.427, 0.430
+rank std (pred, true): 0.133, 0.258
+mrr vals (pred, true): 0.090, 0.060
+losses (mrrl, rdl): 0.0001915047, 6.7e-09
+
+running batch: 100
+rank avg (pred, true): 0.437, 0.422
+rank std (pred, true): 0.130, 0.254
+mrr vals (pred, true): 0.086, 0.047
+losses (mrrl, rdl): 0.000312526, 1.09e-08
+
+running batch: 150
+rank avg (pred, true): 0.439, 0.442
+rank std (pred, true): 0.130, 0.271
+mrr vals (pred, true): 0.085, 0.047
+losses (mrrl, rdl): 0.0002886993, 9.1e-09
+
+running batch: 200
+rank avg (pred, true): 0.448, 0.486
+rank std (pred, true): 0.129, 0.203
+mrr vals (pred, true): 0.084, 0.026
+losses (mrrl, rdl): 0.0006529298, 2.53e-08
+
+running batch: 250
+rank avg (pred, true): 0.438, 0.497
+rank std (pred, true): 0.130, 0.228
+mrr vals (pred, true): 0.086, 0.030
+losses (mrrl, rdl): 0.000614742, 6.26e-08
+
+running batch: 300
+rank avg (pred, true): 0.428, 0.447
+rank std (pred, true): 0.131, 0.257
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004124342, 1.26e-08
+
+running batch: 350
+rank avg (pred, true): 0.426, 0.441
+rank std (pred, true): 0.131, 0.267
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002692263, 1.17e-08
+
+running batch: 400
+rank avg (pred, true): 0.433, 0.420
+rank std (pred, true): 0.128, 0.265
+mrr vals (pred, true): 0.086, 0.046
+losses (mrrl, rdl): 0.0003150522, 1.19e-08
+
+running batch: 450
+rank avg (pred, true): 0.427, 0.138
+rank std (pred, true): 0.129, 0.176
+mrr vals (pred, true): 0.087, 0.251
+losses (mrrl, rdl): 0.005348749, 1.4668e-06
+
+running batch: 500
+rank avg (pred, true): 0.425, 0.437
+rank std (pred, true): 0.129, 0.261
+mrr vals (pred, true): 0.088, 0.051
+losses (mrrl, rdl): 0.0002697925, 1e-08
+
+running batch: 550
+rank avg (pred, true): 0.433, 0.437
+rank std (pred, true): 0.127, 0.265
+mrr vals (pred, true): 0.086, 0.057
+losses (mrrl, rdl): 0.0001647962, 8.5e-09
+
+running batch: 600
+rank avg (pred, true): 0.440, 0.435
+rank std (pred, true): 0.126, 0.265
+mrr vals (pred, true): 0.084, 0.051
+losses (mrrl, rdl): 0.0002248849, 9e-09
+
+running batch: 650
+rank avg (pred, true): 0.432, 0.513
+rank std (pred, true): 0.127, 0.206
+mrr vals (pred, true): 0.086, 0.025
+losses (mrrl, rdl): 0.0007327448, 1.106e-07
+
+running batch: 700
+rank avg (pred, true): 0.429, 0.439
+rank std (pred, true): 0.127, 0.266
+mrr vals (pred, true): 0.086, 0.044
+losses (mrrl, rdl): 0.0003644061, 9.9e-09
+
+running batch: 750
+rank avg (pred, true): 0.419, 0.433
+rank std (pred, true): 0.128, 0.257
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0003994879, 9.7e-09
+
+running batch: 800
+rank avg (pred, true): 0.410, 0.525
+rank std (pred, true): 0.128, 0.212
+mrr vals (pred, true): 0.092, 0.023
+losses (mrrl, rdl): 0.0009355753, 2.264e-07
+
+running batch: 850
+rank avg (pred, true): 0.426, 0.439
+rank std (pred, true): 0.124, 0.263
+mrr vals (pred, true): 0.085, 0.050
+losses (mrrl, rdl): 0.0002465501, 1.11e-08
+
+running batch: 900
+rank avg (pred, true): 0.429, 0.452
+rank std (pred, true): 0.124, 0.264
+mrr vals (pred, true): 0.085, 0.043
+losses (mrrl, rdl): 0.0003564483, 1.72e-08
+
+running batch: 950
+rank avg (pred, true): 0.419, 0.492
+rank std (pred, true): 0.124, 0.240
+mrr vals (pred, true): 0.087, 0.035
+losses (mrrl, rdl): 0.0005448865, 9.69e-08
+
+running batch: 1000
+rank avg (pred, true): 0.411, 0.172
+rank std (pred, true): 0.124, 0.196
+mrr vals (pred, true): 0.089, 0.209
+losses (mrrl, rdl): 0.00288827, 1.024e-06
+
+running batch: 1050
+rank avg (pred, true): 0.397, 0.456
+rank std (pred, true): 0.127, 0.261
+mrr vals (pred, true): 0.096, 0.043
+losses (mrrl, rdl): 0.0005727971, 6.56e-08
+
+running batch: 1100
+rank avg (pred, true): 0.386, 0.445
+rank std (pred, true): 0.129, 0.263
+mrr vals (pred, true): 0.108, 0.047
+losses (mrrl, rdl): 0.0007314204, 6.64e-08
+
+running batch: 1150
+rank avg (pred, true): 0.405, 0.192
+rank std (pred, true): 0.118, 0.217
+mrr vals (pred, true): 0.089, 0.196
+losses (mrrl, rdl): 0.0022753966, 8.139e-07
+
+running batch: 1200
+rank avg (pred, true): 0.417, 0.441
+rank std (pred, true): 0.119, 0.257
+mrr vals (pred, true): 0.087, 0.044
+losses (mrrl, rdl): 0.0003817803, 1.68e-08
+
+running batch: 1250
+rank avg (pred, true): 0.421, 0.521
+rank std (pred, true): 0.120, 0.207
+mrr vals (pred, true): 0.087, 0.024
+losses (mrrl, rdl): 0.0007870212, 1.711e-07
+
+running batch: 1300
+rank avg (pred, true): 0.412, 0.435
+rank std (pred, true): 0.118, 0.262
+mrr vals (pred, true): 0.088, 0.051
+losses (mrrl, rdl): 0.0002772099, 1.75e-08
+
+running batch: 1350
+rank avg (pred, true): 0.418, 0.132
+rank std (pred, true): 0.119, 0.180
+mrr vals (pred, true): 0.088, 0.321
+losses (mrrl, rdl): 0.010947587, 1.4501e-06
+
+running batch: 1400
+rank avg (pred, true): 0.410, 0.435
+rank std (pred, true): 0.118, 0.269
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0003849261, 2.01e-08
+
+running batch: 1450
+rank avg (pred, true): 0.405, 0.520
+rank std (pred, true): 0.117, 0.206
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008551468, 2.251e-07
+
+running batch: 1500
+rank avg (pred, true): 0.400, 0.530
+rank std (pred, true): 0.116, 0.214
+mrr vals (pred, true): 0.090, 0.026
+losses (mrrl, rdl): 0.0008169764, 2.94e-07
+
+running batch: 1550
+rank avg (pred, true): 0.411, 0.143
+rank std (pred, true): 0.118, 0.179
+mrr vals (pred, true): 0.088, 0.237
+losses (mrrl, rdl): 0.0044330228, 1.2888e-06
+
+running batch: 1600
+rank avg (pred, true): 0.408, 0.580
+rank std (pred, true): 0.117, 0.177
+mrr vals (pred, true): 0.089, 0.019
+losses (mrrl, rdl): 0.0009855706, 5.095e-07
+
+running batch: 1650
+rank avg (pred, true): 0.403, 0.435
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002858268, 2.59e-08
+
+running batch: 1700
+rank avg (pred, true): 0.406, 0.496
+rank std (pred, true): 0.117, 0.196
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008426355, 1.393e-07
+
+running batch: 1750
+rank avg (pred, true): 0.406, 0.443
+rank std (pred, true): 0.117, 0.273
+mrr vals (pred, true): 0.089, 0.048
+losses (mrrl, rdl): 0.0003344216, 3.34e-08
+
+running batch: 1800
+rank avg (pred, true): 0.400, 0.439
+rank std (pred, true): 0.116, 0.248
+mrr vals (pred, true): 0.090, 0.034
+losses (mrrl, rdl): 0.0006118756, 3.23e-08
+
+running batch: 1850
+rank avg (pred, true): 0.401, 0.144
+rank std (pred, true): 0.116, 0.196
+mrr vals (pred, true): 0.090, 0.335
+losses (mrrl, rdl): 0.0120800138, 1.1611e-06
+
+running batch: 1900
+rank avg (pred, true): 0.387, 0.149
+rank std (pred, true): 0.113, 0.181
+mrr vals (pred, true): 0.091, 0.257
+losses (mrrl, rdl): 0.0054656193, 9.806e-07
+
+running batch: 1950
+rank avg (pred, true): 0.392, 0.430
+rank std (pred, true): 0.114, 0.260
+mrr vals (pred, true): 0.091, 0.049
+losses (mrrl, rdl): 0.0003475965, 3.2e-08
+
+running batch: 2000
+rank avg (pred, true): 0.397, 0.165
+rank std (pred, true): 0.115, 0.194
+mrr vals (pred, true): 0.090, 0.253
+losses (mrrl, rdl): 0.0053298632, 9.521e-07
+
+running batch: 2050
+rank avg (pred, true): 0.401, 0.459
+rank std (pred, true): 0.116, 0.252
+mrr vals (pred, true): 0.089, 0.041
+losses (mrrl, rdl): 0.0004647412, 6.18e-08
+
+running batch: 2100
+rank avg (pred, true): 0.406, 0.438
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.053
+losses (mrrl, rdl): 0.0002574039, 2.63e-08
+
+running batch: 2150
+rank avg (pred, true): 0.411, 0.467
+rank std (pred, true): 0.117, 0.254
+mrr vals (pred, true): 0.088, 0.039
+losses (mrrl, rdl): 0.0004862228, 5.94e-08
+
+Epoch over!
+epoch time: 42.612
+loss values:
+	mrrl: 0.0866202986
+	rdl: 1.5557e-05
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0
+rank avg (pred, true): 0.413, 0.440
+rank std (pred, true): 0.118, 0.267
+mrr vals (pred, true): 0.088, 0.051
+losses (mrrl, rdl): 0.0139767788, 1.0697e-06
+
+running batch: 50
+rank avg (pred, true): 0.409, 0.178
+rank std (pred, true): 0.117, 0.201
+mrr vals (pred, true): 0.088, 0.212
+losses (mrrl, rdl): 0.0030378297, 9.604e-07
+
+running batch: 100
+rank avg (pred, true): 0.406, 0.441
+rank std (pred, true): 0.117, 0.266
+mrr vals (pred, true): 0.089, 0.051
+losses (mrrl, rdl): 0.0002907969, 3.02e-08
+
+running batch: 150
+rank avg (pred, true): 0.399, 0.157
+rank std (pred, true): 0.115, 0.187
+mrr vals (pred, true): 0.090, 0.212
+losses (mrrl, rdl): 0.0029709749, 1.0455e-06
+
+running batch: 200
+rank avg (pred, true): 0.389, 0.154
+rank std (pred, true): 0.113, 0.186
+mrr vals (pred, true): 0.091, 0.230
+losses (mrrl, rdl): 0.0038757529, 9.836e-07
+
+running batch: 250
+rank avg (pred, true): 0.388, 0.179
+rank std (pred, true): 0.113, 0.197
+mrr vals (pred, true): 0.091, 0.206
+losses (mrrl, rdl): 0.0026119894, 7.806e-07
+
+running batch: 300
+rank avg (pred, true): 0.394, 0.439
+rank std (pred, true): 0.114, 0.262
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.0003184596, 4.31e-08
+
+running batch: 350
+rank avg (pred, true): 0.399, 0.435
+rank std (pred, true): 0.115, 0.246
+mrr vals (pred, true): 0.090, 0.042
+losses (mrrl, rdl): 0.0004453161, 2.8e-08
+
+running batch: 400
+rank avg (pred, true): 0.395, 0.164
+rank std (pred, true): 0.114, 0.198
+mrr vals (pred, true): 0.090, 0.236
+losses (mrrl, rdl): 0.00423213, 9.57e-07
+
+running batch: 450
+rank avg (pred, true): 0.392, 0.451
+rank std (pred, true): 0.114, 0.261
+mrr vals (pred, true): 0.090, 0.049
+losses (mrrl, rdl): 0.000339773, 6.74e-08
+
+running batch: 500
+rank avg (pred, true): 0.393, 0.431
+rank std (pred, true): 0.114, 0.258
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.000324451, 3.17e-08
+
+running batch: 550
+rank avg (pred, true): 0.390, 0.425
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.090, 0.056
+losses (mrrl, rdl): 0.0002329358, 2.86e-08
+
+running batch: 600
+rank avg (pred, true): 0.381, 0.162
+rank std (pred, true): 0.111, 0.199
+mrr vals (pred, true): 0.092, 0.239
+losses (mrrl, rdl): 0.004343993, 8.483e-07
+
+running batch: 650
+rank avg (pred, true): 0.385, 0.451
+rank std (pred, true): 0.112, 0.263
+mrr vals (pred, true): 0.091, 0.044
+losses (mrrl, rdl): 0.0004464816, 8.46e-08
+
+running batch: 700
+rank avg (pred, true): 0.378, 0.454
+rank std (pred, true): 0.111, 0.262
+mrr vals (pred, true): 0.092, 0.047
+losses (mrrl, rdl): 0.000406827, 1.077e-07
+
+running batch: 750
+rank avg (pred, true): 0.374, 0.445
+rank std (pred, true): 0.110, 0.264
+mrr vals (pred, true): 0.093, 0.046
+losses (mrrl, rdl): 0.0004443344, 9.49e-08
+
+running batch: 800
+rank avg (pred, true): 0.378, 0.463
+rank std (pred, true): 0.108, 0.257
+mrr vals (pred, true): 0.090, 0.041
+losses (mrrl, rdl): 0.0004861859, 1.322e-07
+
+running batch: 850
+rank avg (pred, true): 0.376, 0.441
+rank std (pred, true): 0.107, 0.265
+mrr vals (pred, true): 0.091, 0.046
+losses (mrrl, rdl): 0.0003963226, 8.05e-08
+
+running batch: 900
+rank avg (pred, true): 0.378, 0.451
+rank std (pred, true): 0.108, 0.264
+mrr vals (pred, true): 0.090, 0.047
+losses (mrrl, rdl): 0.0003746264, 1e-07
+
+running batch: 950
+rank avg (pred, true): 0.384, 0.435
+rank std (pred, true): 0.109, 0.266
+mrr vals (pred, true): 0.090, 0.046
+losses (mrrl, rdl): 0.0003809886, 5.41e-08
+
+running batch: 1000
+rank avg (pred, true): 0.378, 0.495
+rank std (pred, true): 0.107, 0.200
+mrr vals (pred, true): 0.090, 0.023
+losses (mrrl, rdl): 0.0009093954, 2.372e-07
+
+running batch: 1050
+rank avg (pred, true): 0.384, 0.058
+rank std (pred, true): 0.109, 0.126
+mrr vals (pred, true): 0.090, 0.524
+losses (mrrl, rdl): 0.0377095081, 1.8875e-06
+
+running batch: 1100
+rank avg (pred, true): 0.393, 0.442
+rank std (pred, true): 0.111, 0.258
+mrr vals (pred, true): 0.090, 0.044
+losses (mrrl, rdl): 0.0004140401, 4.88e-08
+
+running batch: 1150
+rank avg (pred, true): 0.395, 0.434
+rank std (pred, true): 0.112, 0.263
+mrr vals (pred, true): 0.090, 0.044
+losses (mrrl, rdl): 0.0004146503, 3.39e-08
+
+running batch: 1200
+rank avg (pred, true): 0.394, 0.435
+rank std (pred, true): 0.111, 0.251
+mrr vals (pred, true): 0.090, 0.034
+losses (mrrl, rdl): 0.0006200247, 3.48e-08
+
+running batch: 1250
+rank avg (pred, true): 0.398, 0.525
+rank std (pred, true): 0.113, 0.208
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008418538, 2.792e-07
+
+running batch: 1300
+rank avg (pred, true): 0.407, 0.588
+rank std (pred, true): 0.115, 0.176
+mrr vals (pred, true): 0.089, 0.021
+losses (mrrl, rdl): 0.0009323823, 5.637e-07
+
+running batch: 1350
+rank avg (pred, true): 0.400, 0.116
+rank std (pred, true): 0.113, 0.153
+mrr vals (pred, true): 0.089, 0.298
+losses (mrrl, rdl): 0.008683064, 1.4143e-06
+
+running batch: 1400
+rank avg (pred, true): 0.408, 0.194
+rank std (pred, true): 0.115, 0.213
+mrr vals (pred, true): 0.089, 0.191
+losses (mrrl, rdl): 0.002104436, 8.043e-07
+
+running batch: 1450
+rank avg (pred, true): 0.410, 0.446
+rank std (pred, true): 0.116, 0.259
+mrr vals (pred, true): 0.089, 0.040
+losses (mrrl, rdl): 0.0004802276, 2.86e-08
+
+running batch: 1500
+rank avg (pred, true): 0.405, 0.148
+rank std (pred, true): 0.115, 0.180
+mrr vals (pred, true): 0.089, 0.227
+losses (mrrl, rdl): 0.0038270308, 1.1534e-06
+
+running batch: 1550
+rank avg (pred, true): 0.411, 0.428
+rank std (pred, true): 0.116, 0.265
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003119531, 1.36e-08
+
+running batch: 1600
+rank avg (pred, true): 0.398, 0.431
+rank std (pred, true): 0.113, 0.259
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0003913047, 2.53e-08
+
+running batch: 1650
+rank avg (pred, true): 0.398, 0.445
+rank std (pred, true): 0.113, 0.263
+mrr vals (pred, true): 0.089, 0.046
+losses (mrrl, rdl): 0.0003812523, 4.81e-08
+
+running batch: 1700
+rank avg (pred, true): 0.400, 0.469
+rank std (pred, true): 0.113, 0.250
+mrr vals (pred, true): 0.089, 0.037
+losses (mrrl, rdl): 0.0005503997, 8.87e-08
+
+running batch: 1750
+rank avg (pred, true): 0.393, 0.153
+rank std (pred, true): 0.111, 0.187
+mrr vals (pred, true): 0.090, 0.280
+losses (mrrl, rdl): 0.0072614742, 9.915e-07
+
+running batch: 1800
+rank avg (pred, true): 0.393, 0.436
+rank std (pred, true): 0.111, 0.261
+mrr vals (pred, true): 0.090, 0.048
+losses (mrrl, rdl): 0.0003541983, 3.88e-08
+
+running batch: 1850
+rank avg (pred, true): 0.401, 0.449
+rank std (pred, true): 0.114, 0.249
+mrr vals (pred, true): 0.089, 0.036
+losses (mrrl, rdl): 0.0005723747, 4.53e-08
+
+running batch: 1900
+rank avg (pred, true): 0.408, 0.136
+rank std (pred, true): 0.115, 0.187
+mrr vals (pred, true): 0.089, 0.280
+losses (mrrl, rdl): 0.0072828466, 1.3354e-06
+
+running batch: 1950
+rank avg (pred, true): 0.403, 0.433
+rank std (pred, true): 0.114, 0.265
+mrr vals (pred, true): 0.089, 0.053
+losses (mrrl, rdl): 0.0002638114, 2.34e-08
+
+running batch: 2000
+rank avg (pred, true): 0.410, 0.426
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002673836, 1.25e-08
+
+running batch: 2050
+rank avg (pred, true): 0.409, 0.422
+rank std (pred, true): 0.115, 0.265
+mrr vals (pred, true): 0.089, 0.051
+losses (mrrl, rdl): 0.0002858976, 1.19e-08
+
+running batch: 2100
+rank avg (pred, true): 0.407, 0.499
+rank std (pred, true): 0.115, 0.207
+mrr vals (pred, true): 0.089, 0.025
+losses (mrrl, rdl): 0.0008079298, 1.478e-07
+
+running batch: 2150
+rank avg (pred, true): 0.410, 0.418
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.063
+losses (mrrl, rdl): 0.0001393202, 9.5e-09
+
+Epoch over!
+epoch time: 41.498
+loss values:
+	mrrl: 0.0864254921
+	rdl: 1.48761e-05
+
+Epoch 7 -- 
+running batch: 0
+rank avg (pred, true): 0.413, 0.450
+rank std (pred, true): 0.117, 0.265
+mrr vals (pred, true): 0.089, 0.048
+losses (mrrl, rdl): 0.0165061783, 1.583e-06
+
+running batch: 50
+rank avg (pred, true): 0.411, 0.109
+rank std (pred, true): 0.116, 0.160
+mrr vals (pred, true): 0.089, 0.309
+losses (mrrl, rdl): 0.0096656857, 1.6472e-06
+
+running batch: 100
+rank avg (pred, true): 0.410, 0.449
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.042
+losses (mrrl, rdl): 0.000445126, 3.29e-08
+
+running batch: 150
+rank avg (pred, true): 0.411, 0.426
+rank std (pred, true): 0.116, 0.260
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003152887, 1.16e-08
+
+running batch: 200
+rank avg (pred, true): 0.415, 0.443
+rank std (pred, true): 0.117, 0.260
+mrr vals (pred, true): 0.089, 0.045
+losses (mrrl, rdl): 0.0003776412, 2.02e-08
+
+running batch: 250
+rank avg (pred, true): 0.417, 0.437
+rank std (pred, true): 0.118, 0.270
+mrr vals (pred, true): 0.089, 0.048
+losses (mrrl, rdl): 0.0003226517, 1.64e-08
+
+running batch: 300
+rank avg (pred, true): 0.416, 0.593
+rank std (pred, true): 0.117, 0.179
+mrr vals (pred, true): 0.089, 0.022
+losses (mrrl, rdl): 0.0008883465, 5.388e-07
+
+running batch: 350
+rank avg (pred, true): 0.422, 0.143
+rank std (pred, true): 0.119, 0.177
+mrr vals (pred, true): 0.088, 0.265
+losses (mrrl, rdl): 0.0062111849, 1.374e-06
+
+running batch: 400
+rank avg (pred, true): 0.420, 0.464
+rank std (pred, true): 0.119, 0.255
+mrr vals (pred, true): 0.089, 0.036
+losses (mrrl, rdl): 0.0005459055, 4.04e-08
+
+running batch: 450
+rank avg (pred, true): 0.415, 0.183
+rank std (pred, true): 0.117, 0.204
+mrr vals (pred, true): 0.089, 0.192
+losses (mrrl, rdl): 0.0021456273, 9.523e-07
+
+running batch: 500
+rank avg (pred, true): 0.418, 0.513
+rank std (pred, true): 0.118, 0.207
+mrr vals (pred, true): 0.089, 0.025
+losses (mrrl, rdl): 0.0008153968, 1.561e-07
+
+running batch: 550
+rank avg (pred, true): 0.412, 0.460
+rank std (pred, true): 0.116, 0.245
+mrr vals (pred, true): 0.089, 0.042
+losses (mrrl, rdl): 0.0004371501, 4.52e-08
+
+running batch: 600
+rank avg (pred, true): 0.417, 0.184
+rank std (pred, true): 0.118, 0.200
+mrr vals (pred, true): 0.089, 0.198
+losses (mrrl, rdl): 0.0024006458, 9.66e-07
+
+running batch: 650
+rank avg (pred, true): 0.423, 0.439
+rank std (pred, true): 0.120, 0.260
+mrr vals (pred, true): 0.088, 0.050
+losses (mrrl, rdl): 0.0002977036, 1.16e-08
+
+running batch: 700
+rank avg (pred, true): 0.425, 0.440
+rank std (pred, true): 0.120, 0.263
+mrr vals (pred, true): 0.088, 0.044
+losses (mrrl, rdl): 0.0003868471, 1.21e-08
+
+running batch: 750
+rank avg (pred, true): 0.426, 0.436
+rank std (pred, true): 0.120, 0.260
+mrr vals (pred, true): 0.088, 0.051
+losses (mrrl, rdl): 0.0002767224, 9.5e-09
+
+running batch: 800
+rank avg (pred, true): 0.416, 0.194
+rank std (pred, true): 0.118, 0.213
+mrr vals (pred, true): 0.089, 0.193
+losses (mrrl, rdl): 0.0021891147, 8.708e-07
+
+running batch: 850
+rank avg (pred, true): 0.409, 0.425
+rank std (pred, true): 0.116, 0.261
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002791053, 1.25e-08
+
+running batch: 900
+rank avg (pred, true): 0.407, 0.458
+rank std (pred, true): 0.115, 0.257
+mrr vals (pred, true): 0.089, 0.032
+losses (mrrl, rdl): 0.0006441551, 5.16e-08
+
+running batch: 950
+rank avg (pred, true): 0.408, 0.444
+rank std (pred, true): 0.115, 0.260
+mrr vals (pred, true): 0.089, 0.040
+losses (mrrl, rdl): 0.000486304, 2.98e-08
+
+running batch: 1000
+rank avg (pred, true): 0.404, 0.436
+rank std (pred, true): 0.114, 0.261
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003315152, 2.59e-08
+
+running batch: 1050
+rank avg (pred, true): 0.404, 0.436
+rank std (pred, true): 0.114, 0.260
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002776193, 2.53e-08
+
+running batch: 1100
+rank avg (pred, true): 0.411, 0.187
+rank std (pred, true): 0.116, 0.208
+mrr vals (pred, true): 0.089, 0.198
+losses (mrrl, rdl): 0.0023670807, 8.981e-07
+
+running batch: 1150
+rank avg (pred, true): 0.408, 0.429
+rank std (pred, true): 0.115, 0.263
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003178467, 1.58e-08
+
+running batch: 1200
+rank avg (pred, true): 0.405, 0.446
+rank std (pred, true): 0.114, 0.265
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.000417909, 3.81e-08
+
+running batch: 1250
+rank avg (pred, true): 0.415, 0.153
+rank std (pred, true): 0.117, 0.175
+mrr vals (pred, true): 0.089, 0.230
+losses (mrrl, rdl): 0.0039716866, 1.2072e-06
+
+running batch: 1300
+rank avg (pred, true): 0.410, 0.433
+rank std (pred, true): 0.116, 0.257
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004273994, 1.68e-08
+
+running batch: 1350
+rank avg (pred, true): 0.403, 0.447
+rank std (pred, true): 0.114, 0.256
+mrr vals (pred, true): 0.089, 0.041
+losses (mrrl, rdl): 0.0004694357, 4.06e-08
+
+running batch: 1400
+rank avg (pred, true): 0.412, 0.435
+rank std (pred, true): 0.116, 0.264
+mrr vals (pred, true): 0.089, 0.054
+losses (mrrl, rdl): 0.0002421065, 1.7e-08
+
+running batch: 1450
+rank avg (pred, true): 0.400, 0.438
+rank std (pred, true): 0.113, 0.261
+mrr vals (pred, true): 0.089, 0.050
+losses (mrrl, rdl): 0.0003113516, 3.23e-08
+
+running batch: 1500
+rank avg (pred, true): 0.398, 0.456
+rank std (pred, true): 0.112, 0.254
+mrr vals (pred, true): 0.089, 0.041
+losses (mrrl, rdl): 0.0004612189, 6.51e-08
+
+running batch: 1550
+rank avg (pred, true): 0.401, 0.427
+rank std (pred, true): 0.113, 0.255
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003295758, 1.85e-08
+
+running batch: 1600
+rank avg (pred, true): 0.407, 0.514
+rank std (pred, true): 0.115, 0.214
+mrr vals (pred, true): 0.089, 0.026
+losses (mrrl, rdl): 0.0007896579, 1.956e-07
+
+running batch: 1650
+rank avg (pred, true): 0.407, 0.531
+rank std (pred, true): 0.115, 0.208
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008401497, 2.602e-07
+
+running batch: 1700
+rank avg (pred, true): 0.411, 0.461
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.047
+losses (mrrl, rdl): 0.0003434308, 5.02e-08
+
+running batch: 1750
+rank avg (pred, true): 0.410, 0.137
+rank std (pred, true): 0.116, 0.179
+mrr vals (pred, true): 0.089, 0.278
+losses (mrrl, rdl): 0.0071118069, 1.313e-06
+
+running batch: 1800
+rank avg (pred, true): 0.411, 0.140
+rank std (pred, true): 0.116, 0.185
+mrr vals (pred, true): 0.089, 0.285
+losses (mrrl, rdl): 0.0077155279, 1.3207e-06
+
+running batch: 1850
+rank avg (pred, true): 0.408, 0.441
+rank std (pred, true): 0.115, 0.263
+mrr vals (pred, true): 0.089, 0.047
+losses (mrrl, rdl): 0.00035061, 2.69e-08
+
+running batch: 1900
+rank avg (pred, true): 0.399, 0.463
+rank std (pred, true): 0.113, 0.247
+mrr vals (pred, true): 0.089, 0.039
+losses (mrrl, rdl): 0.0005015167, 7.65e-08
+
+running batch: 1950
+rank avg (pred, true): 0.402, 0.219
+rank std (pred, true): 0.113, 0.224
+mrr vals (pred, true): 0.089, 0.167
+losses (mrrl, rdl): 0.0012070887, 5.895e-07
+
+running batch: 2000
+rank avg (pred, true): 0.402, 0.134
+rank std (pred, true): 0.113, 0.175
+mrr vals (pred, true): 0.089, 0.274
+losses (mrrl, rdl): 0.0068429778, 1.2863e-06
+
+running batch: 2050
+rank avg (pred, true): 0.389, 0.443
+rank std (pred, true): 0.110, 0.269
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0002941626, 5.94e-08
+
+running batch: 2100
+rank avg (pred, true): 0.377, 0.482
+rank std (pred, true): 0.107, 0.200
+mrr vals (pred, true): 0.090, 0.025
+losses (mrrl, rdl): 0.0008592646, 1.884e-07
+
+running batch: 2150
+rank avg (pred, true): 0.377, 0.465
+rank std (pred, true): 0.107, 0.248
+mrr vals (pred, true): 0.090, 0.035
+losses (mrrl, rdl): 0.0006020628, 1.394e-07
+
+Epoch over!
+epoch time: 44.897
+loss values:
+	mrrl: 0.0863961374
+	rdl: 1.51869e-05
+
+Epoch 8 -- 
+running batch: 0
+rank avg (pred, true): 0.381, 0.449
+rank std (pred, true): 0.108, 0.250
+mrr vals (pred, true): 0.090, 0.033
+losses (mrrl, rdl): 0.0331909135, 4.1987e-06
+
+running batch: 50
+rank avg (pred, true): 0.390, 0.515
+rank std (pred, true): 0.110, 0.209
+mrr vals (pred, true): 0.090, 0.024
+losses (mrrl, rdl): 0.0008663083, 2.739e-07
+
+running batch: 100
+rank avg (pred, true): 0.389, 0.149
+rank std (pred, true): 0.110, 0.180
+mrr vals (pred, true): 0.090, 0.239
+losses (mrrl, rdl): 0.0044450224, 9.817e-07
+
+running batch: 150
+rank avg (pred, true): 0.394, 0.429
+rank std (pred, true): 0.111, 0.258
+mrr vals (pred, true): 0.090, 0.046
+losses (mrrl, rdl): 0.0003883063, 2.85e-08
+
+running batch: 200
+rank avg (pred, true): 0.400, 0.438
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.089, 0.046
+losses (mrrl, rdl): 0.0003729916, 3.33e-08
+
+running batch: 250
+rank avg (pred, true): 0.400, 0.448
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.089, 0.042
+losses (mrrl, rdl): 0.000440173, 4.75e-08
+
+running batch: 300
+rank avg (pred, true): 0.394, 0.495
+rank std (pred, true): 0.111, 0.203
+mrr vals (pred, true): 0.090, 0.027
+losses (mrrl, rdl): 0.0007708279, 1.742e-07
+
+running batch: 350
+rank avg (pred, true): 0.401, 0.439
+rank std (pred, true): 0.113, 0.272
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002849621, 3.5e-08
+
+running batch: 400
+rank avg (pred, true): 0.402, 0.114
+rank std (pred, true): 0.113, 0.159
+mrr vals (pred, true): 0.089, 0.324
+losses (mrrl, rdl): 0.0109818829, 1.3937e-06
+
+running batch: 450
+rank avg (pred, true): 0.399, 0.420
+rank std (pred, true): 0.112, 0.271
+mrr vals (pred, true): 0.089, 0.055
+losses (mrrl, rdl): 0.0002332043, 1.77e-08
+
+running batch: 500
+rank avg (pred, true): 0.401, 0.444
+rank std (pred, true): 0.113, 0.266
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004344652, 4.07e-08
+
+running batch: 550
+rank avg (pred, true): 0.398, 0.190
+rank std (pred, true): 0.112, 0.215
+mrr vals (pred, true): 0.089, 0.258
+losses (mrrl, rdl): 0.0056982804, 7.837e-07
+
+running batch: 600
+rank avg (pred, true): 0.396, 0.119
+rank std (pred, true): 0.112, 0.174
+mrr vals (pred, true): 0.089, 0.328
+losses (mrrl, rdl): 0.0114028519, 1.3474e-06
+
+running batch: 650
+rank avg (pred, true): 0.403, 0.427
+rank std (pred, true): 0.114, 0.269
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.000282067, 1.91e-08
+
+running batch: 700
+rank avg (pred, true): 0.404, 0.177
+rank std (pred, true): 0.114, 0.206
+mrr vals (pred, true): 0.089, 0.259
+losses (mrrl, rdl): 0.0057776296, 8.984e-07
+
+running batch: 750
+rank avg (pred, true): 0.396, 0.454
+rank std (pred, true): 0.112, 0.265
+mrr vals (pred, true): 0.089, 0.042
+losses (mrrl, rdl): 0.0004579746, 6.52e-08
+
+running batch: 800
+rank avg (pred, true): 0.383, 0.516
+rank std (pred, true): 0.108, 0.207
+mrr vals (pred, true): 0.090, 0.025
+losses (mrrl, rdl): 0.0008528482, 3.051e-07
+
+running batch: 850
+rank avg (pred, true): 0.380, 0.424
+rank std (pred, true): 0.107, 0.267
+mrr vals (pred, true): 0.090, 0.048
+losses (mrrl, rdl): 0.0003599735, 4.28e-08
+
+running batch: 900
+rank avg (pred, true): 0.378, 0.446
+rank std (pred, true): 0.107, 0.266
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0003157175, 8.82e-08
+
+running batch: 950
+rank avg (pred, true): 0.385, 0.207
+rank std (pred, true): 0.109, 0.217
+mrr vals (pred, true): 0.090, 0.180
+losses (mrrl, rdl): 0.0016132265, 5.628e-07
+
+running batch: 1000
+rank avg (pred, true): 0.369, 0.151
+rank std (pred, true): 0.104, 0.186
+mrr vals (pred, true): 0.091, 0.238
+losses (mrrl, rdl): 0.0043145898, 8.455e-07
+
+running batch: 1050
+rank avg (pred, true): 0.378, 0.173
+rank std (pred, true): 0.106, 0.198
+mrr vals (pred, true): 0.090, 0.228
+losses (mrrl, rdl): 0.0037702832, 7.485e-07
+
+running batch: 1100
+rank avg (pred, true): 0.373, 0.489
+rank std (pred, true): 0.105, 0.254
+mrr vals (pred, true): 0.090, 0.035
+losses (mrrl, rdl): 0.0006239021, 2.365e-07
+
+running batch: 1150
+rank avg (pred, true): 0.379, 0.460
+rank std (pred, true): 0.107, 0.265
+mrr vals (pred, true): 0.090, 0.042
+losses (mrrl, rdl): 0.000466543, 1.194e-07
+
+running batch: 1200
+rank avg (pred, true): 0.380, 0.451
+rank std (pred, true): 0.107, 0.267
+mrr vals (pred, true): 0.090, 0.046
+losses (mrrl, rdl): 0.0003826116, 9.53e-08
+
+running batch: 1250
+rank avg (pred, true): 0.382, 0.475
+rank std (pred, true): 0.108, 0.262
+mrr vals (pred, true): 0.090, 0.036
+losses (mrrl, rdl): 0.0005844167, 1.555e-07
+
+running batch: 1300
+rank avg (pred, true): 0.383, 0.448
+rank std (pred, true): 0.108, 0.268
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.0003138073, 8.14e-08
+
+running batch: 1350
+rank avg (pred, true): 0.387, 0.445
+rank std (pred, true): 0.109, 0.262
+mrr vals (pred, true): 0.090, 0.040
+losses (mrrl, rdl): 0.0004991572, 6.61e-08
+
+running batch: 1400
+rank avg (pred, true): 0.390, 0.454
+rank std (pred, true): 0.110, 0.260
+mrr vals (pred, true): 0.090, 0.046
+losses (mrrl, rdl): 0.0003809982, 7.79e-08
+
+running batch: 1450
+rank avg (pred, true): 0.388, 0.448
+rank std (pred, true): 0.109, 0.256
+mrr vals (pred, true): 0.090, 0.041
+losses (mrrl, rdl): 0.0004865176, 6.89e-08
+
+running batch: 1500
+rank avg (pred, true): 0.390, 0.442
+rank std (pred, true): 0.110, 0.264
+mrr vals (pred, true): 0.090, 0.052
+losses (mrrl, rdl): 0.0002873141, 5.56e-08
+
+running batch: 1550
+rank avg (pred, true): 0.393, 0.171
+rank std (pred, true): 0.111, 0.198
+mrr vals (pred, true): 0.090, 0.213
+losses (mrrl, rdl): 0.0030429724, 8.786e-07
+
+running batch: 1600
+rank avg (pred, true): 0.397, 0.434
+rank std (pred, true): 0.112, 0.264
+mrr vals (pred, true): 0.089, 0.051
+losses (mrrl, rdl): 0.000292976, 3.16e-08
+
+running batch: 1650
+rank avg (pred, true): 0.401, 0.435
+rank std (pred, true): 0.113, 0.264
+mrr vals (pred, true): 0.089, 0.054
+losses (mrrl, rdl): 0.0002479978, 2.76e-08
+
+running batch: 1700
+rank avg (pred, true): 0.398, 0.519
+rank std (pred, true): 0.112, 0.200
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008548155, 2.537e-07
+
+running batch: 1750
+rank avg (pred, true): 0.399, 0.588
+rank std (pred, true): 0.113, 0.176
+mrr vals (pred, true): 0.089, 0.021
+losses (mrrl, rdl): 0.0009487913, 6.156e-07
+
+running batch: 1800
+rank avg (pred, true): 0.402, 0.440
+rank std (pred, true): 0.113, 0.264
+mrr vals (pred, true): 0.089, 0.047
+losses (mrrl, rdl): 0.0003569164, 3.35e-08
+
+running batch: 1850
+rank avg (pred, true): 0.409, 0.512
+rank std (pred, true): 0.115, 0.210
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.000836555, 1.803e-07
+
+running batch: 1900
+rank avg (pred, true): 0.422, 0.436
+rank std (pred, true): 0.119, 0.260
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003066348, 1.13e-08
+
+running batch: 1950
+rank avg (pred, true): 0.424, 0.448
+rank std (pred, true): 0.120, 0.261
+mrr vals (pred, true): 0.088, 0.042
+losses (mrrl, rdl): 0.0004246796, 1.75e-08
+
+running batch: 2000
+rank avg (pred, true): 0.424, 0.445
+rank std (pred, true): 0.119, 0.259
+mrr vals (pred, true): 0.088, 0.040
+losses (mrrl, rdl): 0.0004721084, 1.5e-08
+
+running batch: 2050
+rank avg (pred, true): 0.417, 0.422
+rank std (pred, true): 0.118, 0.260
+mrr vals (pred, true): 0.089, 0.050
+losses (mrrl, rdl): 0.0003072032, 8.4e-09
+
+running batch: 2100
+rank avg (pred, true): 0.363, 0.490
+rank std (pred, true): 0.145, 0.206
+mrr vals (pred, true): 0.141, 0.025
+losses (mrrl, rdl): 0.0026836204, 2.713e-07
+
+running batch: 2150
+rank avg (pred, true): 0.395, 0.438
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.089, 0.044
+losses (mrrl, rdl): 0.0004094424, 3.92e-08
+
+Epoch over!
+epoch time: 45.374
+loss values:
+	mrrl: 0.0865521278
+	rdl: 1.49288e-05
+
+Epoch 9 -- 
+running batch: 0
+rank avg (pred, true): 0.397, 0.580
+rank std (pred, true): 0.112, 0.176
+mrr vals (pred, true): 0.088, 0.020
+losses (mrrl, rdl): 0.046861276, 2.86929e-05
+
+running batch: 50
+rank avg (pred, true): 0.388, 0.176
+rank std (pred, true): 0.114, 0.206
+mrr vals (pred, true): 0.091, 0.216
+losses (mrrl, rdl): 0.0031645144, 8.082e-07
+
+running batch: 100
+rank avg (pred, true): 0.392, 0.437
+rank std (pred, true): 0.111, 0.259
+mrr vals (pred, true): 0.090, 0.049
+losses (mrrl, rdl): 0.0003278235, 4.11e-08
+
+running batch: 150
+rank avg (pred, true): 0.397, 0.465
+rank std (pred, true): 0.112, 0.259
+mrr vals (pred, true): 0.089, 0.040
+losses (mrrl, rdl): 0.000486893, 8.61e-08
+
+running batch: 200
+rank avg (pred, true): 0.390, 0.431
+rank std (pred, true): 0.110, 0.256
+mrr vals (pred, true): 0.090, 0.047
+losses (mrrl, rdl): 0.0003573527, 3.66e-08
+
+running batch: 250
+rank avg (pred, true): 0.385, 0.447
+rank std (pred, true): 0.109, 0.262
+mrr vals (pred, true): 0.090, 0.044
+losses (mrrl, rdl): 0.0004295768, 7.5e-08
+
+running batch: 300
+rank avg (pred, true): 0.376, 0.115
+rank std (pred, true): 0.107, 0.163
+mrr vals (pred, true): 0.090, 0.322
+losses (mrrl, rdl): 0.0107444013, 1.1805e-06
+
+running batch: 350
+rank avg (pred, true): 0.375, 0.458
+rank std (pred, true): 0.107, 0.266
+mrr vals (pred, true): 0.090, 0.041
+losses (mrrl, rdl): 0.0004845341, 1.26e-07
+
+running batch: 400
+rank avg (pred, true): 0.375, 0.141
+rank std (pred, true): 0.106, 0.180
+mrr vals (pred, true): 0.090, 0.267
+losses (mrrl, rdl): 0.0062496238, 9.724e-07
+
+running batch: 450
+rank avg (pred, true): 0.387, 0.449
+rank std (pred, true): 0.109, 0.257
+mrr vals (pred, true): 0.090, 0.048
+losses (mrrl, rdl): 0.000356905, 7.37e-08
+
+running batch: 500
+rank avg (pred, true): 0.390, 0.181
+rank std (pred, true): 0.110, 0.208
+mrr vals (pred, true): 0.090, 0.222
+losses (mrrl, rdl): 0.0035157888, 7.813e-07
+
+running batch: 550
+rank avg (pred, true): 0.402, 0.450
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.089, 0.053
+losses (mrrl, rdl): 0.0002568683, 4.77e-08
+
+running batch: 600
+rank avg (pred, true): 0.391, 0.127
+rank std (pred, true): 0.110, 0.170
+mrr vals (pred, true): 0.090, 0.287
+losses (mrrl, rdl): 0.007778191, 1.2605e-06
+
+running batch: 650
+rank avg (pred, true): 0.395, 0.528
+rank std (pred, true): 0.111, 0.210
+mrr vals (pred, true): 0.090, 0.023
+losses (mrrl, rdl): 0.0008816964, 3.086e-07
+
+running batch: 700
+rank avg (pred, true): 0.405, 0.453
+rank std (pred, true): 0.114, 0.257
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004305073, 4.69e-08
+
+running batch: 750
+rank avg (pred, true): 0.412, 0.472
+rank std (pred, true): 0.116, 0.248
+mrr vals (pred, true): 0.089, 0.036
+losses (mrrl, rdl): 0.0005600529, 6.78e-08
+
+running batch: 800
+rank avg (pred, true): 0.419, 0.463
+rank std (pred, true): 0.118, 0.247
+mrr vals (pred, true): 0.089, 0.039
+losses (mrrl, rdl): 0.0004839913, 3.96e-08
+
+running batch: 850
+rank avg (pred, true): 0.415, 0.163
+rank std (pred, true): 0.117, 0.194
+mrr vals (pred, true): 0.089, 0.219
+losses (mrrl, rdl): 0.0034124875, 1.1357e-06
+
+running batch: 900
+rank avg (pred, true): 0.414, 0.426
+rank std (pred, true): 0.117, 0.256
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004222996, 9.8e-09
+
+running batch: 950
+rank avg (pred, true): 0.417, 0.593
+rank std (pred, true): 0.118, 0.179
+mrr vals (pred, true): 0.089, 0.022
+losses (mrrl, rdl): 0.0008880998, 5.313e-07
+
+running batch: 1000
+rank avg (pred, true): 0.410, 0.445
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.089, 0.047
+losses (mrrl, rdl): 0.0003506137, 2.95e-08
+
+running batch: 1050
+rank avg (pred, true): 0.398, 0.442
+rank std (pred, true): 0.113, 0.265
+mrr vals (pred, true): 0.089, 0.040
+losses (mrrl, rdl): 0.0004958348, 4.22e-08
+
+running batch: 1100
+rank avg (pred, true): 0.400, 0.444
+rank std (pred, true): 0.113, 0.260
+mrr vals (pred, true): 0.089, 0.040
+losses (mrrl, rdl): 0.0004916718, 4.13e-08
+
+running batch: 1150
+rank avg (pred, true): 0.410, 0.452
+rank std (pred, true): 0.116, 0.264
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004263458, 3.87e-08
+
+running batch: 1200
+rank avg (pred, true): 0.409, 0.465
+rank std (pred, true): 0.115, 0.258
+mrr vals (pred, true): 0.089, 0.039
+losses (mrrl, rdl): 0.0005031104, 6.21e-08
+
+running batch: 1250
+rank avg (pred, true): 0.408, 0.178
+rank std (pred, true): 0.115, 0.210
+mrr vals (pred, true): 0.089, 0.214
+losses (mrrl, rdl): 0.003120031, 9.36e-07
+
+running batch: 1300
+rank avg (pred, true): 0.395, 0.590
+rank std (pred, true): 0.112, 0.180
+mrr vals (pred, true): 0.090, 0.019
+losses (mrrl, rdl): 0.0010029349, 6.533e-07
+
+running batch: 1350
+rank avg (pred, true): 0.401, 0.446
+rank std (pred, true): 0.113, 0.255
+mrr vals (pred, true): 0.089, 0.039
+losses (mrrl, rdl): 0.0005047271, 4.14e-08
+
+running batch: 1400
+rank avg (pred, true): 0.401, 0.439
+rank std (pred, true): 0.113, 0.266
+mrr vals (pred, true): 0.089, 0.044
+losses (mrrl, rdl): 0.0004142582, 3.36e-08
+
+running batch: 1450
+rank avg (pred, true): 0.402, 0.522
+rank std (pred, true): 0.114, 0.212
+mrr vals (pred, true): 0.089, 0.024
+losses (mrrl, rdl): 0.0008411347, 2.456e-07
+
+running batch: 1500
+rank avg (pred, true): 0.400, 0.466
+rank std (pred, true): 0.113, 0.251
+mrr vals (pred, true): 0.089, 0.035
+losses (mrrl, rdl): 0.0005820025, 8.12e-08
+
+running batch: 1550
+rank avg (pred, true): 0.408, 0.115
+rank std (pred, true): 0.115, 0.167
+mrr vals (pred, true): 0.089, 0.319
+losses (mrrl, rdl): 0.0105908513, 1.4714e-06
+
+running batch: 1600
+rank avg (pred, true): 0.409, 0.438
+rank std (pred, true): 0.115, 0.264
+mrr vals (pred, true): 0.089, 0.049
+losses (mrrl, rdl): 0.0003156361, 2.2e-08
+
+running batch: 1650
+rank avg (pred, true): 0.396, 0.430
+rank std (pred, true): 0.112, 0.262
+mrr vals (pred, true): 0.089, 0.048
+losses (mrrl, rdl): 0.0003521148, 2.72e-08
+
+running batch: 1700
+rank avg (pred, true): 0.397, 0.446
+rank std (pred, true): 0.112, 0.276
+mrr vals (pred, true): 0.089, 0.056
+losses (mrrl, rdl): 0.000229462, 5.2e-08
+
+running batch: 1750
+rank avg (pred, true): 0.404, 0.439
+rank std (pred, true): 0.114, 0.260
+mrr vals (pred, true): 0.089, 0.047
+losses (mrrl, rdl): 0.0003543812, 2.79e-08
+
+running batch: 1800
+rank avg (pred, true): 0.404, 0.439
+rank std (pred, true): 0.114, 0.261
+mrr vals (pred, true): 0.089, 0.052
+losses (mrrl, rdl): 0.0002823111, 2.85e-08
+
+running batch: 1850
+rank avg (pred, true): 0.410, 0.437
+rank std (pred, true): 0.116, 0.270
+mrr vals (pred, true): 0.089, 0.048
+losses (mrrl, rdl): 0.0003274638, 2.18e-08
+
+running batch: 1900
+rank avg (pred, true): 0.404, 0.503
+rank std (pred, true): 0.114, 0.209
+mrr vals (pred, true): 0.089, 0.028
+losses (mrrl, rdl): 0.0007498389, 1.693e-07
+
+running batch: 1950
+rank avg (pred, true): 0.392, 0.510
+rank std (pred, true): 0.111, 0.209
+mrr vals (pred, true): 0.090, 0.025
+losses (mrrl, rdl): 0.0008238279, 2.384e-07
+
+running batch: 2000
+rank avg (pred, true): 0.392, 0.489
+rank std (pred, true): 0.111, 0.205
+mrr vals (pred, true): 0.090, 0.027
+losses (mrrl, rdl): 0.0007939983, 1.622e-07
+
+running batch: 2050
+rank avg (pred, true): 0.393, 0.157
+rank std (pred, true): 0.111, 0.192
+mrr vals (pred, true): 0.090, 0.249
+losses (mrrl, rdl): 0.0050975215, 9.862e-07
+
+running batch: 2100
+rank avg (pred, true): 0.392, 0.468
+rank std (pred, true): 0.111, 0.259
+mrr vals (pred, true): 0.090, 0.037
+losses (mrrl, rdl): 0.0005589637, 1.053e-07
+
+running batch: 2150
+rank avg (pred, true): 0.387, 0.440
+rank std (pred, true): 0.109, 0.265
+mrr vals (pred, true): 0.090, 0.041
+losses (mrrl, rdl): 0.0004742424, 5.77e-08
+
+Epoch over!
+epoch time: 42.505
+loss values:
+	mrrl: 0.0864262614
+	rdl: 1.49646e-05
+
+Epoch 10 -- 
+running batch: 0
+rank avg (pred, true): 0.385, 0.103
+rank std (pred, true): 0.109, 0.172
+mrr vals (pred, true): 0.090, 0.377
+losses (mrrl, rdl): 0.8229289055, 7.14545e-05
+
+running batch: 50
+rank avg (pred, true): 0.379, 0.452
+rank std (pred, true): 0.107, 0.269
+mrr vals (pred, true): 0.090, 0.045
+losses (mrrl, rdl): 0.0004085525, 1.026e-07
+
+running batch: 100
+rank avg (pred, true): 0.365, 0.179
+rank std (pred, true): 0.105, 0.213
+mrr vals (pred, true): 0.091, 0.221
+losses (mrrl, rdl): 0.0033567874, 6.306e-07
+
+running batch: 150
+rank avg (pred, true): 0.362, 0.438
+rank std (pred, true): 0.103, 0.268
+mrr vals (pred, true): 0.091, 0.054
+losses (mrrl, rdl): 0.0002797863, 1.089e-07
+
+running batch: 200
+rank avg (pred, true): 0.373, 0.432
+rank std (pred, true): 0.105, 0.263
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0003095889, 6.87e-08
+
+running batch: 250
+rank avg (pred, true): 0.371, 0.500
+rank std (pred, true): 0.105, 0.200
+mrr vals (pred, true): 0.091, 0.027
+losses (mrrl, rdl): 0.0008003494, 2.879e-07
+
+running batch: 300
+rank avg (pred, true): 0.368, 0.465
+rank std (pred, true): 0.104, 0.262
+mrr vals (pred, true): 0.091, 0.039
+losses (mrrl, rdl): 0.000525677, 1.702e-07
+
+running batch: 350
+rank avg (pred, true): 0.381, 0.442
+rank std (pred, true): 0.108, 0.258
+mrr vals (pred, true): 0.090, 0.044
+losses (mrrl, rdl): 0.0004233294, 7.18e-08
+
+running batch: 400
+rank avg (pred, true): 0.378, 0.149
+rank std (pred, true): 0.107, 0.200
+mrr vals (pred, true): 0.090, 0.335
+losses (mrrl, rdl): 0.0119673535, 9.43e-07
+
+running batch: 450
+rank avg (pred, true): 0.384, 0.456
+rank std (pred, true): 0.108, 0.255
+mrr vals (pred, true): 0.090, 0.043
+losses (mrrl, rdl): 0.0004418932, 9.66e-08
+
+running batch: 500
+rank avg (pred, true): 0.382, 0.448
+rank std (pred, true): 0.108, 0.260
+mrr vals (pred, true): 0.090, 0.045
+losses (mrrl, rdl): 0.0004005434, 8.13e-08
+
+running batch: 550
+rank avg (pred, true): 0.387, 0.135
+rank std (pred, true): 0.109, 0.185
+mrr vals (pred, true): 0.090, 0.302
+losses (mrrl, rdl): 0.0090029957, 1.136e-06
+
+running batch: 600
+rank avg (pred, true): 0.386, 0.442
+rank std (pred, true): 0.109, 0.265
+mrr vals (pred, true): 0.090, 0.040
+losses (mrrl, rdl): 0.0005043331, 6.42e-08
+
+running batch: 650
+rank avg (pred, true): 0.383, 0.484
+rank std (pred, true): 0.108, 0.225
+mrr vals (pred, true): 0.090, 0.029
+losses (mrrl, rdl): 0.0007349916, 1.797e-07
+
+running batch: 700
+rank avg (pred, true): 0.387, 0.416
+rank std (pred, true): 0.109, 0.259
+mrr vals (pred, true): 0.090, 0.048
+losses (mrrl, rdl): 0.0003557277, 2.2e-08
+
+running batch: 750
+rank avg (pred, true): 0.382, 0.460
+rank std (pred, true): 0.108, 0.244
+mrr vals (pred, true): 0.090, 0.040
+losses (mrrl, rdl): 0.0004960764, 1.099e-07
+
+running batch: 800
+rank avg (pred, true): 0.378, 0.431
+rank std (pred, true): 0.107, 0.265
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.00031773, 5.62e-08
+
+running batch: 850
+rank avg (pred, true): 0.362, 0.444
+rank std (pred, true): 0.102, 0.266
+mrr vals (pred, true): 0.091, 0.043
+losses (mrrl, rdl): 0.000467032, 1.273e-07
+
+running batch: 900
+rank avg (pred, true): 0.362, 0.443
+rank std (pred, true): 0.102, 0.267
+mrr vals (pred, true): 0.091, 0.054
+losses (mrrl, rdl): 0.0002679169, 1.245e-07
+
+running batch: 950
+rank avg (pred, true): 0.360, 0.151
+rank std (pred, true): 0.102, 0.186
+mrr vals (pred, true): 0.091, 0.246
+losses (mrrl, rdl): 0.0048197443, 7.536e-07
+
+running batch: 1000
+rank avg (pred, true): 0.362, 0.430
+rank std (pred, true): 0.102, 0.255
+mrr vals (pred, true): 0.091, 0.049
+losses (mrrl, rdl): 0.0003541028, 8.58e-08
+
+running batch: 1050
+rank avg (pred, true): 0.380, 0.481
+rank std (pred, true): 0.107, 0.293
+mrr vals (pred, true): 0.090, 0.031
+losses (mrrl, rdl): 0.0006983882, 1.91e-07
+
+running batch: 1100
+rank avg (pred, true): 0.387, 0.521
+rank std (pred, true): 0.109, 0.212
+mrr vals (pred, true): 0.090, 0.026
+losses (mrrl, rdl): 0.0008103609, 3.136e-07
+
+running batch: 1150
+rank avg (pred, true): 0.381, 0.451
+rank std (pred, true): 0.107, 0.256
+mrr vals (pred, true): 0.090, 0.040
+losses (mrrl, rdl): 0.0005123161, 9e-08
+
+running batch: 1200
+rank avg (pred, true): 0.388, 0.488
+rank std (pred, true): 0.109, 0.198
+mrr vals (pred, true): 0.090, 0.024
+losses (mrrl, rdl): 0.0008653358, 1.72e-07
+
+running batch: 1250
+rank avg (pred, true): 0.385, 0.418
+rank std (pred, true): 0.109, 0.261
+mrr vals (pred, true): 0.090, 0.050
+losses (mrrl, rdl): 0.0003219352, 2.69e-08
+
+running batch: 1300
+rank avg (pred, true): 0.385, 0.519
+rank std (pred, true): 0.109, 0.204
+mrr vals (pred, true): 0.090, 0.023
+losses (mrrl, rdl): 0.0009032643, 3.101e-07
+
+running batch: 1350
+rank avg (pred, true): 0.385, 0.451
+rank std (pred, true): 0.109, 0.246
+mrr vals (pred, true): 0.090, 0.037
+losses (mrrl, rdl): 0.0005544742, 8.15e-08
+
+running batch: 1400
+rank avg (pred, true): 0.385, 0.451
+rank std (pred, true): 0.108, 0.269
+mrr vals (pred, true): 0.090, 0.045
+losses (mrrl, rdl): 0.0003955591, 8.56e-08
+
+running batch: 1450
+rank avg (pred, true): 0.391, 0.495
+rank std (pred, true): 0.110, 0.206
+mrr vals (pred, true): 0.090, 0.031
+losses (mrrl, rdl): 0.0006786755, 1.824e-07
+
+running batch: 1500
+rank avg (pred, true): 0.391, 0.492
+rank std (pred, true): 0.110, 0.206
+mrr vals (pred, true): 0.090, 0.025
+losses (mrrl, rdl): 0.0008489419, 1.728e-07
+
+running batch: 1550
+rank avg (pred, true): 0.404, 0.528
+rank std (pred, true): 0.114, 0.209
+mrr vals (pred, true): 0.089, 0.026
+losses (mrrl, rdl): 0.0008048794, 2.638e-07
+
+running batch: 1600
+rank avg (pred, true): 0.413, 0.435
+rank std (pred, true): 0.116, 0.263
+mrr vals (pred, true): 0.088, 0.050
+losses (mrrl, rdl): 0.00030201, 1.64e-08
+
+running batch: 1650
+rank avg (pred, true): 0.406, 0.445
+rank std (pred, true): 0.115, 0.262
+mrr vals (pred, true): 0.089, 0.044
+losses (mrrl, rdl): 0.0004004404, 3.43e-08
+
+running batch: 1700
+rank avg (pred, true): 0.404, 0.166
+rank std (pred, true): 0.114, 0.197
+mrr vals (pred, true): 0.089, 0.226
+losses (mrrl, rdl): 0.0037419498, 1.012e-06
+
+running batch: 1750
+rank avg (pred, true): 0.409, 0.446
+rank std (pred, true): 0.115, 0.255
+mrr vals (pred, true): 0.089, 0.041
+losses (mrrl, rdl): 0.0004520699, 3.01e-08
+
+running batch: 1800
+rank avg (pred, true): 0.410, 0.471
+rank std (pred, true): 0.116, 0.254
+mrr vals (pred, true): 0.089, 0.041
+losses (mrrl, rdl): 0.0004544515, 7.08e-08
+
+running batch: 1850
+rank avg (pred, true): 0.411, 0.145
+rank std (pred, true): 0.116, 0.186
+mrr vals (pred, true): 0.089, 0.300
+losses (mrrl, rdl): 0.0088822944, 1.2317e-06
+
+running batch: 1900
+rank avg (pred, true): 0.402, 0.463
+rank std (pred, true): 0.113, 0.258
+mrr vals (pred, true): 0.089, 0.043
+losses (mrrl, rdl): 0.0004371427, 7.08e-08
+
+running batch: 1950
+rank avg (pred, true): 0.388, 0.148
+rank std (pred, true): 0.110, 0.188
+mrr vals (pred, true): 0.090, 0.317
+losses (mrrl, rdl): 0.0102919517, 9.879e-07
+
+running batch: 2000
+rank avg (pred, true): 0.395, 0.453
+rank std (pred, true): 0.111, 0.270
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0002991798, 6.72e-08
+
+running batch: 2050
+rank avg (pred, true): 0.379, 0.454
+rank std (pred, true): 0.107, 0.249
+mrr vals (pred, true): 0.090, 0.047
+losses (mrrl, rdl): 0.0003665407, 1.054e-07
+
+running batch: 2100
+rank avg (pred, true): 0.381, 0.588
+rank std (pred, true): 0.107, 0.177
+mrr vals (pred, true): 0.090, 0.020
+losses (mrrl, rdl): 0.000979758, 7.413e-07
+
+running batch: 2150
+rank avg (pred, true): 0.388, 0.443
+rank std (pred, true): 0.109, 0.265
+mrr vals (pred, true): 0.090, 0.051
+losses (mrrl, rdl): 0.0002997342, 6.19e-08
+
+Epoch over!
+epoch time: 44.073
+loss values:
+	mrrl: 0.0864037819
+	rdl: 1.49218e-05
+
+Saving checkpoint at [1] epoch 10
+Done training phase:  1
+Testing model with dataset UMLS
+Running eval on the test set
+running batch: 0
+rank avg (pred, true): 0.391, 0.438
+rank std (pred, true): 0.110, 0.265
+mrr vals (pred, true): 0.090, 0.051
+
+running batch: 50
+rank avg (pred, true): 0.391, 0.435
+rank std (pred, true): 0.110, 0.262
+mrr vals (pred, true): 0.090, 0.051
+
+running batch: 100
+rank avg (pred, true): 0.391, 0.434
+rank std (pred, true): 0.110, 0.269
+mrr vals (pred, true): 0.090, 0.053
+
+running batch: 150
+rank avg (pred, true): 0.391, 0.452
+rank std (pred, true): 0.110, 0.264
+mrr vals (pred, true): 0.090, 0.045
+
+running batch: 200
+rank avg (pred, true): 0.391, 0.173
+rank std (pred, true): 0.110, 0.190
+mrr vals (pred, true): 0.090, 0.205
+
+Testing data for dataloader(s) UMLS
+==========================================
+
+Predicted MRRs
+------------------------------------------
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+0.0897255539894104
+
+True MRRs
+------------------------------------------
+0.05112357810139656
+0.05160435661673546
+0.04824736341834068
+0.052748870104551315
+0.539236307144165
+0.04894646257162094
+0.23866458237171173
+0.04958348721265793
+0.04668403044342995
+0.04615266993641853
+0.21875107288360596
+0.04638537019491196
+0.044310007244348526
+0.2147403508424759
+0.027198316529393196
+0.23182371258735657
+0.04781048372387886
+0.18626807630062103
+0.05089694261550903
+0.04898199066519737
+0.0469583235681057
+0.041688889265060425
+0.031248006969690323
+0.04559871926903725
+0.043621256947517395
+0.2978752851486206
+0.03404824808239937
+0.046759020537137985
+0.1960158795118332
+0.04566936194896698
+0.020359808579087257
+0.05299215763807297
+0.05125080794095993
+0.047600939869880676
+0.04585835337638855
+0.04756670445203781
+0.05530436709523201
+0.27378302812576294
+0.049380313605070114
+0.05655476450920105
+0.1706225574016571
+0.024136144667863846
+0.05338125675916672
+0.04929475858807564
+0.03647397831082344
+0.04777343571186066
+0.05004216730594635
+0.04352527856826782
+0.04712012782692909
+0.05091952160000801
+0.05108485743403435
+0.04803866893053055
+0.04758274555206299
+0.28352612257003784
+0.050842635333538055
+0.020502964034676552
+0.05245602875947952
+0.04986777529120445
+0.04258408024907112
+0.31747525930404663
+0.05526929721236229
+0.049512412399053574
+0.25288742780685425
+0.043108899146318436
+0.050855085253715515
+0.23015402257442474
+0.05608423426747322
+0.047402698546648026
+0.040037985891103745
+0.22546343505382538
+0.04819728434085846
+0.05079720541834831
+0.047437556087970734
+0.038152292370796204
+0.26948943734169006
+0.025861890986561775
+0.28460487723350525
+0.052688054740428925
+0.041785866022109985
+0.175707146525383
+0.037982288748025894
+0.02494025230407715
+0.24074165523052216
+0.023695843294262886
+0.05049418658018112
+0.04366683214902878
+0.04063786193728447
+0.02522987127304077
+0.05022323876619339
+0.041337914764881134
+0.02356334961950779
+0.047548796981573105
+0.0485994853079319
+0.04900265112519264
+0.03919484466314316
+0.04306234046816826
+0.042791012674570084
+0.04260354861617088
+0.23730584979057312
+0.31214216351509094
+0.053389497101306915
+0.043384749442338943
+0.05207915976643562
+0.04569697007536888
+0.02530823089182377
+0.047488581389188766
+0.04518784582614899
+0.0514543317258358
+0.046802714467048645
+0.04163471236824989
+0.04593709856271744
+0.3047301769256592
+0.04656717926263809
+0.03810818865895271
+0.2124388962984085
+0.048163529485464096
+0.04369482770562172
+0.034728676080703735
+0.04865918308496475
+0.017732780426740646
+0.03440342843532562
+0.04268686845898628
+0.053450532257556915
+0.04544566944241524
+0.044846948236227036
+0.5725268721580505
+0.04996850714087486
+0.21499717235565186
+0.04991031438112259
+0.04855949804186821
+0.04517396539449692
+0.200540691614151
+0.05045013502240181
+0.04866746813058853
+0.20332804322242737
+0.02275141514837742
+0.25759002566337585
+0.04595019668340683
+0.20324397087097168
+0.05458682030439377
+0.04479734227061272
+0.05462648719549179
+0.03793852776288986
+0.03482246771454811
+0.05035090073943138
+0.04666544869542122
+0.2714383602142334
+0.03558599203824997
+0.049245066940784454
+0.18969745934009552
+0.04520825669169426
+0.019401853904128075
+0.04510866478085518
+0.045849334448575974
+0.04860858991742134
+0.04751383513212204
+0.051978111267089844
+0.05482087284326553
+0.26320335268974304
+0.05365379899740219
+0.04703718051314354
+0.1726207286119461
+0.024920422583818436
+0.05360150337219238
+0.05132576823234558
+0.045151494443416595
+0.04823291301727295
+0.04916027933359146
+0.0435636006295681
+0.044625118374824524
+0.0460253544151783
+0.05064583942294121
+0.04864365980029106
+0.04513620212674141
+0.27898967266082764
+0.05647505819797516
+0.01901227794587612
+0.06428585201501846
+0.05006696283817291
+0.037529394030570984
+0.3191111087799072
+0.0450747013092041
+0.05230964347720146
+0.23087501525878906
+0.044127438217401505
+0.042574185878038406
+0.22827227413654327
+0.04229127615690231
+0.046593476086854935
+0.05304625630378723
+0.2082914561033249
+0.05007224902510643
+0.04905669763684273
+0.04761212691664696
+0.04314644634723663
+0.2618378698825836
+0.02500537782907486
+0.30600470304489136
+0.05728677660226822
+0.04637762904167175
+0.20541779696941376
+0.04240315407514572
+0.024938728660345078
+0.23217003047466278
+0.026926662772893906
+0.04910552129149437
+0.04035545140504837
+0.04846471920609474
+0.024972569197416306
+0.046209923923015594
+0.046137530356645584
+0.022325072437524796
+0.04706022888422012
+0.05808279663324356
+0.05100638046860695
+0.05355646461248398
+0.04887068271636963
+0.053415730595588684
+0.04023614898324013
+0.23401425778865814
+0.31931763887405396
+0.051085565239191055
+0.045948851853609085
+0.04599134251475334
+0.04734626039862633
+0.02659224160015583
+0.04714187607169151
+0.045777104794979095
+0.04007083922624588
+0.04505467042326927
+0.037044428288936615
+0.040408555418252945
+0.3090737760066986
+0.044572215527296066
+0.03740327060222626
+0.1807640939950943
+0.05968961864709854
+0.047808822244405746
+0.03549603000283241
+0.046745847910642624
+0.02012307569384575
+0.032235290855169296
+
+r_mrr = tensor([[nan, nan],
+        [nan, 1.]])
+r2_mrr = -0.003325343132019043
+test_loss: 19.659531883895397
+	test time: 2.107
+Done Testing dataset UMLS
+total time taken: 668.1021239757538
+training time taken: 662.6754992008209

@@ -65,7 +65,7 @@ if __name__ == '__main__':
         twig_data=twig_data,
         mrr_loss_coeffs = [0, 10],
         rank_dist_loss_coeffs = [1, 1],
-        epochs=[5, 10],
+        epochs=[2, 3],
         n_bins=30,
         optimizer=optimizer,
         model_name_prefix=model_name_prefix,
