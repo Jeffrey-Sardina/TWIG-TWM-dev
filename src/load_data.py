@@ -1,5 +1,6 @@
 # internal TWIG imports
 from normaliser import Normaliser
+from trainer import _d_hist
 
 # external imports
 from utils import gather_data
@@ -22,8 +23,14 @@ class TWIG_Data:
             test_ids,
             valid_ids,
             normaliser,
-            run_ids
+            run_ids,
+            n_bins
         ):
+        # constants
+        self.HIST_MIN = 0
+        self.HIST_MAX = 1
+        self.N_BINS=n_bins
+
         self.structs = structs
         self.max_ranks=max_ranks
         self.hyps = hyps
@@ -39,6 +46,7 @@ class TWIG_Data:
         self.dataset_names = list(run_ids.keys())
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
+        self.rank_lists, self.mrrs, self.rank_dists = self.precalc_train_data()
 
     def shuffle_epoch(self):
         epoch_data = []
@@ -51,7 +59,41 @@ class TWIG_Data:
         # return shuffled values (TWIG_Data instance vars are not changed)
         return epoch_data
     
+    def precalc_train_data(self):
+        rank_lists = {}
+        mrrs = {}
+        rank_dists = {}
+        for dataset_name in self.dataset_names:
+            rank_lists[dataset_name] = {}
+            mrrs[dataset_name] = {}
+            rank_dists[dataset_name] = {}
+            for run_id in self.head_ranks[dataset_name]:
+                rank_lists[dataset_name][run_id] = {}
+                mrrs[dataset_name][run_id] = {}
+                rank_dists[dataset_name][run_id] = {}
+                for mode in self.head_ranks[dataset_name][run_id]:
+                    rank_lists[dataset_name][run_id][mode] = {}
+                    mrrs[dataset_name][run_id][mode] = {}
+                    rank_dists[dataset_name][run_id][mode] = {}
+                    for exp_id in self.head_ranks[dataset_name][run_id][mode]:
+                        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
+                        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
+                        rank_list = torch.concat(
+                            [head_rank, tail_rank],
+                            dim=0
+                        )
+                        rank_lists[dataset_name][run_id][mode][exp_id] = rank_list
+                        mrrs[dataset_name][run_id][mode][exp_id] = torch.mean(1 / (rank_list * self.max_ranks[dataset_name]))
+                        rank_dists[dataset_name][run_id][mode][exp_id] = _d_hist(
+                            X=rank_list,
+                            n_bins=self.N_BINS,
+                            min_val=self.HIST_MIN,
+                            max_val=self.HIST_MAX
+                        )
+        return rank_lists, mrrs, rank_dists
+    
     def get_batch(self, dataset_name, run_id, exp_id, mode):
+        # get struct data
         struct_tensor = self.structs[dataset_name]
         struct_tensor_heads = torch.concat(
             [self.head_flags[dataset_name], struct_tensor],
@@ -61,10 +103,26 @@ class TWIG_Data:
             [self.tail_flags[dataset_name], struct_tensor],
             dim=1
         )
+        struct_tensor = torch.concat(
+            [struct_tensor_heads, struct_tensor_tails],
+            dim=0
+        )
+
+        # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
+        
+        # get rank data
         head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
         tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
-        return struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank
+        rank_list_true = torch.concat(
+            [head_rank, tail_rank],
+            dim=0
+        )
+        
+        # get precalc'd rank data
+        # mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
+        # rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        return struct_tensor, hyps_tensor, rank_list_true
 
 def get_canonical_exp_dir(dataset_name, run_id):
     exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"
@@ -348,7 +406,8 @@ def _do_load(
     datasets_to_load,
     test_ratio,
     valid_ratio,
-    normalisation
+    normalisation,
+    n_bins
 ):
     '''
     do_load() loads all data.
@@ -400,6 +459,7 @@ def _do_load(
         test_ids=test_ids,
         valid_ids=valid_ids,
         normaliser=normaliser,
-        run_ids=datasets_to_load
+        run_ids=datasets_to_load,
+        n_bins=n_bins
     )
     return twig_data

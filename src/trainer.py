@@ -73,48 +73,37 @@ def _do_batch(
         mrr_loss_coeff,
         rank_dist_loss,
         rank_dist_loss_coeff,
+        hist_min_val,
+        hist_max_val,
         n_bins,
-        struct_tensor_heads,
-        struct_tensor_tails,
+        struct_tensor,
         max_rank_possible,
         hyps_tensor,
-        head_rank,
-        tail_rank,
+        rank_list_true,
         do_print
     ):  
+    '''
+    Optimisations:
+        precalc rank_dist_true and mrr_true
+        put rank list in [s..., o...] order in the data loader
+        should remove a third of current batch time on average
+    '''
     # get ground truth data
-    rank_list_true = torch.concat(
-        [head_rank, tail_rank],
-        dim=0
-    )
-    min_rank_observed = torch.min(rank_list_true)
-    max_rank_observed = torch.max(rank_list_true)
     rank_dist_true = _d_hist(
         X=rank_list_true,
         n_bins=n_bins,
-        min_val=min_rank_observed,
-        max_val=max_rank_observed
+        min_val=hist_min_val,
+        max_val=hist_max_val
     )
     mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
     # get predicted data
-    # model(struct_tensor_heads, hyps_tensor, hps_only=True) # build hps cache
-    # ranks_head_pred = model(struct_tensor_heads, hyps_tensor, hps_only=False) # use hps cache (faster)
-    # ranks_tail_pred = model(struct_tensor_tails, hyps_tensor, hps_only=False) # use hps cache (faster)
-    # rank_list_pred = torch.concat(
-    #     [ranks_head_pred, ranks_tail_pred],
-    #     dim=0
-    # ).squeeze()
-    struct_tensor = torch.concat(
-        [struct_tensor_heads, struct_tensor_tails],
-        dim=0
-    )
     rank_list_pred = model(struct_tensor, hyps_tensor, hps_only=False)
     rank_dist_pred = _d_hist(
         X=rank_list_pred,
         n_bins=n_bins,
-        min_val=min_rank_observed,
-        max_val=max_rank_observed
+        min_val=hist_min_val,
+        max_val=hist_max_val
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
 
@@ -149,7 +138,6 @@ def _train_epoch(
         mrr_loss_coeff,
         rank_dist_loss,
         rank_dist_loss_coeff,
-        n_bins,
         optimizer,
         do_print
     ):
@@ -166,7 +154,7 @@ def _train_epoch(
             print(f'running batch: {batch_num}')
             
         # load batch data
-        struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
+        struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id,
@@ -180,13 +168,13 @@ def _train_epoch(
             rank_dist_loss=rank_dist_loss,
             mrr_loss_coeff=mrr_loss_coeff,
             rank_dist_loss_coeff=rank_dist_loss_coeff,
-            n_bins=n_bins,
-            struct_tensor_heads=struct_tensor_heads,
-            struct_tensor_tails=struct_tensor_tails,
+            hist_min_val=twig_data.HIST_MIN,
+            hist_max_val=twig_data.HIST_MAX,
+            n_bins=twig_data.N_BINS,
+            struct_tensor=struct_tensor,
             max_rank_possible=twig_data.max_ranks[dataset_name],
             hyps_tensor=hyps_tensor,
-            head_rank=head_rank,
-            tail_rank=tail_rank,
+            rank_list_true=rank_list_true,
             do_print=do_print and batch_num % print_batch_on == 0
         )
 
@@ -232,7 +220,6 @@ def _eval(
         mrr_loss_coeff,
         rank_dist_loss,
         rank_dist_loss_coeff,
-        n_bins,
         mode,
         do_print
 ):
@@ -250,7 +237,7 @@ def _eval(
                 if do_print and batch_num % print_batch_on == 0:
                     print(f'running batch: {batch_num}')
 
-                struct_tensor_heads, struct_tensor_tails, hyps_tensor, head_rank, tail_rank = twig_data.get_batch(
+                struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
                     exp_id=exp_id,
@@ -262,13 +249,13 @@ def _eval(
                     rank_dist_loss=rank_dist_loss,
                     mrr_loss_coeff=mrr_loss_coeff,
                     rank_dist_loss_coeff=rank_dist_loss_coeff,
-                    n_bins=n_bins,
-                    struct_tensor_heads=struct_tensor_heads,
-                    struct_tensor_tails=struct_tensor_tails,
+                    hist_min_val=twig_data.HIST_MIN,
+                    hist_max_val=twig_data.HIST_MAX,
+                    n_bins=twig_data.N_BINS,
+                    struct_tensor=struct_tensor,
                     max_rank_possible=twig_data.max_ranks[dataset_name],
                     hyps_tensor=hyps_tensor,
-                    head_rank=head_rank,
-                    tail_rank=tail_rank,
+                    rank_list_true=rank_list_true,
                     do_print=do_print and batch_num % print_batch_on == 0
                 )
                 if do_print and batch_num % print_batch_on == 0:
@@ -309,7 +296,6 @@ def _train_and_eval(
         mrr_loss_coeffs,
         rank_dist_loss_coeffs,
         epochs,
-        n_bins,
         optimizer,
         model_name_prefix,
         checkpoint_every_n,
@@ -338,7 +324,6 @@ def _train_and_eval(
                 mrr_loss_coeff=mrr_loss_coeff,
                 rank_dist_loss=rank_dist_loss,
                 rank_dist_loss_coeff=rank_dist_loss_coeff,
-                n_bins=n_bins,
                 optimizer=optimizer,
                 do_print=do_print
             )
@@ -370,7 +355,6 @@ def _train_and_eval(
             mrr_loss_coeff,
             rank_dist_loss,
             rank_dist_loss_coeff,
-            n_bins,
             mode='test',
             do_print=do_print
         )

@@ -39,7 +39,8 @@ if __name__ == '__main__':
         datasets_to_load=datasets_to_load,
         test_ratio=0.1,
         valid_ratio=0.01,
-        normalisation='zscore'
+        normalisation='zscore',
+        n_bins=30
     )
 
     # load model
@@ -66,7 +67,6 @@ if __name__ == '__main__':
         mrr_loss_coeffs = [0, 10],
         rank_dist_loss_coeffs = [1, 1],
         epochs=[2, 3],
-        n_bins=30,
         optimizer=optimizer,
         model_name_prefix=model_name_prefix,
         checkpoint_every_n=5,
