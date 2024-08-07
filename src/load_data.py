@@ -171,10 +171,10 @@ class TWIG_Data:
         rank_list_true = self.rank_lists[dataset_name][run_id][mode][exp_id]
         
         # get precalc'd rank data
-        # mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
-        # rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
+        rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
         
-        return struct_tensor, hyps_tensor, rank_list_true
+        return struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dists_true
 
 def get_canonical_exp_dir(dataset_name, run_id):
     exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"

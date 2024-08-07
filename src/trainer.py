@@ -80,6 +80,8 @@ def _do_batch(
         max_rank_possible,
         hyps_tensor,
         rank_list_true,
+        mrr_true,
+        rank_dist_true,
         do_print
     ):  
     '''
@@ -89,13 +91,13 @@ def _do_batch(
         should remove a third of current batch time on average
     '''
     # get ground truth data
-    rank_dist_true = _d_hist(
-        X=rank_list_true,
-        n_bins=n_bins,
-        min_val=hist_min_val,
-        max_val=hist_max_val
-    )
-    mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
+    # rank_dist_true = _d_hist(
+    #     X=rank_list_true,
+    #     n_bins=n_bins,
+    #     min_val=hist_min_val,
+    #     max_val=hist_max_val
+    # )
+    # mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor)
@@ -157,7 +159,7 @@ def _train_epoch(
             print(f'running batch: {batch_num}')
             
         # load batch data
-        struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
+        struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dist_true = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id,
@@ -178,6 +180,8 @@ def _train_epoch(
             max_rank_possible=twig_data.max_ranks[dataset_name],
             hyps_tensor=hyps_tensor,
             rank_list_true=rank_list_true,
+            mrr_true=mrr_true,
+            rank_dist_true=rank_dist_true,
             do_print=do_print and batch_num % print_batch_on == 0
         )
 
@@ -243,7 +247,7 @@ def _eval(
             if do_print and batch_num % print_batch_on == 0:
                 print(f'running batch: {batch_num}')
 
-            struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
+            struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dist_true = twig_data.get_batch(
                 dataset_name=dataset_name,
                 run_id=run_id,
                 exp_id=exp_id,
@@ -262,6 +266,8 @@ def _eval(
                 max_rank_possible=twig_data.max_ranks[dataset_name],
                 hyps_tensor=hyps_tensor,
                 rank_list_true=rank_list_true,
+                mrr_true=mrr_true,
+                rank_dist_true=rank_dist_true,
                 do_print=do_print and batch_num % print_batch_on == 0
             )
             if do_print and batch_num % print_batch_on == 0:
