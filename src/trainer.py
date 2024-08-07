@@ -59,8 +59,8 @@ def _plot_hist(dist1, dist2, n_bins):
     import matplotlib.pyplot as plt
     fig, axs = plt.subplots(
         1, 2,
-        sharex=False,
-        sharey=False,
+        sharex=True,
+        sharey=True,
         tight_layout=True
     )
     axs[0].hist(dist1, bins=n_bins)
@@ -79,24 +79,15 @@ def _do_batch(
         struct_tensor,
         max_rank_possible,
         hyps_tensor,
-        rank_list_true,
+        mrr_true,
+        rank_dist_true,
         do_print
     ):  
     '''
     Optimisations:
-        precalc rank_dist_true and mrr_true
         put rank list in [s..., o...] order in the data loader
         should remove a third of current batch time on average
     '''
-    # get ground truth data
-    rank_dist_true = _d_hist(
-        X=rank_list_true,
-        n_bins=n_bins,
-        min_val=hist_min_val,
-        max_val=hist_max_val
-    )
-    mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
-
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor, hps_only=False)
     rank_dist_pred = _d_hist(
@@ -107,12 +98,17 @@ def _do_batch(
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
 
+    # compute loss
+    mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+    loss = mrrl + rdl
+
     # print state
     if do_print:
         pred_mean = str(round(float(torch.mean(rank_list_pred)), 3)).ljust(5, '0')
-        true_mean = str(round(float(torch.mean(rank_list_true)), 3)).ljust(5, '0')
+        true_mean = None #str(round(float(torch.mean(rank_list_true)), 3)).ljust(5, '0')
         pred_std = str(round(float(torch.std(rank_list_pred)), 3)).ljust(5, '0')
-        true_std = str(round(float(torch.std(rank_list_true)), 3)).ljust(5, '0')
+        true_std = None #str(round(float(torch.std(rank_list_true)), 3)).ljust(5, '0')
         mrr_pred_str = str(round(mrr_pred.item(), 3)).ljust(5, '0')
         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
         print(f'rank avg (pred, true): {pred_mean}, {true_mean}')
@@ -123,11 +119,6 @@ def _do_batch(
         #     dist2=rank_list_pred.detach().cpu(),
         #     n_bins=n_bins
         # )
-
-    # compute loss
-    mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
-    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
-    loss = mrrl + rdl
 
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
@@ -154,7 +145,7 @@ def _train_epoch(
             print(f'running batch: {batch_num}')
             
         # load batch data
-        struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
+        struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id,
@@ -174,7 +165,8 @@ def _train_epoch(
             struct_tensor=struct_tensor,
             max_rank_possible=twig_data.max_ranks[dataset_name],
             hyps_tensor=hyps_tensor,
-            rank_list_true=rank_list_true,
+            mrr_true=mrr_true,
+            rank_dist_true=rank_dist_true,
             do_print=do_print and batch_num % print_batch_on == 0
         )
 
@@ -202,7 +194,7 @@ def _train_epoch(
             print(f'losses (mrrl, rdl): {mrrl_print}, {rdl_print}')
             print()
         batch_num += 1
-    
+
     # print epoch results
     epoch_end_time = time.time()
     print('Epoch over!')
@@ -237,7 +229,7 @@ def _eval(
                 if do_print and batch_num % print_batch_on == 0:
                     print(f'running batch: {batch_num}')
 
-                struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
+                struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
                     dataset_name=dataset_name,
                     run_id=run_id,
                     exp_id=exp_id,
@@ -255,7 +247,8 @@ def _eval(
                     struct_tensor=struct_tensor,
                     max_rank_possible=twig_data.max_ranks[dataset_name],
                     hyps_tensor=hyps_tensor,
-                    rank_list_true=rank_list_true,
+                    mrr_true=mrr_true,
+                    rank_dist_true=rank_dist_true,
                     do_print=do_print and batch_num % print_batch_on == 0
                 )
                 if do_print and batch_num % print_batch_on == 0:

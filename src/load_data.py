@@ -31,6 +31,7 @@ class TWIG_Data:
         self.HIST_MAX = 1
         self.N_BINS=n_bins
 
+        # data vars
         self.structs = structs
         self.max_ranks=max_ranks
         self.hyps = hyps
@@ -111,18 +112,18 @@ class TWIG_Data:
         # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
         
-        # get rank data
-        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
-        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
-        rank_list_true = torch.concat(
-            [head_rank, tail_rank],
-            dim=0
-        )
+        # # get rank data
+        # head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
+        # tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
+        # rank_list_true = torch.concat(
+        #     [head_rank, tail_rank],
+        #     dim=0
+        # )
         
         # get precalc'd rank data
-        # mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
-        # rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
-        return struct_tensor, hyps_tensor, rank_list_true
+        mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
+        rank_dist_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        return struct_tensor, hyps_tensor, mrr_true, rank_dist_true
 
 def get_canonical_exp_dir(dataset_name, run_id):
     exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"
@@ -335,21 +336,35 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
     for valid_id in valid_ids:
         hyp_split_data['valid'][valid_id] = hyperparameter_data[valid_id]
 
-
     return hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids
 
 def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
+    # make sure we iterate over everything in the same order, even if dicts have different orders
+    dataset_names_canonical = sorted(list(global_data.keys()))
+    triple_ids_canonical = {}
+    for dataset_name in dataset_names_canonical:
+        triple_ids_canonical[dataset_name] = sorted(list(local_data[dataset_name].keys()))
+    modes_canonical = ['test', 'train', 'valid']
+    exp_ids_canonical = {}
+    for mode in modes_canonical:
+        exp_ids_canonical[mode] = sorted(list(hyp_split_data[mode]))
+    run_ids_canonical = {}
+    for dataset_name in dataset_names_canonical:
+        run_ids_canonical[dataset_name] = sorted(list(rank_split_data[dataset_name]))
+
+    # get global max trank data for each dataset
     max_ranks = {}
-    for dataset_name in global_data:
+    for dataset_name in dataset_names_canonical:
         global_vec = list(global_data[dataset_name].values())
         assert len(global_vec) == 1, "global data currently only supports max rank"
         max_ranks[dataset_name] = global_vec[0]
 
+    # get localised struct data for each dataset
     structs = {}
-    for dataset_name in local_data:
+    for dataset_name in dataset_names_canonical:
         structs[dataset_name] = {}
         local_vecs = []
-        for triple_id in sorted(list(local_data[dataset_name].keys())):
+        for triple_id in triple_ids_canonical[dataset_name]:
             local_vec = list(local_data[dataset_name][triple_id].values())
             local_vecs.append(local_vec)
         structs[dataset_name] = torch.tensor(
@@ -358,31 +373,33 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
             device=device
         )
 
+    # get hyperparameter datat for each experiment (exp_id)
     hyps = {}
-    for mode in hyp_split_data:
+    for mode in modes_canonical:
         hyps[mode] = {}
-        for exp_id in hyp_split_data[mode]:
+        for exp_id in exp_ids_canonical[mode]:
             hyps[mode][exp_id] = torch.tensor(
                 list(hyp_split_data[mode][exp_id].values()),
                 dtype=torch.float32,
                 device=device
             )
 
+    # get rank data for all dataset, run_id, exp_id combinations in all training modes
     head_ranks = {}
     tail_ranks = {}
-    for dataset_name in rank_split_data:
+    for dataset_name in dataset_names_canonical:
         head_ranks[dataset_name] = {}
         tail_ranks[dataset_name] = {}
-        for run_id in rank_split_data[dataset_name]:
+        for run_id in run_ids_canonical[dataset_name]:
             head_ranks[dataset_name][run_id] = {}
             tail_ranks[dataset_name][run_id] = {}
-            for mode in rank_split_data[dataset_name][run_id]:
+            for mode in modes_canonical:
                 head_ranks[dataset_name][run_id][mode] = {}
                 tail_ranks[dataset_name][run_id][mode] = {}
-                for exp_id in rank_split_data[dataset_name][run_id][mode]:
+                for exp_id in exp_ids_canonical[mode]:
                     head_ranks[dataset_name][run_id][mode][exp_id] = []
                     tail_ranks[dataset_name][run_id][mode][exp_id] = []
-                    for triple_id in sorted(list(rank_split_data[dataset_name][run_id][mode][exp_id].keys())):
+                    for triple_id in triple_ids_canonical[dataset_name]:
                         head_ranks[dataset_name][run_id][mode][exp_id].append(
                             rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['head_rank']
                         )
