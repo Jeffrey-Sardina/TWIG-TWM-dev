@@ -3,11 +3,10 @@ import torch
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class Normaliser:
-    def __init__(self, method, rescale_ranks, structs, hyps, max_ranks):
+    def __init__(self, method, structs, hyps, max_ranks):
         self.valid_norm_methods = ('zscore', 'minmax', 'none')
         assert method in self.valid_norm_methods, f"normalisation method must be one of {self.valid_norm_methods} but is {method}"
         self.method = method
-        self.rescale_ranks = rescale_ranks
         self.max_ranks = max_ranks
 
         # calc num lp quries we are simulatuig per dataset. 2*structs since structs holds the number of triples
@@ -208,12 +207,8 @@ class Normaliser:
         else:
             assert False, f"normalisation method must be one of {self.valid_norm_methods} but is {self.method}"
 
-        if self.rescale_ranks:
-            head_ranks_norm = self._do_rescale_ranks(head_ranks)
-            tail_ranks_norm = self._do_rescale_ranks(tail_ranks)
-        else:
-            head_ranks_norm = head_ranks
-            tail_ranks_norm = tail_ranks
+        head_ranks_norm = self._do_rescale_ranks(head_ranks)
+        tail_ranks_norm = self._do_rescale_ranks(tail_ranks)
         
         return structs_norm, hyps_norm, head_ranks_norm, tail_ranks_norm
 

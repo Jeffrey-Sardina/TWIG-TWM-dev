@@ -32,35 +32,47 @@ class TWIG_Data:
         self.N_BINS=n_bins
 
         # data vars
-        self.structs = structs
         self.max_ranks=max_ranks
         self.hyps = hyps
-        self.head_ranks = head_ranks
-        self.tail_ranks = tail_ranks
         self.train_ids = train_ids
         self.test_ids = test_ids
         self.valid_ids = valid_ids
         self.normaliser = normaliser
+        self.run_ids = run_ids
+
+        # deleted later
+        self.structs = structs
+        self.head_ranks = head_ranks
+        self.tail_ranks = tail_ranks
         self.head_flags = normaliser.head_flags
         self.tail_flags = normaliser.tail_flags
-        self.run_ids = run_ids
+
+        # calculated vars
         self.dataset_names = list(run_ids.keys())
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
         self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
-        self.rank_lists, self.mrrs, self.rank_dists = self.precalc_train_data()
+        self.struct_data, self.rank_lists, self.mrrs, self.rank_dists = self.precalc_train_data()
 
-    def shuffle_epoch(self):
-        epoch_data = []
-        for dataset_name in self.dataset_names:
-            for run_id in self.run_ids[dataset_name]:
-                for train_id in self.train_ids:
-                    epoch_data.append((dataset_name, run_id, train_id))
-        random.shuffle(epoch_data)
-
-        # return shuffled values (TWIG_Data instance vars are not changed)
-        return epoch_data
-    
     def precalc_train_data(self):
+        # precalc struct data
+        struct_data = {}
+        for dataset_name in self.dataset_names:
+            struct_tensor = self.structs[dataset_name]
+            struct_tensor_heads = torch.concat(
+                [self.head_flags[dataset_name], struct_tensor],
+                dim=1
+            )
+            struct_tensor_tails = torch.concat(
+                [self.tail_flags[dataset_name], struct_tensor],
+                dim=1
+            )
+            struct_tensor = torch.concat(
+                [struct_tensor_heads, struct_tensor_tails],
+                dim=0
+            )
+            struct_data[dataset_name] = struct_tensor
+
+        # precalc rank data
         rank_lists = {}
         mrrs = {}
         rank_dists = {}
@@ -91,38 +103,77 @@ class TWIG_Data:
                             min_val=self.HIST_MIN,
                             max_val=self.HIST_MAX
                         )
-        return rank_lists, mrrs, rank_dists
+
+        # delete vars we no longer need
+        del self.structs
+        del self.head_ranks
+        del self.tail_ranks
+        del self.head_flags
+        del self.tail_flags
+
+        return struct_data, rank_lists, mrrs, rank_dists
+
+    def get_train_epoch(self, shuffle):
+        epoch_data = []
+        for dataset_name in self.dataset_names:
+            for run_id in self.run_ids[dataset_name]:
+                for exp_id in self.train_ids:
+                    epoch_data.append((dataset_name, run_id, exp_id))
+        if shuffle:
+            random.shuffle(epoch_data)
+        return epoch_data
+    
+    def get_eval_epoch(self, mode, dataset_name):
+        if mode == 'train':
+            exp_ids = self.train_ids
+            print('WARNING: Eval running on the TRAIN set. This WILL have overfitting and SHOULD NOT be cited!')
+        elif mode == 'test':
+            exp_ids = self.test_ids
+        elif mode == 'valid':
+            exp_ids = self.valid_ids
+        else:
+            assert False, f"Invalid mode for evaluation: {mode}"
+
+        epoch_data = []
+        for run_id in self.run_ids[dataset_name]:
+            for exp_id in exp_ids:
+                epoch_data.append((dataset_name, run_id, exp_id))
+
+        return epoch_data
     
     def get_batch(self, dataset_name, run_id, exp_id, mode):
         # get struct data
-        struct_tensor = self.structs[dataset_name]
-        struct_tensor_heads = torch.concat(
-            [self.head_flags[dataset_name], struct_tensor],
-            dim=1
-        )
-        struct_tensor_tails = torch.concat(
-            [self.tail_flags[dataset_name], struct_tensor],
-            dim=1
-        )
-        struct_tensor = torch.concat(
-            [struct_tensor_heads, struct_tensor_tails],
-            dim=0
-        )
+        # struct_tensor = self.structs[dataset_name]
+        # struct_tensor_heads = torch.concat(
+        #     [self.head_flags[dataset_name], struct_tensor],
+        #     dim=1
+        # )
+        # struct_tensor_tails = torch.concat(
+        #     [self.tail_flags[dataset_name], struct_tensor],
+        #     dim=1
+        # )
+        # struct_tensor = torch.concat(
+        #     [struct_tensor_heads, struct_tensor_tails],
+        #     dim=0
+        # )
+        struct_tensor = self.struct_data[dataset_name]
 
         # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
         
         # get rank data
-        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
-        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
-        rank_list_true = torch.concat(
-            [head_rank, tail_rank],
-            dim=0
-        )
+        # head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
+        # tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
+        # rank_list_true = torch.concat(
+        #     [head_rank, tail_rank],
+        #     dim=0
+        # )
+        rank_list_true = self.rank_lists[dataset_name][run_id][mode][exp_id]
         
         # get precalc'd rank data
         # mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
         # rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        
         return struct_tensor, hyps_tensor, rank_list_true
 
 def get_canonical_exp_dir(dataset_name, run_id):
@@ -436,7 +487,7 @@ def _do_load(
         - normalisation (str): the normalisation to use for input data (not ranks). Options are "zscore", "minmax", and "none"
 
     The values it returns are:
-        - TBD
+        - twig_data (TWIG_Data): a TWIG_Data object containing all data needed to load and run batches for TWIG.
     '''
     global_data, local_data, hyperparameter_data, rank_data = load_simulation_datasets(
         datasets_to_load=datasets_to_load
@@ -455,7 +506,6 @@ def _do_load(
     )
     normaliser = Normaliser(
         method=normalisation,
-        rescale_ranks=True,
         structs=structs,
         hyps=hyps,
         max_ranks=max_ranks

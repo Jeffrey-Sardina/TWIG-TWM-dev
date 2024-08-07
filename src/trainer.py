@@ -98,7 +98,7 @@ def _do_batch(
     mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
     # get predicted data
-    rank_list_pred = model(struct_tensor, hyps_tensor, hps_only=False)
+    rank_list_pred = model(struct_tensor, hyps_tensor)
     rank_dist_pred = _d_hist(
         X=rank_list_pred,
         n_bins=n_bins,
@@ -106,6 +106,14 @@ def _do_batch(
         max_val=hist_max_val
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
+
+    # compute loss
+    if mrr_loss_coeff > 0:
+        mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+    else:
+        mrrl = torch.tensor(0.0)
+    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+    loss = mrrl + rdl
 
     # print state
     if do_print:
@@ -123,11 +131,6 @@ def _do_batch(
         #     dist2=rank_list_pred.detach().cpu(),
         #     n_bins=n_bins
         # )
-
-    # compute loss
-    mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
-    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
-    loss = mrrl + rdl
 
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
@@ -147,7 +150,7 @@ def _train_epoch(
     rdl_sum = 0
     print_batch_on = 500
     epoch_start_time = time.time()
-    epoch_batches = twig_data.shuffle_epoch()
+    epoch_batches = twig_data.get_train_epoch(shuffle=False)
     for dataset_name, run_id, exp_id in epoch_batches:
         # print state
         if batch_num % print_batch_on == 0:
@@ -160,7 +163,6 @@ def _train_epoch(
             exp_id=exp_id,
             mode=mode
         )
-        rank_sum += torch.sum(rank_list_true)
 
         # run batch
         loss, mrrl, rdl, _, _ = _do_batch(
@@ -233,39 +235,42 @@ def _eval(
     print(f'Running eval on the {mode} set')
     test_start_time = time.time()
     with torch.no_grad():
-        for run_id in twig_data.head_ranks[dataset_name]:
-            for exp_id in twig_data.head_ranks[dataset_name][run_id][mode]:
-                if do_print and batch_num % print_batch_on == 0:
-                    print(f'running batch: {batch_num}')
+        epoch_batches = twig_data.get_eval_epoch(
+            mode=mode,
+            dataset_name=dataset_name
+        )
+        for dataset_name, run_id, exp_id in epoch_batches:
+            if do_print and batch_num % print_batch_on == 0:
+                print(f'running batch: {batch_num}')
 
-                struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
-                    dataset_name=dataset_name,
-                    run_id=run_id,
-                    exp_id=exp_id,
-                    mode=mode
-                )
-                loss, _, _, mrr_pred, mrr_true = _do_batch(
-                    model=model,
-                    mrr_loss=mrr_loss,
-                    rank_dist_loss=rank_dist_loss,
-                    mrr_loss_coeff=mrr_loss_coeff,
-                    rank_dist_loss_coeff=rank_dist_loss_coeff,
-                    hist_min_val=twig_data.HIST_MIN,
-                    hist_max_val=twig_data.HIST_MAX,
-                    n_bins=twig_data.N_BINS,
-                    struct_tensor=struct_tensor,
-                    max_rank_possible=twig_data.max_ranks[dataset_name],
-                    hyps_tensor=hyps_tensor,
-                    rank_list_true=rank_list_true,
-                    do_print=do_print and batch_num % print_batch_on == 0
-                )
-                if do_print and batch_num % print_batch_on == 0:
-                    print()
+            struct_tensor, hyps_tensor, rank_list_true = twig_data.get_batch(
+                dataset_name=dataset_name,
+                run_id=run_id,
+                exp_id=exp_id,
+                mode=mode
+            )
+            loss, _, _, mrr_pred, mrr_true = _do_batch(
+                model=model,
+                mrr_loss=mrr_loss,
+                rank_dist_loss=rank_dist_loss,
+                mrr_loss_coeff=mrr_loss_coeff,
+                rank_dist_loss_coeff=rank_dist_loss_coeff,
+                hist_min_val=twig_data.HIST_MIN,
+                hist_max_val=twig_data.HIST_MAX,
+                n_bins=twig_data.N_BINS,
+                struct_tensor=struct_tensor,
+                max_rank_possible=twig_data.max_ranks[dataset_name],
+                hyps_tensor=hyps_tensor,
+                rank_list_true=rank_list_true,
+                do_print=do_print and batch_num % print_batch_on == 0
+            )
+            if do_print and batch_num % print_batch_on == 0:
+                print()
 
-                test_loss += loss.item()
-                mrr_preds.append(float(mrr_pred))
-                mrr_trues.append(float(mrr_true))
-                batch_num += 1
+            test_loss += loss.item()
+            mrr_preds.append(float(mrr_pred))
+            mrr_trues.append(float(mrr_true))
+            batch_num += 1
 
     # validations and data collection
     assert len(mrr_preds) > 1, f"TWIG should be running inference for multiple runs, not just one, here"
@@ -276,7 +281,7 @@ def _eval(
     test_end_time = time.time()
 
     # data output
-    print(f'Testing data for dataloader(s) {dataset_name}')
+    print(f'Evaluation for {dataset_name} on the {mode} set')
     print("=" * 42)
     print()
     print("Predicted MRRs \t True MRRs")
@@ -286,7 +291,7 @@ def _eval(
     print()
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')
     print(f'r2_mrr = {r2_mrr}')
-    print(f"test_loss: {test_loss}")
+    print(f"average test loss: {test_loss / batch_num}")
     print(f'\ttest time: {round(test_end_time - test_start_time, 3)}')
 
     return r2_mrr, test_loss, mrr_preds, mrr_trues
@@ -356,7 +361,7 @@ def _train_and_eval(
             mrr_loss_coeff,
             rank_dist_loss,
             rank_dist_loss_coeff,
-            mode='test',
+            mode='test', # TODO -- train does not learn either
             do_print=do_print
         )
         print(f"Done Testing dataset {dataset_name}")
