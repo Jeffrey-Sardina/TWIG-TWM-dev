@@ -83,13 +83,7 @@ def _do_batch(
         mrr_true,
         rank_dist_true,
         do_print
-    ):  
-    '''
-    Optimisations:
-        precalc rank_dist_true and mrr_true
-        put rank list in [s..., o...] order in the data loader
-        should remove a third of current batch time on average
-    '''
+    ):
     # get ground truth data
     # rank_dist_true = _d_hist(
     #     X=rank_list_true,
@@ -206,7 +200,8 @@ def _train_epoch(
             divisor = print_batch_on if batch_num > 0 else 1
             mrrl_print = round(float(mrrl / divisor), 10)
             rdl_print = round(float(rdl / divisor), 10)
-            print(f'losses (mrrl, rdl): {mrrl_print}, {rdl_print}')
+            print(f'avg losses (mrrl, rdl): {mrrl_print}, {rdl_print}')
+            print(f'pnt losses (mrrl, rdl): {round(float(mrrl), 10)}, {round(float(rdl), 10)}')
             print()
         batch_num += 1
 
@@ -290,9 +285,14 @@ def _eval(
     print(f'Evaluation for {dataset_name} on the {mode} set')
     print("=" * 42)
     print()
+    print("(Sorted by True MRR values)")
     print("Predicted MRRs \t True MRRs")
     print('-' * 42)
-    for i in range(len(mrr_preds)):
+    idx_sort_by_true = sorted( # https://stackoverflow.com/questions/7851077/how-to-return-index-of-a-sorted-list
+        range(len(mrr_trues)),
+        key=lambda k: mrr_trues[k]
+    )
+    for i in idx_sort_by_true:
         print(f"{mrr_preds[i]} \t {mrr_trues[i]}")
     print()
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')

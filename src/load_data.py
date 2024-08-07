@@ -160,6 +160,7 @@ class TWIG_Data:
 
         # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
+        hyps_tensor = hyps_tensor.repeat(struct_tensor.shape[0], 1)
         
         # get rank data
         # head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
