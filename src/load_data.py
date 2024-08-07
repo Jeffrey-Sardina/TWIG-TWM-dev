@@ -112,18 +112,18 @@ class TWIG_Data:
         # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
         
-        # # get rank data
-        # head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
-        # tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
-        # rank_list_true = torch.concat(
-        #     [head_rank, tail_rank],
-        #     dim=0
-        # )
+        # get rank data
+        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
+        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
+        rank_list_true = torch.concat(
+            [head_rank, tail_rank],
+            dim=0
+        )
         
         # get precalc'd rank data
-        mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
-        rank_dist_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
-        return struct_tensor, hyps_tensor, mrr_true, rank_dist_true
+        # mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
+        # rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        return struct_tensor, hyps_tensor, rank_list_true
 
 def get_canonical_exp_dir(dataset_name, run_id):
     exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"
