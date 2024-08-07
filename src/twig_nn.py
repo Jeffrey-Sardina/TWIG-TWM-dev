@@ -74,7 +74,7 @@ class TWIG_Base(nn.Module):
             torch.concat(
                 [X_struct, X_hps],
                 dim=1
-            ),
+            )
         )
         X = self.relu_4(X)
 
