@@ -93,6 +93,19 @@ def _do_batch(
     # )
     # mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
+    torch.set_printoptions(profile="full")
+    for i in range(len(struct_tensor)):
+        data = ''
+        for item in struct_tensor[i]:
+            data += str(round(float(item), 2)) + ', '
+        for item in hyps_tensor[i]:
+            data += str(round(float(item), 2)) + ', '
+        print(data)
+    print()
+    for item in rank_list_true:
+        print(str(float(item)))
+    exit()
+
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor)
     rank_dist_pred = _d_hist(
@@ -149,8 +162,10 @@ def _train_epoch(
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
     for dataset_name, run_id, exp_id in epoch_batches:
         # print state
+        exp_id = 658 # TODO: rm
         if batch_num % print_batch_on == 0:
             print(f'running batch: {batch_num}')
+            print(dataset_name, run_id, exp_id)
             
         # load batch data
         struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dist_true = twig_data.get_batch(
@@ -185,13 +200,15 @@ def _train_epoch(
 
         # backprop
         loss.backward()
-        # if do_print and batch_num % print_batch_on == 0:
-        #     if batch_num > 0:
-        #         print((model.linear_struct_1.weight.grad))
-        #         print((model.linear_struct_2.weight.grad))
-        #         print((model.linear_hps_1.weight.grad))
-        #         print((model.linear_integrate_1.weight.grad))
-        #         print((model.linear_final.weight.grad))
+        if do_print and batch_num % print_batch_on == 0:
+            if batch_num > 0:
+                # print((model.linear_struct_1.weight.grad)) # all non-zero
+                # print((model.linear_struct_2.weight.grad)) # all non-zero
+                # print((model.linear_hps_1.weight.grad)) # all non-zero
+                # print((model.linear_integrate_1.weight.grad)) # has loads of 0s
+                # print((model.linear_final.weight.grad)) # has some 0s
+                # exit()
+                pass
         optimizer.step()
         optimizer.zero_grad()
 

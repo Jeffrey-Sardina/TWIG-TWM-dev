@@ -142,6 +142,7 @@ class TWIG_Data:
         return epoch_data
     
     def get_batch(self, dataset_name, run_id, exp_id, mode):
+        print(f'loading with data: {dataset_name, run_id, exp_id, mode}')
         # get struct data
         # struct_tensor = self.structs[dataset_name]
         # struct_tensor_heads = torch.concat(
