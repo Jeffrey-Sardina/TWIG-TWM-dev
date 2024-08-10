@@ -272,7 +272,7 @@ def _eval(
             change = '~'
         else:
             change = 'miss'
-        print(f"{mrr_preds[i]} \t {mrr_trues[i]} \t {change}")
+        print(f"{round(mrr_preds[i], 5)} \t {round(mrr_trues[i], 5)} \t {change}")
     print()
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))[0][1]}')
     print(f'r2_mrr = {r2_mrr}')
