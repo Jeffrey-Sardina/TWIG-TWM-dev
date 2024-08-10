@@ -9,6 +9,11 @@ import os
 import numpy as np
 import torch
 
+# Reproducibility
+torch.manual_seed(17)
+random.seed(17)
+
+
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class TWIG_Data:

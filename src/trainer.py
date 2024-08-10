@@ -10,6 +10,11 @@ from torcheval.metrics.functional import r2_score
 import torch.nn.functional as F
 import os
 import time
+import random
+
+# Reproducibility
+torch.manual_seed(17)
+random.seed(17)
 
 '''
 ====================
@@ -92,8 +97,12 @@ def _do_batch(
         max_val=hist_max_val
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
-
+    
     # compute loss
+    # if mrr_true > 0.1:
+    #     loss_multiplier = 10 / ((1 - mrr_true) ** 2)
+    # else:
+    #     loss_multiplier = 1
     if mrr_loss_coeff > 0:
         mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
     else:
@@ -109,7 +118,7 @@ def _do_batch(
         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
         print(f'rank avg (pred): {pred_mean} +- {pred_std}')
         print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
-
+        
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
 def _train_epoch(
@@ -123,16 +132,18 @@ def _train_epoch(
         do_print
     ):
     mode = 'train'
-    batch_num = 0
     print_batch_on = 500
     epoch_start_time = time.time()
+    superbatch = 5
+    superloss = 0
+    # at 5, gets increasedd speed and reduced performance, with diminising returns.
+    # 1: 35s / batch. 5: 28s/b. 7: 30s/b. 50: 32s/b.
+    # 1: r2 = 0.93/0.98. 5: 0.97. 7: 0.95. 50: 0.93.
+    # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
-    for dataset_name, run_id, exp_id in epoch_batches:
-        # print state
-        if batch_num % print_batch_on == 0:
-            print(f'running batch: {batch_num}; data from {dataset_name}, run {run_id}, exp {exp_id}')
-            
+    for batch_num, batch_data in enumerate(epoch_batches):
         # load batch data
+        dataset_name, run_id, exp_id = batch_data
         struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
@@ -141,6 +152,8 @@ def _train_epoch(
         )
 
         # run batch
+        if batch_num % print_batch_on == 0:
+            print(f'running batch: {batch_num} / {len(epoch_batches)} and superbatch({superbatch}); data from {dataset_name}, run {run_id}, exp {exp_id}')
         loss, mrrl, rdl, _, _ = _do_batch(
             model=model,
             mrr_loss=mrr_loss,
@@ -157,17 +170,17 @@ def _train_epoch(
             rank_dist_true=rank_dist_true,
             do_print=do_print and batch_num % print_batch_on == 0
         )
+        if do_print and batch_num % print_batch_on == 0:
+            print(f'batch losses (mrrl, rdl): {round(float(mrrl), 10)}, {round(float(rdl), 10)}')
+            print()
 
         # backprop
-        loss.backward()
-        optimizer.step()
-        optimizer.zero_grad()
-
-        # print results
-        if do_print and batch_num % print_batch_on == 0:
-            print(f'pnt losses (mrrl, rdl): {round(float(mrrl), 10)}, {round(float(rdl), 10)}')
-            print()
-        batch_num += 1
+        superloss += loss
+        if (batch_num + 1) % superbatch == 0 or (batch_num + 1) == len(epoch_batches):
+            superloss.backward()
+            optimizer.step()
+            optimizer.zero_grad()
+            superloss = 0
 
     # print epoch results
     epoch_end_time = time.time()
@@ -252,29 +265,32 @@ def _eval(
         range(len(mrr_trues)),
         key=lambda k: mrr_trues[k]
     )
-    change_flags = []
     for i in idx_sort_by_true:
         pred_val = round(mrr_preds[i], 5)
         true_val = round(mrr_trues[i], 5)
-        if abs(pred_val - true_val) < 0.01:
-            change_flags.append(1)
+        if abs(pred_val - true_val) < 0.03:
             change = '~'
         else:
-            change_flags.append(0)
             change = 'miss'
         print(f"{mrr_preds[i]} \t {mrr_trues[i]} \t {change}")
     print()
-    print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')
+    print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))[0][1]}')
     print(f'r2_mrr = {r2_mrr}')
-    print(f'goodness@All = {sum(change_flags) / len(idx_sort_by_true)}')
-    print(f'goodness@-5 = {sum(change_flags[:-5]) / 5}')
-    print(f'goodness@-10 = {sum(change_flags[:-10]) / 10}')
-    print(f'goodness@-20 = {sum(change_flags[:-25]) / 25}')
-    print(f'goodness@-20 = {sum(change_flags[:-50]) / 50}')
-    print(f"average test loss: {test_loss / batch_num}")
+    for k in [5, 10, 50, 100]:
+        print(f'spearmanr_mrr@{k} = {_calc_spearman(mrr_preds=mrr_preds, mrr_trues=mrr_trues, k=k)}')
+    print(f'spearmanr_mrr@All = {_calc_spearman(mrr_preds=mrr_preds, mrr_trues=mrr_trues, k=-1)}')
     print(f'\ttest time: {round(test_end_time - test_start_time, 3)}')
 
     return r2_mrr, test_loss, mrr_preds, mrr_trues
+
+def _calc_spearman(mrr_preds, mrr_trues, k):
+    mrr_preds = list(sorted(mrr_preds))
+    mrr_trues = list(sorted(mrr_trues))
+    if k == -1:
+        spearman = torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))[0][1]
+    else:
+        spearman = torch.corrcoef(torch.tensor([mrr_preds[-k:], mrr_trues[-k:]]))[0][1]
+    return spearman
 
 def _train_and_eval(
         model,

@@ -2,6 +2,11 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
+import random
+
+# Reproducibility
+torch.manual_seed(17)
+random.seed(17)
 
 '''
 ==========================

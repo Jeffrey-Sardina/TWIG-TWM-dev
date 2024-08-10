@@ -4,6 +4,12 @@ import ast
 from pykeen import datasets
 import numpy as np
 from pykeen.triples import TriplesFactory
+import torch
+import random
+
+# Reproducibility
+torch.manual_seed(17)
+random.seed(17)
 
 class Custom_Dataset():
     '''
