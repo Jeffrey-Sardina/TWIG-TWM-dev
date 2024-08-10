@@ -93,15 +93,6 @@ def _do_batch(
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
 
-    for i in range(len(struct_tensor)):
-        data = ''
-        for item in struct_tensor[i]:
-            data += str(round(float(item), 2)) + ', '
-        for item in hyps_tensor[i]:
-            data += str(round(float(item), 2)) + ', '
-        print(data)
-    exit()
-
     # compute loss
     if mrr_loss_coeff > 0:
         mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
@@ -138,7 +129,6 @@ def _train_epoch(
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
     for dataset_name, run_id, exp_id in epoch_batches:
         # print state
-        exp_id = 658 # TODO: rm
         if batch_num % print_batch_on == 0:
             print(f'running batch: {batch_num}; data from {dataset_name}, run {run_id}, exp {exp_id}')
             
@@ -337,7 +327,7 @@ def _train_and_eval(
             mrr_loss_coeff,
             rank_dist_loss,
             rank_dist_loss_coeff,
-            mode='test', # TODO -- train does not learn either
+            mode='test',
             do_print=do_print
         )
         print(f"Done Testing dataset {dataset_name}")
