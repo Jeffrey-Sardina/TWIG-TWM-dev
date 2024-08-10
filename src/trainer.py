@@ -42,7 +42,7 @@ def _d_hist(X, n_bins, min_val, max_val):
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
     freqs = torch.zeros(size=(n_bins,)).to(device)
     last_val = None
-    sharpness = 1
+    sharpness = 3
     for i, curr_val in enumerate(bins):
         if i == 0:
             # count (X < min bucket val)
@@ -110,9 +110,9 @@ def _do_batch(
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
     
     # compute loss
+    mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
     if mrr_loss_coeff > 0:
         # good mrrs are higher -- we want to penalise missing those ones more
-        mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
         mrrl = mrrl_multiplier * mrr_loss_coeff * mrr_loss(mrr_pred, modified_mrr_true)
     else:
         mrrl = torch.tensor(0.0, dtype=torch.float32, device=device)
@@ -130,6 +130,7 @@ def _do_batch(
         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
         print(f'rank avg (pred): {pred_mean} +- {pred_std}')
         print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
+        print(float(mrrl_multiplier), float(rdl_multiplier))
         
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 

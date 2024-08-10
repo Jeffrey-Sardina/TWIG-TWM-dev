@@ -32,6 +32,21 @@ def load_nn(version, twig_data):
             n_struct=n_struct,
             n_hps=n_hps
         )
+    elif version == 'large':
+        model = TWIG_Large(
+            n_struct=n_struct,
+            n_hps=n_hps
+        )
+    elif version == 'small':
+        model = TWIG_Small(
+            n_struct=n_struct,
+            n_hps=n_hps
+        )
+    elif version == 'tiny':
+        model = TWIG_Tiny(
+            n_struct=n_struct,
+            n_hps=n_hps
+        )
     else:
         assert False, f"Invald NN version given: {version}"
     return model
