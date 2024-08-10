@@ -44,8 +44,6 @@ class TWIG_Data:
         self.structs = structs
         self.head_ranks = head_ranks
         self.tail_ranks = tail_ranks
-        self.head_flags = normaliser.head_flags
-        self.tail_flags = normaliser.tail_flags
 
         # calculated vars
         self.dataset_names = list(run_ids.keys())
@@ -59,11 +57,11 @@ class TWIG_Data:
         for dataset_name in self.dataset_names:
             struct_tensor = self.structs[dataset_name]
             struct_tensor_heads = torch.concat(
-                [self.head_flags[dataset_name], struct_tensor],
+                [self.normaliser.head_flags[dataset_name], struct_tensor],
                 dim=1
             )
             struct_tensor_tails = torch.concat(
-                [self.tail_flags[dataset_name], struct_tensor],
+                [self.normaliser.tail_flags[dataset_name], struct_tensor],
                 dim=1
             )
             struct_tensor = torch.concat(
@@ -108,8 +106,6 @@ class TWIG_Data:
         del self.structs
         del self.head_ranks
         del self.tail_ranks
-        del self.head_flags
-        del self.tail_flags
 
         return struct_data, rank_lists, mrrs, rank_dists
 
@@ -142,7 +138,6 @@ class TWIG_Data:
         return epoch_data
     
     def get_batch(self, dataset_name, run_id, exp_id, mode):
-        print(f'loading with data: {dataset_name, run_id, exp_id, mode}')
         # get struct data
         # struct_tensor = self.structs[dataset_name]
         # struct_tensor_heads = torch.concat(

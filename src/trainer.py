@@ -93,18 +93,18 @@ def _do_batch(
     # )
     # mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
 
-    torch.set_printoptions(profile="full")
-    for i in range(len(struct_tensor)):
-        data = ''
-        for item in struct_tensor[i]:
-            data += str(round(float(item), 2)) + ', '
-        for item in hyps_tensor[i]:
-            data += str(round(float(item), 2)) + ', '
-        print(data)
-    print()
-    for item in rank_list_true:
-        print(str(float(item)))
-    exit()
+    # torch.set_printoptions(profile="full")
+    # for i in range(len(struct_tensor)):
+    #     data = ''
+    #     for item in struct_tensor[i]:
+    #         data += str(round(float(item), 2)) + ', '
+    #     for item in hyps_tensor[i]:
+    #         data += str(round(float(item), 2)) + ', '
+    #     print(data)
+    # print()
+    # for item in rank_list_true:
+    #     print(str(float(item)))
+    # exit()
 
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor)
@@ -162,7 +162,7 @@ def _train_epoch(
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
     for dataset_name, run_id, exp_id in epoch_batches:
         # print state
-        exp_id = 658 # TODO: rm
+        # exp_id = 658 # TODO: rm
         if batch_num % print_batch_on == 0:
             print(f'running batch: {batch_num}')
             print(dataset_name, run_id, exp_id)

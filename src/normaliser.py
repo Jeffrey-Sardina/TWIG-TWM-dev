@@ -51,14 +51,14 @@ class Normaliser:
 
             # get the average of all hyperparameter data values
             hyp_avg = None
-            num_samples = 0.
+            num_samples = 0
             for exp_id in hyps['train']:
                 hyp_data = hyps['train'][exp_id]
-                num_samples += hyp_data.shape[0]
+                num_samples += 1 # hyp_data.shape[0]
                 if hyp_avg is None:
-                    hyp_avg = torch.sum(hyp_data, dim=0)
+                    hyp_avg = hyp_data
                 else:
-                    hyp_avg += torch.sum(hyp_data, dim=0)
+                    hyp_avg += hyp_data
             hyp_avg /= num_samples
 
             # get the standard deviation of all hyperparameter data values
@@ -66,15 +66,9 @@ class Normaliser:
             for exp_id in hyps['train']:
                 hyp_data = hyps['train'][exp_id]
                 if hyp_std is None:
-                    hyp_std = torch.sum(
-                        (hyp_data - hyp_avg) ** 2,
-                        dim=0
-                    )
+                    hyp_std = (hyp_data - hyp_avg) ** 2
                 else:
-                    hyp_std += torch.sum(
-                        (hyp_data - hyp_avg) ** 2,
-                        dim=0
-                    )
+                    hyp_std += (hyp_data - hyp_avg) ** 2
             hyp_std = torch.sqrt(
                 (1 / (num_samples - 1)) * hyp_std
             )
@@ -85,7 +79,7 @@ class Normaliser:
             self.struct_avg = struct_avg
             self.struct_std = struct_std
         elif method == 'minmax':
-            # get the min and max of allo structural values
+            # get the min and max of all structural values
             struct_min = None
             struct_max = None
             for dataset_name in structs:
@@ -115,20 +109,20 @@ class Normaliser:
             for exp_id in hyps['train']:
                 hyp_data = hyps['train'][exp_id]
                 if hyp_min is None:
-                    hyp_min = torch.min(hyp_data, dim=0).values
+                    hyp_min = hyp_data
                 else:
                     hyp_min = torch.min(
                         torch.stack(
-                            [torch.min(hyp_data, dim=0).values, hyp_min]
+                            [hyp_data, hyp_min]
                         ),
                         dim=0
                     ).values
                 if hyp_max is None:
-                    hyp_max = torch.max(hyp_data, dim=0).values
+                    hyp_max = hyp_data
                 else:
                     hyp_max = torch.max(
                         torch.stack(
-                            [torch.max(hyp_data, dim=0).values, hyp_max]
+                            [hyp_data, hyp_max]
                         ),
                         dim=0
                     ).values
@@ -137,6 +131,10 @@ class Normaliser:
             self.struct_max = struct_max
             self.hyp_min = hyp_min
             self.hyp_max = hyp_max
+            print(struct_min.shape)
+            print(struct_max.shape)
+            print(hyp_min.shape)
+            print(hyp_max.shape)
         elif method == 'none':
             pass
         else:
@@ -164,7 +162,7 @@ class Normaliser:
         structs_norm = {}
         for dataset_name in structs:
             struct_data = structs[dataset_name]
-            struct_norm = (struct_data - self.struct_min[1:]) / (self.struct_max[1:] - self.struct_min[1:])
+            struct_norm = (struct_data - self.struct_min) / (self.struct_max - self.struct_min)
             struct_norm = torch.nan_to_num(struct_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
             structs_norm[dataset_name] = struct_norm
 
@@ -172,7 +170,7 @@ class Normaliser:
         for mode in hyps:
             hyps_norm[mode] = {}
             for exp_id in hyps[mode]:
-                hyp_norm = (hyps[mode][exp_id] - self.hyp_min[1:]) / (self.hyp_max[1:] - self.hyp_min[1:])
+                hyp_norm = (hyps[mode][exp_id] - self.hyp_min) / (self.hyp_max - self.hyp_min)
                 hyp_norm = torch.nan_to_num(hyp_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
                 hyps_norm[mode][exp_id] = hyp_norm
             
