@@ -131,10 +131,6 @@ class Normaliser:
             self.struct_max = struct_max
             self.hyp_min = hyp_min
             self.hyp_max = hyp_max
-            print(struct_min.shape)
-            print(struct_max.shape)
-            print(hyp_min.shape)
-            print(hyp_max.shape)
         elif method == 'none':
             pass
         else:

@@ -39,7 +39,7 @@ if __name__ == '__main__':
         datasets_to_load=datasets_to_load,
         test_ratio=0.1,
         valid_ratio=0.01,
-        normalisation='minmax',
+        normalisation='zscore',
         n_bins=30
     )
 

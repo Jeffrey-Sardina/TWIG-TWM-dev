@@ -79,33 +79,10 @@ def _do_batch(
         struct_tensor,
         max_rank_possible,
         hyps_tensor,
-        rank_list_true,
         mrr_true,
         rank_dist_true,
         do_print
     ):
-    # get ground truth data
-    # rank_dist_true = _d_hist(
-    #     X=rank_list_true,
-    #     n_bins=n_bins,
-    #     min_val=hist_min_val,
-    #     max_val=hist_max_val
-    # )
-    # mrr_true = torch.mean(1 / (rank_list_true * max_rank_possible))
-
-    # torch.set_printoptions(profile="full")
-    # for i in range(len(struct_tensor)):
-    #     data = ''
-    #     for item in struct_tensor[i]:
-    #         data += str(round(float(item), 2)) + ', '
-    #     for item in hyps_tensor[i]:
-    #         data += str(round(float(item), 2)) + ', '
-    #     print(data)
-    # print()
-    # for item in rank_list_true:
-    #     print(str(float(item)))
-    # exit()
-
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor)
     rank_dist_pred = _d_hist(
@@ -115,6 +92,15 @@ def _do_batch(
         max_val=hist_max_val
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
+
+    for i in range(len(struct_tensor)):
+        data = ''
+        for item in struct_tensor[i]:
+            data += str(round(float(item), 2)) + ', '
+        for item in hyps_tensor[i]:
+            data += str(round(float(item), 2)) + ', '
+        print(data)
+    exit()
 
     # compute loss
     if mrr_loss_coeff > 0:
@@ -127,19 +113,11 @@ def _do_batch(
     # print state
     if do_print:
         pred_mean = str(round(float(torch.mean(rank_list_pred)), 3)).ljust(5, '0')
-        true_mean = str(round(float(torch.mean(rank_list_true)), 3)).ljust(5, '0')
         pred_std = str(round(float(torch.std(rank_list_pred)), 3)).ljust(5, '0')
-        true_std = str(round(float(torch.std(rank_list_true)), 3)).ljust(5, '0')
         mrr_pred_str = str(round(mrr_pred.item(), 3)).ljust(5, '0')
         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
-        print(f'rank avg (pred, true): {pred_mean}, {true_mean}')
-        print(f'rank std (pred, true): {pred_std}, {true_std}')
+        print(f'rank avg (pred): {pred_mean} +- {pred_std}')
         print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
-        # _plot_hist(
-        #     dist1=rank_list_true.cpu(),
-        #     dist2=rank_list_pred.detach().cpu(),
-        #     n_bins=n_bins
-        # )
 
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
@@ -155,20 +133,17 @@ def _train_epoch(
     ):
     mode = 'train'
     batch_num = 0
-    mrrl_sum = 0
-    rdl_sum = 0
     print_batch_on = 500
     epoch_start_time = time.time()
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
     for dataset_name, run_id, exp_id in epoch_batches:
         # print state
-        # exp_id = 658 # TODO: rm
+        exp_id = 658 # TODO: rm
         if batch_num % print_batch_on == 0:
-            print(f'running batch: {batch_num}')
-            print(dataset_name, run_id, exp_id)
+            print(f'running batch: {batch_num}; data from {dataset_name}, run {run_id}, exp {exp_id}')
             
         # load batch data
-        struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dist_true = twig_data.get_batch(
+        struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id,
@@ -188,36 +163,18 @@ def _train_epoch(
             struct_tensor=struct_tensor,
             max_rank_possible=twig_data.max_ranks[dataset_name],
             hyps_tensor=hyps_tensor,
-            rank_list_true=rank_list_true,
             mrr_true=mrr_true,
             rank_dist_true=rank_dist_true,
             do_print=do_print and batch_num % print_batch_on == 0
         )
 
-        # collect data
-        mrrl_sum += mrrl.item()
-        rdl_sum += rdl.item()
-
         # backprop
         loss.backward()
-        if do_print and batch_num % print_batch_on == 0:
-            if batch_num > 0:
-                # print((model.linear_struct_1.weight.grad)) # all non-zero
-                # print((model.linear_struct_2.weight.grad)) # all non-zero
-                # print((model.linear_hps_1.weight.grad)) # all non-zero
-                # print((model.linear_integrate_1.weight.grad)) # has loads of 0s
-                # print((model.linear_final.weight.grad)) # has some 0s
-                # exit()
-                pass
         optimizer.step()
         optimizer.zero_grad()
 
         # print results
         if do_print and batch_num % print_batch_on == 0:
-            divisor = print_batch_on if batch_num > 0 else 1
-            mrrl_print = round(float(mrrl / divisor), 10)
-            rdl_print = round(float(rdl / divisor), 10)
-            print(f'avg losses (mrrl, rdl): {mrrl_print}, {rdl_print}')
             print(f'pnt losses (mrrl, rdl): {round(float(mrrl), 10)}, {round(float(rdl), 10)}')
             print()
         batch_num += 1
@@ -226,9 +183,6 @@ def _train_epoch(
     epoch_end_time = time.time()
     print('Epoch over!')
     print(f'epoch time: {round(epoch_end_time - epoch_start_time, 3)}')
-    loss_data = f"\tmrrl: {round(float(mrrl_sum / batch_num), 10)}\n"
-    loss_data += f"\trdl: {round(float(rdl_sum / batch_num), 10)}"
-    print(f'loss values:\n{loss_data}')
     print()
 
 def _eval(
@@ -259,7 +213,7 @@ def _eval(
             if do_print and batch_num % print_batch_on == 0:
                 print(f'running batch: {batch_num}')
 
-            struct_tensor, hyps_tensor, rank_list_true, mrr_true, rank_dist_true = twig_data.get_batch(
+            struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
                 dataset_name=dataset_name,
                 run_id=run_id,
                 exp_id=exp_id,
@@ -277,7 +231,6 @@ def _eval(
                 struct_tensor=struct_tensor,
                 max_rank_possible=twig_data.max_ranks[dataset_name],
                 hyps_tensor=hyps_tensor,
-                rank_list_true=rank_list_true,
                 mrr_true=mrr_true,
                 rank_dist_true=rank_dist_true,
                 do_print=do_print and batch_num % print_batch_on == 0
