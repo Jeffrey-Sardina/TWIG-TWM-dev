@@ -92,6 +92,8 @@ def do_job(
         verbose=True,
         tag='TWIG-job'
     ):
+    if verbose:
+        print('Starting TWIG!')
     start = time.time()
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
@@ -128,6 +130,7 @@ def do_job(
     if verbose:
         print(f'total time taken: {end - start}')
         print(f'training time taken: {end - train_start}')
+        print('TWIG out ;))')
     return r2_scores, test_losses, mrr_preds_all, mrr_trues_all
 
 if __name__ == '__main__':
