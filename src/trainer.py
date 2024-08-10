@@ -90,9 +90,7 @@ def _do_batch(
     ):
     '''
     ideas:
-    if mrr_true < 0.1:
-        mrr_true = torch.tensor(0.05, dtype=torch.float32, device=device)
-    loss for std in ranks (expected vs obtained)
+        loss for std in ranks (expected vs obtained)
     '''
     if mrr_true < 0.1:
         modified_mrr_true = torch.tensor(0.05, dtype=torch.float32, device=device)
@@ -109,17 +107,21 @@ def _do_batch(
     )
     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
     
-    # compute loss
-    mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
+    # compute MRR loss
     if mrr_loss_coeff > 0:
         # good mrrs are higher -- we want to penalise missing those ones more
+        mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
         mrrl = mrrl_multiplier * mrr_loss_coeff * mrr_loss(mrr_pred, modified_mrr_true)
     else:
         mrrl = torch.tensor(0.0, dtype=torch.float32, device=device)
 
+    # compute rank distribution loss
     # "good" dists have a lot of low ranks. We want to penalise not being able to match those ones more
+    # note: this is better at dinstinguishing good vs bad dists when sharpness is higher in d_hist
     rdl_multiplier = (10 / (1 - torch.sum(rank_dist_true[:n_bins//10])) ** 2) ** 2
     rdl = rdl_multiplier * rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+
+    # compute total loss
     loss = mrrl + rdl
 
     # print state
@@ -130,7 +132,6 @@ def _do_batch(
         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
         print(f'rank avg (pred): {pred_mean} +- {pred_std}')
         print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
-        print(float(mrrl_multiplier), float(rdl_multiplier))
         
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
