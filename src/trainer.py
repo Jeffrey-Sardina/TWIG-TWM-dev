@@ -153,7 +153,7 @@ def _train_epoch(
     # 1: 35s / batch. 5: 28s/b. 7: 30s/b. 50: 32s/b.
     # 1: r2 = 0.93/0.98. 5: 0.97. 7: 0.95. 50: 0.93.
     # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
-    epoch_batches = twig_data.get_train_epoch(shuffle=True)
+    epoch_batches = twig_data.get_train_epoch(shuffle=True) # must shuffle to allow learning on multipl KGs at once
     for batch_num, batch_data in enumerate(epoch_batches):
         # load batch data
         dataset_name, run_id, exp_id = batch_data
