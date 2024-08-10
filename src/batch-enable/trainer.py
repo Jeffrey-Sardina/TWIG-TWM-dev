@@ -24,7 +24,180 @@ Constant Definitions
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 checkpoint_dir='checkpoints/'
 
-def _d_hist(X, n_bins, min_val, max_val):
+# def _d_hist(X, n_bins, min_val, max_val):
+#     '''
+#     d_hhist() implements a differentiable "soft histogram" based on differentiable counting. The key insight here (thanks Alok) is that sigmoid can approximate the counting function by assigning 0 (not present) or 1 (present). Since it actually assigns s full continuum, it can be differentiated -- at the cost of exactitide. Nevertheless, these counts are used to buuild a histogram representing the distribution of ranks for a given set of hyperparameters, and in practive this is the "secret sauce" that makes TWIG work.
+
+#     The arguments it accepts are:
+#         - X (torch.Tensor): a tensor containing a single column of all ranks, either those predicted by TWIG or those observed in the ground truth
+#         - n_bins (int): the number of bins to use in the constructed histogram
+#         - min_val (float): the minimum value that should be present in the histogram.
+#         - max_val (float): the maximum value that should be present in the histogram.
+
+#     NOTE: This function is finicky. It tends to finick. If you change your normalisation (or stop normalising), or change this or that or the other things and suddently your loss never updates, it's probably this function turning all the derivaties to 0. The hyperparameters in the function (sharpness, n_bins) are quite arbitrary. But I can say that higher sharpness is actually bad for performance form some limited testing -- it ends up zeroing a lot of derivaties in backprop. n_bins I am less sure of but 30 seems to work work empirically, so I never changed it.
+
+#     The values it returns are:
+#         - freqs (torch.Tensor): the bin frequencies of the histogram constructed from the input ranks list.
+#     '''
+#     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
+#     freqs = torch.zeros(size=(n_bins,)).to(device)
+#     last_val = None
+#     sharpness = 1
+#     for i, curr_val in enumerate(bins):
+#         if i == 0:
+#             # count (X < min bucket val)
+#             count = F.sigmoid(sharpness * (curr_val - X))
+#         elif i == len(bins) - 1:
+#             # count (X > max bucket val)
+#             count = F.sigmoid(sharpness * (X - last_val))
+#         else:
+#             # count (X > bucket left and X < bucket right)
+#             count = F.sigmoid(sharpness * (X - last_val)) \
+#                 * F.sigmoid(sharpness * (curr_val - X))
+#         count = torch.sum(count)
+#         freqs[i] += (count + 1) #new; +1 to avoid 0s as this will be logged
+#         last_val = curr_val
+#     freqs = freqs / torch.sum(freqs) # put on [0, 1]
+#     return freqs
+
+def _plot_hist(dist1, dist2, n_bins):
+    import matplotlib.pyplot as plt
+    fig, axs = plt.subplots(
+        1, 2,
+        sharex=True,
+        sharey=True,
+        tight_layout=True
+    )
+    axs[0].hist(dist1, bins=n_bins)
+    axs[1].hist(dist2, bins=n_bins)
+    plt.show()
+
+# def _do_batch(
+#         model,
+#         mrr_loss,
+#         mrr_loss_coeff,
+#         rank_dist_loss,
+#         rank_dist_loss_coeff,
+#         hist_min_val,
+#         hist_max_val,
+#         n_bins,
+#         struct_tensor,
+#         max_rank_possible,
+#         hyps_tensor,
+#         mrr_true,
+#         rank_dist_true,
+#         do_print
+#     ):
+#     '''
+#     ideas:
+#     if mrr_true < 0.1:
+#         mrr_true = 0
+#     loss for std in ranks (expected vs obtained)
+#     real superbatching
+#     '''
+    
+
+#     # get predicted data
+#     rank_list_pred = model(struct_tensor, hyps_tensor)
+#     rank_dist_pred = _d_hist(
+#         X=rank_list_pred,
+#         n_bins=n_bins,
+#         min_val=hist_min_val,
+#         max_val=hist_max_val
+#     )
+#     mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
+    
+#     # compute loss
+#     # if mrr_true > 0.1:
+#     #     loss_multiplier = 10 / ((1 - mrr_true) ** 2)
+#     # else:
+#     #     loss_multiplier = 1
+#     if mrr_loss_coeff > 0:
+#         mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
+#     else:
+#         mrrl = torch.tensor(0.0)
+#     rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+#     loss = mrrl + rdl
+
+#     # print state
+#     if do_print:
+#         pred_mean = str(round(float(torch.mean(rank_list_pred)), 3)).ljust(5, '0')
+#         pred_std = str(round(float(torch.std(rank_list_pred)), 3)).ljust(5, '0')
+#         mrr_pred_str = str(round(mrr_pred.item(), 3)).ljust(5, '0')
+#         mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
+#         print(f'rank avg (pred): {pred_mean} +- {pred_std}')
+#         print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
+        
+#     return loss, mrrl, rdl, mrr_pred, mrr_true    
+
+# def _train_epoch(
+#         model,
+#         twig_data,
+#         mrr_loss,
+#         mrr_loss_coeff,
+#         rank_dist_loss,
+#         rank_dist_loss_coeff,
+#         optimizer,
+#         do_print
+#     ):
+#     mode = 'train'
+#     print_batch_on = 500
+#     epoch_start_time = time.time()
+#     superbatch = 5
+#     superloss = 0
+#     # at 5, gets increasedd speed and reduced performance, with diminising returns.
+#     # 1: 35s / batch. 5: 28s/b. 7: 30s/b. 50: 32s/b.
+#     # 1: r2 = 0.93/0.98. 5: 0.97. 7: 0.95. 50: 0.93.
+#     # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
+#     epoch_batches = twig_data.get_train_epoch(shuffle=False)
+#     for batch_num, batch_data in enumerate(epoch_batches):
+#         # load batch data
+#         dataset_name, run_id, exp_id = batch_data
+#         struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
+#             dataset_name=dataset_name,
+#             run_id=run_id,
+#             exp_id=exp_id,
+#             mode=mode
+#         )
+
+#         # run batch
+#         if batch_num % print_batch_on == 0:
+#             print(f'running batch: {batch_num} / {len(epoch_batches)} and superbatch({superbatch}); data from {dataset_name}, run {run_id}, exp {exp_id}')
+#         loss, mrrl, rdl, _, _ = _do_batch(
+#             model=model,
+#             mrr_loss=mrr_loss,
+#             rank_dist_loss=rank_dist_loss,
+#             mrr_loss_coeff=mrr_loss_coeff,
+#             rank_dist_loss_coeff=rank_dist_loss_coeff,
+#             hist_min_val=twig_data.HIST_MIN,
+#             hist_max_val=twig_data.HIST_MAX,
+#             n_bins=twig_data.N_BINS,
+#             struct_tensor=struct_tensor,
+#             max_rank_possible=twig_data.max_ranks[dataset_name],
+#             hyps_tensor=hyps_tensor,
+#             mrr_true=mrr_true,
+#             rank_dist_true=rank_dist_true,
+#             do_print=do_print and batch_num % print_batch_on == 0
+#         )
+#         if do_print and batch_num % print_batch_on == 0:
+#             print(f'batch losses (mrrl, rdl): {round(float(mrrl), 10)}, {round(float(rdl), 10)}')
+#             print()
+
+#         # backprop
+#         superloss += loss
+#         if (batch_num + 1) % superbatch == 0 or (batch_num + 1) == len(epoch_batches):
+#             superloss.backward()
+#             optimizer.step()
+#             optimizer.zero_grad()
+#             superloss = 0
+
+#     # print epoch results
+#     epoch_end_time = time.time()
+#     print('Epoch over!')
+#     print(f'epoch time: {round(epoch_end_time - epoch_start_time, 3)}')
+#     print()
+
+def _d_hist(X, n_bins, min_val, max_val, is_batched):
     '''
     d_hhist() implements a differentiable "soft histogram" based on differentiable counting. The key insight here (thanks Alok) is that sigmoid can approximate the counting function by assigning 0 (not present) or 1 (present). Since it actually assigns s full continuum, it can be differentiated -- at the cost of exactitide. Nevertheless, these counts are used to buuild a histogram representing the distribution of ranks for a given set of hyperparameters, and in practive this is the "secret sauce" that makes TWIG work.
 
@@ -40,7 +213,7 @@ def _d_hist(X, n_bins, min_val, max_val):
         - freqs (torch.Tensor): the bin frequencies of the histogram constructed from the input ranks list.
     '''
     bins = torch.linspace(start=min_val, end=max_val, steps=n_bins+1)[1:]
-    freqs = torch.zeros(size=(n_bins,)).to(device)
+    freqs = None
     last_val = None
     sharpness = 1
     for i, curr_val in enumerate(bins):
@@ -54,23 +227,17 @@ def _d_hist(X, n_bins, min_val, max_val):
             # count (X > bucket left and X < bucket right)
             count = F.sigmoid(sharpness * (X - last_val)) \
                 * F.sigmoid(sharpness * (curr_val - X))
-        count = torch.sum(count)
-        freqs[i] += (count + 1) #new; +1 to avoid 0s as this will be logged
+        count = torch.sum(count, dim=1)
+        if freqs is None:
+            freqs = count + 1 # +1 to avoid 0s as this will be logged
+        else:
+            freqs = torch.concat(
+                [freqs, count + 1], # +1 to avoid 0s as this will be logged
+                dim=1
+            )
         last_val = curr_val
-    freqs = freqs / torch.sum(freqs) # put on [0, 1]
+    freqs = freqs / torch.sum(freqs, dim=1)[:, None] # put on [0, 1]
     return freqs
-
-def _plot_hist(dist1, dist2, n_bins):
-    import matplotlib.pyplot as plt
-    fig, axs = plt.subplots(
-        1, 2,
-        sharex=True,
-        sharey=True,
-        tight_layout=True
-    )
-    axs[0].hist(dist1, bins=n_bins)
-    axs[1].hist(dist2, bins=n_bins)
-    plt.show()
 
 def _do_batch(
         model,
@@ -88,48 +255,32 @@ def _do_batch(
         rank_dist_true,
         do_print
     ):
-    '''
-    ideas:
-    if mrr_true < 0.1:
-        mrr_true = torch.tensor(0.05, dtype=torch.float32, device=device)
-    loss for std in ranks (expected vs obtained)
-    '''
-    if mrr_true < 0.1:
-        modified_mrr_true = torch.tensor(0.05, dtype=torch.float32, device=device)
-    else:
-        modified_mrr_true = mrr_true
-
     # get predicted data
     rank_list_pred = model(struct_tensor, hyps_tensor)
     rank_dist_pred = _d_hist(
         X=rank_list_pred,
         n_bins=n_bins,
         min_val=hist_min_val,
-        max_val=hist_max_val
+        max_val=hist_max_val,
+        is_batched=True
     )
-    mrr_pred = torch.mean(1 / (1 + rank_list_pred * (max_rank_possible - 1)))
+    mrr_pred = torch.mean(
+        1 / (1 + rank_list_pred * (max_rank_possible - 1)),
+        dim=1
+    )
     
-    # compute loss
     if mrr_loss_coeff > 0:
-        # good mrrs are higher -- we want to penalise missing those ones more
-        mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
-        mrrl = mrrl_multiplier * mrr_loss_coeff * mrr_loss(mrr_pred, modified_mrr_true)
+        mrrl = mrr_loss_coeff * mrr_loss(mrr_pred, mrr_true)
     else:
-        mrrl = torch.tensor(0.0, dtype=torch.float32, device=device)
-
-    # "good" dists have a lot of low ranks. We want to penalise not being able to match those ones more
-    rdl_multiplier = (10 / (1 - torch.sum(rank_dist_true[:n_bins//10])) ** 2) ** 2
-    rdl = rdl_multiplier * rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
+        mrrl = torch.tensor(0.0)
+    rdl = rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
     loss = mrrl + rdl
 
     # print state
     if do_print:
         pred_mean = str(round(float(torch.mean(rank_list_pred)), 3)).ljust(5, '0')
         pred_std = str(round(float(torch.std(rank_list_pred)), 3)).ljust(5, '0')
-        mrr_pred_str = str(round(mrr_pred.item(), 3)).ljust(5, '0')
-        mrr_true_str = str(round(mrr_true.item(), 3)).ljust(5, '0')
         print(f'rank avg (pred): {pred_mean} +- {pred_std}')
-        print(f'mrr vals (pred, true): {mrr_pred_str}, {mrr_true_str}')
         
     return loss, mrrl, rdl, mrr_pred, mrr_true    
 
@@ -146,25 +297,60 @@ def _train_epoch(
     mode = 'train'
     print_batch_on = 500
     epoch_start_time = time.time()
-    superbatch = 1
-    superloss = 0
-    # 1: 35s / batch. 5: 28s/b. 7: 30s/b. 50: 32s/b.
-    # 1: r2 = 0.93/0.98. 5: 0.97. 7: 0.95. 50: 0.93.
-    # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
     epoch_batches = twig_data.get_train_epoch(shuffle=False)
-    for batch_num, batch_data in enumerate(epoch_batches):
+    batch_size = 2
+    for batch_num, batch_idx_start in enumerate(range(0, len(epoch_batches), batch_size)):
         # load batch data
-        dataset_name, run_id, exp_id = batch_data
-        struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
-            dataset_name=dataset_name,
-            run_id=run_id,
-            exp_id=exp_id,
-            mode=mode
-        )
+        struct_tensors = None
+        hyps_tensors = None
+        mrr_trues = None
+        rank_dist_trues = None
+        for i in range(batch_size):
+            if batch_idx_start + i == len(epoch_batches):
+                break
+            dataset_name, run_id, exp_id = epoch_batches[batch_idx_start + i]
+            struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
+                dataset_name=dataset_name,
+                run_id=run_id,
+                exp_id=exp_id,
+                mode=mode
+            )
+
+            if struct_tensors is None:
+                struct_tensors = struct_tensor.unsqueeze(0)
+            else:
+                struct_tensors = torch.concat(
+                    [struct_tensors, struct_tensor.unsqueeze(0)],
+                    dim=0
+                )
+
+            if hyps_tensors is None:
+                hyps_tensors = hyps_tensor.unsqueeze(0)
+            else:
+                hyps_tensors = torch.concat(
+                    [hyps_tensors, hyps_tensor.unsqueeze(0)],
+                    dim=0
+                )
+
+            if mrr_trues is None:
+                mrr_trues = mrr_true.unsqueeze(0)
+            else:
+                mrr_trues = torch.concat(
+                    [mrr_trues, mrr_true.unsqueeze(0)],
+                    dim=0
+                )
+
+            if rank_dist_trues is None:
+                rank_dist_trues = rank_dist_true.unsqueeze(0)
+            else:
+                rank_dist_trues = torch.concat(
+                    [rank_dist_trues, rank_dist_true.unsqueeze(0)],
+                    dim=0
+                )
 
         # run batch
         if batch_num % print_batch_on == 0:
-            print(f'running batch: {batch_num} / {len(epoch_batches)} and superbatch({superbatch}); data from {dataset_name}, run {run_id}, exp {exp_id}')
+            print(f'running batch: {batch_num} / {len(epoch_batches)}; data from {dataset_name}, run {run_id}, exp {exp_id}')
         loss, mrrl, rdl, _, _ = _do_batch(
             model=model,
             mrr_loss=mrr_loss,
@@ -174,11 +360,11 @@ def _train_epoch(
             hist_min_val=twig_data.HIST_MIN,
             hist_max_val=twig_data.HIST_MAX,
             n_bins=twig_data.N_BINS,
-            struct_tensor=struct_tensor,
+            struct_tensor=struct_tensors,
             max_rank_possible=twig_data.max_ranks[dataset_name],
-            hyps_tensor=hyps_tensor,
-            mrr_true=mrr_true,
-            rank_dist_true=rank_dist_true,
+            hyps_tensor=hyps_tensors,
+            mrr_true=mrr_trues,
+            rank_dist_true=rank_dist_trues,
             do_print=do_print and batch_num % print_batch_on == 0
         )
         if do_print and batch_num % print_batch_on == 0:
@@ -186,12 +372,9 @@ def _train_epoch(
             print()
 
         # backprop
-        superloss += loss
-        if (batch_num + 1) % superbatch == 0 or (batch_num + 1) == len(epoch_batches):
-            superloss.backward()
-            optimizer.step()
-            optimizer.zero_grad()
-            superloss = 0
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
 
     # print epoch results
     epoch_end_time = time.time()
@@ -233,6 +416,13 @@ def _eval(
                 exp_id=exp_id,
                 mode=mode
             )
+
+            # new
+            struct_tensor = struct_tensor.unsqueeze(0)
+            hyps_tensor = hyps_tensor.unsqueeze(0)
+            mrr_true = mrr_true.unsqueeze(0)
+            rank_dist_true = rank_dist_true.unsqueeze(0)
+
             loss, _, _, mrr_pred, mrr_true = _do_batch(
                 model=model,
                 mrr_loss=mrr_loss,
@@ -271,7 +461,7 @@ def _eval(
     )
     if do_print:
         print("=" * 42)
-        print(f'test time: {round(test_end_time - test_start_time, 3)}')
+        print(f'\ttest time: {round(test_end_time - test_start_time, 3)}')
 
     return r2_mrr, r_mrr, spearman_mrrs, test_loss, mrr_preds, mrr_trues
 
@@ -305,13 +495,13 @@ def get_correlation_info(mrr_preds, mrr_trues, do_print):
     spearman_mrrs = {}
     for k in [5, 10, 50, 100]:
         spearman_mrrs[k] = _calc_spearman(mrr_preds=mrr_preds, mrr_trues=mrr_trues, k=k)
-    spearman_mrrs["All"] = _calc_spearman(mrr_preds=mrr_preds, mrr_trues=mrr_trues, k=-1)
+    spearman_mrrs["all"] = _calc_spearman(mrr_preds=mrr_preds, mrr_trues=mrr_trues, k=-1)
     if do_print:
         print(f'r_mrr = {r_mrr}')
         print(f'r2_mrr = {r2_mrr}')
         for k in [5, 10, 50, 100]:
             print(f'spearmanr_mrr@{k} = {spearman_mrrs[k]}')
-        print(f'spearmanr_mrr@All = {spearman_mrrs["All"]}')
+        print(f'spearmanr_mrr@All = {spearman_mrrs["all"]}')
     return r2_mrr, r_mrr, spearman_mrrs
 
 def _calc_spearman(mrr_preds, mrr_trues, k):
