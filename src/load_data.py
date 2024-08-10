@@ -289,14 +289,18 @@ def load_simulation_dataset(dataset_name, run_id):
     hyperparameter_data = load_hyperparamter_data(grid=grid)
     return global_data, local_data, hyperparameter_data, rank_data
 
-def load_simulation_datasets(datasets_to_load):
+def load_simulation_datasets(datasets_to_load, do_print):
     global_data = {}
     local_data = {}
     rank_data = {}
     hyperparameter_data = None
     for dataset_name in datasets_to_load:
+        if do_print:
+            print(f'Loading {dataset_name}...')
         rank_data[dataset_name] = {}
         for run_id in datasets_to_load[dataset_name]:
+            if do_print:
+                print(f'- loading run {run_id}...')
             global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
                 dataset_name=dataset_name,
                 run_id=run_id
@@ -324,10 +328,6 @@ def split_by_hyperparameters(exp_ids, test_ratio, valid_ratio):
     valid_ids = random_ids[test_num:valid_num]
     train_ids = random_ids[(test_num+valid_num):]
 
-    print('using splits:')
-    print(f'test_ids ({len(test_ids)}): {test_ids}')
-    print(f'valid_ids ({len(valid_ids)}): {valid_ids}')
-    print(f'train_ids ({len(train_ids)}): {train_ids}')
     return train_ids, test_ids, valid_ids
 
 def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
@@ -455,7 +455,8 @@ def _do_load(
     test_ratio,
     valid_ratio,
     normalisation,
-    n_bins
+    n_bins,
+    do_print
 ):
     '''
     do_load() loads all data.
@@ -469,21 +470,38 @@ def _do_load(
     The values it returns are:
         - twig_data (TWIG_Data): a TWIG_Data object containing all data needed to load and run batches for TWIG.
     '''
+    if do_print:
+        print('Loading datasets')
     global_data, local_data, hyperparameter_data, rank_data = load_simulation_datasets(
-        datasets_to_load=datasets_to_load
+        datasets_to_load=datasets_to_load,
+        do_print=do_print
     )
+    
+    if do_print:
+        print('Creating the train-test split')
     hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids = train_test_split(
         hyperparameter_data=hyperparameter_data,
         rank_data=rank_data,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio
     )
+    if do_print:
+        print('using splits:')
+        print(f'test_ids ({len(test_ids)}): {test_ids}')
+        print(f'valid_ids ({len(valid_ids)}): {valid_ids}')
+        print(f'train_ids ({len(train_ids)}): {train_ids}')
+
+    if do_print:
+        print('Converting data to tensors')
     structs, max_ranks, hyps, head_ranks, tail_ranks = to_tensors(
         global_data=global_data,
         local_data=local_data,
         hyp_split_data=hyp_split_data,
         rank_split_data=rank_split_data
     )
+
+    if do_print:
+        print('Normalising data')
     normaliser = Normaliser(
         method=normalisation,
         structs=structs,
@@ -496,6 +514,9 @@ def _do_load(
         head_ranks=head_ranks,
         tail_ranks=tail_ranks
     )
+
+    if do_print:
+        print('Finalising data preprocessing')
     twig_data = TWIG_Data(
         structs=structs,
         max_ranks=max_ranks,

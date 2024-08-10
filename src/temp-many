@@ -1,0 +1,656 @@
+Loading UMLS run 2.1...
+Loading UMLS run 2.2...
+Loading CoDExSmall run 2.1...
+Loading CoDExSmall run 2.2...
+Loading DBpedia50 run 2.1...
+Loading DBpedia50 run 2.2...
+Loading Kinships run 2.1...
+Loading Kinships run 2.3...
+Loading OpenEA run 2.1...
+Loading OpenEA run 2.2...
+using splits:
+test_ids (607): [905, 1053, 769, 496, 369, 66, 731, 534, 827, 350, 409, 1078, 129, 642, 215, 868, 637, 245, 578, 38, 257, 418, 710, 900, 797, 619, 481, 358, 522, 842, 289, 178, 1135, 273, 860, 719, 708, 614, 435, 181, 222, 1129, 695, 1173, 40, 462, 591, 1151, 1082, 656, 683, 1107, 97, 523, 313, 1043, 142, 746, 1, 939, 733, 1166, 372, 1154, 260, 246, 443, 1084, 1060, 50, 752, 340, 916, 1208, 882, 294, 77, 883, 136, 511, 988, 845, 537, 206, 717, 184, 1115, 35, 25, 742, 623, 118, 151, 93, 428, 517, 577, 96, 407, 696, 1017, 22, 722, 238, 546, 586, 223, 1029, 240, 815, 1200, 743, 279, 133, 789, 747, 1021, 1117, 1013, 1165, 1164, 954, 559, 685, 385, 210, 477, 924, 909, 991, 1074, 1103, 814, 729, 580, 292, 843, 284, 319, 579, 182, 874, 312, 515, 1111, 71, 687, 94, 829, 1171, 321, 904, 364, 711, 379, 13, 946, 354, 14, 1143, 296, 121, 1010, 1160, 54, 285, 1187, 412, 562, 20, 524, 532, 23, 847, 148, 542, 180, 832, 1066, 64, 204, 958, 1081, 545, 468, 851, 194, 183, 959, 327, 264, 892, 1210, 525, 502, 718, 974, 1051, 788, 123, 404, 984, 948, 60, 903, 1134, 383, 895, 341, 654, 1014, 951, 1006, 1002, 70, 863, 931, 871, 675, 344, 1168, 173, 684, 199, 828, 658, 236, 639, 398, 821, 335, 485, 138, 499, 536, 373, 49, 1126, 985, 99, 555, 76, 439, 63, 367, 723, 1209, 229, 422, 971, 840, 715, 1163, 563, 1035, 995, 693, 583, 810, 458, 305, 896, 1125, 442, 377, 299, 486, 613, 849, 197, 581, 92, 425, 530, 137, 975, 59, 431, 787, 445, 1184, 866, 1190, 271, 1076, 1026, 942, 459, 766, 1131, 1018, 220, 913, 0, 1097, 353, 763, 915, 798, 456, 1138, 26, 47, 84, 655, 589, 802, 961, 1068, 28, 702, 79, 436, 652, 277, 1055, 351, 258, 282, 699, 816, 807, 706, 636, 449, 389, 608, 823, 287, 348, 774, 612, 1114, 689, 1123, 671, 1213, 45, 161, 880, 228, 936, 893, 114, 1088, 6, 187, 474, 594, 548, 30, 561, 750, 879, 259, 139, 550, 605, 1012, 714, 566, 999, 759, 929, 1207, 872, 772, 254, 853, 126, 1046, 1048, 1016, 930, 741, 186, 979, 643, 567, 326, 601, 314, 62, 145, 247, 29, 734, 491, 597, 396, 933, 345, 855, 1003, 1153, 552, 4, 1072, 198, 1177, 405, 441, 368, 32, 1185, 135, 399, 164, 336, 785, 230, 175, 1001, 1049, 149, 660, 592, 869, 771, 297, 211, 37, 328, 1019, 471, 700, 421, 1124, 645, 1023, 838, 610, 611, 410, 115, 311, 111, 444, 628, 740, 976, 1033, 69, 162, 243, 952, 570, 1186, 864, 189, 1159, 1009, 1158, 1121, 914, 521, 1015, 185, 43, 51, 1193, 964, 730, 2, 1139, 1182, 68, 169, 382, 779, 963, 1162, 488, 1214, 854, 478, 278, 873, 1085, 575, 1147, 465, 632, 306, 967, 86, 657, 212, 361, 320, 1047, 332, 875, 1080, 492, 234, 938, 1024, 250, 163, 676, 475, 899, 644, 765, 467, 83, 735, 427, 170, 844, 1062, 293, 159, 811, 584, 982, 171, 65, 1044, 27, 1188, 476, 907, 834, 420, 678, 541, 500, 9, 1178, 179, 518, 214, 232, 574, 362, 1022, 716, 725, 603, 33, 682, 833, 739, 1145, 165, 704, 463, 727, 1119, 520, 568, 461, 1108, 870, 758, 713, 104, 1065, 670, 510, 253, 107, 668, 91, 480, 1000, 953, 1034, 1042, 1116, 698, 889, 681, 935, 703, 144, 207, 196, 1194, 1130, 408, 861, 721, 791, 587, 910, 1089, 156, 519, 464, 140, 609, 1045, 113, 732, 707, 760, 887, 824, 943, 599, 1058, 176, 846, 606]
+valid_ids (0): []
+train_ids (608): [1087, 554, 1050, 15, 533, 573, 820, 46, 793, 438, 370, 267, 52, 1102, 5, 978, 124, 1030, 1031, 1176, 1150, 805, 450, 831, 672, 1096, 209, 783, 635, 1061, 322, 482, 325, 237, 339, 227, 777, 616, 987, 817, 756, 795, 590, 757, 423, 419, 881, 501, 57, 390, 737, 87, 429, 302, 1052, 965, 667, 1136, 891, 898, 950, 1094, 908, 622, 304, 479, 764, 749, 95, 498, 1077, 470, 331, 751, 794, 877, 1152, 649, 3, 1059, 90, 1083, 17, 565, 338, 620, 310, 307, 659, 316, 1206, 487, 143, 98, 108, 607, 18, 274, 694, 48, 922, 926, 1039, 664, 147, 472, 692, 112, 401, 41, 81, 571, 625, 117, 391, 890, 531, 356, 116, 615, 8, 224, 1120, 1025, 337, 457, 490, 1086, 380, 44, 1132, 1057, 217, 784, 359, 630, 301, 1197, 1037, 720, 941, 626, 944, 994, 549, 1172, 780, 663, 1011, 576, 269, 529, 955, 856, 318, 544, 266, 809, 627, 897, 808, 1205, 451, 298, 980, 852, 150, 262, 160, 203, 132, 483, 270, 1181, 508, 188, 1109, 493, 666, 937, 1093, 484, 11, 906, 177, 219, 395, 1095, 244, 709, 990, 497, 901, 411, 973, 233, 403, 1203, 862, 928, 134, 89, 661, 452, 755, 1113, 598, 128, 800, 1148, 738, 363, 1054, 674, 466, 73, 388, 648, 782, 235, 200, 724, 754, 371, 213, 193, 867, 424, 770, 166, 790, 1098, 1192, 705, 1149, 1112, 433, 413, 503, 665, 691, 360, 1028, 596, 582, 1175, 12, 323, 208, 662, 414, 1174, 80, 276, 384, 878, 744, 1202, 378, 557, 968, 221, 242, 263, 812, 792, 640, 669, 773, 837, 1041, 960, 947, 1110, 526, 588, 1122, 884, 392, 315, 272, 761, 1101, 152, 925, 1071, 781, 1004, 917, 74, 303, 72, 1100, 986, 387, 527, 88, 440, 78, 504, 343, 125, 1199, 1007, 381, 195, 1118, 256, 507, 248, 295, 969, 818, 1104, 1005, 981, 776, 553, 992, 560, 1161, 1008, 796, 154, 1064, 923, 172, 241, 631, 67, 416, 288, 902, 894, 1198, 505, 324, 1040, 600, 168, 146, 572, 679, 157, 921, 778, 618, 535, 799, 397, 918, 540, 448, 446, 85, 300, 803, 155, 585, 806, 1201, 218, 1155, 374, 494, 205, 701, 317, 1189, 697, 75, 255, 261, 1195, 453, 1179, 841, 506, 945, 249, 857, 1020, 130, 342, 120, 329, 333, 291, 885, 1211, 1070, 34, 813, 850, 1167, 775, 82, 347, 768, 538, 7, 934, 415, 426, 998, 1183, 595, 556, 962, 355, 365, 275, 268, 551, 997, 1142, 122, 1157, 876, 251, 819, 61, 454, 932, 53, 202, 417, 617, 966, 231, 56, 31, 201, 1156, 106, 1067, 1073, 690, 957, 16, 376, 539, 602, 24, 927, 972, 280, 1032, 912, 949, 920, 366, 393, 21, 216, 191, 919, 728, 888, 1212, 432, 352, 753, 641, 473, 346, 673, 109, 865, 1063, 58, 745, 386, 651, 989, 469, 447, 940, 158, 911, 1056, 835, 455, 1092, 804, 996, 100, 604, 334, 543, 1090, 460, 495, 174, 1196, 983, 826, 513, 638, 190, 858, 330, 101, 647, 646, 624, 1099, 102, 434, 226, 308, 514, 400, 375, 801, 1127, 825, 283, 1075, 42, 993, 153, 528, 634, 406, 110, 1180, 1141, 956, 39, 1146, 1169, 19, 686, 558, 192, 680, 349, 653, 712, 629, 512, 265, 1133, 1191, 1137, 394, 564, 131, 547, 119, 736, 1079, 1204, 437, 1140, 239, 489, 830, 10, 767, 977, 103, 726, 105, 1170, 762, 886, 36, 688, 1036, 836, 290, 970, 1038, 167, 839, 633, 141, 252, 1105, 677, 430, 1144, 1091, 309, 402, 286, 127, 1128, 281, 822, 650, 1027, 516, 859, 786, 509, 55, 225, 569, 1106, 357, 593, 748, 621, 848, 1069]
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=9, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.426 +- 0.004
+mrr vals (pred, true): 0.017, 0.039
+batch losses (mrrl, rdl): 0.0, 0.0124907708
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.453 +- 0.001
+mrr vals (pred, true): 0.016, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0127280736
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.179 +- 0.000
+mrr vals (pred, true): 0.040, 0.566
+batch losses (mrrl, rdl): 0.0, 0.0741406307
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.506 +- 0.001
+mrr vals (pred, true): 0.001, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0820292607
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.382 +- 0.001
+mrr vals (pred, true): 0.001, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0471412726
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.485 +- 0.000
+mrr vals (pred, true): 0.000, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0150873018
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.328 +- 0.000
+mrr vals (pred, true): 0.000, 0.090
+batch losses (mrrl, rdl): 0.0, 0.0199755523
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.502 +- 0.000
+mrr vals (pred, true): 0.000, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0184320789
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.467 +- 0.000
+mrr vals (pred, true): 0.020, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0126304207
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.469 +- 0.000
+mrr vals (pred, true): 0.020, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0119580738
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.341 +- 0.000
+mrr vals (pred, true): 0.000, 0.064
+batch losses (mrrl, rdl): 0.0, 0.030767465
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.488 +- 0.000
+mrr vals (pred, true): 0.000, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0157094896
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.522 +- 0.000
+mrr vals (pred, true): 0.000, 0.001
+batch losses (mrrl, rdl): 0.0, 0.019264577
+
+Epoch over!
+epoch time: 97.308
+
+Epoch 2 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.502 +- 0.000
+mrr vals (pred, true): 0.015, 0.039
+batch losses (mrrl, rdl): 0.0, 0.0191537812
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.448 +- 0.000
+mrr vals (pred, true): 0.016, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0125220278
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.175 +- 0.000
+mrr vals (pred, true): 0.041, 0.566
+batch losses (mrrl, rdl): 0.0, 0.0695930645
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.502 +- 0.005
+mrr vals (pred, true): 0.001, 0.001
+batch losses (mrrl, rdl): 0.0, 0.084995687
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.460 +- 0.090
+mrr vals (pred, true): 0.002, 0.004
+batch losses (mrrl, rdl): 0.0, 0.01331254
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.459 +- 0.289
+mrr vals (pred, true): 0.202, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0014268473
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.323 +- 0.217
+mrr vals (pred, true): 0.237, 0.090
+batch losses (mrrl, rdl): 0.0, 0.0071640816
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.458 +- 0.299
+mrr vals (pred, true): 0.194, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0034195497
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.462 +- 0.020
+mrr vals (pred, true): 0.021, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0124155134
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.441 +- 0.252
+mrr vals (pred, true): 0.053, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0005600856
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.327 +- 0.247
+mrr vals (pred, true): 0.063, 0.064
+batch losses (mrrl, rdl): 0.0, 0.0049036336
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.468 +- 0.301
+mrr vals (pred, true): 0.042, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0010825577
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.515 +- 0.306
+mrr vals (pred, true): 0.032, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0056018331
+
+Epoch over!
+epoch time: 99.172
+
+Epoch 3 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.501 +- 0.292
+mrr vals (pred, true): 0.089, 0.039
+batch losses (mrrl, rdl): 0.0, 0.0166826248
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.443 +- 0.238
+mrr vals (pred, true): 0.053, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0017240655
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.160 +- 0.131
+mrr vals (pred, true): 0.224, 0.566
+batch losses (mrrl, rdl): 0.0, 0.0633055866
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.467 +- 0.272
+mrr vals (pred, true): 0.116, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0763947666
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.446 +- 0.265
+mrr vals (pred, true): 0.080, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0011319754
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.447 +- 0.278
+mrr vals (pred, true): 0.149, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0023709477
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.328 +- 0.223
+mrr vals (pred, true): 0.202, 0.090
+batch losses (mrrl, rdl): 0.0, 0.007531859
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.450 +- 0.299
+mrr vals (pred, true): 0.192, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0045903926
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.489 +- 0.229
+mrr vals (pred, true): 0.027, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0038830431
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.448 +- 0.262
+mrr vals (pred, true): 0.040, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0002582823
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.346 +- 0.266
+mrr vals (pred, true): 0.050, 0.064
+batch losses (mrrl, rdl): 0.0, 0.0031586366
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.477 +- 0.295
+mrr vals (pred, true): 0.032, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0007428002
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.509 +- 0.289
+mrr vals (pred, true): 0.021, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0026872784
+
+Epoch over!
+epoch time: 98.685
+
+Epoch 4 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.538 +- 0.270
+mrr vals (pred, true): 0.048, 0.039
+batch losses (mrrl, rdl): 0.0, 0.031202171
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.445 +- 0.244
+mrr vals (pred, true): 0.062, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0020133702
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.153 +- 0.119
+mrr vals (pred, true): 0.218, 0.566
+batch losses (mrrl, rdl): 0.0, 0.0542855896
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.485 +- 0.269
+mrr vals (pred, true): 0.096, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0639975965
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.451 +- 0.265
+mrr vals (pred, true): 0.086, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0010164328
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.453 +- 0.288
+mrr vals (pred, true): 0.163, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0016932716
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.339 +- 0.266
+mrr vals (pred, true): 0.201, 0.090
+batch losses (mrrl, rdl): 0.0, 0.0072543039
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.464 +- 0.297
+mrr vals (pred, true): 0.183, 0.000
+batch losses (mrrl, rdl): 0.0, 0.002723942
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.504 +- 0.206
+mrr vals (pred, true): 0.025, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0084338067
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.452 +- 0.260
+mrr vals (pred, true): 0.043, 0.054
+batch losses (mrrl, rdl): 0.0, 0.000158704
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.330 +- 0.280
+mrr vals (pred, true): 0.073, 0.064
+batch losses (mrrl, rdl): 0.0, 0.0021055774
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.469 +- 0.289
+mrr vals (pred, true): 0.030, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0007341386
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.494 +- 0.270
+mrr vals (pred, true): 0.024, 0.001
+batch losses (mrrl, rdl): 0.0, 0.001623655
+
+Epoch over!
+epoch time: 109.617
+
+Epoch 5 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.523 +- 0.263
+mrr vals (pred, true): 0.059, 0.039
+batch losses (mrrl, rdl): 0.0, 0.0251924545
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.434 +- 0.248
+mrr vals (pred, true): 0.082, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0011675692
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.167 +- 0.130
+mrr vals (pred, true): 0.190, 0.566
+batch losses (mrrl, rdl): 0.0, 0.0702423751
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.475 +- 0.255
+mrr vals (pred, true): 0.085, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0729072317
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.433 +- 0.280
+mrr vals (pred, true): 0.132, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0017679636
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.465 +- 0.299
+mrr vals (pred, true): 0.184, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0014400436
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.333 +- 0.268
+mrr vals (pred, true): 0.224, 0.090
+batch losses (mrrl, rdl): 0.0, 0.0054081432
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.458 +- 0.292
+mrr vals (pred, true): 0.191, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0034987982
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.493 +- 0.225
+mrr vals (pred, true): 0.028, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0052792034
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.441 +- 0.265
+mrr vals (pred, true): 0.043, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0005677571
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.324 +- 0.284
+mrr vals (pred, true): 0.109, 0.064
+batch losses (mrrl, rdl): 0.0, 0.0019640012
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.467 +- 0.287
+mrr vals (pred, true): 0.030, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0007982716
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.494 +- 0.268
+mrr vals (pred, true): 0.018, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0016751725
+
+Epoch over!
+epoch time: 107.947
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.508 +- 0.270
+mrr vals (pred, true): 0.068, 0.039
+batch losses (mrrl, rdl): 0.3764052689, 0.0187931601
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.581 +- 0.223
+mrr vals (pred, true): 0.055, 0.051
+batch losses (mrrl, rdl): 0.0310041234, 0.0742832273
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.126 +- 0.087
+mrr vals (pred, true): 0.309, 0.566
+batch losses (mrrl, rdl): 1864.5447998047, 0.0278229173
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.574 +- 0.216
+mrr vals (pred, true): 0.058, 0.001
+batch losses (mrrl, rdl): 0.061432112, 0.0165022947
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.562 +- 0.220
+mrr vals (pred, true): 0.058, 0.004
+batch losses (mrrl, rdl): 0.0715873018, 0.0324862897
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.570 +- 0.216
+mrr vals (pred, true): 0.000, 0.000
+batch losses (mrrl, rdl): 2.4848930836, 0.0237460174
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.471 +- 0.262
+mrr vals (pred, true): 0.123, 0.090
+batch losses (mrrl, rdl): 7.8696370125, 0.1013195589
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.501 +- 0.251
+mrr vals (pred, true): 0.051, 0.000
+batch losses (mrrl, rdl): 0.0012026664, 0.0025533177
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.407 +- 0.257
+mrr vals (pred, true): 0.089, 0.054
+batch losses (mrrl, rdl): 1.9255754948, 0.0030316217
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.524 +- 0.194
+mrr vals (pred, true): 0.045, 0.054
+batch losses (mrrl, rdl): 0.0297913142, 0.0180137865
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.328 +- 0.276
+mrr vals (pred, true): 0.062, 0.064
+batch losses (mrrl, rdl): 0.1866620779, 0.002278999
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.474 +- 0.242
+mrr vals (pred, true): 0.037, 0.001
+batch losses (mrrl, rdl): 0.1809786409, 0.0020432258
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.502 +- 0.214
+mrr vals (pred, true): 0.036, 0.001
+batch losses (mrrl, rdl): 0.1853668243, 0.0061140484
+
+Epoch over!
+epoch time: 108.512
+
+Epoch 2 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.539 +- 0.202
+mrr vals (pred, true): 0.084, 0.039
+batch losses (mrrl, rdl): 1.3821587563, 0.0378178246
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.531 +- 0.183
+mrr vals (pred, true): 0.056, 0.051
+batch losses (mrrl, rdl): 0.0401116274, 0.036532145
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.051 +- 0.039
+mrr vals (pred, true): 0.397, 0.566
+batch losses (mrrl, rdl): 809.0882568359, 0.0011408466
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.526 +- 0.164
+mrr vals (pred, true): 0.059, 0.001
+batch losses (mrrl, rdl): 0.0821240991, 0.048267018
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.519 +- 0.163
+mrr vals (pred, true): 0.056, 0.004
+batch losses (mrrl, rdl): 0.0427603945, 0.0156999007
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.513 +- 0.183
+mrr vals (pred, true): 0.002, 0.000
+batch losses (mrrl, rdl): 2.3292865753, 0.0077700084
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.351 +- 0.234
+mrr vals (pred, true): 0.100, 0.090
+batch losses (mrrl, rdl): 3.6835925579, 0.0118751097
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.476 +- 0.207
+mrr vals (pred, true): 0.051, 0.000
+batch losses (mrrl, rdl): 0.0010614389, 0.0075056087
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.473 +- 0.143
+mrr vals (pred, true): 0.028, 0.054
+batch losses (mrrl, rdl): 0.6057370305, 0.0076248846
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.482 +- 0.189
+mrr vals (pred, true): 0.047, 0.054
+batch losses (mrrl, rdl): 0.0117245717, 0.005863592
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.307 +- 0.225
+mrr vals (pred, true): 0.047, 0.064
+batch losses (mrrl, rdl): 0.0114686685, 0.0108760614
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.453 +- 0.202
+mrr vals (pred, true): 0.039, 0.001
+batch losses (mrrl, rdl): 0.1289309263, 0.00644662
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.451 +- 0.199
+mrr vals (pred, true): 0.041, 0.001
+batch losses (mrrl, rdl): 0.0800416842, 0.0073406999
+
+Epoch over!
+epoch time: 105.702
+
+Epoch 3 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.444 +- 0.215
+mrr vals (pred, true): 0.147, 0.039
+batch losses (mrrl, rdl): 11.1418113708, 0.0026986508
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.486 +- 0.157
+mrr vals (pred, true): 0.049, 0.051
+batch losses (mrrl, rdl): 0.0008629313, 0.0151445987
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.065 +- 0.044
+mrr vals (pred, true): 0.344, 0.566
+batch losses (mrrl, rdl): 1393.8820800781, 0.001564872
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.492 +- 0.159
+mrr vals (pred, true): 0.059, 0.001
+batch losses (mrrl, rdl): 0.0892468095, 0.0764938742
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.484 +- 0.163
+mrr vals (pred, true): 0.059, 0.004
+batch losses (mrrl, rdl): 0.0773647949, 0.008452774
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.464 +- 0.192
+mrr vals (pred, true): 0.054, 0.000
+batch losses (mrrl, rdl): 0.019894205, 0.0061293747
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.280 +- 0.235
+mrr vals (pred, true): 0.076, 0.090
+batch losses (mrrl, rdl): 1.0046037436, 0.0026634154
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.454 +- 0.188
+mrr vals (pred, true): 0.049, 0.000
+batch losses (mrrl, rdl): 0.000522455, 0.0141757233
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.404 +- 0.173
+mrr vals (pred, true): 0.042, 0.054
+batch losses (mrrl, rdl): 0.0703174993, 0.0106010195
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.451 +- 0.181
+mrr vals (pred, true): 0.042, 0.054
+batch losses (mrrl, rdl): 0.0741826519, 0.0037572554
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.314 +- 0.194
+mrr vals (pred, true): 0.035, 0.064
+batch losses (mrrl, rdl): 0.2937104106, 0.0145927612
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.431 +- 0.192
+mrr vals (pred, true): 0.032, 0.001
+batch losses (mrrl, rdl): 0.3353895247, 0.0122551164
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.415 +- 0.201
+mrr vals (pred, true): 0.039, 0.001
+batch losses (mrrl, rdl): 0.1138796806, 0.0157022402
+
+Epoch over!
+epoch time: 108.777
+
+Epoch 4 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.403 +- 0.216
+mrr vals (pred, true): 0.157, 0.039
+batch losses (mrrl, rdl): 13.4874696732, 0.003319809
+
+running batch: 500 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 858
+rank avg (pred): 0.451 +- 0.161
+mrr vals (pred, true): 0.059, 0.051
+batch losses (mrrl, rdl): 0.0936122313, 0.0067186691
+
+running batch: 1000 / 6080 and superbatch(1); data from UMLS, run 2.2, exp 813
+rank avg (pred): 0.060 +- 0.042
+mrr vals (pred, true): 0.361, 0.566
+batch losses (mrrl, rdl): 1185.3887939453, 0.0012135748
+
+running batch: 1500 / 6080 and superbatch(1); data from CoDExSmall, run 2.1, exp 925
+rank avg (pred): 0.466 +- 0.150
+mrr vals (pred, true): 0.058, 0.001
+batch losses (mrrl, rdl): 0.0628827363, 0.1029047072
+
+running batch: 2000 / 6080 and superbatch(1); data from CoDExSmall, run 2.2, exp 1109
+rank avg (pred): 0.459 +- 0.155
+mrr vals (pred, true): 0.058, 0.004
+batch losses (mrrl, rdl): 0.0602186583, 0.0083975941
+
+running batch: 2500 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 95
+rank avg (pred): 0.450 +- 0.172
+mrr vals (pred, true): 0.048, 0.000
+batch losses (mrrl, rdl): 0.0027610089, 0.0100511555
+
+running batch: 3000 / 6080 and superbatch(1); data from DBpedia50, run 2.1, exp 36
+rank avg (pred): 0.278 +- 0.220
+mrr vals (pred, true): 0.073, 0.090
+batch losses (mrrl, rdl): 0.7732818723, 0.0042654676
+
+running batch: 3500 / 6080 and superbatch(1); data from DBpedia50, run 2.2, exp 432
+rank avg (pred): 0.438 +- 0.178
+mrr vals (pred, true): 0.051, 0.000
+batch losses (mrrl, rdl): 0.0003323379, 0.0209768005
+
+running batch: 4000 / 6080 and superbatch(1); data from Kinships, run 2.1, exp 448
+rank avg (pred): 0.370 +- 0.183
+mrr vals (pred, true): 0.070, 0.054
+batch losses (mrrl, rdl): 0.493417114, 0.0214444287
+
+running batch: 4500 / 6080 and superbatch(1); data from Kinships, run 2.3, exp 582
+rank avg (pred): 0.433 +- 0.174
+mrr vals (pred, true): 0.050, 0.054
+batch losses (mrrl, rdl): 0.0001545306, 0.0057444796
+
+running batch: 5000 / 6080 and superbatch(1); data from OpenEA, run 2.1, exp 301
+rank avg (pred): 0.272 +- 0.165
+mrr vals (pred, true): 0.039, 0.064
+batch losses (mrrl, rdl): 0.148739025, 0.0363534614
+
+running batch: 5500 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 635
+rank avg (pred): 0.426 +- 0.176
+mrr vals (pred, true): 0.035, 0.001
+batch losses (mrrl, rdl): 0.2392559201, 0.0157941524
+
+running batch: 6000 / 6080 and superbatch(1); data from OpenEA, run 2.2, exp 956
+rank avg (pred): 0.416 +- 0.181
+mrr vals (pred, true): 0.047, 0.001
+batch losses (mrrl, rdl): 0.0101991408, 0.0184004009
+
+Epoch over!
+epoch time: 107.731
+
+Epoch 5 -- 
+running batch: 0 / 6080 and superbatch(1); data from UMLS, run 2.1, exp 1087
+rank avg (pred): 0.399 +- 0.199
+mrr vals (pred, true): 0.153, 0.039
+batch losses (mrrl, rdl): 12.4401369095, 0.005074231
+

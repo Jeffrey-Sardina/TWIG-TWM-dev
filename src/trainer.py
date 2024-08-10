@@ -197,9 +197,10 @@ def _train_epoch(
 
     # print epoch results
     epoch_end_time = time.time()
-    print('Epoch over!')
-    print(f'epoch time: {round(epoch_end_time - epoch_start_time, 3)}')
-    print()
+    if do_print:
+        print('Epoch over!')
+        print(f'epoch time: {round(epoch_end_time - epoch_start_time, 3)}')
+        print()
 
 def _eval(
         model,
@@ -218,7 +219,8 @@ def _eval(
     mrr_trues = []
     batch_num = 0
     print_batch_on = 500
-    print(f'Running eval on the {mode} set')
+    if do_print:
+        print(f'Running eval on the {mode} set')
     test_start_time = time.time()
     with torch.no_grad():
         epoch_batches = twig_data.get_eval_epoch(
@@ -339,10 +341,13 @@ def _train_and_eval(
     model.to(device)
     mrr_loss = nn.MSELoss()
     rank_dist_loss = nn.KLDivLoss(reduction='batchmean')
-    print(model)
+    if do_print:
+        print('RUnning with TWIG model:')
+        print(model)
 
     model.train()
-    print(f'Training with epochs in stages 1: {epochs[0]} and 2: {epochs[1]}')
+    if do_print:
+        print(f'Training with epochs in stages 1: {epochs[0]} and 2: {epochs[1]}')
 
     # Training phase 0 and 1
     for phase in (0, 1):
@@ -351,7 +356,8 @@ def _train_and_eval(
         mrr_loss_coeff = mrr_loss_coeffs[phase]
         rank_dist_loss_coeff = rank_dist_loss_coeffs[phase]
         for t in range(epochs[phase]):
-            print(f"Epoch {t+1} -- ")
+            if do_print:
+                print(f"Epoch {t+1} -- ")
             _train_epoch(
                 model=model,
                 twig_data=twig_data,
@@ -363,7 +369,8 @@ def _train_and_eval(
                 do_print=do_print
             )
             if (t+1) % checkpoint_every_n == 0:
-                print(f'Saving checkpoint at [1] epoch {t+1}')
+                if do_print:
+                    print(f'Saving checkpoint at [1] epoch {t+1}')
                 state_data = f'e{t+1}-e0'
                 torch.save(
                     model,
@@ -372,7 +379,8 @@ def _train_and_eval(
                         f'{model_name_prefix}_{state_data}.pt'
                     )
                 )
-        print("Done training phase: ", phase)
+        if do_print:
+            print("Done training phase: ", phase)
 
     # Testing
     model.eval()
@@ -381,7 +389,8 @@ def _train_and_eval(
     mrr_preds_all = {}
     mrr_trues_all = {}
     for dataset_name in twig_data.dataset_names:
-        print(f'Testing model with dataset {dataset_name}')
+        if do_print:
+            print(f'Testing model with dataset {dataset_name}')
         r2_mrr, r_mrr, spearman_mrrs, test_loss, mrr_preds, mrr_trues =_eval(
             model,
             twig_data,
@@ -393,7 +402,8 @@ def _train_and_eval(
             mode='test',
             do_print=do_print
         )
-        print(f"Done Testing dataset {dataset_name}")
+        if do_print:
+            print(f"Done Testing dataset {dataset_name}")
 
         r2_scores[dataset_name] = r2_mrr
         test_losses[dataset_name] = test_loss

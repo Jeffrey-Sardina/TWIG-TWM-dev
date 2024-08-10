@@ -98,7 +98,8 @@ def do_job(
         test_ratio=test_ratio,
         valid_ratio=valid_ratio,
         normalisation=normalisation,
-        n_bins=n_bins
+        n_bins=n_bins,
+        do_print=verbose
     )
     model = load_nn(
         version=version,
@@ -124,14 +125,19 @@ def do_job(
         do_print=verbose
     )
     end = time.time()
-    print(f'total time taken: {end - start}')
-    print(f'training time taken: {end - train_start}')
+    if verbose:
+        print(f'total time taken: {end - start}')
+        print(f'training time taken: {end - train_start}')
     return r2_scores, test_losses, mrr_preds_all, mrr_trues_all
 
 if __name__ == '__main__':
     do_job(
         datasets_to_load={
-            "UMLS": ["2.1", "2.2"]
+            "UMLS": ["2.1", "2.2"],
+            "CoDExSmall": ["2.1", "2.2"],
+            "DBpedia50": ["2.1", "2.2"],
+            "Kinships": ["2.1", "2.3"],
+            "OpenEA": ["2.1", "2.2"],
         },
         test_ratio=0.5,
         valid_ratio=0.0,
@@ -140,7 +146,7 @@ if __name__ == '__main__':
         version='base',
         optimizer='adam',
         optimizer_args={'lr': 5e-3},
-        epochs=[2, 3],
+        epochs=[5, 10],
         mrr_loss_coeffs=[0, 10],
         rank_dist_loss_coeffs=[1, 1],
         verbose=True,
