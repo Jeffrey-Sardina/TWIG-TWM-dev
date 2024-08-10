@@ -252,11 +252,25 @@ def _eval(
         range(len(mrr_trues)),
         key=lambda k: mrr_trues[k]
     )
+    change_flags = []
     for i in idx_sort_by_true:
-        print(f"{mrr_preds[i]} \t {mrr_trues[i]}")
+        pred_val = round(mrr_preds[i], 5)
+        true_val = round(mrr_trues[i], 5)
+        if abs(pred_val - true_val) < 0.01:
+            change_flags.append(1)
+            change = '~'
+        else:
+            change_flags.append(0)
+            change = 'miss'
+        print(f"{mrr_preds[i]} \t {mrr_trues[i]} \t {change}")
     print()
     print(f'r_mrr = {torch.corrcoef(torch.tensor([mrr_preds, mrr_trues]))}')
     print(f'r2_mrr = {r2_mrr}')
+    print(f'goodness@All = {sum(change_flags) / len(idx_sort_by_true)}')
+    print(f'goodness@-5 = {sum(change_flags[:-5]) / 5}')
+    print(f'goodness@-10 = {sum(change_flags[:-10]) / 10}')
+    print(f'goodness@-20 = {sum(change_flags[:-25]) / 25}')
+    print(f'goodness@-20 = {sum(change_flags[:-50]) / 50}')
     print(f"average test loss: {test_loss / batch_num}")
     print(f'\ttest time: {round(test_end_time - test_start_time, 3)}')
 
