@@ -70,7 +70,7 @@ The `twig` folder contains all novel code and data used in the paper that presen
 
 ```
 twig/
-    analysis/ -- contains the Jupyer notebook used to create stats and visualisations for the paper
+    analysis/ -- contains the Jupyter notebook used to create stats and visualisations for the paper
     output/ -- contains the raw KGE-output data that TWIG learns to simulate
     rec_construct_1/ -- a mini-library for running TWIG itself
     ---
@@ -111,7 +111,7 @@ rec_construct_1/
     run_exp.py -- a high-level access point for defining and running TWIG experiments in Python
     trainer.py -- a Python module for running TWIG's training and evaluation loops
     twig_nn.py -- a Python module that defined TWIG's neural architecture. Two versions are defined; version 2 is much better and is the one reported in our paper.
-    utils.py -- a Pytho module contianing useful miscellaneous functions
+    utils.py -- a Python module containing useful miscellaneous functions
 ```
 
 To train TWIG on your own custom-generated data, and ever higher-level interface is given in `twig/rec_pipeline.py`. You can run it as:
