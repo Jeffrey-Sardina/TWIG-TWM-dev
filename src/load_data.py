@@ -5,14 +5,8 @@ from trainer import _d_hist
 # external imports
 from utils import gather_data
 import random
-import os
 import numpy as np
 import torch
-
-# Reproducibility
-torch.manual_seed(17)
-random.seed(17)
-
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -183,8 +177,8 @@ class TWIG_Data:
         
         return struct_tensor, hyps_tensor, mrr_true, rank_dists_true
 
-def get_canonical_exp_dir(dataset_name, run_id):
-    exp_dir = f"../output/{dataset_name}/{dataset_name}-TWM-run{run_id}"
+def get_canonical_exp_dir(dataset_name, model_name, run_id):
+    exp_dir = f"output/{dataset_name}/{dataset_name}-{model_name}-TWM-run{run_id}"
     return exp_dir
 
 def get_adj_data(valid_triples_map):
@@ -305,8 +299,8 @@ def load_hyperparamter_data(grid):
     
     return hyperparameter_data
 
-def load_simulation_dataset(dataset_name, run_id):
-    exp_dir = get_canonical_exp_dir(dataset_name, run_id)
+def load_simulation_dataset(dataset_name, model_name, run_id):
+    exp_dir = get_canonical_exp_dir(dataset_name, model_name, run_id)
     _, rank_data, grid, valid_triples_map, graph_stats = gather_data(dataset_name, exp_dir)
     global_data = load_global_data(graph_stats=graph_stats)
     local_data = load_local_data(
@@ -316,7 +310,7 @@ def load_simulation_dataset(dataset_name, run_id):
     hyperparameter_data = load_hyperparamter_data(grid=grid)
     return global_data, local_data, hyperparameter_data, rank_data
 
-def load_simulation_datasets(datasets_to_load, do_print):
+def load_simulation_datasets(datasets_to_load, model_name, do_print):
     global_data = {}
     local_data = {}
     rank_data = {}
@@ -330,6 +324,7 @@ def load_simulation_datasets(datasets_to_load, do_print):
                 print(f'- loading run {run_id}...')
             global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
                 dataset_name=dataset_name,
+                model_name=model_name,
                 run_id=run_id
             )
             rank_data[dataset_name][run_id] = rank_data_kg
@@ -479,6 +474,7 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
 
 def _do_load(
     datasets_to_load,
+    model_name,
     test_ratio,
     valid_ratio,
     normalisation,
@@ -501,6 +497,7 @@ def _do_load(
         print('Loading datasets')
     global_data, local_data, hyperparameter_data, rank_data = load_simulation_datasets(
         datasets_to_load=datasets_to_load,
+        model_name=model_name,
         do_print=do_print
     )
     

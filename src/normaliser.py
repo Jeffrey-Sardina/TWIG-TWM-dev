@@ -1,10 +1,4 @@
 import torch
-import random
-
-# Reproducibility
-torch.manual_seed(17)
-random.seed(17)
-
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 

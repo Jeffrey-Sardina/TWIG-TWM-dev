@@ -6,8 +6,7 @@ import glob
 from torch.multiprocessing import Process
 import random
 from pykeen.evaluation import RankBasedEvaluator
-from utils.utils import load_custom_dataset, Custom_Dataset
-from pykeen import datasets
+from utils import Custom_Dataset
 
 '''
 inverse_harmonic_mean_rank is MRR!
@@ -96,6 +95,7 @@ def run_exp(
         exp_dir,
         dataset,
         model,
+        log_write_obj,
         seed=None,
         use_testing_data=False
     ):
@@ -107,10 +107,8 @@ def run_exp(
         hps['lr_scheduler'] = None
     if seed is None:
         seed = int(random.random() * 1e9)
-    print(f'Using seed {seed}', file=sys.stderr)
 
     if type(dataset) is Custom_Dataset:
-        print(f'Loading custom datast for use in pipeline', file=sys.stderr)
         pipeline_result = pipeline(
             training=dataset.factory_dict['training'],
             testing=dataset.factory_dict['testing'],
@@ -195,7 +193,8 @@ def run_exps(
         out_dir,
         dataset,
         model,
-        seed
+        seed,
+        results_write_obj
     ):
     if num_processes > 1:
         grid_subset_size = int(len(grid) / num_processes) #had 0.5 + 
@@ -223,14 +222,15 @@ def run_exps(
         assert len(grid_subsets) == num_processes, f'{len(grid_subsets)} vs {num_processes}'
 
         for grid_subset in grid_subsets:
-            Process(target=run_block, args=(grid_subset, out_dir, dataset, model, seed)).start()
+            Process(target=run_block, args=(grid_subset, out_dir, dataset, model, seed, results_write_obj)).start()
 
 def run_block(
         grid,
         out_dir,
         dataset,
         model,
-        seed
+        seed,
+        results_write_obj
     ):
     for run_id, hps in grid:
         exp_dir = os.path.join(out_dir, str(run_id))
@@ -241,12 +241,12 @@ def run_block(
             os.makedirs(exp_dir)
         except: # i.e. if the dir already exists
             if len(glob.glob(f'{exp_dir}/*')) > 0: # if its data was written already
-                print(f'Skipping exp {run_id} -- already completed')
+                print(f'Skipping exp {run_id} -- already completed', file=results_write_obj)
                 continue
 
-        print(f'Starting exp with run_id {run_id}')
+        print(f'Starting exp with run_id {run_id}', file=results_write_obj)
         pipeline_result, evaluator = run_exp(hps, exp_dir, dataset, model, seed)
-        print(f'Finished exp with run_id {run_id}')
+        print(f'Finished exp with run_id {run_id}', file=results_write_obj)
 
         mr = pipeline_result.get_metric('mr')
         mrr = pipeline_result.get_metric('mrr')
@@ -275,7 +275,7 @@ def run_block(
         results_str += f'\nMR = {mr} \nMRR = {mrr} \nHits@(1,3,5,10) = {h1, h3, h5, h10}\n'
         results_str += f'{"="*100}\n'
 
-        print(results_str)
+        print(results_str, file=results_write_obj)
         evaluator.clear()
 
 def write_id_to_hps(grid, out_file):
@@ -283,8 +283,9 @@ def write_id_to_hps(grid, out_file):
         for run_id, hps in grid:
             print(f'{run_id} --> {hps}', file=out)
 
-def main(
-        out_file,
+def _run_kge_pipeline(
+        grid_file,
+        results_write_obj,
         out_dir,
         num_processes,
         dataset,
@@ -293,13 +294,13 @@ def main(
         grid_override_idxs
     ):
     grid = get_hp_grid()
-    write_id_to_hps(grid, out_file)
+    write_id_to_hps(grid, grid_file)
     if grid_override_idxs:
         sub_grid = []
         for idx in grid_override_idxs:
             sub_grid.append(grid[idx])
         grid = sub_grid
     if num_processes == 1:
-        run_block(grid, out_dir, dataset, model, seed)
+        run_block(grid, out_dir, dataset, model, seed, results_write_obj)
     else:
-        run_exps(num_processes, grid, out_dir, dataset, model, seed)
+        run_exps(num_processes, grid, out_dir, dataset, model, seed, results_write_obj)

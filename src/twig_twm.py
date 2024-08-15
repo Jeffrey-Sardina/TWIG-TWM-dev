@@ -2,6 +2,7 @@
 from load_data import _do_load
 from trainer import _train_and_eval
 from twig_nn import *
+from kge_pipeline import _run_kge_pipeline
 
 # external imports
 import torch
@@ -14,11 +15,15 @@ import itertools
 import copy
 
 # Reproducibility
-torch.manual_seed(17)
-random.seed(17)
+def set_seed(seed):
+    print(f'Using random seed: {seed}')
+    global random_seed
+    random_seed = seed
+    torch.manual_seed(seed)
+    random.seed(seed)
+    return seed
 
 checkpoint_dir = 'checkpoints/'
-
 
 def load_nn(model_or_version, twig_data, model_kwargs):
     '''
@@ -94,6 +99,7 @@ def load_optimizer(optimizer, model, optimizer_args):
 
 def do_job(
         datasets_to_load,
+        kge_model_name,
         test_ratio=0.1,
         valid_ratio=0.0,
         normalisation='zscore',
@@ -108,13 +114,21 @@ def do_job(
         rescale_mrr_loss=False,
         rescale_rank_dist_loss=False,
         verbose=True,
-        tag='TWIG-job'
+        tag='TWIG-job',
+        seed=17
     ):
+    # configure seed
+    if type(seed) == int:
+        set_seed(seed)
+    else:
+        seed = set_seed(2**32 - 1)
+
     if verbose:
         print('Starting TWIG!')
     start = time.time()
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
+        model_name=kge_model_name,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio,
         normalisation=normalisation,
@@ -139,6 +153,7 @@ def do_job(
     checkpoint_config_name = os.path.join(checkpoint_dir, model_name_prefix + '.pkl')
     with open(checkpoint_config_name, 'wb') as cache:
         to_save = {
+            'kge_model_name': kge_model_name,
             'test_ratio': test_ratio,
             'valid_ratio': valid_ratio,
             'normalisation': normalisation,
@@ -184,6 +199,7 @@ def load_config(model_config_path):
 
 def finetune_job(
         datasets_to_load,
+        kge_model_name,
         model_save_path,
         model_config_path,
         test_ratio=None,
@@ -203,6 +219,8 @@ def finetune_job(
     model_config = load_config(model_config_path)
 
     # allow some items to be overwritten (and apply defaults if needed)
+    if kge_model_name:
+        model_config['kge_model_name'] = kge_model_name
     if test_ratio:
         model_config['test_ratio'] = test_ratio
     if valid_ratio:
@@ -225,6 +243,7 @@ def finetune_job(
     # run job
     metric_results, mrr_preds_all, mrr_trues_all = do_job(
         datasets_to_load=datasets_to_load,
+        kge_model_name=kge_model_name,
         test_ratio=model_config['test_ratio'],
         valid_ratio=model_config['valid_ratio'],
         normalisation=model_config['normalisation'],
@@ -245,6 +264,7 @@ def finetune_job(
 
 def ablation_job(
         datasets_to_load,
+        kge_model_name,
         test_ratio=0.1,
         valid_ratio=0.0,
         normalisation=['zscore', 'minmax'],
@@ -381,7 +401,8 @@ def ablation_job(
 
         # run the experiment
         metric_results, mrr_preds_all, mrr_trues_all = do_job(
-            datasets_to_load,
+            datasets_to_load=datasets_to_load,
+            kge_model_name=kge_model_name,
             test_ratio=test_ratio,
             valid_ratio=valid_ratio,
             normalisation=normalisation_val,
@@ -441,7 +462,8 @@ def ablation_job(
         # train and eval final model
         print('Now training your final model!')
         metric_results, mrr_preds_all, mrr_trues_all = do_job(
-            datasets_to_load,
+            datasets_to_load=datasets_to_load,
+            kge_model_name=kge_model_name,
             test_ratio=test_ratio,
             valid_ratio=valid_ratio,
             normalisation=best_settings['normalisation'],
@@ -462,6 +484,7 @@ def ablation_job(
         
 def finetune_ablation_job(
         datasets_to_load,
+        kge_model_name,
         model_save_path,
         model_config_path,
         test_ratio=0.1,
@@ -505,6 +528,9 @@ def finetune_ablation_job(
     pretrained_model = torch.load(model_save_path)
     model_config = load_config(model_config_path)
 
+    # replace None with previous value
+    if kge_model_name == None:
+        kge_model_name = model_config['kge_model_name']
     if test_ratio == None:
         test_ratio = model_config['test_ratio']
     if valid_ratio == None:
@@ -530,7 +556,8 @@ def finetune_ablation_job(
     
     # run the ablation
     results = ablation_job(
-        datasets_to_load,
+        datasets_to_load=datasets_to_load,
+        kge_model_name=kge_model_name,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio,
         normalisation=normalisation,
@@ -555,6 +582,39 @@ def finetune_ablation_job(
     )
     return results
 
+def kge_data_job(
+        dataset_name,
+        kge_model,
+        run_id,
+        num_processes=1,
+        grid_override_idxs=None,
+        seed=None
+):
+    # configure seed
+    if type(seed) == int:
+        set_seed(seed)
+    else:
+        seed = set_seed( 2**32 - 1)
+
+    run_name = f"{dataset_name}-{kge_model}-TWM-run{run_id}"
+    run_dir = os.path.join('output/', dataset_name, run_name)
+    try:
+        os.makedirs(run_dir)
+    except:
+        pass
+    grid_file = os.path.join(run_dir, run_name + '.grid')
+    results_file = os.path.join(run_dir, run_name + '.res')
+    with open(results_file, 'w') as results_write_obj:
+        _run_kge_pipeline(
+            grid_file=grid_file,
+            results_write_obj=results_write_obj,
+            out_dir=run_dir,
+            num_processes=num_processes,
+            dataset=dataset_name,
+            model=kge_model,
+            seed=seed,
+            grid_override_idxs=grid_override_idxs
+        )
 
 if __name__ == '__main__':
     # do_job(
@@ -565,6 +625,7 @@ if __name__ == '__main__':
     #         # "Kinships": ["2.1", "2.3"],
     #         # "OpenEA": ["2.1", "2.2"],
     #     },
+    #     kge_model_name='ComplEx',
     #     test_ratio=0.5,
     #     valid_ratio=0.0,
     #     normalisation='zscore',
@@ -579,25 +640,9 @@ if __name__ == '__main__':
     #     tag='TWIG-job'
     # )
 
-    # finetune_job(
-    #     datasets_to_load={
-    #         "UMLS": ["2.1", "2.2"],
-    #     },
-    #     model_save_path='checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS_e1-e0.pt',
-    #     model_config_path='checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS.pkl',
-    #     epochs=[2, 3]
-    # )
-
-    ablation_job(
-        datasets_to_load={
-            "UMLS": ["2.1", "2.2"],
-        },
-        epochs = [
-            [1,1]
-        ],
-        optimizer_args=[
-            {'lr': 5e-3}
-        ],
-        normalisation=['zscore'],
-        train_and_eval_after=True
+    kge_data_job(
+        dataset_name='UMLS',
+        kge_model='TransE',
+        run_id=1,
+        num_processes=1,
     )

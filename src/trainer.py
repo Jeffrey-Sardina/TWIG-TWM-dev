@@ -10,11 +10,6 @@ from torcheval.metrics.functional import r2_score
 import torch.nn.functional as F
 import os
 import time
-import random
-
-# Reproducibility
-torch.manual_seed(17)
-random.seed(17)
 
 '''
 ====================
@@ -217,7 +212,7 @@ def _eval(
         dataset_name,
         mrr_loss,
         mrr_loss_coeff,
-        rescale_mrr_loss
+        rescale_mrr_loss,
         rank_dist_loss,
         rank_dist_loss_coeff,
         rescale_rank_dist_loss,
