@@ -153,7 +153,10 @@ def _train_epoch(
     # 1: 35s / batch. 5: 28s/b. 7: 30s/b. 50: 32s/b.
     # 1: r2 = 0.93/0.98. 5: 0.97. 7: 0.95. 50: 0.93.
     # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
-    epoch_batches = twig_data.get_train_epoch(shuffle=True) # must shuffle to allow learning on multipl KGs at once
+    epoch_batches = twig_data.get_train_epoch(
+        shuffle=True,
+        stratify_by_dataset=True
+    ) # must shuffle to allow learning on multipl KGs at once
     for batch_num, batch_data in enumerate(epoch_batches):
         # load batch data
         dataset_name, run_id, exp_id = batch_data
@@ -295,7 +298,7 @@ def print_mrr_predictions(mrr_preds, mrr_trues):
         if abs(mrr_preds[idx] - mrr_trues[idx]) < 0.03:
             change = '~...'
         elif abs(mrr_preds[idx] - mrr_trues[idx]) < 0.1:
-            change = 'miss'
+            change = 'm..s'
         else:
             change = 'MISS'
         print(f"{pred_idx} \t {true_idx} \t {pred_val} \t {true_val} \t {change}")

@@ -114,14 +114,41 @@ class TWIG_Data:
 
         return struct_data, rank_lists, mrrs, rank_dists
 
-    def get_train_epoch(self, shuffle):
-        epoch_data = []
-        for dataset_name in self.dataset_names:
-            for run_id in self.run_ids[dataset_name]:
-                for exp_id in self.train_ids:
-                    epoch_data.append((dataset_name, run_id, exp_id))
-        if shuffle:
-            random.shuffle(epoch_data)
+    def get_train_epoch(self, shuffle, stratify_by_dataset):
+        if not stratify_by_dataset:
+            epoch_data = []
+            for dataset_name in self.dataset_names:
+                for run_id in self.run_ids[dataset_name]:
+                    for exp_id in self.train_ids:
+                        epoch_data.append((dataset_name, run_id, exp_id))
+            if shuffle:
+                random.shuffle(epoch_data)
+        else:
+            # get all data, randomise within each dataset block
+            epoch_data_by_dataset = {}
+            for dataset_name in self.dataset_names:
+                epoch_data_by_dataset[dataset_name] = []
+                dataset_epoch_data = []
+                for run_id in self.run_ids[dataset_name]:
+                    for exp_id in self.train_ids:
+                        dataset_epoch_data.append((dataset_name, run_id, exp_id))
+                if shuffle:
+                    random.shuffle(dataset_epoch_data)
+                epoch_data_by_dataset[dataset_name] = dataset_epoch_data
+            
+            # now, extract all data in a stratified format
+            epoch_data = []
+            finished_datasets = set()
+            while True:
+                if len(finished_datasets) == len(epoch_data_by_dataset):
+                    assert finished_datasets == set(epoch_data_by_dataset.keys())
+                    break
+                for dataset_name in epoch_data_by_dataset:
+                    if len(epoch_data_by_dataset[dataset_name]) > 0:
+                        epoch_data.append(epoch_data_by_dataset[dataset_name].pop())
+                    else:
+                        finished_datasets.add(dataset_name)
+                
         return epoch_data
     
     def get_eval_epoch(self, mode, dataset_name):
