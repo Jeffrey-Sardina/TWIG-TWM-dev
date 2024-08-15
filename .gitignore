@@ -7,7 +7,9 @@ twig.log
 *.pt
 *.pkl
 *.negstats
-output/
+*.grid
+*.res
+*.log
 twig/TWIG/data_save/
 *.gexf
 __pycache__/
