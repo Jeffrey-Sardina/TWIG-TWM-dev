@@ -76,8 +76,10 @@ def _do_batch(
         model,
         mrr_loss,
         mrr_loss_coeff,
+        rescale_mrr_loss,
         rank_dist_loss,
         rank_dist_loss_coeff,
+        rescale_rank_dist_loss,
         hist_min_val,
         hist_max_val,
         n_bins,
@@ -110,7 +112,7 @@ def _do_batch(
     # compute MRR loss
     if mrr_loss_coeff > 0:
         # good mrrs are higher -- we want to penalise missing those ones more
-        mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2
+        mrrl_multiplier = (10 / ((1 - mrr_true) ** 2)) ** 2 if rescale_mrr_loss else 1
         mrrl = mrrl_multiplier * mrr_loss_coeff * mrr_loss(mrr_pred, modified_mrr_true)
     else:
         mrrl = torch.tensor(0.0, dtype=torch.float32, device=device)
@@ -118,7 +120,7 @@ def _do_batch(
     # compute rank distribution loss
     # "good" dists have a lot of low ranks. We want to penalise not being able to match those ones more
     # note: this is better at dinstinguishing good vs bad dists when sharpness is higher in d_hist
-    rdl_multiplier = (10 / (1 - torch.sum(rank_dist_true[:n_bins//10])) ** 2) ** 2
+    rdl_multiplier = (10 / (1 - torch.sum(rank_dist_true[:n_bins//10])) ** 2) ** 2 if rescale_rank_dist_loss else 1
     rdl = rdl_multiplier * rank_dist_loss_coeff * rank_dist_loss(rank_dist_pred.log(), rank_dist_true) #https://discuss.pytorch.org/t/kl-divergence-produces-negative-values/16791/5
 
     # compute total loss
@@ -140,8 +142,10 @@ def _train_epoch(
         twig_data,
         mrr_loss,
         mrr_loss_coeff,
+        rescale_mrr_loss,
         rank_dist_loss,
         rank_dist_loss_coeff,
+        rescale_rank_dist_loss,
         optimizer,
         do_print
     ):
@@ -173,9 +177,11 @@ def _train_epoch(
         loss, mrrl, rdl, _, _ = _do_batch(
             model=model,
             mrr_loss=mrr_loss,
-            rank_dist_loss=rank_dist_loss,
             mrr_loss_coeff=mrr_loss_coeff,
+            rescale_mrr_loss=rescale_mrr_loss,
+            rank_dist_loss=rank_dist_loss,
             rank_dist_loss_coeff=rank_dist_loss_coeff,
+            rescale_rank_dist_loss=rescale_rank_dist_loss,
             hist_min_val=twig_data.HIST_MIN,
             hist_max_val=twig_data.HIST_MAX,
             n_bins=twig_data.N_BINS,
@@ -211,8 +217,10 @@ def _eval(
         dataset_name,
         mrr_loss,
         mrr_loss_coeff,
+        rescale_mrr_loss
         rank_dist_loss,
         rank_dist_loss_coeff,
+        rescale_rank_dist_loss,
         mode,
         do_print
 ):
@@ -243,9 +251,11 @@ def _eval(
             loss, _, _, mrr_pred, mrr_true = _do_batch(
                 model=model,
                 mrr_loss=mrr_loss,
-                rank_dist_loss=rank_dist_loss,
                 mrr_loss_coeff=mrr_loss_coeff,
+                rescale_mrr_loss=rescale_mrr_loss,
+                rank_dist_loss=rank_dist_loss,
                 rank_dist_loss_coeff=rank_dist_loss_coeff,
+                rescale_rank_dist_loss=rescale_rank_dist_loss,
                 hist_min_val=twig_data.HIST_MIN,
                 hist_max_val=twig_data.HIST_MAX,
                 n_bins=twig_data.N_BINS,
@@ -335,6 +345,8 @@ def _train_and_eval(
         twig_data,
         mrr_loss_coeffs,
         rank_dist_loss_coeffs,
+        rescale_mrr_loss,
+        rescale_rank_dist_loss,
         epochs,
         optimizer,
         model_name_prefix,
@@ -366,12 +378,14 @@ def _train_and_eval(
                 twig_data=twig_data,
                 mrr_loss=mrr_loss,
                 mrr_loss_coeff=mrr_loss_coeff,
+                rescale_mrr_loss=rescale_mrr_loss,
                 rank_dist_loss=rank_dist_loss,
                 rank_dist_loss_coeff=rank_dist_loss_coeff,
+                rescale_rank_dist_loss=rescale_rank_dist_loss,
                 optimizer=optimizer,
                 do_print=do_print
             )
-            if (t+1) % checkpoint_every_n == 0:
+            if (t+1) % checkpoint_every_n == 0 or (t+1) == epochs[phase]:
                 if do_print:
                     print(f'Saving checkpoint at [1] epoch {t+1}')
                 state_data = f'e{t+1}-e0'
@@ -387,30 +401,46 @@ def _train_and_eval(
 
     # Testing
     model.eval()
-    r2_scores = {}
-    test_losses = {}
+    metric_results = {
+        'r_mrr': {},
+        'r2_mrr': {},
+        'spearmanr_mrr@5': {},
+        'spearmanr_mrr@10': {},
+        'spearmanr_mrr@50': {},
+        'spearmanr_mrr@100': {},
+        'spearmanr_mrr@All': {},
+        'test_loss': {}
+    }
     mrr_preds_all = {}
     mrr_trues_all = {}
     for dataset_name in twig_data.dataset_names:
         if do_print:
             print(f'Testing model with dataset {dataset_name}')
         r2_mrr, r_mrr, spearman_mrrs, test_loss, mrr_preds, mrr_trues =_eval(
-            model,
-            twig_data,
-            dataset_name,
-            mrr_loss,
-            mrr_loss_coeff,
-            rank_dist_loss,
-            rank_dist_loss_coeff,
+            model=model,
+            twig_data=twig_data,
+            dataset_name=dataset_name,
+            mrr_loss=mrr_loss,
+            mrr_loss_coeff=mrr_loss_coeff,
+            rescale_mrr_loss=rescale_mrr_loss,
+            rank_dist_loss=rank_dist_loss,
+            rank_dist_loss_coeff=rank_dist_loss_coeff,
+            rescale_rank_dist_loss=rescale_rank_dist_loss,
             mode='test',
             do_print=do_print
         )
         if do_print:
             print(f"Done Testing dataset {dataset_name}")
 
-        r2_scores[dataset_name] = r2_mrr
-        test_losses[dataset_name] = test_loss
+        metric_results['r_mrr'][dataset_name] = r_mrr
+        metric_results['r2_mrr'][dataset_name] = r2_mrr
+        metric_results['spearmanr_mrr@5'][dataset_name] = spearman_mrrs[5]
+        metric_results['spearmanr_mrr@10'][dataset_name] = spearman_mrrs[10]
+        metric_results['spearmanr_mrr@50'][dataset_name] = spearman_mrrs[50]
+        metric_results['spearmanr_mrr@100'][dataset_name] = spearman_mrrs[100]
+        metric_results['spearmanr_mrr@All'][dataset_name] = spearman_mrrs['All']
+        metric_results['test_loss'][dataset_name] = test_loss
         mrr_preds_all[dataset_name] = mrr_preds
         mrr_trues_all[dataset_name] = mrr_trues
 
-    return r2_scores, test_losses, mrr_preds_all, mrr_trues_all
+    return metric_results, mrr_preds_all, mrr_trues_all

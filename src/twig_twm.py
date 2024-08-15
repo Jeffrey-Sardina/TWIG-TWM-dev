@@ -10,6 +10,8 @@ import time
 import inspect
 import pickle
 import os
+import itertools
+import copy
 
 # Reproducibility
 torch.manual_seed(17)
@@ -60,7 +62,7 @@ def load_nn(model_or_version, twig_data, model_kwargs):
             **model_kwargs
         )
     else:
-        pass #user defined model, we will assume
+        model = model_or_version #user defined model, we will assume
 
     return model
 
@@ -103,6 +105,8 @@ def do_job(
         epochs=[2, 3],
         mrr_loss_coeffs=[0, 10],
         rank_dist_loss_coeffs=[1, 1],
+        rescale_mrr_loss=False,
+        rescale_rank_dist_loss=False,
         verbose=True,
         tag='TWIG-job'
     ):
@@ -139,20 +143,26 @@ def do_job(
             'valid_ratio': valid_ratio,
             'normalisation': normalisation,
             'n_bins': n_bins,
-            'test_ratio': test_ratio,
-            'optimiser': optimizer,
+            'optimizer': optimizer,
             'optimizer_args': optimizer_args,
             'mrr_loss_coeffs': mrr_loss_coeffs,
-            'rank_dist_loss_coeffs': rank_dist_loss_coeffs
+            'rank_dist_loss_coeffs': rank_dist_loss_coeffs,
+            'rescale_mrr_loss': rescale_mrr_loss,
+            'rescale_rank_dist_loss': rescale_rank_dist_loss
         }
         pickle.dump(to_save, cache)
+    print('running TWIG with settings:')
+    for key in to_save:
+        print(f'{key}: {to_save[key]}')
 
     train_start = time.time()
-    r2_scores, test_losses, mrr_preds_all, mrr_trues_all = _train_and_eval(
+    metric_results, mrr_preds_all, mrr_trues_all = _train_and_eval(
         model=model,
         twig_data=twig_data,
         mrr_loss_coeffs=mrr_loss_coeffs,
         rank_dist_loss_coeffs=rank_dist_loss_coeffs,
+        rescale_mrr_loss=rescale_mrr_loss,
+        rescale_rank_dist_loss=rescale_rank_dist_loss,
         epochs=epochs,
         optimizer=optimizer,
         model_name_prefix=model_name_prefix,
@@ -164,7 +174,7 @@ def do_job(
         print(f'total time taken: {end - start}')
         print(f'training time taken: {end - train_start}')
         print('TWIG out ;))')
-    return r2_scores, test_losses, mrr_preds_all, mrr_trues_all
+    return metric_results, mrr_preds_all, mrr_trues_all
 
 def load_config(model_config_path):
     with open(model_config_path, 'rb') as cache:
@@ -183,8 +193,10 @@ def finetune_job(
         epochs=[2, 3],
         mrr_loss_coeffs=None,
         rank_dist_loss_coeffs=None,
+        rescale_mrr_loss=None,
+        rescale_rank_dist_loss=None,
         verbose=True,
-        tag='TWIG-job'
+        tag='Finetune-job'
 ):
     # load the pretrained model
     pretrained_model = torch.load(model_save_path)
@@ -193,7 +205,7 @@ def finetune_job(
     # allow some items to be overwritten (and apply defaults if needed)
     if test_ratio:
         model_config['test_ratio'] = test_ratio
-    if valid_ratio
+    if valid_ratio:
         model_config['valid_ratio'] = valid_ratio
     if optimizer:
         model_config['optimizer'] = optimizer
@@ -205,9 +217,13 @@ def finetune_job(
         model_config['mrr_loss_coeffs'] = mrr_loss_coeffs
     if rank_dist_loss_coeffs:
         model_config['rank_dist_loss_coeffs'] = rank_dist_loss_coeffs
+    if rescale_mrr_loss:
+        model_config['rescale_mrr_loss'] = rescale_mrr_loss
+    if rescale_rank_dist_loss:
+        model_config['rescale_rank_dist_loss'] = rescale_rank_dist_loss
 
     # run job
-    do_job(
+    metric_results, mrr_preds_all, mrr_trues_all = do_job(
         datasets_to_load=datasets_to_load,
         test_ratio=model_config['test_ratio'],
         valid_ratio=model_config['valid_ratio'],
@@ -220,29 +236,368 @@ def finetune_job(
         epochs=epochs,
         mrr_loss_coeffs=model_config['mrr_loss_coeffs'],
         rank_dist_loss_coeffs=model_config['rank_dist_loss_coeffs'],
+        rescale_mrr_loss=model_config['rescale_mrr_loss'],
+        rescale_rank_dist_loss=model_config['rescale_rank_dist_loss'],
         verbose=verbose,
         tag=tag
     )
+    return metric_results, mrr_preds_all, mrr_trues_all
+
+def ablation_job(
+        datasets_to_load,
+        test_ratio=0.1,
+        valid_ratio=0.0,
+        normalisation=['zscore', 'minmax'],
+        n_bins=[15, 30, 60],
+        model_or_version=['base'],
+        model_kwargs=[None],
+        optimizer=['adam'],
+        optimizer_args=[
+            {'lr': 5e-3},
+            {'lr': 5e-4},
+            {'lr': 5e-5}
+        ],
+        epochs=[
+            [2, 3]
+        ],
+        mrr_loss_coeffs=[
+            [0, 10]
+        ],
+        rank_dist_loss_coeffs=[
+            [1, 1]
+        ],
+        rescale_mrr_loss=[True, False],
+        rescale_rank_dist_loss=[True, False],
+        verbose=True,
+        tag='Ablation-job',
+        ablation_metric='r2_mrr', #r_mrr, r2_mrr, spearmanr_mrr@5, 10, 50, 100, or All
+        ablation_type=None, #full or rand, if given (default full)
+        timeout=-1, #seconds
+        max_iterations=-1,
+        train_and_eval_after=False,
+        train_and_eval_args={
+            'epochs': [2, 3],
+            'verbose': True,
+            'tag': 'Post-Ablation-Train-job'
+        }
+    ):
+    # correct input
+    if type(normalisation) == str:
+        normalisation = [normalisation]
+    if type(n_bins) == int:
+        n_bins = [n_bins]
+    if type(model_or_version) != list:
+        model_or_version = [model_or_version]
+    if type(model_kwargs) != list:
+        model_kwargs = [model_kwargs]
+    if type(optimizer) != list:
+        optimizer = [optimizer]
+    if type(optimizer_args) != list:
+        optimizer_args = [optimizer_args]
+    if type(epochs[0]) != list:
+        epochs = [epochs]
+    if type(mrr_loss_coeffs[0]) != list:
+        mrr_loss_coeffs = [mrr_loss_coeffs]
+    if type(rank_dist_loss_coeffs[0]) != list:
+        rank_dist_loss_coeffs = [rank_dist_loss_coeffs]
+
+    # input validation
+    assert ablation_metric in (
+        'r_mrr',
+        'r2_mrr',
+        'spearmanr_mrr@5',
+        'spearmanr_mrr@10',
+        'spearmanr_mrr@50',
+        'spearmanr_mrr@100',
+        'spearmanr_mrr@All'
+    )
+    if ablation_type == 'full':
+        assert timeout <= 0 or timeout == None, "If 'full' ablations are done, timeout cannot be set"
+        assert max_iterations <= 0 or max_iterations == None, "If 'full' ablations are done, max_iterations cannot be set"
+
+    grid = list(itertools.product(
+        normalisation,
+        n_bins,
+        model_or_version,
+        model_kwargs,
+        optimizer,
+        optimizer_args,
+        epochs,
+        mrr_loss_coeffs,
+        rank_dist_loss_coeffs,
+        rescale_mrr_loss,
+        rescale_rank_dist_loss
+    ))
+
+    # configure ablation type settings
+    if ablation_type == 'rand':
+        random.shuffle(grid)
+        grid = grid[:max_iterations]
+    elif not ablation_type or ablation_type == 'full':
+        pass # nothing to do
+    else:
+        assert False, f"Invalid ablation type: {ablation_type}. Must be either 'full' or 'rand'"  
+
+    # run ablations on the grid
+    best_metric = 0.0
+    best_results = None
+    best_settings = {}
+    start_time = time.time()
+    print(f'Running on a grid of size {len(grid)}')
+    for settings in grid:
+        # unpack (same order as put into itertools)
+        (
+            normalisation_val,
+            n_bins_val,
+            model_or_version_val,
+            model_kwargs_val,
+            optimizer_val,
+            optimizer_args_val,
+            epochs_val,
+            mrr_loss_coeffs_val,
+            rank_dist_loss_coeffs_val,
+            rescale_mrr_loss_val,
+            rescale_rank_dist_loss_val
+        ) = settings
+
+        # need this so if a model type is ever re-used, we train it from its initial point, not from the last ablation!
+        # TODO: should verify manually that this is the case as well!
+        model_copy = copy.deepcopy(model_or_version_val)
+
+        settings_dict = {
+            "normalisation": normalisation_val,
+            "n_bins": n_bins_val,
+            "model_or_version": model_copy,
+            "model_kwargs": model_kwargs_val,
+            "optimizer": optimizer_val,
+            "optimizer_args": optimizer_args_val,
+            "epochs": epochs_val,
+            "mrr_loss_coeffs": mrr_loss_coeffs_val,
+            "rank_dist_loss_coeffs": rank_dist_loss_coeffs_val,
+            "rescale_mrr_loss": rescale_mrr_loss_val,
+            "rescale_rank_dist_loss": rescale_rank_dist_loss_val
+        }
+
+
+        # run the experiment
+        metric_results, mrr_preds_all, mrr_trues_all = do_job(
+            datasets_to_load,
+            test_ratio=test_ratio,
+            valid_ratio=valid_ratio,
+            normalisation=normalisation_val,
+            n_bins=n_bins_val,
+            model_or_version=model_copy,
+            model_kwargs=model_kwargs_val,
+            optimizer=optimizer_val,
+            optimizer_args=optimizer_args_val,
+            epochs=epochs_val,
+            mrr_loss_coeffs=mrr_loss_coeffs_val,
+            rank_dist_loss_coeffs=rank_dist_loss_coeffs_val,
+            rescale_mrr_loss=rescale_mrr_loss_val,
+            rescale_rank_dist_loss=rescale_rank_dist_loss_val,
+            verbose=verbose,
+            tag=tag
+        )
+
+        # process results (and record them!)
+        metrics = []
+        for dataset_name in datasets_to_load:
+            metrics.append(metric_results[ablation_metric][dataset_name])
+        metric_avg = sum(metrics) / len(metrics)
+        if metric_avg > best_metric:
+            best_metric = metric_avg
+            best_results = metric_results
+            best_settings = settings_dict
+        
+        # check if we have reached or exceeded the timeout
+        end_time = time.time()
+        if timeout and timeout > 0 and end_time - start_time >= timeout:
+            print('Ablation timeout reached; stopping')
+            break
+
+    # print ablation results
+    print('Ablation done!')
+    print(f'The best results were: {best_results}')
+    print('The best settings found were:')
+    for key in best_settings:
+        print(f'{key}: {best_settings[key]}')
+    print()
+
+    if train_and_eval_after:
+        # fill in missing input to defaults
+        if not "epochs" in train_and_eval_args:
+            train_and_eval_args["epochs"] = [2,3]
+        if not "verbose" in train_and_eval_args:
+            train_and_eval_args["verbose"] = True
+        if not "tag" in train_and_eval_args:
+            train_and_eval_args["tag"] = 'Post-Ablation-Train-job'
+
+        # use given epochs only if we did not validate for number of epochs
+        if len(epochs) == 1:
+            epochs_to_run = train_and_eval_args["epochs"]
+        else:
+            epochs_to_run = best_settings["epochs"]
+
+        # train and eval final model
+        print('Now training your final model!')
+        metric_results, mrr_preds_all, mrr_trues_all = do_job(
+            datasets_to_load,
+            test_ratio=test_ratio,
+            valid_ratio=valid_ratio,
+            normalisation=best_settings['normalisation'],
+            n_bins=best_settings['n_bins'],
+            model_or_version=best_settings['model_or_version'],
+            model_kwargs=best_settings['model_kwargs'],
+            optimizer=best_settings['optimizer'],
+            optimizer_args=best_settings['optimizer_args'],
+            epochs=epochs_to_run,
+            mrr_loss_coeffs=best_settings['mrr_loss_coeffs'],
+            rank_dist_loss_coeffs=best_settings['rank_dist_loss_coeffs'],
+            rescale_mrr_loss=best_settings['rescale_mrr_loss'],
+            rescale_rank_dist_loss=best_settings['rescale_rank_dist_loss'],
+            verbose=train_and_eval_args['verbose'],
+            tag=train_and_eval_args['tag']
+        )
+        return metric_results, mrr_preds_all, mrr_trues_all
+        
+def finetune_ablation_job(
+        datasets_to_load,
+        model_save_path,
+        model_config_path,
+        test_ratio=0.1,
+        valid_ratio=0.0,
+        normalisation=None,
+        n_bins=[15, 30, 60],
+        optimizer=['adam'],
+        optimizer_args=[
+            {'lr': 5e-3},
+            {'lr': 5e-4},
+            {'lr': 5e-5}
+        ],
+        epochs=[
+            [2, 3]
+        ],
+        mrr_loss_coeffs=[
+            [0, 10]
+        ],
+        rank_dist_loss_coeffs=[
+            [1, 1]
+        ],
+        rescale_mrr_loss=[True, False],
+        rescale_rank_dist_loss=[True, False],
+        verbose=True,
+        tag='Ablation-job',
+        ablation_metric='r2_mrr', #r_mrr, r2_mrr, spearmanr_mrr@5, 10, 50, 100, or All
+        ablation_type=None, #full or rand, if given (default full)
+        timeout=-1, #seconds
+        max_iterations=-1,
+        train_and_eval_after=False,
+        train_and_eval_args={
+            'epochs': [2, 3],
+            'verbose': True,
+            'tag': 'Post-Ablation-Train-job'
+        }
+    ):
+    checkpoint_id = model_save_path.split('_')[1]
+    tag += "-from-" + checkpoint_id
+
+    # load the pretrained model
+    pretrained_model = torch.load(model_save_path)
+    model_config = load_config(model_config_path)
+
+    if test_ratio == None:
+        test_ratio = model_config['test_ratio']
+    if valid_ratio == None:
+        valid_ratio = model_config['valid_ratio']
+    if normalisation == None:
+        normalisation = model_config['normalisation']
+    if n_bins == None:
+        n_bins = model_config['n_bins']
+    if optimizer == None:
+        optimizer = model_config['optimizer']
+    if optimizer_args == None:
+        optimizer_args = model_config['optimizer_args']
+    if epochs == None:
+        epochs = model_config['epochs']
+    if mrr_loss_coeffs == None:
+        mrr_loss_coeffs = model_config['mrr_loss_coeffs']
+    if rank_dist_loss_coeffs == None:
+        rank_dist_loss_coeffs = model_config['rank_dist_loss_coeffs']
+    if rescale_mrr_loss == None:
+        rescale_mrr_loss = model_config['rescale_mrr_loss']
+    if rescale_rank_dist_loss == None:
+        rescale_rank_dist_loss = model_config['rescale_rank_dist_loss']
+    
+    # run the ablation
+    results = ablation_job(
+        datasets_to_load,
+        test_ratio=test_ratio,
+        valid_ratio=valid_ratio,
+        normalisation=normalisation,
+        n_bins=n_bins,
+        model_or_version=pretrained_model,
+        model_kwargs=None,
+        optimizer=optimizer,
+        optimizer_args=optimizer_args,
+        epochs=epochs,
+        mrr_loss_coeffs=mrr_loss_coeffs,
+        rank_dist_loss_coeffs=rank_dist_loss_coeffs,
+        rescale_mrr_loss=rescale_mrr_loss,
+        rescale_rank_dist_loss=rescale_rank_dist_loss,
+        verbose=verbose,
+        tag=tag,
+        ablation_metric=ablation_metric,
+        ablation_type=ablation_type,
+        timeout=timeout,
+        max_iterations=max_iterations,
+        train_and_eval_after=train_and_eval_after,
+        train_and_eval_args=train_and_eval_args
+    )
+    return results
+
 
 if __name__ == '__main__':
-    do_job(
+    # do_job(
+    #     datasets_to_load={
+    #         "UMLS": ["2.1", "2.2"],
+    #         # "CoDExSmall": ["2.1", "2.2"],
+    #         # "DBpedia50": ["2.1", "2.2"],
+    #         # "Kinships": ["2.1", "2.3"],
+    #         # "OpenEA": ["2.1", "2.2"],
+    #     },
+    #     test_ratio=0.5,
+    #     valid_ratio=0.0,
+    #     normalisation='zscore',
+    #     n_bins=30,
+    #     model_or_version='base',
+    #     optimizer='adam',
+    #     optimizer_args={'lr': 5e-3},
+    #     epochs=[1, 1],
+    #     mrr_loss_coeffs=[0, 10],
+    #     rank_dist_loss_coeffs=[1, 1],
+    #     verbose=True,
+    #     tag='TWIG-job'
+    # )
+
+    # finetune_job(
+    #     datasets_to_load={
+    #         "UMLS": ["2.1", "2.2"],
+    #     },
+    #     model_save_path='checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS_e1-e0.pt',
+    #     model_config_path='checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS.pkl',
+    #     epochs=[2, 3]
+    # )
+
+    ablation_job(
         datasets_to_load={
             "UMLS": ["2.1", "2.2"],
-            "CoDExSmall": ["2.1", "2.2"],
-            "DBpedia50": ["2.1", "2.2"],
-            "Kinships": ["2.1", "2.3"],
-            "OpenEA": ["2.1", "2.2"],
         },
-        test_ratio=0.5,
-        valid_ratio=0.0,
-        normalisation='zscore',
-        n_bins=30,
-        version='base',
-        optimizer='adam',
-        optimizer_args={'lr': 5e-3},
-        epochs=[5, 10],
-        mrr_loss_coeffs=[0, 10],
-        rank_dist_loss_coeffs=[1, 1],
-        verbose=True,
-        tag='TWIG-job'
+        epochs = [
+            [1,1]
+        ],
+        optimizer_args=[
+            {'lr': 5e-3}
+        ],
+        normalisation=['zscore'],
+        train_and_eval_after=True
     )
