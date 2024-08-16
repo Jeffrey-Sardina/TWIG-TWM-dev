@@ -100,7 +100,7 @@ class TWIG_Data:
                             min_val=self.HIST_MIN,
                             max_val=self.HIST_MAX
                         )
-
+                        
         # delete vars we no longer need
         del self.structs
         del self.head_ranks

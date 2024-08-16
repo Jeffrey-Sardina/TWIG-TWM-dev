@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Topologically-Weighted Mapping (TWM) via TWIG</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            background-color: rgb(33, 33, 33);
+            color: white;
+        }
+
+        
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
+        }
+        
+        .left {
+            width: 33%;
+        }
+        
+        .right {
+            width: 67%;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        </style>
+</head>
+<body>
+    <h1>Topologically-Weighted Mapping (TWM) via TWIG</h1>
+    <div class="row">
+        <div class="column left">
+            <h2>Please input your dataset and model settings</h2>
+            <form action="{{ url_for("twm_demo")}}" method="post">
+                <label for="dataset">Dataset:</label>
+                <select name="dataset" id="dataset">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="UMLS">UMLS</option>
+                    <option value="Kinships">Kinships</option>
+                    <option value="DBpedia50">DBpedia50</option>
+                    <option value="CoDExSMall">CoDExSMall</option>
+                    <option value="OpenEA">OpenEA</option>
+                </select> <br><br>
+
+                <label for="loss function">Loss Function:</label>
+                <select name="loss" id="loss">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="MarginRankingLoss">Margin Ranking Loss</option>
+                    <option value="BCEWithLogitsLoss">BCE-with-Logits Loss</option>
+                    <option value="CrossEntropyLoss">Cross Entropy Loss</option>
+                </select> <br><br>
+        
+                <label for="negative sampler">Negative Sampler:</label>
+                <select name="negsamp" id="negsamp">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="BasicNegativeSampler">Basic Negative Sampler</option>
+                    <option value="BernoulliNegativeSampler">Bernoulli Negative Sampler</option>
+                    <option value="PseudoTypedNegativeSampler">Pseudo-Typed Negative Sampler</option>
+                </select> <br><br>
+        
+                <label for="learning rate">Learning Rate:</label>
+                <select name="lr" id="lr">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="1e-2">1e-2</option>
+                    <option value="1e-4">1e-4</option>
+                    <option value="1e-6">1e-6</option>
+                </select> <br><br>
+        
+                <label for="regulariser coefficient">Regulariser Coefficient:</label>
+                <select name="reg_coeff" id="reg_coeff">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="1e-2">1e-2</option>
+                    <option value="1e-4">1e-4</option>
+                    <option value="1e-6">1e-6</option>
+                </select> <br><br>
+        
+                <label for="negs per pos">Negatives per Positive:</label>
+                <select name="npp" id="npp">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="5">5</option>
+                    <option value="25">25</option>
+                    <option value="125">125</option>
+                </select> <br><br>
+        
+                <label for="Margin">Margin:</label>
+                <select name="margin" id="margin">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="0.5">0.5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="None">None</option>
+                </select> <br><br>
+                
+                <label for="emb_dim">Embedding Dimension:</label>
+                <select name="dim" id="dim">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                </select> <br><br>
+
+                <label for="Use TWIG">Use TWIG?</label>
+                <select name="use_twig" id="use_twig">
+                    <option value="" selected disabled hidden>Choose here</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select> <br><br>
+        
+                <br>
+                <button type="submit">TWIG it!</button>
+        </div>
+        <div class="column right">
+            <h2>Your TWM output:</h2>
+            <p>{{twm_text}}</p>
+            <p>{{hyp_text}}</p>
+            <p>{{link_label}}<a href="{{link}}">{{link}}</a></p>
+            <img src="{{twm_image}}">
+        </div>
+    </div>
+</body>
+</html>
+
