@@ -110,13 +110,3 @@ def start_twm_app(
     model_save_path = model_save_path_local
     model_config_path = model_config_path_local
     app.run(debug=True)
-
-    
-if __name__ == '__main__':
-    hyps_dict_path = sys.argv[1]
-    kge_model_name = 'ComplEx'
-    run_id = '2.1'
-    model_save_path = ""
-    model_config_path = ""
-    hyps_dict = load_hyps_dict(hyps_dict_path)
-    app.run(debug=True)
