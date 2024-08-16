@@ -49,12 +49,14 @@ def twm_demo():
                 "dim": int(request.form.get("dim"))
             }
         except:
-            img = os.path.join(app.config["UPLOAD_FOLDER"], "temp.jpg")
+            pred_img = os.path.join(app.config["UPLOAD_FOLDER"], "twig-idea.png")
+            true_img = os.path.join(app.config["UPLOAD_FOLDER"], "twig-nn.png")
             twm_text = f'Please fill in the whole form or else enjoy some LoTR memes!\n'
             twm_text += f'Specific errors follow:\n{err}'
             return render_template(
                 "index.html",
-                twm_image=img,
+                twm_pred_image=pred_img,
+                twm_true_image=true_img,
                 twm_text=twm_text,
             )
         img_pred, img_true, graph_save_url, mrr_pred, mrr_true, exp_id_wanted = do_twm(
@@ -84,7 +86,7 @@ def twm_demo():
     else:
         img_pred = os.path.join(app.config["UPLOAD_FOLDER"], "twig-idea.png")
         img_true = os.path.join(app.config["UPLOAD_FOLDER"], "twig-nn.png")
-        twm_text = f'Enjoy some LoTR memes!'
+        twm_text = f'TWIG is cool!'
         return render_template(
             "index.html",
             twm_pred_image=img_pred,

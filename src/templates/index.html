@@ -31,6 +31,11 @@
             display: table;
             clear: both;
         }
+
+        .twmimage {
+            max-width:200%;
+            max-height:200%;
+        }
         </style>
 </head>
 <body>
@@ -121,7 +126,8 @@
             <p>{{twm_text}}</p>
             <p>{{hyp_text}}</p>
             <p>{{link_label}}<a href="{{link}}">{{link}}</a></p>
-            <img src="{{twm_image}}">
+            <img class="twmimage" src="{{twm_pred_image}}">
+            <img class="twmimage" src="{{twm_true_image}}">
         </div>
     </div>
 </body>
