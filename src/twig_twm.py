@@ -3,6 +3,7 @@ from load_data import _do_load
 from trainer import _train_and_eval
 from twig_nn import *
 from kge_pipeline import _run_kge_pipeline
+from twm_app import start_twm_app
 
 # external imports
 import torch
@@ -628,10 +629,10 @@ def do_app_job(
 ):
     start_twm_app(
         hyps_dict_path=hyps_dict_path,
-        kge_model_name=kge_model_name,
-        run_id=run_id,
-        model_save_path=model_save_path,
-        model_config_path=model_config_path
+        kge_model_name_local=kge_model_name,
+        run_id_local=run_id,
+        model_save_path_local=model_save_path,
+        model_config_path_local=model_config_path
     )
 
 if __name__ == '__main__':

@@ -66,10 +66,10 @@ def twm_demo():
             hyp_selected=hyp_selected,
             model_save_path=model_save_path,
             model_config_path=model_config_path,
-            hyps_dict=hyps_dict
+            hyps_dict=hyps_dict,
+            save_path=app.config["UPLOAD_FOLDER"],
+            file_name_tag="twm"
         )
-        img_pred = os.path.join(app.config["UPLOAD_FOLDER"], img_pred)
-        img_true = os.path.join(app.config["UPLOAD_FOLDER"], img_true)
         twm_text = f'Predicted MRR (left image): {str(round(float(mrr_pred), 3)).ljust(5, "0")}<br>Ground Truth MRR (right image): {str(round(float(mrr_true), 3)).ljust(5, "0")}'
         hyp_text = f'Hyperparameter grid iD: {exp_id_wanted}. This maps to the hyperparameters:<br>'
         for key in hyp_selected:

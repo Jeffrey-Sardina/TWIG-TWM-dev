@@ -1,6 +1,5 @@
 # TWIG imports
 from load_data import _do_load
-from twig_twm import load_config
 from utils import load_custom_dataset, get_triples, calc_graph_stats
 
 # external imports
@@ -12,17 +11,21 @@ import matplotlib.cm as cm
 from pykeen import datasets
 import torch
 import ast
+import pickle
+import os
 
-device = 'cuda'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+def load_config(model_config_path):
+    with open(model_config_path, 'rb') as cache:
+        print('loading model settings from cache:', model_config_path)
+        model_config = pickle.load(cache)
+    return model_config
 
 def load_twig_fmt_data(dataset_name, kge_model_name, run_id, normalisation, n_bins):
-    # this is embarrassing but it's needed
-    # bc TWIG load_data uses a hardcodeed a local relative path
-    # so for now this work-around it ok
     datasets_to_load = {
         dataset_name: [run_id]
     }
-
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
         model_name=kge_model_name,
@@ -235,7 +238,9 @@ def do_twm(
         hyp_selected,
         model_save_path,
         model_config_path,
-        hyps_dict
+        hyps_dict,
+        save_path,
+        file_name_tag
     ):
     # load hyperparaneters
     if type(hyp_selected) != int:
@@ -255,9 +260,9 @@ def do_twm(
         normalisation=model_config['normalisation'],
         n_bins=model_config['n_bins']
     )
-    img_path_pred = f"TWM-{dataset_name}-{kge_model_name}-{run_id}-pred.svg" #do png, pdf, svg (among maybe others) accepted
-    img_path_true = f"TWM-{dataset_name}-{kge_model_name}-{run_id}-true.svg" #do png, pdf, svg (among maybe others) accepted
-    gexf_file_path = f"static/TWM-{dataset_name}-{kge_model_name}-{run_id}.gexf"
+    img_path_pred = os.path.join(save_path, f"{file_name_tag}-{dataset_name}-{kge_model_name}-{run_id}-pred.svg")
+    img_path_true = os.path.join(save_path, f"{file_name_tag}-{dataset_name}-{kge_model_name}-{run_id}-true.svg")
+    gexf_file_path = os.path.join(save_path, f"{file_name_tag}-{dataset_name}-{kge_model_name}-{run_id}.gexf")
     graph_save_url = f"http://127.0.0.1:5000/" + gexf_file_path
 
     TWIG_model = torch.load(model_save_path).to(device)

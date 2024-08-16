@@ -5,10 +5,13 @@
     <style>
         * {
             box-sizing: border-box;
-            background-color: rgb(77, 77, 77);
+            background-color: rgb(42, 42, 42);
             color: white;
         }
 
+        select {
+            float: right;
+        }
         
         /* Create two unequal columns that floats next to each other */
         .column {
@@ -18,11 +21,13 @@
         }
         
         .left {
-            width: 33%;
+            padding-left: 5%;
+            width: 30%;
         }
         
         .right {
-            width: 67%;
+            padding-left: 10%;
+            width: 70%;
         }
         
         /* Clear floats after the columns */
@@ -39,7 +44,9 @@
         </style>
 </head>
 <body>
-    <h1>Topologically-Weighted Mapping</h1>
+    <h1 style="text-align: center;">Topologically-Weighted Mapping with TWIG</h1>
+    <p style="text-align: center;">Created by Seathrún (Jeffrey) Sardina</0>
+    <hr>
     <div class="row">
         <div class="column left">
             <h2>Dataset and model settings</h2>
@@ -116,7 +123,7 @@
         </div>
         <div class="column right">
             {% autoescape false %}
-                <h2>Your TWM output:</h2>
+                <h2>Your TWM output</h2>
                 <p>{{twm_text}}</p>
                 <p>{{link_label}}<a href="{{link}}">{{link}}</a></p>
                 <img class="twmimage" src="{{twm_pred_image}}">

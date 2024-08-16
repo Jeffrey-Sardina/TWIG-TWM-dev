@@ -11,5 +11,6 @@ twig.log
 *.res
 *.log
 twig/TWIG/data_save/
+*.svg
 *.gexf
 __pycache__/
