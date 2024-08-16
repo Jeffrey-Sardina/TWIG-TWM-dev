@@ -13,7 +13,7 @@ import sys
 # Flask constructor
 app = Flask(__name__) 
 
-IMG_FOLDER = os.path.join("static", "images")
+IMG_FOLDER = "static"
 app.config["UPLOAD_FOLDER"] = IMG_FOLDER
 hyp_selected = {}
 hyps_dict = {}
@@ -70,8 +70,10 @@ def twm_demo():
         )
         img_pred = os.path.join(app.config["UPLOAD_FOLDER"], img_pred)
         img_true = os.path.join(app.config["UPLOAD_FOLDER"], img_true)
-        twm_text = f'Predicted MRR: {str(round(float(mrr_pred), 3)).ljust(5, "0")}\nGround Truth MRR: {str(round(float(mrr_true), 3)).ljust(5, "0")}'
-        hyp_text = f'Hyperparameter grid iD: {exp_id_wanted}'
+        twm_text = f'Predicted MRR (left image): {str(round(float(mrr_pred), 3)).ljust(5, "0")}<br>Ground Truth MRR (right image): {str(round(float(mrr_true), 3)).ljust(5, "0")}'
+        hyp_text = f'Hyperparameter grid iD: {exp_id_wanted}. This maps to the hyperparameters:<br>'
+        for key in hyp_selected:
+            hyp_text += f' - {key} -> {hyp_selected[key]}<br>'
         link_label = f'Graph URL accession: '
         link = f'{graph_save_url}'
         return render_template(

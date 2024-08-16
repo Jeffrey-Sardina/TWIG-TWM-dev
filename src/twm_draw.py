@@ -20,8 +20,9 @@ def load_twig_fmt_data(dataset_name, kge_model_name, run_id, normalisation, n_bi
     # bc TWIG load_data uses a hardcodeed a local relative path
     # so for now this work-around it ok
     datasets_to_load = {
-        dataset_name: run_id
+        dataset_name: [run_id]
     }
+
     twig_data = _do_load(
         datasets_to_load=datasets_to_load,
         model_name=kge_model_name,
@@ -46,8 +47,8 @@ def create_TWM_graph(
         run_id,
         twig_data,
         exp_id_wanted,
-        TWIG_model=None,
-        do_print=True
+        TWIG_model,
+        pred_graph_split='valid'
     ):
     # load data
     try:
@@ -64,7 +65,7 @@ def create_TWM_graph(
     if TWIG_model:
         TWIG_model.eval()
     
-    struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
+    struct_tensor, hyps_tensor, mrr_true, _ = twig_data.get_batch(
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id_wanted,
@@ -80,13 +81,14 @@ def create_TWM_graph(
         mrr_true = torch.mean(1 / (rank_list_true * max_possible_rank)) # mrr from ranks on range [0,max]
     assert len(rank_list_pred) % 2 == 0, "should be a multiple of 2 for s and o corruption ranks"
     assert len(rank_list_true) % 2 == 0, "should be a multiple of 2 for s and o corruption ranks"
+    assert len(rank_list_pred) == len(rank_list_true), "rank lists must have the same length"
 
     # calculate all learnabilities
     learnabilities_pred = []
     learnabilities_true = []
-    for i in range(len(R_preds) // 2):
+    for i in range(len(rank_list_pred) // 2):
         s_idx = i
-        o_idx = (len(R_preds) // 2) + i
+        o_idx = (len(rank_list_pred) // 2) + i
 
         # get predictions
         learnability_pred_s = 1 / (1 + rank_list_pred[s_idx] * (max_possible_rank - 1))
@@ -104,15 +106,15 @@ def create_TWM_graph(
         learnability_true = round(float(learnability_true), 2)
         learnabilities_true.append(learnability_true)
 
-    assert len(learnabilities_pred) * 2 == len(R_preds), f"new version should have exactly half the size -- at the  triple level not subj and obj level. But itr was {len(learnabilities)}, len{len(R_preds)}"
-    assert len(learnabilities_true) * 2 == len(R_preds), f"new version should have exactly half the size -- at the  triple level not subj and obj level. But itr was {len(learnabilities)}, len{len(R_preds)}"
+    assert len(learnabilities_pred) * 2 == len(rank_list_pred), f"new version should have exactly half the size -- at the  triple level not subj and obj level. But itr was {len(learnabilities)}, len{len(R_preds)}"
+    assert len(learnabilities_true) * 2 == len(rank_list_true), f"new version should have exactly half the size -- at the  triple level not subj and obj level. But itr was {len(learnabilities)}, len{len(R_preds)}"
 
     '''
     TODO: make sure triple order herer is the same as in ranks lists in the code above!!!
     '''
     graph_stats = calc_graph_stats(triples_dicts, do_print=False)
     twm = nx.MultiDiGraph()
-    for triple_id, triple in enumerate(triples_dicts['train']):
+    for triple_id, triple in enumerate(triples_dicts[pred_graph_split]):
         s, p, o = triple
 
         # get learnabilities
@@ -161,7 +163,7 @@ def draw_TWM_graph(twm, out_file_name, draw_pred):
         colour = cm.YlOrBr(learnability)
         colours.append(colour)
 
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(dpi=1000)
     node_pos = nx.circular_layout(twm)
     nx.draw(
         twm,
@@ -169,14 +171,14 @@ def draw_TWM_graph(twm, out_file_name, draw_pred):
         with_labels=False,
         edgelist=edges,
         edge_color=colours,
-        pos=node_pos
+        pos=node_pos,
     )
     sm = plt.cm.ScalarMappable(cmap=cm.YlOrBr)
     sm._A = []
     plt.colorbar(sm, ax=ax)
     ax.axis('off')
     fig.set_facecolor('grey')
-    plt.savefig(out_file_name)
+    plt.savefig(out_file_name, bbox_inches='tight')
 
 def load_hyps_dict(path):
     with open(path, 'r') as inp:
@@ -253,10 +255,10 @@ def do_twm(
         normalisation=model_config['normalisation'],
         n_bins=model_config['n_bins']
     )
-    img_path_pred = f"static/images/TWM-{dataset_name}-{kge_model_name}-{run_id}-pred.svg" #do png, pdf, svg (among maybe others) accepted
-    img_path_true = f"static/images/TWM-{dataset_name}-{kge_model_name}-{run_id}-true.svg" #do png, pdf, svg (among maybe others) accepted
-    gexf_file_path = f"static/graphs/TWM-{dataset_name}-{kge_model_name}-{run_id}.gexf"
-    graph_save_url = f"http://127.0.0.1:5000/static/graphs/" + gexf_file_path
+    img_path_pred = f"TWM-{dataset_name}-{kge_model_name}-{run_id}-pred.svg" #do png, pdf, svg (among maybe others) accepted
+    img_path_true = f"TWM-{dataset_name}-{kge_model_name}-{run_id}-true.svg" #do png, pdf, svg (among maybe others) accepted
+    gexf_file_path = f"static/TWM-{dataset_name}-{kge_model_name}-{run_id}.gexf"
+    graph_save_url = f"http://127.0.0.1:5000/" + gexf_file_path
 
     TWIG_model = torch.load(model_save_path).to(device)
     TWIG_model.eval()
@@ -266,8 +268,6 @@ def do_twm(
         twig_data=twig_data,
         exp_id_wanted=exp_id_wanted,
         TWIG_model=TWIG_model,
-        rescale_y=True,
-        graph_split='valid'
     )
     
     # write output

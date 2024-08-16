@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Topologically-Weighted Mapping (TWM) via TWIG</title>
+    <title>Topologically-Weighted Mapping</title>
     <style>
         * {
             box-sizing: border-box;
-            background-color: rgb(33, 33, 33);
+            background-color: rgb(77, 77, 77);
             color: white;
         }
 
@@ -39,10 +39,10 @@
         </style>
 </head>
 <body>
-    <h1>Topologically-Weighted Mapping (TWM) via TWIG</h1>
+    <h1>Topologically-Weighted Mapping</h1>
     <div class="row">
         <div class="column left">
-            <h2>Please input your dataset and model settings</h2>
+            <h2>Dataset and model settings</h2>
             <form action="{{ url_for("twm_demo")}}" method="post">
                 <label for="dataset">Dataset:</label>
                 <select name="dataset" id="dataset">
@@ -115,12 +115,14 @@
                 <button type="submit">TWIG it!</button>
         </div>
         <div class="column right">
-            <h2>Your TWM output:</h2>
-            <p>{{twm_text}}</p>
-            <p>{{hyp_text}}</p>
-            <p>{{link_label}}<a href="{{link}}">{{link}}</a></p>
-            <img class="twmimage" src="{{twm_pred_image}}">
-            <img class="twmimage" src="{{twm_true_image}}">
+            {% autoescape false %}
+                <h2>Your TWM output:</h2>
+                <p>{{twm_text}}</p>
+                <p>{{link_label}}<a href="{{link}}">{{link}}</a></p>
+                <img class="twmimage" src="{{twm_pred_image}}">
+                <img class="twmimage" src="{{twm_true_image}}">
+                <p>{{hyp_text}}</p>
+            {% endautoescape %}
         </div>
     </div>
 </body>

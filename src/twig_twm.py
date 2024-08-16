@@ -148,6 +148,9 @@ def do_job(
     )
     checkpoint_id = str(int(random.random() * 10**16))
     model_name_prefix = f'chkpt-ID_{checkpoint_id}_tag_{tag}_{"-".join(d for d in datasets_to_load.keys())}'
+    if verbose:
+        print('the checkpoint ID for this run is: ', checkpoint_id)
+        print('the save name prefix for this run is: ', model_name_prefix)
 
     # save settinggs
     checkpoint_config_name = os.path.join(checkpoint_dir, model_name_prefix + '.pkl')
