@@ -636,25 +636,33 @@ def do_app_job(
     )
 
 if __name__ == '__main__':
-    do_job(
-        datasets_to_load={
-            "UMLS": ["2.1", "2.2"],
-            # "CoDExSmall": ["2.1", "2.2"],
-            # "DBpedia50": ["2.1", "2.2"],
-            # "Kinships": ["2.1", "2.3"],
-            # "OpenEA": ["2.1", "2.2"],
-        },
+    # do_job(
+    #     datasets_to_load={
+    #         "UMLS": ["2.1", "2.2"],
+    #         # "CoDExSmall": ["2.1", "2.2"],
+    #         # "DBpedia50": ["2.1", "2.2"],
+    #         # "Kinships": ["2.1", "2.3"],
+    #         # "OpenEA": ["2.1", "2.2"],
+    #     },
+    #     kge_model_name='ComplEx',
+    #     test_ratio=0.5,
+    #     valid_ratio=0.0,
+    #     normalisation='zscore',
+    #     n_bins=30,
+    #     model_or_version='base',
+    #     optimizer='adam',
+    #     optimizer_args={'lr': 5e-3},
+    #     epochs=[1, 1],
+    #     mrr_loss_coeffs=[0, 10],
+    #     rank_dist_loss_coeffs=[1, 1],
+    #     verbose=True,
+    #     tag='TWIG-job'
+    # )
+
+    do_app_job(
+        hyps_dict_path="output/CoDExSmall/CoDExSmall-ComplEx-TWM-run2.1/CoDExSmall-TWM-run2.1.grid",
         kge_model_name='ComplEx',
-        test_ratio=0.5,
-        valid_ratio=0.0,
-        normalisation='zscore',
-        n_bins=30,
-        model_or_version='base',
-        optimizer='adam',
-        optimizer_args={'lr': 5e-3},
-        epochs=[1, 1],
-        mrr_loss_coeffs=[0, 10],
-        rank_dist_loss_coeffs=[1, 1],
-        verbose=True,
-        tag='TWIG-job'
+        run_id='2.1',
+        model_save_path="checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS_e1-e0.pt",
+        model_config_path="checkpoints/chkpt-ID_8606280476482954_tag_TWIG-job_UMLS.pkl"
     )
