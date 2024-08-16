@@ -2,10 +2,12 @@
 # and also from: https://www.geeksforgeeks.org/retrieving-html-from-data-using-flask/
 # and https://www.w3schools.com/tags/tag_select.asp
 
-# importing Flask and other modules
+# TWIG imports
+from twm_draw import do_twm, load_hyps_dict
+
+# external imports
 from flask import Flask, request, render_template
 import os
-from twm_draw import do_twm, load_hyps_dict
 import sys
 
 # Flask constructor
@@ -36,8 +38,6 @@ def twm_demo():
                         err += "margin parameter must be set when MarginRankingLoss is given\n"
                         assert False, err
                     margin = None
-            use_TWIG = request.form.get("use_twig")
-            use_TWIG = True if use_TWIG == "Yes" else False
             dataset = request.form.get("dataset")
             hyp_selected = {
                 "loss": request.form.get("loss"),
@@ -93,6 +93,22 @@ def twm_demo():
             twm_true_image=img_true,
             twm_text=twm_text
         )
+    
+def start_twm_app(
+        hyps_dict_path,
+        kge_model_name_local,
+        run_id_local,
+        model_save_path_local,
+        model_config_path_local
+):
+    global hyps_dict, kge_model_name, run_id, model_save_path, model_config_path
+    hyps_dict = load_hyps_dict(hyps_dict_path)
+    kge_model_name = kge_model_name_local
+    run_id = run_id_local
+    model_save_path = model_save_path_local
+    model_config_path = model_config_path_local
+    app.run(debug=True)
+
     
 if __name__ == '__main__':
     hyps_dict_path = sys.argv[1]

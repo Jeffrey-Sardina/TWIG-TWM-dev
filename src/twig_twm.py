@@ -616,33 +616,41 @@ def kge_data_job(
             grid_override_idxs=grid_override_idxs
         )
 
-if __name__ == '__main__':
-    # do_job(
-    #     datasets_to_load={
-    #         "UMLS": ["2.1", "2.2"],
-    #         # "CoDExSmall": ["2.1", "2.2"],
-    #         # "DBpedia50": ["2.1", "2.2"],
-    #         # "Kinships": ["2.1", "2.3"],
-    #         # "OpenEA": ["2.1", "2.2"],
-    #     },
-    #     kge_model_name='ComplEx',
-    #     test_ratio=0.5,
-    #     valid_ratio=0.0,
-    #     normalisation='zscore',
-    #     n_bins=30,
-    #     model_or_version='base',
-    #     optimizer='adam',
-    #     optimizer_args={'lr': 5e-3},
-    #     epochs=[1, 1],
-    #     mrr_loss_coeffs=[0, 10],
-    #     rank_dist_loss_coeffs=[1, 1],
-    #     verbose=True,
-    #     tag='TWIG-job'
-    # )
+def do_app_job(
+        hyps_dict_path,
+        kge_model_name,
+        run_id,
+        model_save_path,
+        model_config_path
+):
+    start_twm_app(
+        hyps_dict_path=hyps_dict_path,
+        kge_model_name=kge_model_name,
+        run_id=run_id,
+        model_save_path=model_save_path,
+        model_config_path=model_config_path
+    )
 
-    kge_data_job(
-        dataset_name='UMLS',
-        kge_model='TransE',
-        run_id=1,
-        num_processes=1,
+if __name__ == '__main__':
+    do_job(
+        datasets_to_load={
+            "UMLS": ["2.1", "2.2"],
+            # "CoDExSmall": ["2.1", "2.2"],
+            # "DBpedia50": ["2.1", "2.2"],
+            # "Kinships": ["2.1", "2.3"],
+            # "OpenEA": ["2.1", "2.2"],
+        },
+        kge_model_name='ComplEx',
+        test_ratio=0.5,
+        valid_ratio=0.0,
+        normalisation='zscore',
+        n_bins=30,
+        model_or_version='base',
+        optimizer='adam',
+        optimizer_args={'lr': 5e-3},
+        epochs=[1, 1],
+        mrr_loss_coeffs=[0, 10],
+        rank_dist_loss_coeffs=[1, 1],
+        verbose=True,
+        tag='TWIG-job'
     )
