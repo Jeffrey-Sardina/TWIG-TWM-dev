@@ -1,0 +1,331 @@
+STRUCT CORRELATION ANAYSIS
+s_deg
+	r : -0.13023908510301324
+	r2 : 0.016962219288469926
+
+o_deg
+	r : -0.020971709532155738
+	r2 : 0.00043981260070111183
+
+p_freq
+	r : -0.051805121587763715
+	r2 : 0.002683770622722982
+
+s_p_cofreq
+	r : -0.1418857682872396
+	r2 : 0.020131571242460244
+
+o_p_cofreq
+	r : 0.0029493375830548273
+	r2 : 8.69859217881969e-06
+
+s_o_cofreq
+	r : 0.005722055062625087
+	r2 : 3.2741914139713386e-05
+
+s min deg neighbnour
+	r : 0.0055796078579757186
+	r2 : 3.113202384878438e-05
+
+s max deg neighbnour
+	r : -0.022386781764170235
+	r2 : 0.000501167997756585
+
+s mean deg neighbnour
+	r : 0.009806702450827098
+	r2 : 9.617141295905822e-05
+
+s num neighbnours
+	r : -0.12575283461444955
+	r2 : 0.0158137754135691
+
+s min freq rel
+	r : -0.05318270270569211
+	r2 : 0.0028283998670820304
+
+s max freq rel
+	r : 0.01687258912596428
+	r2 : 0.0002846842638136081
+
+s mean freq rel
+	r : -0.029760548782270805
+	r2 : 0.0008856902638219203
+
+s num rels
+	r : -0.02392413802034324
+	r2 : 0.0005723643800164329
+
+o min deg neighbnour
+	r : -0.10523973353128481
+	r2 : 0.011075401513735832
+
+o max deg neighbnour
+	r : -0.14137254299402588
+	r2 : 0.019986195912597697
+
+o mean deg neighbnour
+	r : -0.14781278586334182
+	r2 : 0.021848619664682142
+
+o num neighbnours
+	r : -0.028859824630034118
+	r2 : 0.0008328894776763239
+
+o min freq rel
+	r : -0.023342630505031207
+	r2 : 0.0005448783988944135
+
+o max freq rel
+	r : -0.05036952407800098
+	r2 : 0.0025370889558443206
+
+o mean freq rel
+	r : -0.037829921169087025
+	r2 : 0.0014311029356593385
+
+o num rels
+	r : -0.019482581663038047
+	r2 : 0.00037957098825694636
+
+
+HYP EFFECT ANAYSIS
+loss single-element alternates -> mrr:
+	 MarginRankingLoss -> 0.3566833928718785
+	 BCEWithLogitsLoss -> 0.035348490200946193
+	 CrossEntropyLoss -> 0.31362327038890186
+
+neg_samp single-element alternates -> mrr:
+	 BasicNegativeSampler -> 0.2680899372788357
+	 BernoulliNegativeSampler -> 0.3566833928718785
+	 PseudoTypedNegativeSampler -> 0.022682293964464455
+
+lr single-element alternates -> mrr:
+	 0.01 -> 0.3566833928718785
+	 0.0001 -> 0.004938338743271458
+	 1e-06 -> 0.003993516739490992
+
+reg_coeff single-element alternates -> mrr:
+	 0.01 -> 0.3566833928718785
+	 0.0001 -> 0.17978395003603614
+	 1e-06 -> 0.18472405949090875
+
+npp single-element alternates -> mrr:
+	 5 -> 0.2997342597385366
+	 25 -> 0.3349394424124715
+	 125 -> 0.3566833928718785
+
+margin single-element alternates -> mrr:
+	 0.5 -> 0.2827614582445426
+	 1 -> 0.32135296979595257
+	 2 -> 0.3566833928718785
+
+dim single-element alternates -> mrr:
+	 50 -> 0.3503589392669541
+	 100 -> 0.3566833928718785
+	 250 -> 0.3496764813278969
+
+
+STRUCTURAL CUTTOFF ANALYSIS
+Overall
+	best mrr: 0.3566833928718785
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s_deg < median ((10, 18.0, 1008))
+	best mrr: 0.30629875029158526
+	best hyp id: 260
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 25, 'margin': 2, 'dim': 250}
+
+For s_deg > median ((10, 18.0, 1008))
+	best mrr: 0.4104475875151357
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o_deg < median ((11, 112.0, 1008))
+	best mrr: 0.3264810870698008
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o_deg > median ((11, 112.0, 1008))
+	best mrr: 0.39722022697091086
+	best hyp id: 979
+	best hyperparameters: {'loss': 'CrossEntropyLoss', 'neg_samp': 'BasicNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': None, 'dim': 100}
+For p_freq < median ((15, 4985.0, 10197))
+	best mrr: 0.37248248502054787
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For p_freq > median ((15, 4985.0, 10197))
+	best mrr: 0.3432716577696574
+	best hyp id: 1061
+	best hyperparameters: {'loss': 'CrossEntropyLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': None, 'dim': 250}
+For s_p_cofreq < median ((0, 6.0, 171))
+	best mrr: 0.3285838931519101
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s_p_cofreq > median ((0, 6.0, 171))
+	best mrr: 0.38672408113422296
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o_p_cofreq < median ((0, 72.0, 676))
+	best mrr: 0.332942080877359
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o_p_cofreq > median ((0, 72.0, 676))
+	best mrr: 0.38635565330222443
+	best hyp id: 979
+	best hyperparameters: {'loss': 'CrossEntropyLoss', 'neg_samp': 'BasicNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': None, 'dim': 100}
+For s_o_cofreq < median ((0, 0.0, 2))
+	best mrr: 0.3565215685367164
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s_o_cofreq > median ((0, 0.0, 2))
+	best mrr: 0.4429768075267653
+	best hyp id: 810
+	best hyperparameters: {'loss': 'BCEWithLogitsLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 5, 'margin': None, 'dim': 50}
+For s min deg neighbnour < median ((10, 45.0, 1008))
+	best mrr: 0.3484654807894389
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s min deg neighbnour > median ((10, 45.0, 1008))
+	best mrr: 0.36672744642950716
+	best hyp id: 263
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 50}
+For s max deg neighbnour < median ((11, 232.0, 1008))
+	best mrr: 0.3163888297465278
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s max deg neighbnour > median ((11, 232.0, 1008))
+	best mrr: 0.3994793114959812
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For s mean deg neighbnour < median ((11.0, 136.77777777777777, 1008.0))
+	best mrr: 0.33627355860024694
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s mean deg neighbnour > median ((11.0, 136.77777777777777, 1008.0))
+	best mrr: 0.37734048284503857
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For s num neighbnours < median ((1, 2.0, 50))
+	best mrr: 0.31700432899013076
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s num neighbnours > median ((1, 2.0, 50))
+	best mrr: 0.40900134639108654
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For s min freq rel < median ((15, 1648.0, 10197))
+	best mrr: 0.3520600178955395
+	best hyp id: 269
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 250}
+
+For s min freq rel > median ((15, 1648.0, 10197))
+	best mrr: 0.366269935260346
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For s max freq rel < median ((15, 5563.0, 10197))
+	best mrr: 0.41447361893413337
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s max freq rel > median ((15, 5563.0, 10197))
+	best mrr: 0.2788784330274407
+	best hyp id: 811
+	best hyperparameters: {'loss': 'BCEWithLogitsLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 5, 'margin': None, 'dim': 100}
+For s mean freq rel < median ((15.0, 5270.5, 10197.0))
+	best mrr: 0.3658417918631005
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s mean freq rel > median ((15.0, 5270.5, 10197.0))
+	best mrr: 0.3473937268609366
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For s num rels < median ((1, 2.0, 5))
+	best mrr: 0.34956661305798004
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For s num rels > median ((1, 2.0, 5))
+	best mrr: 0.3937923161872063
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o min deg neighbnour < median ((10, 13.0, 480))
+	best mrr: 0.3372823744005744
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o min deg neighbnour > median ((10, 13.0, 480))
+	best mrr: 0.3771986590256561
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o max deg neighbnour < median ((11, 29.0, 1008))
+	best mrr: 0.3018333139701326
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o max deg neighbnour > median ((11, 29.0, 1008))
+	best mrr: 0.41583910936659424
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o mean deg neighbnour < median ((11.0, 19.0, 744.0))
+	best mrr: 0.30151454429702906
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o mean deg neighbnour > median ((11.0, 19.0, 744.0))
+	best mrr: 0.41325898592258326
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o num neighbnours < median ((1, 7.0, 50))
+	best mrr: 0.33047383282822146
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o num neighbnours > median ((1, 7.0, 50))
+	best mrr: 0.3978047664002453
+	best hyp id: 979
+	best hyperparameters: {'loss': 'CrossEntropyLoss', 'neg_samp': 'BasicNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': None, 'dim': 100}
+For o min freq rel < median ((15, 4985.0, 10197))
+	best mrr: 0.3932450921454512
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o min freq rel > median ((15, 4985.0, 10197))
+	best mrr: 0.2922458312447899
+	best hyp id: 269
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 250}
+For o max freq rel < median ((24, 5563.0, 10197))
+	best mrr: 0.40391787517656846
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o max freq rel > median ((24, 5563.0, 10197))
+	best mrr: 0.2578136292007755
+	best hyp id: 253
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 25, 'margin': 1, 'dim': 50}
+For o mean freq rel < median ((24.0, 4985.0, 10197.0))
+	best mrr: 0.3853000026623821
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o mean freq rel > median ((24.0, 4985.0, 10197.0))
+	best mrr: 0.3178386528723819
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+For o num rels < median ((1, 1.0, 5))
+	best mrr: 0.3378185415978487
+	best hyp id: 266
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 100}
+
+For o num rels > median ((1, 1.0, 5))
+	best mrr: 0.413174916352305
+	best hyp id: 263
+	best hyperparameters: {'loss': 'MarginRankingLoss', 'neg_samp': 'BernoulliNegativeSampler', 'lr': 0.01, 'reg_coeff': 0.01, 'npp': 125, 'margin': 2, 'dim': 50}

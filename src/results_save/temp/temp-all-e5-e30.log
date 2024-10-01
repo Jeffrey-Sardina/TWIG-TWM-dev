@@ -1,0 +1,2848 @@
+Using random seed: 17
+Starting TWIG!
+Loading datasets
+Loading UMLS...
+- loading run 2.1...
+Loading Kinships...
+- loading run 2.1...
+Loading CoDExSmall...
+- loading run 2.1...
+Loading DBpedia50...
+- loading run 2.1...
+Loading OpenEA...
+- loading run 2.1...
+Creating the train-test split
+using splits:
+test_ids (121): [905, 1053, 769, 496, 369, 66, 731, 534, 827, 350, 409, 1078, 129, 642, 215, 868, 637, 245, 578, 38, 257, 418, 710, 900, 797, 619, 481, 358, 522, 842, 289, 178, 1135, 273, 860, 719, 708, 614, 435, 181, 222, 1129, 695, 1173, 40, 462, 591, 1151, 1082, 656, 683, 1107, 97, 523, 313, 1043, 142, 746, 1, 939, 733, 1166, 372, 1154, 260, 246, 443, 1084, 1060, 50, 752, 340, 916, 1208, 882, 294, 77, 883, 136, 511, 988, 845, 537, 206, 717, 184, 1115, 35, 25, 742, 623, 118, 151, 93, 428, 517, 577, 96, 407, 696, 1017, 22, 722, 238, 546, 586, 223, 1029, 240, 815, 1200, 743, 279, 133, 789, 747, 1021, 1117, 1013, 1165, 1164]
+valid_ids (0): []
+train_ids (1094): [954, 559, 685, 385, 210, 477, 924, 909, 991, 1074, 1103, 814, 729, 580, 292, 843, 284, 319, 579, 182, 874, 312, 515, 1111, 71, 687, 94, 829, 1171, 321, 904, 364, 711, 379, 13, 946, 354, 14, 1143, 296, 121, 1010, 1160, 54, 285, 1187, 412, 562, 20, 524, 532, 23, 847, 148, 542, 180, 832, 1066, 64, 204, 958, 1081, 545, 468, 851, 194, 183, 959, 327, 264, 892, 1210, 525, 502, 718, 974, 1051, 788, 123, 404, 984, 948, 60, 903, 1134, 383, 895, 341, 654, 1014, 951, 1006, 1002, 70, 863, 931, 871, 675, 344, 1168, 173, 684, 199, 828, 658, 236, 639, 398, 821, 335, 485, 138, 499, 536, 373, 49, 1126, 985, 99, 555, 76, 439, 63, 367, 723, 1209, 229, 422, 971, 840, 715, 1163, 563, 1035, 995, 693, 583, 810, 458, 305, 896, 1125, 442, 377, 299, 486, 613, 849, 197, 581, 92, 425, 530, 137, 975, 59, 431, 787, 445, 1184, 866, 1190, 271, 1076, 1026, 942, 459, 766, 1131, 1018, 220, 913, 0, 1097, 353, 763, 915, 798, 456, 1138, 26, 47, 84, 655, 589, 802, 961, 1068, 28, 702, 79, 436, 652, 277, 1055, 351, 258, 282, 699, 816, 807, 706, 636, 449, 389, 608, 823, 287, 348, 774, 612, 1114, 689, 1123, 671, 1213, 45, 161, 880, 228, 936, 893, 114, 1088, 6, 187, 474, 594, 548, 30, 561, 750, 879, 259, 139, 550, 605, 1012, 714, 566, 999, 759, 929, 1207, 872, 772, 254, 853, 126, 1046, 1048, 1016, 930, 741, 186, 979, 643, 567, 326, 601, 314, 62, 145, 247, 29, 734, 491, 597, 396, 933, 345, 855, 1003, 1153, 552, 4, 1072, 198, 1177, 405, 441, 368, 32, 1185, 135, 399, 164, 336, 785, 230, 175, 1001, 1049, 149, 660, 592, 869, 771, 297, 211, 37, 328, 1019, 471, 700, 421, 1124, 645, 1023, 838, 610, 611, 410, 115, 311, 111, 444, 628, 740, 976, 1033, 69, 162, 243, 952, 570, 1186, 864, 189, 1159, 1009, 1158, 1121, 914, 521, 1015, 185, 43, 51, 1193, 964, 730, 2, 1139, 1182, 68, 169, 382, 779, 963, 1162, 488, 1214, 854, 478, 278, 873, 1085, 575, 1147, 465, 632, 306, 967, 86, 657, 212, 361, 320, 1047, 332, 875, 1080, 492, 234, 938, 1024, 250, 163, 676, 475, 899, 644, 765, 467, 83, 735, 427, 170, 844, 1062, 293, 159, 811, 584, 982, 171, 65, 1044, 27, 1188, 476, 907, 834, 420, 678, 541, 500, 9, 1178, 179, 518, 214, 232, 574, 362, 1022, 716, 725, 603, 33, 682, 833, 739, 1145, 165, 704, 463, 727, 1119, 520, 568, 461, 1108, 870, 758, 713, 104, 1065, 670, 510, 253, 107, 668, 91, 480, 1000, 953, 1034, 1042, 1116, 698, 889, 681, 935, 703, 144, 207, 196, 1194, 1130, 408, 861, 721, 791, 587, 910, 1089, 156, 519, 464, 140, 609, 1045, 113, 732, 707, 760, 887, 824, 943, 599, 1058, 176, 846, 606, 1087, 554, 1050, 15, 533, 573, 820, 46, 793, 438, 370, 267, 52, 1102, 5, 978, 124, 1030, 1031, 1176, 1150, 805, 450, 831, 672, 1096, 209, 783, 635, 1061, 322, 482, 325, 237, 339, 227, 777, 616, 987, 817, 756, 795, 590, 757, 423, 419, 881, 501, 57, 390, 737, 87, 429, 302, 1052, 965, 667, 1136, 891, 898, 950, 1094, 908, 622, 304, 479, 764, 749, 95, 498, 1077, 470, 331, 751, 794, 877, 1152, 649, 3, 1059, 90, 1083, 17, 565, 338, 620, 310, 307, 659, 316, 1206, 487, 143, 98, 108, 607, 18, 274, 694, 48, 922, 926, 1039, 664, 147, 472, 692, 112, 401, 41, 81, 571, 625, 117, 391, 890, 531, 356, 116, 615, 8, 224, 1120, 1025, 337, 457, 490, 1086, 380, 44, 1132, 1057, 217, 784, 359, 630, 301, 1197, 1037, 720, 941, 626, 944, 994, 549, 1172, 780, 663, 1011, 576, 269, 529, 955, 856, 318, 544, 266, 809, 627, 897, 808, 1205, 451, 298, 980, 852, 150, 262, 160, 203, 132, 483, 270, 1181, 508, 188, 1109, 493, 666, 937, 1093, 484, 11, 906, 177, 219, 395, 1095, 244, 709, 990, 497, 901, 411, 973, 233, 403, 1203, 862, 928, 134, 89, 661, 452, 755, 1113, 598, 128, 800, 1148, 738, 363, 1054, 674, 466, 73, 388, 648, 782, 235, 200, 724, 754, 371, 213, 193, 867, 424, 770, 166, 790, 1098, 1192, 705, 1149, 1112, 433, 413, 503, 665, 691, 360, 1028, 596, 582, 1175, 12, 323, 208, 662, 414, 1174, 80, 276, 384, 878, 744, 1202, 378, 557, 968, 221, 242, 263, 812, 792, 640, 669, 773, 837, 1041, 960, 947, 1110, 526, 588, 1122, 884, 392, 315, 272, 761, 1101, 152, 925, 1071, 781, 1004, 917, 74, 303, 72, 1100, 986, 387, 527, 88, 440, 78, 504, 343, 125, 1199, 1007, 381, 195, 1118, 256, 507, 248, 295, 969, 818, 1104, 1005, 981, 776, 553, 992, 560, 1161, 1008, 796, 154, 1064, 923, 172, 241, 631, 67, 416, 288, 902, 894, 1198, 505, 324, 1040, 600, 168, 146, 572, 679, 157, 921, 778, 618, 535, 799, 397, 918, 540, 448, 446, 85, 300, 803, 155, 585, 806, 1201, 218, 1155, 374, 494, 205, 701, 317, 1189, 697, 75, 255, 261, 1195, 453, 1179, 841, 506, 945, 249, 857, 1020, 130, 342, 120, 329, 333, 291, 885, 1211, 1070, 34, 813, 850, 1167, 775, 82, 347, 768, 538, 7, 934, 415, 426, 998, 1183, 595, 556, 962, 355, 365, 275, 268, 551, 997, 1142, 122, 1157, 876, 251, 819, 61, 454, 932, 53, 202, 417, 617, 966, 231, 56, 31, 201, 1156, 106, 1067, 1073, 690, 957, 16, 376, 539, 602, 24, 927, 972, 280, 1032, 912, 949, 920, 366, 393, 21, 216, 191, 919, 728, 888, 1212, 432, 352, 753, 641, 473, 346, 673, 109, 865, 1063, 58, 745, 386, 651, 989, 469, 447, 940, 158, 911, 1056, 835, 455, 1092, 804, 996, 100, 604, 334, 543, 1090, 460, 495, 174, 1196, 983, 826, 513, 638, 190, 858, 330, 101, 647, 646, 624, 1099, 102, 434, 226, 308, 514, 400, 375, 801, 1127, 825, 283, 1075, 42, 993, 153, 528, 634, 406, 110, 1180, 1141, 956, 39, 1146, 1169, 19, 686, 558, 192, 680, 349, 653, 712, 629, 512, 265, 1133, 1191, 1137, 394, 564, 131, 547, 119, 736, 1079, 1204, 437, 1140, 239, 489, 830, 10, 767, 977, 103, 726, 105, 1170, 762, 886, 36, 688, 1036, 836, 290, 970, 1038, 167, 839, 633, 141, 252, 1105, 677, 430, 1144, 1091, 309, 402, 286, 127, 1128, 281, 822, 650, 1027, 516, 859, 786, 509, 55, 225, 569, 1106, 357, 593, 748, 621, 848, 1069]
+Converting data to tensors
+Normalising data
+Finalising data preprocessing
+the checkpoint ID for this run is:  8606280476482954
+the save name prefix for this run is:  chkpt-ID_8606280476482954_tag_TWIG-job_UMLS-Kinships-CoDExSmall-DBpedia50-OpenEA
+running TWIG with settings:
+kge_model_name: ComplEx
+test_ratio: 0.1
+valid_ratio: 0.0
+normalisation: zscore
+n_bins: 30
+optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.005
+    maximize: False
+    weight_decay: 0
+)
+optimizer_args: {'lr': 0.005}
+mrr_loss_coeffs: [0, 10]
+rank_dist_loss_coeffs: [1, 1]
+rescale_mrr_loss: False
+rescale_rank_dist_loss: False
+RUnning with TWIG model:
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=9, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 30
+Epoch 1 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 702
+rank avg (pred): 0.427 +- 0.005
+mrr vals (pred, true): 0.017, 0.046
+batch losses (mrrl, rdl): 0.0, 8.00222e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 27
+rank avg (pred): 0.196 +- 0.027
+mrr vals (pred, true): 0.037, 0.244
+batch losses (mrrl, rdl): 0.0, 4.89255e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 135
+rank avg (pred): 0.465 +- 0.017
+mrr vals (pred, true): 0.016, 0.045
+batch losses (mrrl, rdl): 0.0, 8.19922e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 163
+rank avg (pred): 0.446 +- 0.067
+mrr vals (pred, true): 0.017, 0.048
+batch losses (mrrl, rdl): 0.0, 7.07636e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 192
+rank avg (pred): 0.454 +- 0.262
+mrr vals (pred, true): 0.097, 0.047
+batch losses (mrrl, rdl): 0.0, 2.64513e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1140
+rank avg (pred): 0.377 +- 0.230
+mrr vals (pred, true): 0.117, 0.026
+batch losses (mrrl, rdl): 0.0, 0.0001985572
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 626
+rank avg (pred): 0.404 +- 0.264
+mrr vals (pred, true): 0.125, 0.046
+batch losses (mrrl, rdl): 0.0, 1.19654e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1197
+rank avg (pred): 0.434 +- 0.246
+mrr vals (pred, true): 0.079, 0.045
+batch losses (mrrl, rdl): 0.0, 6.178e-06
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 992
+rank avg (pred): 0.193 +- 0.195
+mrr vals (pred, true): 0.105, 0.285
+batch losses (mrrl, rdl): 0.0, 5.40593e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1199
+rank avg (pred): 0.457 +- 0.260
+mrr vals (pred, true): 0.093, 0.046
+batch losses (mrrl, rdl): 0.0, 1.6697e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 403
+rank avg (pred): 0.413 +- 0.262
+mrr vals (pred, true): 0.100, 0.050
+batch losses (mrrl, rdl): 0.0, 9.9684e-06
+
+Epoch over!
+epoch time: 84.339
+
+Epoch 2 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 403
+rank avg (pred): 0.431 +- 0.264
+mrr vals (pred, true): 0.094, 0.050
+batch losses (mrrl, rdl): 0.0, 1.3103e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 901
+rank avg (pred): 0.590 +- 0.215
+mrr vals (pred, true): 0.059, 0.020
+batch losses (mrrl, rdl): 0.0, 9.5e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 417
+rank avg (pred): 0.416 +- 0.242
+mrr vals (pred, true): 0.098, 0.064
+batch losses (mrrl, rdl): 0.0, 6.8997e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 992
+rank avg (pred): 0.129 +- 0.134
+mrr vals (pred, true): 0.108, 0.285
+batch losses (mrrl, rdl): 0.0, 9.4118e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1079
+rank avg (pred): 0.168 +- 0.136
+mrr vals (pred, true): 0.089, 0.258
+batch losses (mrrl, rdl): 0.0, 3.31176e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 112
+rank avg (pred): 0.451 +- 0.251
+mrr vals (pred, true): 0.094, 0.043
+batch losses (mrrl, rdl): 0.0, 2.17771e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 476
+rank avg (pred): 0.409 +- 0.262
+mrr vals (pred, true): 0.109, 0.044
+batch losses (mrrl, rdl): 0.0, 7.879e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 121
+rank avg (pred): 0.425 +- 0.271
+mrr vals (pred, true): 0.098, 0.041
+batch losses (mrrl, rdl): 0.0, 1.43598e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 884
+rank avg (pred): 0.432 +- 0.243
+mrr vals (pred, true): 0.096, 0.045
+batch losses (mrrl, rdl): 0.0, 2.9698e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 512
+rank avg (pred): 0.492 +- 0.240
+mrr vals (pred, true): 0.072, 0.026
+batch losses (mrrl, rdl): 0.0, 1.58618e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1089
+rank avg (pred): 0.444 +- 0.266
+mrr vals (pred, true): 0.088, 0.053
+batch losses (mrrl, rdl): 0.0, 3.6098e-06
+
+Epoch over!
+epoch time: 78.225
+
+Epoch 3 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1113
+rank avg (pred): 0.436 +- 0.260
+mrr vals (pred, true): 0.081, 0.054
+batch losses (mrrl, rdl): 0.0, 1.6466e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 234
+rank avg (pred): 0.435 +- 0.271
+mrr vals (pred, true): 0.086, 0.044
+batch losses (mrrl, rdl): 0.0, 4.484e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 824
+rank avg (pred): 0.161 +- 0.165
+mrr vals (pred, true): 0.101, 0.302
+batch losses (mrrl, rdl): 0.0, 1.28047e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 477
+rank avg (pred): 0.464 +- 0.280
+mrr vals (pred, true): 0.081, 0.048
+batch losses (mrrl, rdl): 0.0, 1.48979e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 573
+rank avg (pred): 0.458 +- 0.251
+mrr vals (pred, true): 0.064, 0.043
+batch losses (mrrl, rdl): 0.0, 1.3125e-06
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 145
+rank avg (pred): 0.440 +- 0.300
+mrr vals (pred, true): 0.081, 0.044
+batch losses (mrrl, rdl): 0.0, 9.4982e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 236
+rank avg (pred): 0.414 +- 0.246
+mrr vals (pred, true): 0.053, 0.049
+batch losses (mrrl, rdl): 0.0, 1.07527e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 923
+rank avg (pred): 0.445 +- 0.248
+mrr vals (pred, true): 0.062, 0.037
+batch losses (mrrl, rdl): 0.0, 8.1681e-06
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1056
+rank avg (pred): 0.090 +- 0.146
+mrr vals (pred, true): 0.222, 0.290
+batch losses (mrrl, rdl): 0.0, 6.68188e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 421
+rank avg (pred): 0.423 +- 0.252
+mrr vals (pred, true): 0.059, 0.047
+batch losses (mrrl, rdl): 0.0, 2.0586e-06
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 914
+rank avg (pred): 0.619 +- 0.222
+mrr vals (pred, true): 0.029, 0.021
+batch losses (mrrl, rdl): 0.0, 2.20964e-05
+
+Epoch over!
+epoch time: 83.385
+
+Epoch 4 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 157
+rank avg (pred): 0.422 +- 0.254
+mrr vals (pred, true): 0.053, 0.041
+batch losses (mrrl, rdl): 0.0, 1.72474e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 152
+rank avg (pred): 0.456 +- 0.277
+mrr vals (pred, true): 0.059, 0.055
+batch losses (mrrl, rdl): 0.0, 1.61558e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 799
+rank avg (pred): 0.449 +- 0.237
+mrr vals (pred, true): 0.037, 0.041
+batch losses (mrrl, rdl): 0.0, 5.7821e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 715
+rank avg (pred): 0.413 +- 0.243
+mrr vals (pred, true): 0.052, 0.046
+batch losses (mrrl, rdl): 0.0, 1.66473e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 81
+rank avg (pred): 0.437 +- 0.246
+mrr vals (pred, true): 0.043, 0.048
+batch losses (mrrl, rdl): 0.0, 5.1163e-06
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1071
+rank avg (pred): 0.202 +- 0.239
+mrr vals (pred, true): 0.102, 0.282
+batch losses (mrrl, rdl): 0.0, 0.0001086629
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1089
+rank avg (pred): 0.448 +- 0.273
+mrr vals (pred, true): 0.036, 0.053
+batch losses (mrrl, rdl): 0.0, 3.8614e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 60
+rank avg (pred): 0.171 +- 0.205
+mrr vals (pred, true): 0.128, 0.219
+batch losses (mrrl, rdl): 0.0, 1.36373e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 901
+rank avg (pred): 0.626 +- 0.193
+mrr vals (pred, true): 0.013, 0.020
+batch losses (mrrl, rdl): 0.0, 3.02061e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 995
+rank avg (pred): 0.177 +- 0.235
+mrr vals (pred, true): 0.175, 0.289
+batch losses (mrrl, rdl): 0.0, 1.96551e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 405
+rank avg (pred): 0.423 +- 0.221
+mrr vals (pred, true): 0.030, 0.045
+batch losses (mrrl, rdl): 0.0, 2.30228e-05
+
+Epoch over!
+epoch time: 80.246
+
+Epoch 5 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 110
+rank avg (pred): 0.456 +- 0.246
+mrr vals (pred, true): 0.027, 0.050
+batch losses (mrrl, rdl): 0.0, 1.14076e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 725
+rank avg (pred): 0.465 +- 0.246
+mrr vals (pred, true): 0.025, 0.045
+batch losses (mrrl, rdl): 0.0, 7.505e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 572
+rank avg (pred): 0.443 +- 0.255
+mrr vals (pred, true): 0.034, 0.041
+batch losses (mrrl, rdl): 0.0, 1.1429e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 985
+rank avg (pred): 0.185 +- 0.233
+mrr vals (pred, true): 0.141, 0.285
+batch losses (mrrl, rdl): 0.0, 1.56328e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 727
+rank avg (pred): 0.462 +- 0.254
+mrr vals (pred, true): 0.027, 0.044
+batch losses (mrrl, rdl): 0.0, 1.49613e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 675
+rank avg (pred): 0.458 +- 0.249
+mrr vals (pred, true): 0.028, 0.049
+batch losses (mrrl, rdl): 0.0, 2.5709e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 609
+rank avg (pred): 0.451 +- 0.256
+mrr vals (pred, true): 0.031, 0.039
+batch losses (mrrl, rdl): 0.0, 9.775e-07
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 514
+rank avg (pred): 0.457 +- 0.208
+mrr vals (pred, true): 0.023, 0.024
+batch losses (mrrl, rdl): 0.0, 7.37685e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 166
+rank avg (pred): 0.426 +- 0.230
+mrr vals (pred, true): 0.027, 0.052
+batch losses (mrrl, rdl): 0.0, 3.7871e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 416
+rank avg (pred): 0.434 +- 0.245
+mrr vals (pred, true): 0.027, 0.045
+batch losses (mrrl, rdl): 0.0, 1.325e-06
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 272
+rank avg (pred): 0.189 +- 0.245
+mrr vals (pred, true): 0.154, 0.252
+batch losses (mrrl, rdl): 0.0, 5.43803e-05
+
+Epoch over!
+epoch time: 76.241
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 909
+rank avg (pred): 0.649 +- 0.214
+mrr vals (pred, true): 0.014, 0.023
+batch losses (mrrl, rdl): 0.0132862302, 0.0001018646
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1169
+rank avg (pred): 0.496 +- 0.306
+mrr vals (pred, true): 0.047, 0.031
+batch losses (mrrl, rdl): 0.000112239, 3.97645e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 502
+rank avg (pred): 0.411 +- 0.312
+mrr vals (pred, true): 0.137, 0.022
+batch losses (mrrl, rdl): 0.075764142, 0.000194295
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1167
+rank avg (pred): 0.552 +- 0.264
+mrr vals (pred, true): 0.042, 0.032
+batch losses (mrrl, rdl): 0.0005669036, 0.0001984296
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1085
+rank avg (pred): 0.475 +- 0.267
+mrr vals (pred, true): 0.063, 0.054
+batch losses (mrrl, rdl): 0.001791148, 3.26199e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 871
+rank avg (pred): 0.672 +- 0.337
+mrr vals (pred, true): 0.043, 0.048
+batch losses (mrrl, rdl): 0.0005082756, 0.0009604325
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1136
+rank avg (pred): 0.608 +- 0.360
+mrr vals (pred, true): 0.109, 0.026
+batch losses (mrrl, rdl): 0.0350778997, 0.00047656
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 566
+rank avg (pred): 0.728 +- 0.357
+mrr vals (pred, true): 0.074, 0.023
+batch losses (mrrl, rdl): 0.0059065502, 0.000866062
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 965
+rank avg (pred): 0.528 +- 0.267
+mrr vals (pred, true): 0.058, 0.051
+batch losses (mrrl, rdl): 0.0006737541, 0.0001560638
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 303
+rank avg (pred): 0.605 +- 0.405
+mrr vals (pred, true): 0.183, 0.236
+batch losses (mrrl, rdl): 0.0273467042, 0.0034809869
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 692
+rank avg (pred): 0.432 +- 0.227
+mrr vals (pred, true): 0.070, 0.052
+batch losses (mrrl, rdl): 0.0039318604, 6.8071e-06
+
+Epoch over!
+epoch time: 74.505
+
+Epoch 2 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 760
+rank avg (pred): 0.593 +- 0.313
+mrr vals (pred, true): 0.051, 0.043
+batch losses (mrrl, rdl): 9.2172e-06, 0.0004013568
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 220
+rank avg (pred): 0.548 +- 0.275
+mrr vals (pred, true): 0.051, 0.048
+batch losses (mrrl, rdl): 2.8449e-06, 0.0002434872
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 159
+rank avg (pred): 0.556 +- 0.290
+mrr vals (pred, true): 0.043, 0.048
+batch losses (mrrl, rdl): 0.0004744852, 0.0002460753
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 476
+rank avg (pred): 0.449 +- 0.221
+mrr vals (pred, true): 0.052, 0.044
+batch losses (mrrl, rdl): 4.94748e-05, 1.11726e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 794
+rank avg (pred): 0.492 +- 0.248
+mrr vals (pred, true): 0.048, 0.050
+batch losses (mrrl, rdl): 2.66862e-05, 8.0777e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 840
+rank avg (pred): 0.545 +- 0.307
+mrr vals (pred, true): 0.051, 0.053
+batch losses (mrrl, rdl): 2.5545e-06, 0.0002065336
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 835
+rank avg (pred): 0.228 +- 0.198
+mrr vals (pred, true): 0.313, 0.285
+batch losses (mrrl, rdl): 0.0079225264, 0.0001541273
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 16
+rank avg (pred): 0.231 +- 0.199
+mrr vals (pred, true): 0.321, 0.184
+batch losses (mrrl, rdl): 0.18975465, 6.71372e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 420
+rank avg (pred): 0.535 +- 0.271
+mrr vals (pred, true): 0.049, 0.051
+batch losses (mrrl, rdl): 2.00894e-05, 0.0002513064
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 89
+rank avg (pred): 0.533 +- 0.268
+mrr vals (pred, true): 0.056, 0.045
+batch losses (mrrl, rdl): 0.0003486276, 0.0002237221
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 690
+rank avg (pred): 0.402 +- 0.219
+mrr vals (pred, true): 0.056, 0.043
+batch losses (mrrl, rdl): 0.000398424, 2.12078e-05
+
+Epoch over!
+epoch time: 75.778
+
+Epoch 3 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 569
+rank avg (pred): 0.443 +- 0.239
+mrr vals (pred, true): 0.040, 0.038
+batch losses (mrrl, rdl): 0.0009300519, 2.6976e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1088
+rank avg (pred): 0.577 +- 0.317
+mrr vals (pred, true): 0.054, 0.041
+batch losses (mrrl, rdl): 0.0001283463, 0.0003141381
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 572
+rank avg (pred): 0.423 +- 0.215
+mrr vals (pred, true): 0.058, 0.041
+batch losses (mrrl, rdl): 0.0006551244, 7.6701e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 783
+rank avg (pred): 0.500 +- 0.257
+mrr vals (pred, true): 0.049, 0.055
+batch losses (mrrl, rdl): 3.7853e-06, 0.0001454468
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 841
+rank avg (pred): 0.523 +- 0.264
+mrr vals (pred, true): 0.043, 0.047
+batch losses (mrrl, rdl): 0.0005246202, 0.0001451731
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 127
+rank avg (pred): 0.479 +- 0.248
+mrr vals (pred, true): 0.052, 0.045
+batch losses (mrrl, rdl): 4.51188e-05, 5.56742e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 137
+rank avg (pred): 0.450 +- 0.228
+mrr vals (pred, true): 0.053, 0.048
+batch losses (mrrl, rdl): 0.0001135327, 2.4045e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 266
+rank avg (pred): 0.355 +- 0.251
+mrr vals (pred, true): 0.273, 0.218
+batch losses (mrrl, rdl): 0.0300091598, 0.0007484428
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 291
+rank avg (pred): 0.395 +- 0.264
+mrr vals (pred, true): 0.219, 0.209
+batch losses (mrrl, rdl): 0.0010067656, 0.0009263208
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 69
+rank avg (pred): 0.321 +- 0.207
+mrr vals (pred, true): 0.173, 0.209
+batch losses (mrrl, rdl): 0.0135316085, 0.0004134012
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 888
+rank avg (pred): 0.526 +- 0.251
+mrr vals (pred, true): 0.045, 0.055
+batch losses (mrrl, rdl): 0.0002700641, 0.0001960275
+
+Epoch over!
+epoch time: 73.299
+
+Epoch 4 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 649
+rank avg (pred): 0.444 +- 0.214
+mrr vals (pred, true): 0.053, 0.045
+batch losses (mrrl, rdl): 8.1991e-05, 7.9192e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 104
+rank avg (pred): 0.558 +- 0.258
+mrr vals (pred, true): 0.045, 0.055
+batch losses (mrrl, rdl): 0.0002102774, 0.0002829542
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1138
+rank avg (pred): 0.418 +- 0.211
+mrr vals (pred, true): 0.050, 0.026
+batch losses (mrrl, rdl): 1.95e-08, 8.81287e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1187
+rank avg (pred): 0.484 +- 0.231
+mrr vals (pred, true): 0.050, 0.032
+batch losses (mrrl, rdl): 1.51e-08, 1.61931e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 34
+rank avg (pred): 0.366 +- 0.239
+mrr vals (pred, true): 0.211, 0.237
+batch losses (mrrl, rdl): 0.007142006, 0.0009658779
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 531
+rank avg (pred): 0.443 +- 0.195
+mrr vals (pred, true): 0.040, 0.026
+batch losses (mrrl, rdl): 0.0009576628, 0.0001154281
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 545
+rank avg (pred): 0.338 +- 0.206
+mrr vals (pred, true): 0.070, 0.025
+batch losses (mrrl, rdl): 0.0038205946, 0.000600195
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 755
+rank avg (pred): 0.150 +- 0.143
+mrr vals (pred, true): 0.285, 0.211
+batch losses (mrrl, rdl): 0.0548175126, 2.80981e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 941
+rank avg (pred): 0.467 +- 0.288
+mrr vals (pred, true): 0.048, 0.028
+batch losses (mrrl, rdl): 3.74696e-05, 2.22787e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1056
+rank avg (pred): 0.152 +- 0.145
+mrr vals (pred, true): 0.262, 0.290
+batch losses (mrrl, rdl): 0.0078998432, 5.4951e-06
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1086
+rank avg (pred): 0.515 +- 0.327
+mrr vals (pred, true): 0.048, 0.039
+batch losses (mrrl, rdl): 4.28924e-05, 0.0001099718
+
+Epoch over!
+epoch time: 82.971
+
+Epoch 5 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 954
+rank avg (pred): 0.566 +- 0.369
+mrr vals (pred, true): 0.047, 0.058
+batch losses (mrrl, rdl): 9.72565e-05, 0.0003026702
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 664
+rank avg (pred): 0.600 +- 0.379
+mrr vals (pred, true): 0.045, 0.050
+batch losses (mrrl, rdl): 0.0002795161, 0.0004752658
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 23
+rank avg (pred): 0.179 +- 0.149
+mrr vals (pred, true): 0.242, 0.211
+batch losses (mrrl, rdl): 0.0095326817, 7.2025e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 549
+rank avg (pred): 0.361 +- 0.181
+mrr vals (pred, true): 0.046, 0.023
+batch losses (mrrl, rdl): 0.0001903948, 0.0004819401
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 194
+rank avg (pred): 0.547 +- 0.356
+mrr vals (pred, true): 0.047, 0.045
+batch losses (mrrl, rdl): 8.04774e-05, 0.0002250319
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1140
+rank avg (pred): 0.333 +- 0.234
+mrr vals (pred, true): 0.069, 0.026
+batch losses (mrrl, rdl): 0.0034526545, 0.0004211098
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 877
+rank avg (pred): 0.546 +- 0.375
+mrr vals (pred, true): 0.052, 0.046
+batch losses (mrrl, rdl): 2.80486e-05, 0.000262068
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 863
+rank avg (pred): 0.447 +- 0.314
+mrr vals (pred, true): 0.049, 0.048
+batch losses (mrrl, rdl): 2.1409e-05, 2.0658e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 513
+rank avg (pred): 0.513 +- 0.227
+mrr vals (pred, true): 0.038, 0.028
+batch losses (mrrl, rdl): 0.0014429166, 3.0026e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 432
+rank avg (pred): 0.542 +- 0.388
+mrr vals (pred, true): 0.059, 0.046
+batch losses (mrrl, rdl): 0.0008221662, 0.0001738221
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 48
+rank avg (pred): 0.203 +- 0.198
+mrr vals (pred, true): 0.226, 0.208
+batch losses (mrrl, rdl): 0.0035581756, 2.8628e-06
+
+Epoch over!
+epoch time: 81.277
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 452
+rank avg (pred): 0.535 +- 0.376
+mrr vals (pred, true): 0.050, 0.038
+batch losses (mrrl, rdl): 6.4e-08, 0.0001791184
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 321
+rank avg (pred): 0.203 +- 0.211
+mrr vals (pred, true): 0.223, 0.176
+batch losses (mrrl, rdl): 0.0225110874, 1.6669e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 764
+rank avg (pred): 0.475 +- 0.310
+mrr vals (pred, true): 0.047, 0.043
+batch losses (mrrl, rdl): 0.0001083259, 2.50772e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 790
+rank avg (pred): 0.488 +- 0.334
+mrr vals (pred, true): 0.052, 0.041
+batch losses (mrrl, rdl): 2.63985e-05, 6.16377e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1126
+rank avg (pred): 0.480 +- 0.323
+mrr vals (pred, true): 0.049, 0.051
+batch losses (mrrl, rdl): 1.48436e-05, 4.27887e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 940
+rank avg (pred): 0.507 +- 0.326
+mrr vals (pred, true): 0.074, 0.040
+batch losses (mrrl, rdl): 0.0058920658, 7.20238e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 823
+rank avg (pred): 0.138 +- 0.154
+mrr vals (pred, true): 0.299, 0.321
+batch losses (mrrl, rdl): 0.0049923677, 4.8848e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1061
+rank avg (pred): 0.157 +- 0.185
+mrr vals (pred, true): 0.334, 0.266
+batch losses (mrrl, rdl): 0.0462641865, 1.22224e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1000
+rank avg (pred): 0.531 +- 0.348
+mrr vals (pred, true): 0.052, 0.038
+batch losses (mrrl, rdl): 3.68763e-05, 0.0001157967
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 665
+rank avg (pred): 0.518 +- 0.324
+mrr vals (pred, true): 0.050, 0.050
+batch losses (mrrl, rdl): 2.428e-07, 0.0002143865
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 203
+rank avg (pred): 0.494 +- 0.311
+mrr vals (pred, true): 0.046, 0.049
+batch losses (mrrl, rdl): 0.0001994147, 6.59245e-05
+
+Epoch over!
+epoch time: 92.164
+
+Epoch 7 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 318
+rank avg (pred): 0.113 +- 0.122
+mrr vals (pred, true): 0.270, 0.201
+batch losses (mrrl, rdl): 0.0465594754, 0.00018993
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 283
+rank avg (pred): 0.250 +- 0.237
+mrr vals (pred, true): 0.216, 0.237
+batch losses (mrrl, rdl): 0.0045854906, 0.0001460758
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 892
+rank avg (pred): 0.383 +- 0.275
+mrr vals (pred, true): 0.070, 0.020
+batch losses (mrrl, rdl): 0.0039845859, 0.0008731753
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 148
+rank avg (pred): 0.487 +- 0.301
+mrr vals (pred, true): 0.045, 0.045
+batch losses (mrrl, rdl): 0.0002145756, 2.1141e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 561
+rank avg (pred): 0.620 +- 0.330
+mrr vals (pred, true): 0.043, 0.024
+batch losses (mrrl, rdl): 0.0005058303, 0.0002721859
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 866
+rank avg (pred): 0.542 +- 0.334
+mrr vals (pred, true): 0.052, 0.049
+batch losses (mrrl, rdl): 6.04793e-05, 0.0001979816
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1205
+rank avg (pred): 0.538 +- 0.330
+mrr vals (pred, true): 0.051, 0.057
+batch losses (mrrl, rdl): 7.0905e-06, 0.0002554941
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 608
+rank avg (pred): 0.418 +- 0.287
+mrr vals (pred, true): 0.052, 0.037
+batch losses (mrrl, rdl): 2.93279e-05, 5.92517e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1131
+rank avg (pred): 0.634 +- 0.380
+mrr vals (pred, true): 0.045, 0.043
+batch losses (mrrl, rdl): 0.0002222293, 0.0006564839
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1145
+rank avg (pred): 0.373 +- 0.273
+mrr vals (pred, true): 0.067, 0.025
+batch losses (mrrl, rdl): 0.0030372348, 0.0002826251
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 103
+rank avg (pred): 0.497 +- 0.334
+mrr vals (pred, true): 0.049, 0.047
+batch losses (mrrl, rdl): 2.20286e-05, 0.0001131885
+
+Epoch over!
+epoch time: 87.133
+
+Epoch 8 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 338
+rank avg (pred): 0.483 +- 0.329
+mrr vals (pred, true): 0.056, 0.053
+batch losses (mrrl, rdl): 0.0003301827, 6.69668e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 204
+rank avg (pred): 0.408 +- 0.270
+mrr vals (pred, true): 0.054, 0.047
+batch losses (mrrl, rdl): 0.0001300739, 4.07942e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 515
+rank avg (pred): 0.506 +- 0.321
+mrr vals (pred, true): 0.060, 0.025
+batch losses (mrrl, rdl): 0.0010106815, 7.6929e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 419
+rank avg (pred): 0.515 +- 0.330
+mrr vals (pred, true): 0.058, 0.040
+batch losses (mrrl, rdl): 0.0006951269, 0.0001028702
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 589
+rank avg (pred): 0.483 +- 0.308
+mrr vals (pred, true): 0.046, 0.040
+batch losses (mrrl, rdl): 0.0001941416, 3.21788e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 604
+rank avg (pred): 0.396 +- 0.262
+mrr vals (pred, true): 0.058, 0.047
+batch losses (mrrl, rdl): 0.0006970047, 5.05971e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1047
+rank avg (pred): 0.616 +- 0.365
+mrr vals (pred, true): 0.047, 0.051
+batch losses (mrrl, rdl): 8.62313e-05, 0.0006838695
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 737
+rank avg (pred): 0.303 +- 0.230
+mrr vals (pred, true): 0.182, 0.293
+batch losses (mrrl, rdl): 0.123312965, 0.0004770149
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 901
+rank avg (pred): 0.457 +- 0.270
+mrr vals (pred, true): 0.050, 0.020
+batch losses (mrrl, rdl): 1.6307e-06, 0.0003106669
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 278
+rank avg (pred): 0.233 +- 0.220
+mrr vals (pred, true): 0.209, 0.227
+batch losses (mrrl, rdl): 0.0032601394, 0.0001527241
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 62
+rank avg (pred): 0.272 +- 0.244
+mrr vals (pred, true): 0.221, 0.225
+batch losses (mrrl, rdl): 0.0001792323, 0.0002810781
+
+Epoch over!
+epoch time: 100.244
+
+Epoch 9 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 306
+rank avg (pred): 0.251 +- 0.237
+mrr vals (pred, true): 0.222, 0.192
+batch losses (mrrl, rdl): 0.0091419714, 9.06105e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 583
+rank avg (pred): 0.487 +- 0.299
+mrr vals (pred, true): 0.046, 0.041
+batch losses (mrrl, rdl): 0.0001287175, 2.786e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 936
+rank avg (pred): 0.474 +- 0.303
+mrr vals (pred, true): 0.049, 0.040
+batch losses (mrrl, rdl): 1.29034e-05, 1.37197e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 917
+rank avg (pred): 0.305 +- 0.216
+mrr vals (pred, true): 0.073, 0.019
+batch losses (mrrl, rdl): 0.0054850699, 0.0015791358
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 230
+rank avg (pred): 0.441 +- 0.270
+mrr vals (pred, true): 0.048, 0.047
+batch losses (mrrl, rdl): 5.79067e-05, 4.9e-07
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 958
+rank avg (pred): 0.476 +- 0.301
+mrr vals (pred, true): 0.046, 0.046
+batch losses (mrrl, rdl): 0.000130532, 2.76116e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 856
+rank avg (pred): 0.443 +- 0.282
+mrr vals (pred, true): 0.058, 0.040
+batch losses (mrrl, rdl): 0.0006050894, 5.471e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 440
+rank avg (pred): 0.497 +- 0.315
+mrr vals (pred, true): 0.048, 0.056
+batch losses (mrrl, rdl): 3.38168e-05, 9.39474e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 932
+rank avg (pred): 0.431 +- 0.276
+mrr vals (pred, true): 0.053, 0.036
+batch losses (mrrl, rdl): 6.72289e-05, 1.99082e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 644
+rank avg (pred): 0.485 +- 0.313
+mrr vals (pred, true): 0.055, 0.044
+batch losses (mrrl, rdl): 0.0002309886, 4.20831e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 98
+rank avg (pred): 0.388 +- 0.254
+mrr vals (pred, true): 0.051, 0.040
+batch losses (mrrl, rdl): 2.03308e-05, 5.22576e-05
+
+Epoch over!
+epoch time: 104.115
+
+Epoch 10 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 588
+rank avg (pred): 0.440 +- 0.273
+mrr vals (pred, true): 0.046, 0.041
+batch losses (mrrl, rdl): 0.0001857412, 4.5553e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 527
+rank avg (pred): 0.444 +- 0.259
+mrr vals (pred, true): 0.050, 0.025
+batch losses (mrrl, rdl): 1.1367e-06, 0.000153254
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 510
+rank avg (pred): 0.286 +- 0.212
+mrr vals (pred, true): 0.087, 0.028
+batch losses (mrrl, rdl): 0.0133620724, 0.0008523738
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 128
+rank avg (pred): 0.457 +- 0.303
+mrr vals (pred, true): 0.052, 0.046
+batch losses (mrrl, rdl): 3.58407e-05, 7.38e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 959
+rank avg (pred): 0.492 +- 0.309
+mrr vals (pred, true): 0.049, 0.042
+batch losses (mrrl, rdl): 9.5245e-06, 5.95592e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 823
+rank avg (pred): 0.126 +- 0.147
+mrr vals (pred, true): 0.323, 0.321
+batch losses (mrrl, rdl): 3.4977e-05, 3.0804e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 343
+rank avg (pred): 0.445 +- 0.295
+mrr vals (pred, true): 0.046, 0.055
+batch losses (mrrl, rdl): 0.0001570892, 7.3696e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1064
+rank avg (pred): 0.314 +- 0.273
+mrr vals (pred, true): 0.257, 0.289
+batch losses (mrrl, rdl): 0.0102237016, 0.0007602983
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 917
+rank avg (pred): 0.371 +- 0.279
+mrr vals (pred, true): 0.107, 0.019
+batch losses (mrrl, rdl): 0.0323970877, 0.0008327946
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 596
+rank avg (pred): 0.464 +- 0.314
+mrr vals (pred, true): 0.051, 0.041
+batch losses (mrrl, rdl): 1.21261e-05, 2.36946e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 293
+rank avg (pred): 0.250 +- 0.241
+mrr vals (pred, true): 0.225, 0.214
+batch losses (mrrl, rdl): 0.0012401603, 7.98325e-05
+
+Epoch over!
+epoch time: 91.457
+
+Saving checkpoint at [1] epoch 10
+Epoch 11 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1065
+rank avg (pred): 0.238 +- 0.233
+mrr vals (pred, true): 0.311, 0.277
+batch losses (mrrl, rdl): 0.0114836302, 0.0001684806
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 549
+rank avg (pred): 0.503 +- 0.317
+mrr vals (pred, true): 0.045, 0.023
+batch losses (mrrl, rdl): 0.0002863579, 6.46442e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 69
+rank avg (pred): 0.250 +- 0.229
+mrr vals (pred, true): 0.198, 0.209
+batch losses (mrrl, rdl): 0.001216899, 7.5004e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1047
+rank avg (pred): 0.673 +- 0.397
+mrr vals (pred, true): 0.042, 0.051
+batch losses (mrrl, rdl): 0.0007174151, 0.0010471074
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 16
+rank avg (pred): 0.216 +- 0.217
+mrr vals (pred, true): 0.230, 0.184
+batch losses (mrrl, rdl): 0.021762969, 1.91237e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 491
+rank avg (pred): 0.405 +- 0.274
+mrr vals (pred, true): 0.056, 0.024
+batch losses (mrrl, rdl): 0.0003565742, 0.0002416921
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 638
+rank avg (pred): 0.454 +- 0.304
+mrr vals (pred, true): 0.050, 0.043
+batch losses (mrrl, rdl): 1.0167e-06, 1.0437e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 765
+rank avg (pred): 0.488 +- 0.310
+mrr vals (pred, true): 0.051, 0.043
+batch losses (mrrl, rdl): 1.86128e-05, 3.99773e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 195
+rank avg (pred): 0.518 +- 0.328
+mrr vals (pred, true): 0.048, 0.052
+batch losses (mrrl, rdl): 5.68367e-05, 0.0001426945
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1189
+rank avg (pred): 0.458 +- 0.285
+mrr vals (pred, true): 0.048, 0.054
+batch losses (mrrl, rdl): 4.54877e-05, 2.55004e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 212
+rank avg (pred): 0.427 +- 0.278
+mrr vals (pred, true): 0.052, 0.047
+batch losses (mrrl, rdl): 5.0746e-05, 1.1226e-06
+
+Epoch over!
+epoch time: 95.126
+
+Epoch 12 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1026
+rank avg (pred): 0.559 +- 0.325
+mrr vals (pred, true): 0.050, 0.048
+batch losses (mrrl, rdl): 1.0746e-06, 0.0003223692
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 197
+rank avg (pred): 0.462 +- 0.309
+mrr vals (pred, true): 0.049, 0.050
+batch losses (mrrl, rdl): 4.684e-06, 2.9743e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 961
+rank avg (pred): 0.547 +- 0.333
+mrr vals (pred, true): 0.044, 0.045
+batch losses (mrrl, rdl): 0.0003996373, 0.0002180653
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 995
+rank avg (pred): 0.237 +- 0.215
+mrr vals (pred, true): 0.275, 0.289
+batch losses (mrrl, rdl): 0.0019004772, 0.0001486971
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1068
+rank avg (pred): 0.267 +- 0.240
+mrr vals (pred, true): 0.286, 0.279
+batch losses (mrrl, rdl): 0.0005846852, 0.0001885451
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 558
+rank avg (pred): 0.481 +- 0.368
+mrr vals (pred, true): 0.046, 0.025
+batch losses (mrrl, rdl): 0.000167051, 0.0001662396
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 730
+rank avg (pred): 0.132 +- 0.175
+mrr vals (pred, true): 0.366, 0.386
+batch losses (mrrl, rdl): 0.0040230332, 1.88831e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 560
+rank avg (pred): 0.545 +- 0.329
+mrr vals (pred, true): 0.039, 0.025
+batch losses (mrrl, rdl): 0.0011536762, 6.23047e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 209
+rank avg (pred): 0.442 +- 0.284
+mrr vals (pred, true): 0.052, 0.049
+batch losses (mrrl, rdl): 2.91154e-05, 6.3817e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 691
+rank avg (pred): 0.444 +- 0.291
+mrr vals (pred, true): 0.053, 0.047
+batch losses (mrrl, rdl): 8.86594e-05, 2.707e-06
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 8
+rank avg (pred): 0.226 +- 0.212
+mrr vals (pred, true): 0.221, 0.245
+batch losses (mrrl, rdl): 0.0058461092, 0.0001020777
+
+Epoch over!
+epoch time: 99.291
+
+Epoch 13 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1047
+rank avg (pred): 0.592 +- 0.362
+mrr vals (pred, true): 0.046, 0.051
+batch losses (mrrl, rdl): 0.0001830202, 0.0005600651
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 547
+rank avg (pred): 0.508 +- 0.350
+mrr vals (pred, true): 0.044, 0.023
+batch losses (mrrl, rdl): 0.0003376731, 0.0001051913
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 415
+rank avg (pred): 0.406 +- 0.273
+mrr vals (pred, true): 0.051, 0.044
+batch losses (mrrl, rdl): 2.6684e-06, 1.30557e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 889
+rank avg (pred): 0.445 +- 0.293
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 1.657e-07, 4.7348e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1119
+rank avg (pred): 0.605 +- 0.351
+mrr vals (pred, true): 0.043, 0.060
+batch losses (mrrl, rdl): 0.0004574402, 0.0006336985
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 111
+rank avg (pred): 0.598 +- 0.350
+mrr vals (pred, true): 0.043, 0.045
+batch losses (mrrl, rdl): 0.000514216, 0.0004529918
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 865
+rank avg (pred): 0.537 +- 0.332
+mrr vals (pred, true): 0.048, 0.049
+batch losses (mrrl, rdl): 2.77345e-05, 0.0001571981
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 452
+rank avg (pred): 0.482 +- 0.319
+mrr vals (pred, true): 0.050, 0.038
+batch losses (mrrl, rdl): 1.4253e-06, 4.32948e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 529
+rank avg (pred): 0.490 +- 0.321
+mrr vals (pred, true): 0.054, 0.025
+batch losses (mrrl, rdl): 0.0001768005, 6.46199e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 212
+rank avg (pred): 0.548 +- 0.326
+mrr vals (pred, true): 0.048, 0.047
+batch losses (mrrl, rdl): 5.94996e-05, 0.0002922073
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 266
+rank avg (pred): 0.195 +- 0.194
+mrr vals (pred, true): 0.224, 0.218
+batch losses (mrrl, rdl): 0.0004390895, 5.2524e-06
+
+Epoch over!
+epoch time: 102.901
+
+Epoch 14 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 705
+rank avg (pred): 0.508 +- 0.305
+mrr vals (pred, true): 0.048, 0.043
+batch losses (mrrl, rdl): 2.55108e-05, 0.0001156276
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 467
+rank avg (pred): 0.545 +- 0.340
+mrr vals (pred, true): 0.047, 0.048
+batch losses (mrrl, rdl): 0.0001224906, 0.0002396556
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 617
+rank avg (pred): 0.573 +- 0.304
+mrr vals (pred, true): 0.046, 0.035
+batch losses (mrrl, rdl): 0.0001724585, 0.0002708818
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1183
+rank avg (pred): 0.434 +- 0.260
+mrr vals (pred, true): 0.051, 0.035
+batch losses (mrrl, rdl): 2.15948e-05, 1.8112e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 833
+rank avg (pred): 0.196 +- 0.187
+mrr vals (pred, true): 0.259, 0.321
+batch losses (mrrl, rdl): 0.0385505818, 7.57619e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 235
+rank avg (pred): 0.443 +- 0.269
+mrr vals (pred, true): 0.053, 0.046
+batch losses (mrrl, rdl): 0.0001058709, 4.0839e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 943
+rank avg (pred): 0.559 +- 0.329
+mrr vals (pred, true): 0.044, 0.031
+batch losses (mrrl, rdl): 0.0003182301, 0.0001666928
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 500
+rank avg (pred): 0.443 +- 0.306
+mrr vals (pred, true): 0.054, 0.025
+batch losses (mrrl, rdl): 0.0001260277, 0.0001586087
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 697
+rank avg (pred): 0.516 +- 0.312
+mrr vals (pred, true): 0.049, 0.048
+batch losses (mrrl, rdl): 2.777e-06, 0.0001290689
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 715
+rank avg (pred): 0.511 +- 0.299
+mrr vals (pred, true): 0.050, 0.046
+batch losses (mrrl, rdl): 1.326e-07, 0.0001054456
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 189
+rank avg (pred): 0.533 +- 0.315
+mrr vals (pred, true): 0.045, 0.043
+batch losses (mrrl, rdl): 0.0002628962, 0.0001604463
+
+Epoch over!
+epoch time: 94.273
+
+Epoch 15 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 573
+rank avg (pred): 0.438 +- 0.291
+mrr vals (pred, true): 0.051, 0.043
+batch losses (mrrl, rdl): 1.08451e-05, 8.4616e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 851
+rank avg (pred): 0.431 +- 0.285
+mrr vals (pred, true): 0.057, 0.042
+batch losses (mrrl, rdl): 0.0004418046, 4.6387e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1132
+rank avg (pred): 0.473 +- 0.303
+mrr vals (pred, true): 0.052, 0.053
+batch losses (mrrl, rdl): 4.29014e-05, 4.53169e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 843
+rank avg (pred): 0.388 +- 0.257
+mrr vals (pred, true): 0.053, 0.050
+batch losses (mrrl, rdl): 6.84172e-05, 9.59232e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1119
+rank avg (pred): 0.569 +- 0.351
+mrr vals (pred, true): 0.047, 0.060
+batch losses (mrrl, rdl): 0.0001200458, 0.0004234823
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 736
+rank avg (pred): 0.191 +- 0.195
+mrr vals (pred, true): 0.219, 0.292
+batch losses (mrrl, rdl): 0.053757593, 2.29751e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 274
+rank avg (pred): 0.209 +- 0.209
+mrr vals (pred, true): 0.227, 0.225
+batch losses (mrrl, rdl): 2.89557e-05, 3.50672e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 363
+rank avg (pred): 0.494 +- 0.313
+mrr vals (pred, true): 0.054, 0.048
+batch losses (mrrl, rdl): 0.0001257958, 9.52117e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 852
+rank avg (pred): 0.444 +- 0.278
+mrr vals (pred, true): 0.050, 0.044
+batch losses (mrrl, rdl): 9.011e-07, 3.0888e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 144
+rank avg (pred): 0.543 +- 0.324
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 6.55e-08, 0.0002444109
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 120
+rank avg (pred): 0.458 +- 0.258
+mrr vals (pred, true): 0.048, 0.044
+batch losses (mrrl, rdl): 5.61201e-05, 6.9986e-06
+
+Epoch over!
+epoch time: 95.75
+
+Saving checkpoint at [1] epoch 15
+Epoch 16 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 186
+rank avg (pred): 0.508 +- 0.275
+mrr vals (pred, true): 0.047, 0.059
+batch losses (mrrl, rdl): 0.0001149131, 0.0001686764
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 233
+rank avg (pred): 0.469 +- 0.285
+mrr vals (pred, true): 0.046, 0.051
+batch losses (mrrl, rdl): 0.0001594789, 3.63708e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1007
+rank avg (pred): 0.497 +- 0.309
+mrr vals (pred, true): 0.049, 0.037
+batch losses (mrrl, rdl): 1.35113e-05, 9.1256e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 176
+rank avg (pred): 0.418 +- 0.256
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 1.966e-06, 1.11391e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 127
+rank avg (pred): 0.459 +- 0.301
+mrr vals (pred, true): 0.050, 0.045
+batch losses (mrrl, rdl): 1.3504e-06, 3.30426e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1083
+rank avg (pred): 0.461 +- 0.287
+mrr vals (pred, true): 0.050, 0.044
+batch losses (mrrl, rdl): 1.1882e-06, 1.31118e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 478
+rank avg (pred): 0.441 +- 0.282
+mrr vals (pred, true): 0.052, 0.052
+batch losses (mrrl, rdl): 3.52314e-05, 3.3361e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 493
+rank avg (pred): 0.499 +- 0.337
+mrr vals (pred, true): 0.055, 0.024
+batch losses (mrrl, rdl): 0.0002136076, 9.68019e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 357
+rank avg (pred): 0.553 +- 0.334
+mrr vals (pred, true): 0.047, 0.050
+batch losses (mrrl, rdl): 8.11655e-05, 0.0003692421
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1054
+rank avg (pred): 0.115 +- 0.146
+mrr vals (pred, true): 0.300, 0.275
+batch losses (mrrl, rdl): 0.0062323874, 1.28658e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 948
+rank avg (pred): 0.534 +- 0.314
+mrr vals (pred, true): 0.049, 0.053
+batch losses (mrrl, rdl): 6.4663e-06, 0.0001582958
+
+Epoch over!
+epoch time: 98.257
+
+Epoch 17 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 924
+rank avg (pred): 0.581 +- 0.321
+mrr vals (pred, true): 0.046, 0.030
+batch losses (mrrl, rdl): 0.0001562211, 0.000199837
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 218
+rank avg (pred): 0.593 +- 0.363
+mrr vals (pred, true): 0.048, 0.044
+batch losses (mrrl, rdl): 5.79157e-05, 0.0004642144
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1168
+rank avg (pred): 0.527 +- 0.312
+mrr vals (pred, true): 0.049, 0.036
+batch losses (mrrl, rdl): 5.6987e-06, 0.0002008955
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 564
+rank avg (pred): 0.519 +- 0.310
+mrr vals (pred, true): 0.045, 0.024
+batch losses (mrrl, rdl): 0.0002904832, 4.20014e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 87
+rank avg (pred): 0.521 +- 0.304
+mrr vals (pred, true): 0.048, 0.050
+batch losses (mrrl, rdl): 5.54667e-05, 0.0002214874
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 441
+rank avg (pred): 0.521 +- 0.298
+mrr vals (pred, true): 0.056, 0.048
+batch losses (mrrl, rdl): 0.0003066703, 0.0001615254
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 884
+rank avg (pred): 0.386 +- 0.263
+mrr vals (pred, true): 0.057, 0.045
+batch losses (mrrl, rdl): 0.0004934199, 5.03232e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 727
+rank avg (pred): 0.494 +- 0.300
+mrr vals (pred, true): 0.047, 0.044
+batch losses (mrrl, rdl): 9.0685e-05, 7.65473e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 629
+rank avg (pred): 0.427 +- 0.256
+mrr vals (pred, true): 0.054, 0.038
+batch losses (mrrl, rdl): 0.0002001597, 1.91311e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 277
+rank avg (pred): 0.209 +- 0.178
+mrr vals (pred, true): 0.203, 0.260
+batch losses (mrrl, rdl): 0.0318330713, 9.14898e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 632
+rank avg (pred): 0.486 +- 0.285
+mrr vals (pred, true): 0.047, 0.037
+batch losses (mrrl, rdl): 0.000109667, 1.24969e-05
+
+Epoch over!
+epoch time: 85.065
+
+Epoch 18 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 256
+rank avg (pred): 0.130 +- 0.146
+mrr vals (pred, true): 0.269, 0.195
+batch losses (mrrl, rdl): 0.0541837178, 0.0001111751
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1024
+rank avg (pred): 0.445 +- 0.277
+mrr vals (pred, true): 0.052, 0.044
+batch losses (mrrl, rdl): 2.47548e-05, 1.7852e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 844
+rank avg (pred): 0.338 +- 0.231
+mrr vals (pred, true): 0.055, 0.052
+batch losses (mrrl, rdl): 0.0002314253, 0.0002336167
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1088
+rank avg (pred): 0.434 +- 0.250
+mrr vals (pred, true): 0.049, 0.041
+batch losses (mrrl, rdl): 4.9531e-06, 6.2669e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 748
+rank avg (pred): 0.095 +- 0.122
+mrr vals (pred, true): 0.282, 0.312
+batch losses (mrrl, rdl): 0.0093775652, 2.37708e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 109
+rank avg (pred): 0.510 +- 0.320
+mrr vals (pred, true): 0.050, 0.044
+batch losses (mrrl, rdl): 2.016e-07, 0.0001610443
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 561
+rank avg (pred): 0.432 +- 0.329
+mrr vals (pred, true): 0.049, 0.024
+batch losses (mrrl, rdl): 1.02097e-05, 0.0001937762
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 978
+rank avg (pred): 0.162 +- 0.218
+mrr vals (pred, true): 0.328, 0.305
+batch losses (mrrl, rdl): 0.0052626319, 3.7119e-06
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 706
+rank avg (pred): 0.525 +- 0.320
+mrr vals (pred, true): 0.050, 0.044
+batch losses (mrrl, rdl): 4.012e-07, 0.0001791065
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 863
+rank avg (pred): 0.510 +- 0.316
+mrr vals (pred, true): 0.048, 0.048
+batch losses (mrrl, rdl): 3.29157e-05, 0.0001420548
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 833
+rank avg (pred): 0.099 +- 0.143
+mrr vals (pred, true): 0.295, 0.321
+batch losses (mrrl, rdl): 0.0070146448, 4.04974e-05
+
+Epoch over!
+epoch time: 85.439
+
+Epoch 19 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1204
+rank avg (pred): 0.461 +- 0.286
+mrr vals (pred, true): 0.049, 0.050
+batch losses (mrrl, rdl): 4.9684e-06, 1.85666e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 176
+rank avg (pred): 0.494 +- 0.305
+mrr vals (pred, true): 0.048, 0.047
+batch losses (mrrl, rdl): 3.43782e-05, 5.73963e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 548
+rank avg (pred): 0.428 +- 0.323
+mrr vals (pred, true): 0.050, 0.024
+batch losses (mrrl, rdl): 8.7e-07, 0.0002824699
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1049
+rank avg (pred): 0.515 +- 0.306
+mrr vals (pred, true): 0.048, 0.044
+batch losses (mrrl, rdl): 4.82096e-05, 9.41031e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 664
+rank avg (pred): 0.437 +- 0.280
+mrr vals (pred, true): 0.052, 0.050
+batch losses (mrrl, rdl): 6.08441e-05, 4.2205e-06
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 33
+rank avg (pred): 0.296 +- 0.236
+mrr vals (pred, true): 0.191, 0.212
+batch losses (mrrl, rdl): 0.0041757114, 0.0003706968
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 134
+rank avg (pred): 0.462 +- 0.292
+mrr vals (pred, true): 0.050, 0.052
+batch losses (mrrl, rdl): 2.949e-07, 2.10993e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 309
+rank avg (pred): 0.185 +- 0.177
+mrr vals (pred, true): 0.214, 0.212
+batch losses (mrrl, rdl): 1.41077e-05, 1.8994e-06
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 718
+rank avg (pred): 0.478 +- 0.297
+mrr vals (pred, true): 0.055, 0.039
+batch losses (mrrl, rdl): 0.0002270391, 1.13107e-05
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1001
+rank avg (pred): 0.533 +- 0.300
+mrr vals (pred, true): 0.049, 0.050
+batch losses (mrrl, rdl): 1.54502e-05, 0.0002045753
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 337
+rank avg (pred): 0.457 +- 0.275
+mrr vals (pred, true): 0.048, 0.045
+batch losses (mrrl, rdl): 4.8627e-05, 1.35347e-05
+
+Epoch over!
+epoch time: 83.041
+
+Epoch 20 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 892
+rank avg (pred): 0.383 +- 0.333
+mrr vals (pred, true): 0.079, 0.020
+batch losses (mrrl, rdl): 0.0084624365, 0.0009814176
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 225
+rank avg (pred): 0.539 +- 0.333
+mrr vals (pred, true): 0.046, 0.045
+batch losses (mrrl, rdl): 0.0001672463, 0.0002582938
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 469
+rank avg (pred): 0.490 +- 0.318
+mrr vals (pred, true): 0.050, 0.053
+batch losses (mrrl, rdl): 7.091e-07, 9.01337e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 258
+rank avg (pred): 0.176 +- 0.219
+mrr vals (pred, true): 0.246, 0.183
+batch losses (mrrl, rdl): 0.0404058099, 1.40282e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1022
+rank avg (pred): 0.451 +- 0.302
+mrr vals (pred, true): 0.049, 0.039
+batch losses (mrrl, rdl): 5.0749e-06, 1.03188e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 911
+rank avg (pred): 0.507 +- 0.332
+mrr vals (pred, true): 0.046, 0.020
+batch losses (mrrl, rdl): 0.0001235854, 0.0002135299
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 837
+rank avg (pred): 0.471 +- 0.306
+mrr vals (pred, true): 0.046, 0.044
+batch losses (mrrl, rdl): 0.0001863984, 1.98563e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 550
+rank avg (pred): 0.427 +- 0.307
+mrr vals (pred, true): 0.047, 0.026
+batch losses (mrrl, rdl): 6.47433e-05, 0.0002472634
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 356
+rank avg (pred): 0.553 +- 0.333
+mrr vals (pred, true): 0.047, 0.045
+batch losses (mrrl, rdl): 0.0001014762, 0.0002777815
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 689
+rank avg (pred): 0.506 +- 0.296
+mrr vals (pred, true): 0.051, 0.055
+batch losses (mrrl, rdl): 9.674e-06, 0.0001047609
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 987
+rank avg (pred): 0.119 +- 0.153
+mrr vals (pred, true): 0.287, 0.322
+batch losses (mrrl, rdl): 0.0122558186, 5.02365e-05
+
+Epoch over!
+epoch time: 88.132
+
+Saving checkpoint at [1] epoch 20
+Epoch 21 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 799
+rank avg (pred): 0.464 +- 0.296
+mrr vals (pred, true): 0.053, 0.041
+batch losses (mrrl, rdl): 9.1531e-05, 7.6021e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 755
+rank avg (pred): 0.140 +- 0.153
+mrr vals (pred, true): 0.240, 0.211
+batch losses (mrrl, rdl): 0.0079745697, 5.5406e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 171
+rank avg (pred): 0.575 +- 0.313
+mrr vals (pred, true): 0.043, 0.050
+batch losses (mrrl, rdl): 0.0004768567, 0.0003895343
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1040
+rank avg (pred): 0.443 +- 0.263
+mrr vals (pred, true): 0.048, 0.050
+batch losses (mrrl, rdl): 5.41721e-05, 7.5226e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1141
+rank avg (pred): 0.257 +- 0.182
+mrr vals (pred, true): 0.084, 0.023
+batch losses (mrrl, rdl): 0.011556346, 0.0010706473
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 346
+rank avg (pred): 0.419 +- 0.260
+mrr vals (pred, true): 0.047, 0.051
+batch losses (mrrl, rdl): 0.0001030724, 9.9656e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1201
+rank avg (pred): 0.565 +- 0.352
+mrr vals (pred, true): 0.052, 0.052
+batch losses (mrrl, rdl): 5.12907e-05, 0.0003684556
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 453
+rank avg (pred): 0.528 +- 0.355
+mrr vals (pred, true): 0.049, 0.052
+batch losses (mrrl, rdl): 2.05744e-05, 0.0001840584
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 429
+rank avg (pred): 0.520 +- 0.354
+mrr vals (pred, true): 0.051, 0.050
+batch losses (mrrl, rdl): 8.1905e-06, 0.0002069595
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 55
+rank avg (pred): 0.299 +- 0.263
+mrr vals (pred, true): 0.200, 0.247
+batch losses (mrrl, rdl): 0.021792369, 0.0003877225
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1123
+rank avg (pred): 0.516 +- 0.320
+mrr vals (pred, true): 0.051, 0.048
+batch losses (mrrl, rdl): 8.0069e-06, 0.0001639957
+
+Epoch over!
+epoch time: 89.707
+
+Epoch 22 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 732
+rank avg (pred): 0.060 +- 0.098
+mrr vals (pred, true): 0.472, 0.524
+batch losses (mrrl, rdl): 0.0271751955, 1.2736e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 794
+rank avg (pred): 0.363 +- 0.261
+mrr vals (pred, true): 0.057, 0.050
+batch losses (mrrl, rdl): 0.0004437058, 8.96918e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 349
+rank avg (pred): 0.502 +- 0.314
+mrr vals (pred, true): 0.049, 0.051
+batch losses (mrrl, rdl): 2.9603e-06, 0.0001077352
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1178
+rank avg (pred): 0.474 +- 0.301
+mrr vals (pred, true): 0.050, 0.034
+batch losses (mrrl, rdl): 1.4749e-06, 4.69007e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 832
+rank avg (pred): 0.168 +- 0.211
+mrr vals (pred, true): 0.262, 0.302
+batch losses (mrrl, rdl): 0.0165745951, 1.27366e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 660
+rank avg (pred): 0.478 +- 0.306
+mrr vals (pred, true): 0.050, 0.052
+batch losses (mrrl, rdl): 2.0669e-06, 3.18641e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1207
+rank avg (pred): 0.520 +- 0.322
+mrr vals (pred, true): 0.049, 0.043
+batch losses (mrrl, rdl): 1.31335e-05, 0.0001295281
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 392
+rank avg (pred): 0.511 +- 0.309
+mrr vals (pred, true): 0.051, 0.043
+batch losses (mrrl, rdl): 7.0672e-06, 0.0001138392
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 992
+rank avg (pred): 0.133 +- 0.171
+mrr vals (pred, true): 0.283, 0.285
+batch losses (mrrl, rdl): 7.66782e-05, 3.7404e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 231
+rank avg (pred): 0.514 +- 0.319
+mrr vals (pred, true): 0.048, 0.049
+batch losses (mrrl, rdl): 4.95054e-05, 0.0001469242
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 43
+rank avg (pred): 0.185 +- 0.178
+mrr vals (pred, true): 0.218, 0.199
+batch losses (mrrl, rdl): 0.0037163284, 1.06208e-05
+
+Epoch over!
+epoch time: 86.998
+
+Epoch 23 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 931
+rank avg (pred): 0.508 +- 0.318
+mrr vals (pred, true): 0.050, 0.029
+batch losses (mrrl, rdl): 2.2e-09, 6.22106e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1195
+rank avg (pred): 0.572 +- 0.339
+mrr vals (pred, true): 0.050, 0.041
+batch losses (mrrl, rdl): 1.568e-06, 0.0003405524
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 442
+rank avg (pred): 0.479 +- 0.295
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 5.442e-07, 6.24836e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 444
+rank avg (pred): 0.543 +- 0.346
+mrr vals (pred, true): 0.048, 0.053
+batch losses (mrrl, rdl): 2.61476e-05, 0.000277788
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1032
+rank avg (pred): 0.397 +- 0.268
+mrr vals (pred, true): 0.056, 0.050
+batch losses (mrrl, rdl): 0.0003200589, 3.12549e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 599
+rank avg (pred): 0.534 +- 0.330
+mrr vals (pred, true): 0.050, 0.039
+batch losses (mrrl, rdl): 3.756e-07, 0.0001197817
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 55
+rank avg (pred): 0.170 +- 0.203
+mrr vals (pred, true): 0.207, 0.247
+batch losses (mrrl, rdl): 0.0156936515, 1.6168e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 130
+rank avg (pred): 0.589 +- 0.366
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 4.067e-07, 0.0004666704
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 310
+rank avg (pred): 0.172 +- 0.178
+mrr vals (pred, true): 0.234, 0.220
+batch losses (mrrl, rdl): 0.0019010442, 5.6073e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1189
+rank avg (pred): 0.588 +- 0.344
+mrr vals (pred, true): 0.050, 0.054
+batch losses (mrrl, rdl): 5.969e-07, 0.0005114176
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1203
+rank avg (pred): 0.471 +- 0.282
+mrr vals (pred, true): 0.050, 0.048
+batch losses (mrrl, rdl): 1.4756e-06, 2.58118e-05
+
+Epoch over!
+epoch time: 82.155
+
+Epoch 24 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 866
+rank avg (pred): 0.382 +- 0.227
+mrr vals (pred, true): 0.050, 0.049
+batch losses (mrrl, rdl): 8.484e-07, 7.33952e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 465
+rank avg (pred): 0.475 +- 0.291
+mrr vals (pred, true): 0.050, 0.050
+batch losses (mrrl, rdl): 8.852e-07, 5.56077e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 116
+rank avg (pred): 0.543 +- 0.325
+mrr vals (pred, true): 0.048, 0.047
+batch losses (mrrl, rdl): 2.68167e-05, 0.0002197211
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1162
+rank avg (pred): 0.539 +- 0.336
+mrr vals (pred, true): 0.050, 0.036
+batch losses (mrrl, rdl): 4.661e-07, 0.0002248158
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 255
+rank avg (pred): 0.125 +- 0.137
+mrr vals (pred, true): 0.250, 0.205
+batch losses (mrrl, rdl): 0.019901406, 0.0001279118
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 528
+rank avg (pred): 0.276 +- 0.201
+mrr vals (pred, true): 0.054, 0.025
+batch losses (mrrl, rdl): 0.0001809755, 0.0010201948
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 530
+rank avg (pred): 0.343 +- 0.265
+mrr vals (pred, true): 0.052, 0.027
+batch losses (mrrl, rdl): 4.05468e-05, 0.00063867
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 531
+rank avg (pred): 0.333 +- 0.238
+mrr vals (pred, true): 0.056, 0.026
+batch losses (mrrl, rdl): 0.0003799112, 0.0006551869
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 633
+rank avg (pred): 0.454 +- 0.252
+mrr vals (pred, true): 0.044, 0.040
+batch losses (mrrl, rdl): 0.0003438245, 2.3569e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 143
+rank avg (pred): 0.540 +- 0.320
+mrr vals (pred, true): 0.045, 0.061
+batch losses (mrrl, rdl): 0.0002294821, 0.0002453121
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 830
+rank avg (pred): 0.083 +- 0.110
+mrr vals (pred, true): 0.306, 0.315
+batch losses (mrrl, rdl): 0.0006944729, 4.39255e-05
+
+Epoch over!
+epoch time: 82.442
+
+Epoch 25 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 601
+rank avg (pred): 0.472 +- 0.268
+mrr vals (pred, true): 0.053, 0.039
+batch losses (mrrl, rdl): 8.4447e-05, 9.4133e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 374
+rank avg (pred): 0.421 +- 0.249
+mrr vals (pred, true): 0.051, 0.045
+batch losses (mrrl, rdl): 3.8896e-06, 4.6112e-06
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 712
+rank avg (pred): 0.419 +- 0.254
+mrr vals (pred, true): 0.055, 0.051
+batch losses (mrrl, rdl): 0.0002421181, 2.0944e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 173
+rank avg (pred): 0.443 +- 0.254
+mrr vals (pred, true): 0.052, 0.045
+batch losses (mrrl, rdl): 3.98293e-05, 3.735e-06
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 41
+rank avg (pred): 0.159 +- 0.157
+mrr vals (pred, true): 0.225, 0.244
+batch losses (mrrl, rdl): 0.0034630662, 1.35871e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 0
+rank avg (pred): 0.217 +- 0.174
+mrr vals (pred, true): 0.117, 0.244
+batch losses (mrrl, rdl): 0.1600077599, 4.73206e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 100
+rank avg (pred): 0.434 +- 0.243
+mrr vals (pred, true): 0.051, 0.040
+batch losses (mrrl, rdl): 1.67595e-05, 4.4174e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 248
+rank avg (pred): 0.138 +- 0.119
+mrr vals (pred, true): 0.241, 0.274
+batch losses (mrrl, rdl): 0.0107660284, 5.6372e-06
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1159
+rank avg (pred): 0.339 +- 0.325
+mrr vals (pred, true): 0.076, 0.025
+batch losses (mrrl, rdl): 0.0067122509, 0.0006012341
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 666
+rank avg (pred): 0.521 +- 0.293
+mrr vals (pred, true): 0.047, 0.048
+batch losses (mrrl, rdl): 0.0001008579, 0.000110204
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1206
+rank avg (pred): 0.602 +- 0.338
+mrr vals (pred, true): 0.046, 0.046
+batch losses (mrrl, rdl): 0.0001256141, 0.0004783561
+
+Epoch over!
+epoch time: 84.167
+
+Saving checkpoint at [1] epoch 25
+Epoch 26 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1118
+rank avg (pred): 0.439 +- 0.268
+mrr vals (pred, true): 0.050, 0.043
+batch losses (mrrl, rdl): 2.97e-07, 1.4059e-06
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 778
+rank avg (pred): 0.392 +- 0.239
+mrr vals (pred, true): 0.049, 0.040
+batch losses (mrrl, rdl): 9.502e-06, 5.54726e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 356
+rank avg (pred): 0.435 +- 0.253
+mrr vals (pred, true): 0.048, 0.045
+batch losses (mrrl, rdl): 5.63988e-05, 2.64e-06
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 596
+rank avg (pred): 0.496 +- 0.296
+mrr vals (pred, true): 0.049, 0.041
+batch losses (mrrl, rdl): 7.4447e-06, 6.51983e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1198
+rank avg (pred): 0.519 +- 0.316
+mrr vals (pred, true): 0.049, 0.045
+batch losses (mrrl, rdl): 1.02833e-05, 0.0001519968
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 704
+rank avg (pred): 0.484 +- 0.299
+mrr vals (pred, true): 0.049, 0.048
+batch losses (mrrl, rdl): 1.61697e-05, 7.89615e-05
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 490
+rank avg (pred): 0.441 +- 0.334
+mrr vals (pred, true): 0.055, 0.025
+batch losses (mrrl, rdl): 0.0002276679, 0.0002061126
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 982
+rank avg (pred): 0.108 +- 0.117
+mrr vals (pred, true): 0.281, 0.295
+batch losses (mrrl, rdl): 0.0020198552, 1.96371e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 39
+rank avg (pred): 0.180 +- 0.175
+mrr vals (pred, true): 0.210, 0.218
+batch losses (mrrl, rdl): 0.0007286628, 1.927e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1140
+rank avg (pred): 0.207 +- 0.162
+mrr vals (pred, true): 0.112, 0.026
+batch losses (mrrl, rdl): 0.038582243, 0.0015428469
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 280
+rank avg (pred): 0.158 +- 0.149
+mrr vals (pred, true): 0.228, 0.223
+batch losses (mrrl, rdl): 0.0003271282, 1.27723e-05
+
+Epoch over!
+epoch time: 89.024
+
+Epoch 27 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 701
+rank avg (pred): 0.521 +- 0.302
+mrr vals (pred, true): 0.047, 0.044
+batch losses (mrrl, rdl): 0.0001099692, 0.0001573967
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1018
+rank avg (pred): 0.512 +- 0.303
+mrr vals (pred, true): 0.047, 0.047
+batch losses (mrrl, rdl): 0.0001105382, 9.46763e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 912
+rank avg (pred): 0.366 +- 0.297
+mrr vals (pred, true): 0.051, 0.020
+batch losses (mrrl, rdl): 3.2552e-06, 0.0011398994
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 668
+rank avg (pred): 0.492 +- 0.295
+mrr vals (pred, true): 0.049, 0.060
+batch losses (mrrl, rdl): 1.086e-05, 9.55475e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 32
+rank avg (pred): 0.166 +- 0.163
+mrr vals (pred, true): 0.227, 0.232
+batch losses (mrrl, rdl): 0.0002089627, 3.1119e-06
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 741
+rank avg (pred): 0.083 +- 0.084
+mrr vals (pred, true): 0.294, 0.278
+batch losses (mrrl, rdl): 0.0027360779, 0.0001373142
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1064
+rank avg (pred): 0.088 +- 0.094
+mrr vals (pred, true): 0.292, 0.289
+batch losses (mrrl, rdl): 6.92613e-05, 6.58896e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 909
+rank avg (pred): 0.392 +- 0.309
+mrr vals (pred, true): 0.058, 0.023
+batch losses (mrrl, rdl): 0.0006926723, 0.0007457716
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 422
+rank avg (pred): 0.517 +- 0.300
+mrr vals (pred, true): 0.049, 0.052
+batch losses (mrrl, rdl): 1.91142e-05, 0.0001381887
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 28
+rank avg (pred): 0.202 +- 0.159
+mrr vals (pred, true): 0.215, 0.231
+batch losses (mrrl, rdl): 0.0026232144, 4.76457e-05
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 901
+rank avg (pred): 0.471 +- 0.294
+mrr vals (pred, true): 0.048, 0.020
+batch losses (mrrl, rdl): 4.48366e-05, 0.0003172207
+
+Epoch over!
+epoch time: 81.891
+
+Epoch 28 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 230
+rank avg (pred): 0.529 +- 0.323
+mrr vals (pred, true): 0.046, 0.047
+batch losses (mrrl, rdl): 0.0001606674, 0.0001560162
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1090
+rank avg (pred): 0.530 +- 0.330
+mrr vals (pred, true): 0.047, 0.045
+batch losses (mrrl, rdl): 0.0001214074, 0.0001659438
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1020
+rank avg (pred): 0.482 +- 0.305
+mrr vals (pred, true): 0.049, 0.041
+batch losses (mrrl, rdl): 1.43038e-05, 2.29376e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 690
+rank avg (pred): 0.526 +- 0.315
+mrr vals (pred, true): 0.048, 0.043
+batch losses (mrrl, rdl): 5.492e-05, 0.0001776877
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 307
+rank avg (pred): 0.235 +- 0.249
+mrr vals (pred, true): 0.213, 0.219
+batch losses (mrrl, rdl): 0.0003539102, 6.29671e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 613
+rank avg (pred): 0.526 +- 0.339
+mrr vals (pred, true): 0.050, 0.038
+batch losses (mrrl, rdl): 2.0738e-06, 0.0001430556
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 400
+rank avg (pred): 0.406 +- 0.272
+mrr vals (pred, true): 0.052, 0.052
+batch losses (mrrl, rdl): 3.46918e-05, 7.8989e-06
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1104
+rank avg (pred): 0.396 +- 0.271
+mrr vals (pred, true): 0.055, 0.046
+batch losses (mrrl, rdl): 0.0002303928, 2.56896e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 399
+rank avg (pred): 0.430 +- 0.274
+mrr vals (pred, true): 0.052, 0.054
+batch losses (mrrl, rdl): 5.26122e-05, 1.28e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 563
+rank avg (pred): 0.290 +- 0.197
+mrr vals (pred, true): 0.055, 0.021
+batch losses (mrrl, rdl): 0.0002075327, 0.0011878831
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 584
+rank avg (pred): 0.458 +- 0.294
+mrr vals (pred, true): 0.055, 0.044
+batch losses (mrrl, rdl): 0.0002776266, 1.04132e-05
+
+Epoch over!
+epoch time: 83.418
+
+Epoch 29 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 310
+rank avg (pred): 0.198 +- 0.177
+mrr vals (pred, true): 0.224, 0.220
+batch losses (mrrl, rdl): 0.0001203875, 1.05334e-05
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 607
+rank avg (pred): 0.484 +- 0.298
+mrr vals (pred, true): 0.050, 0.044
+batch losses (mrrl, rdl): 1.2e-08, 2.76238e-05
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 780
+rank avg (pred): 0.417 +- 0.258
+mrr vals (pred, true): 0.054, 0.038
+batch losses (mrrl, rdl): 0.0001473475, 1.15859e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 255
+rank avg (pred): 0.142 +- 0.137
+mrr vals (pred, true): 0.245, 0.205
+batch losses (mrrl, rdl): 0.0155486641, 7.47648e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 28
+rank avg (pred): 0.288 +- 0.249
+mrr vals (pred, true): 0.211, 0.231
+batch losses (mrrl, rdl): 0.003986795, 0.0003412282
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 306
+rank avg (pred): 0.179 +- 0.188
+mrr vals (pred, true): 0.220, 0.192
+batch losses (mrrl, rdl): 0.0081557389, 2.3673e-06
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 258
+rank avg (pred): 0.169 +- 0.153
+mrr vals (pred, true): 0.233, 0.183
+batch losses (mrrl, rdl): 0.0247560516, 2.49175e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 104
+rank avg (pred): 0.394 +- 0.233
+mrr vals (pred, true): 0.052, 0.055
+batch losses (mrrl, rdl): 4.77883e-05, 4.16937e-05
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1163
+rank avg (pred): 0.530 +- 0.302
+mrr vals (pred, true): 0.046, 0.040
+batch losses (mrrl, rdl): 0.0001939247, 0.0001626651
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 636
+rank avg (pred): 0.453 +- 0.279
+mrr vals (pred, true): 0.053, 0.046
+batch losses (mrrl, rdl): 6.67478e-05, 2.1008e-06
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 201
+rank avg (pred): 0.571 +- 0.352
+mrr vals (pred, true): 0.049, 0.043
+batch losses (mrrl, rdl): 2.5761e-06, 0.000315389
+
+Epoch over!
+epoch time: 90.944
+
+Epoch 30 -- 
+running batch: 0 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 141
+rank avg (pred): 0.603 +- 0.338
+mrr vals (pred, true): 0.046, 0.041
+batch losses (mrrl, rdl): 0.0001646875, 0.0006292842
+
+running batch: 500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1123
+rank avg (pred): 0.322 +- 0.207
+mrr vals (pred, true): 0.057, 0.048
+batch losses (mrrl, rdl): 0.0004388056, 0.0002312529
+
+running batch: 1000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 477
+rank avg (pred): 0.388 +- 0.241
+mrr vals (pred, true): 0.051, 0.048
+batch losses (mrrl, rdl): 6.4369e-06, 5.05025e-05
+
+running batch: 1500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 471
+rank avg (pred): 0.506 +- 0.317
+mrr vals (pred, true): 0.050, 0.047
+batch losses (mrrl, rdl): 1.5546e-06, 6.73985e-05
+
+running batch: 2000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 812
+rank avg (pred): 0.058 +- 0.063
+mrr vals (pred, true): 0.434, 0.377
+batch losses (mrrl, rdl): 0.0329808146, 6.42578e-05
+
+running batch: 2500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 328
+rank avg (pred): 0.526 +- 0.321
+mrr vals (pred, true): 0.050, 0.043
+batch losses (mrrl, rdl): 9.638e-07, 0.0001658037
+
+running batch: 3000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 601
+rank avg (pred): 0.428 +- 0.281
+mrr vals (pred, true): 0.050, 0.039
+batch losses (mrrl, rdl): 2.3911e-06, 1.29993e-05
+
+running batch: 3500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 1181
+rank avg (pred): 0.502 +- 0.314
+mrr vals (pred, true): 0.049, 0.038
+batch losses (mrrl, rdl): 3.1991e-06, 0.0001248236
+
+running batch: 4000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 734
+rank avg (pred): 0.053 +- 0.057
+mrr vals (pred, true): 0.456, 0.528
+batch losses (mrrl, rdl): 0.0513447411, 2.7248e-06
+
+running batch: 4500 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 866
+rank avg (pred): 0.526 +- 0.327
+mrr vals (pred, true): 0.047, 0.049
+batch losses (mrrl, rdl): 6.41815e-05, 0.000154079
+
+running batch: 5000 / 5470 and superbatch(1); data from UMLS, run 2.1, exp 828
+rank avg (pred): 0.119 +- 0.111
+mrr vals (pred, true): 0.260, 0.328
+batch losses (mrrl, rdl): 0.046906881, 8.1863e-06
+
+Epoch over!
+epoch time: 85.14
+
+Saving checkpoint at [1] epoch 30
+Done training phase:  1
+Testing model with dataset UMLS
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.469 +- 0.321
+mrr vals (pred, true): 0.043, 0.018
+
+Evaluation for UMLS on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    0 	     0 	 0.04271 	 0.01773 	 ~...
+    3 	     1 	 0.04281 	 0.02009 	 ~...
+    1 	     2 	 0.04277 	 0.02164 	 ~...
+   88 	     3 	 0.06192 	 0.02192 	 m..s
+   89 	     4 	 0.06725 	 0.02235 	 m..s
+    6 	     5 	 0.04438 	 0.02398 	 ~...
+    7 	     6 	 0.04570 	 0.02414 	 ~...
+   83 	     7 	 0.05299 	 0.02414 	 ~...
+    4 	     8 	 0.04297 	 0.02423 	 ~...
+   83 	     9 	 0.05299 	 0.02467 	 ~...
+   83 	    10 	 0.05299 	 0.02475 	 ~...
+    2 	    11 	 0.04277 	 0.02496 	 ~...
+   83 	    12 	 0.05299 	 0.02544 	 ~...
+    5 	    13 	 0.04301 	 0.02586 	 ~...
+   13 	    14 	 0.04696 	 0.02933 	 ~...
+   20 	    15 	 0.04716 	 0.03159 	 ~...
+   16 	    16 	 0.04701 	 0.03197 	 ~...
+   23 	    17 	 0.04737 	 0.03458 	 ~...
+   67 	    18 	 0.04943 	 0.03549 	 ~...
+   15 	    19 	 0.04700 	 0.03582 	 ~...
+   28 	    20 	 0.04749 	 0.03732 	 ~...
+   66 	    21 	 0.04941 	 0.03811 	 ~...
+    9 	    22 	 0.04662 	 0.03856 	 ~...
+   42 	    23 	 0.04813 	 0.03931 	 ~...
+   36 	    24 	 0.04772 	 0.03957 	 ~...
+   52 	    25 	 0.04863 	 0.03980 	 ~...
+   58 	    26 	 0.04896 	 0.04032 	 ~...
+   56 	    27 	 0.04893 	 0.04070 	 ~...
+   82 	    28 	 0.05117 	 0.04080 	 ~...
+   49 	    29 	 0.04852 	 0.04099 	 ~...
+   70 	    30 	 0.04957 	 0.04129 	 ~...
+   69 	    31 	 0.04954 	 0.04130 	 ~...
+   35 	    32 	 0.04771 	 0.04163 	 ~...
+   34 	    33 	 0.04770 	 0.04165 	 ~...
+   78 	    34 	 0.05012 	 0.04176 	 ~...
+   75 	    35 	 0.04987 	 0.04224 	 ~...
+   37 	    36 	 0.04787 	 0.04272 	 ~...
+   12 	    37 	 0.04693 	 0.04276 	 ~...
+    8 	    38 	 0.04662 	 0.04306 	 ~...
+   40 	    39 	 0.04804 	 0.04338 	 ~...
+   44 	    40 	 0.04815 	 0.04372 	 ~...
+   25 	    41 	 0.04746 	 0.04373 	 ~...
+   39 	    42 	 0.04801 	 0.04388 	 ~...
+   61 	    43 	 0.04903 	 0.04410 	 ~...
+   77 	    44 	 0.04992 	 0.04419 	 ~...
+   68 	    45 	 0.04946 	 0.04420 	 ~...
+   54 	    46 	 0.04881 	 0.04423 	 ~...
+   26 	    47 	 0.04748 	 0.04476 	 ~...
+   17 	    48 	 0.04704 	 0.04514 	 ~...
+   50 	    49 	 0.04855 	 0.04551 	 ~...
+   73 	    50 	 0.04971 	 0.04564 	 ~...
+   55 	    51 	 0.04889 	 0.04617 	 ~...
+   24 	    52 	 0.04742 	 0.04642 	 ~...
+   10 	    53 	 0.04677 	 0.04687 	 ~...
+   21 	    54 	 0.04720 	 0.04699 	 ~...
+   19 	    55 	 0.04714 	 0.04706 	 ~...
+   53 	    56 	 0.04880 	 0.04718 	 ~...
+   80 	    57 	 0.05075 	 0.04727 	 ~...
+   64 	    58 	 0.04935 	 0.04740 	 ~...
+   11 	    59 	 0.04679 	 0.04744 	 ~...
+   56 	    60 	 0.04893 	 0.04750 	 ~...
+   18 	    61 	 0.04704 	 0.04758 	 ~...
+   32 	    62 	 0.04760 	 0.04763 	 ~...
+   47 	    63 	 0.04845 	 0.04824 	 ~...
+   72 	    64 	 0.04969 	 0.04857 	 ~...
+   30 	    65 	 0.04753 	 0.04879 	 ~...
+   31 	    66 	 0.04755 	 0.04879 	 ~...
+   48 	    67 	 0.04845 	 0.04904 	 ~...
+   62 	    68 	 0.04917 	 0.04921 	 ~...
+   22 	    69 	 0.04721 	 0.04928 	 ~...
+   71 	    70 	 0.04968 	 0.04929 	 ~...
+   14 	    71 	 0.04697 	 0.04949 	 ~...
+   76 	    72 	 0.04989 	 0.04956 	 ~...
+   60 	    73 	 0.04902 	 0.04987 	 ~...
+   43 	    74 	 0.04813 	 0.05004 	 ~...
+   63 	    75 	 0.04921 	 0.05023 	 ~...
+   46 	    76 	 0.04833 	 0.05056 	 ~...
+   27 	    77 	 0.04749 	 0.05108 	 ~...
+   29 	    78 	 0.04750 	 0.05128 	 ~...
+   51 	    79 	 0.04860 	 0.05129 	 ~...
+   33 	    80 	 0.04761 	 0.05144 	 ~...
+   81 	    81 	 0.05101 	 0.05146 	 ~...
+   74 	    82 	 0.04973 	 0.05160 	 ~...
+   38 	    83 	 0.04791 	 0.05189 	 ~...
+   79 	    84 	 0.05027 	 0.05246 	 ~...
+   45 	    85 	 0.04822 	 0.05275 	 ~...
+   59 	    86 	 0.04899 	 0.05352 	 ~...
+   41 	    87 	 0.04806 	 0.05355 	 ~...
+   87 	    88 	 0.05433 	 0.05567 	 ~...
+   65 	    89 	 0.04935 	 0.05977 	 ~...
+  104 	    90 	 0.22015 	 0.18889 	 m..s
+  100 	    91 	 0.20791 	 0.18959 	 ~...
+   99 	    92 	 0.20717 	 0.19213 	 ~...
+  102 	    93 	 0.21363 	 0.19872 	 ~...
+   96 	    94 	 0.20049 	 0.20550 	 ~...
+   97 	    95 	 0.20091 	 0.20694 	 ~...
+   91 	    96 	 0.18873 	 0.20727 	 ~...
+   95 	    97 	 0.20022 	 0.21693 	 ~...
+   92 	    98 	 0.19142 	 0.21723 	 ~...
+   93 	    99 	 0.19347 	 0.21940 	 ~...
+   98 	   100 	 0.20159 	 0.21956 	 ~...
+  106 	   101 	 0.22731 	 0.23290 	 ~...
+   94 	   102 	 0.19900 	 0.23984 	 m..s
+  101 	   103 	 0.21319 	 0.24107 	 ~...
+  108 	   104 	 0.24065 	 0.24218 	 ~...
+  107 	   105 	 0.22948 	 0.24307 	 ~...
+   90 	   106 	 0.18825 	 0.25298 	 m..s
+  103 	   107 	 0.21833 	 0.25327 	 m..s
+  116 	   108 	 0.32442 	 0.27378 	 m..s
+  105 	   109 	 0.22207 	 0.27425 	 m..s
+  111 	   110 	 0.26451 	 0.27441 	 ~...
+  114 	   111 	 0.28255 	 0.27737 	 ~...
+  112 	   112 	 0.26746 	 0.28034 	 ~...
+  109 	   113 	 0.26284 	 0.28353 	 ~...
+  113 	   114 	 0.26839 	 0.29788 	 ~...
+  117 	   115 	 0.34143 	 0.29922 	 m..s
+  110 	   116 	 0.26291 	 0.31748 	 m..s
+  115 	   117 	 0.31760 	 0.33485 	 ~...
+  118 	   118 	 0.39098 	 0.39525 	 ~...
+  119 	   119 	 0.44679 	 0.52223 	 m..s
+  120 	   120 	 0.46397 	 0.53924 	 m..s
+==========================================
+r_mrr = 0.986808717250824
+r2_mrr = 0.9654103517532349
+spearmanr_mrr@5 = 0.991235077381134
+spearmanr_mrr@10 = 0.9716607928276062
+spearmanr_mrr@50 = 0.9940314292907715
+spearmanr_mrr@100 = 0.9962727427482605
+spearmanr_mrr@All = 0.9951746463775635
+==========================================
+test time: 0.747
+Done Testing dataset UMLS
+Testing model with dataset Kinships
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.295 +- 0.300
+mrr vals (pred, true): 0.231, 0.228
+
+Evaluation for Kinships on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    5 	     0 	 0.04905 	 0.04713 	 ~...
+   70 	     1 	 0.05102 	 0.04727 	 ~...
+   15 	     2 	 0.04925 	 0.04763 	 ~...
+   29 	     3 	 0.04958 	 0.04803 	 ~...
+   39 	     4 	 0.04989 	 0.04830 	 ~...
+    9 	     5 	 0.04910 	 0.04840 	 ~...
+   13 	     6 	 0.04918 	 0.04863 	 ~...
+   11 	     7 	 0.04914 	 0.04890 	 ~...
+   14 	     8 	 0.04920 	 0.04927 	 ~...
+   52 	     9 	 0.05029 	 0.04930 	 ~...
+   64 	    10 	 0.05062 	 0.04948 	 ~...
+   20 	    11 	 0.04937 	 0.04950 	 ~...
+   49 	    12 	 0.05019 	 0.04954 	 ~...
+   42 	    13 	 0.05003 	 0.04990 	 ~...
+   24 	    14 	 0.04939 	 0.05021 	 ~...
+   17 	    15 	 0.04932 	 0.05035 	 ~...
+   31 	    16 	 0.04960 	 0.05050 	 ~...
+   40 	    17 	 0.04994 	 0.05071 	 ~...
+   69 	    18 	 0.05093 	 0.05076 	 ~...
+   47 	    19 	 0.05015 	 0.05097 	 ~...
+   54 	    20 	 0.05034 	 0.05105 	 ~...
+    7 	    21 	 0.04907 	 0.05107 	 ~...
+   41 	    22 	 0.04996 	 0.05112 	 ~...
+   58 	    23 	 0.05039 	 0.05113 	 ~...
+   23 	    24 	 0.04939 	 0.05127 	 ~...
+   50 	    25 	 0.05020 	 0.05151 	 ~...
+   61 	    26 	 0.05058 	 0.05154 	 ~...
+    3 	    27 	 0.04898 	 0.05179 	 ~...
+    1 	    28 	 0.04892 	 0.05186 	 ~...
+   33 	    29 	 0.04964 	 0.05193 	 ~...
+   28 	    30 	 0.04950 	 0.05211 	 ~...
+   26 	    31 	 0.04949 	 0.05215 	 ~...
+   27 	    32 	 0.04950 	 0.05219 	 ~...
+   59 	    33 	 0.05045 	 0.05236 	 ~...
+   16 	    34 	 0.04929 	 0.05312 	 ~...
+   32 	    35 	 0.04963 	 0.05317 	 ~...
+   53 	    36 	 0.05031 	 0.05317 	 ~...
+   60 	    37 	 0.05046 	 0.05341 	 ~...
+   62 	    38 	 0.05058 	 0.05350 	 ~...
+    8 	    39 	 0.04908 	 0.05351 	 ~...
+    4 	    40 	 0.04905 	 0.05358 	 ~...
+   43 	    41 	 0.05008 	 0.05406 	 ~...
+   74 	    42 	 0.05189 	 0.05428 	 ~...
+   45 	    43 	 0.05011 	 0.05440 	 ~...
+   35 	    44 	 0.04965 	 0.05481 	 ~...
+   36 	    45 	 0.04968 	 0.05498 	 ~...
+   71 	    46 	 0.05116 	 0.05510 	 ~...
+   72 	    47 	 0.05123 	 0.05531 	 ~...
+   21 	    48 	 0.04938 	 0.05575 	 ~...
+   18 	    49 	 0.04935 	 0.05576 	 ~...
+    6 	    50 	 0.04905 	 0.05587 	 ~...
+   55 	    51 	 0.05037 	 0.05596 	 ~...
+   22 	    52 	 0.04938 	 0.05638 	 ~...
+   30 	    53 	 0.04959 	 0.05694 	 ~...
+    0 	    54 	 0.04892 	 0.05696 	 ~...
+   34 	    55 	 0.04964 	 0.05719 	 ~...
+   57 	    56 	 0.05039 	 0.05723 	 ~...
+   67 	    57 	 0.05071 	 0.05725 	 ~...
+   65 	    58 	 0.05068 	 0.05733 	 ~...
+   25 	    59 	 0.04949 	 0.05749 	 ~...
+   68 	    60 	 0.05081 	 0.05787 	 ~...
+   73 	    61 	 0.05150 	 0.05825 	 ~...
+   56 	    62 	 0.05039 	 0.05868 	 ~...
+   51 	    63 	 0.05020 	 0.05870 	 ~...
+   75 	    64 	 0.05440 	 0.05874 	 ~...
+   44 	    65 	 0.05010 	 0.05881 	 ~...
+   37 	    66 	 0.04975 	 0.05882 	 ~...
+   66 	    67 	 0.05069 	 0.05918 	 ~...
+    2 	    68 	 0.04897 	 0.05969 	 ~...
+   48 	    69 	 0.05019 	 0.05993 	 ~...
+   10 	    70 	 0.04910 	 0.06014 	 ~...
+   46 	    71 	 0.05012 	 0.06038 	 ~...
+   12 	    72 	 0.04916 	 0.06049 	 ~...
+   38 	    73 	 0.04981 	 0.06096 	 ~...
+   19 	    74 	 0.04936 	 0.06158 	 ~...
+   63 	    75 	 0.05059 	 0.06229 	 ~...
+   76 	    76 	 0.14292 	 0.16198 	 ~...
+   79 	    77 	 0.20290 	 0.18404 	 ~...
+   82 	    78 	 0.23350 	 0.18970 	 m..s
+   78 	    79 	 0.20041 	 0.19886 	 ~...
+   81 	    80 	 0.23340 	 0.21213 	 ~...
+   77 	    81 	 0.18097 	 0.21714 	 m..s
+   85 	    82 	 0.24235 	 0.21822 	 ~...
+   91 	    83 	 0.28476 	 0.21861 	 m..s
+   84 	    84 	 0.24080 	 0.22784 	 ~...
+   80 	    85 	 0.23135 	 0.22825 	 ~...
+   83 	    86 	 0.23479 	 0.25404 	 ~...
+   91 	    87 	 0.28476 	 0.26205 	 ~...
+   97 	    88 	 0.28631 	 0.26840 	 ~...
+   96 	    89 	 0.28575 	 0.27182 	 ~...
+   99 	    90 	 0.28953 	 0.28071 	 ~...
+   91 	    91 	 0.28476 	 0.28148 	 ~...
+  101 	    92 	 0.29074 	 0.28774 	 ~...
+   87 	    93 	 0.27960 	 0.29619 	 ~...
+   89 	    94 	 0.28419 	 0.29634 	 ~...
+   91 	    95 	 0.28476 	 0.29652 	 ~...
+   88 	    96 	 0.28315 	 0.30510 	 ~...
+  104 	    97 	 0.31376 	 0.30598 	 ~...
+  100 	    98 	 0.29020 	 0.30754 	 ~...
+  103 	    99 	 0.30676 	 0.30803 	 ~...
+   86 	   100 	 0.27880 	 0.30884 	 m..s
+  102 	   101 	 0.30184 	 0.31529 	 ~...
+   95 	   102 	 0.28505 	 0.31655 	 m..s
+   90 	   103 	 0.28473 	 0.32286 	 m..s
+  107 	   104 	 0.34239 	 0.33122 	 ~...
+   98 	   105 	 0.28646 	 0.34296 	 m..s
+  109 	   106 	 0.41256 	 0.36221 	 m..s
+  108 	   107 	 0.34298 	 0.36880 	 ~...
+  106 	   108 	 0.33569 	 0.36975 	 m..s
+  105 	   109 	 0.32102 	 0.37989 	 m..s
+  112 	   110 	 0.43320 	 0.38991 	 m..s
+  110 	   111 	 0.42674 	 0.40258 	 ~...
+  114 	   112 	 0.44477 	 0.40967 	 m..s
+  111 	   113 	 0.42678 	 0.41075 	 ~...
+  113 	   114 	 0.43614 	 0.42112 	 ~...
+  115 	   115 	 0.56279 	 0.47933 	 m..s
+  116 	   116 	 0.57830 	 0.48000 	 m..s
+  118 	   117 	 0.59461 	 0.50285 	 m..s
+  119 	   118 	 0.62031 	 0.61365 	 ~...
+  117 	   119 	 0.58644 	 0.61786 	 m..s
+  120 	   120 	 0.62759 	 0.62288 	 ~...
+==========================================
+r_mrr = 0.9905999302864075
+r2_mrr = 0.9779077768325806
+spearmanr_mrr@5 = 0.8446739315986633
+spearmanr_mrr@10 = 0.900944709777832
+spearmanr_mrr@50 = 0.9831459522247314
+spearmanr_mrr@100 = 0.9934807419776917
+spearmanr_mrr@All = 0.9940162301063538
+==========================================
+test time: 0.756
+Done Testing dataset Kinships
+Testing model with dataset CoDExSmall
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.465 +- 0.342
+mrr vals (pred, true): 0.055, 0.001
+
+Evaluation for CoDExSmall on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   84 	     0 	 0.06109 	 0.00086 	 m..s
+   30 	     1 	 0.05469 	 0.00089 	 m..s
+   12 	     2 	 0.05432 	 0.00170 	 m..s
+   34 	     3 	 0.05472 	 0.00174 	 m..s
+   45 	     4 	 0.05504 	 0.00204 	 m..s
+   19 	     5 	 0.05456 	 0.00240 	 m..s
+   26 	     6 	 0.05463 	 0.00242 	 m..s
+   22 	     7 	 0.05461 	 0.00242 	 m..s
+   79 	     8 	 0.05671 	 0.00287 	 m..s
+   64 	     9 	 0.05592 	 0.00289 	 m..s
+   83 	    10 	 0.05734 	 0.00291 	 m..s
+   28 	    11 	 0.05464 	 0.00292 	 m..s
+   58 	    12 	 0.05572 	 0.00296 	 m..s
+    1 	    13 	 0.05322 	 0.00310 	 m..s
+    7 	    14 	 0.05395 	 0.00315 	 m..s
+   46 	    15 	 0.05504 	 0.00316 	 m..s
+   82 	    16 	 0.05704 	 0.00317 	 m..s
+   24 	    17 	 0.05462 	 0.00325 	 m..s
+   20 	    18 	 0.05458 	 0.00331 	 m..s
+   69 	    19 	 0.05609 	 0.00331 	 m..s
+   25 	    20 	 0.05463 	 0.00336 	 m..s
+   40 	    21 	 0.05488 	 0.00337 	 m..s
+   27 	    22 	 0.05464 	 0.00345 	 m..s
+    8 	    23 	 0.05395 	 0.00345 	 m..s
+   63 	    24 	 0.05591 	 0.00356 	 m..s
+    5 	    25 	 0.05383 	 0.00360 	 m..s
+   29 	    26 	 0.05467 	 0.00362 	 m..s
+   73 	    27 	 0.05632 	 0.00362 	 m..s
+   17 	    28 	 0.05444 	 0.00363 	 m..s
+   75 	    29 	 0.05649 	 0.00363 	 m..s
+    2 	    30 	 0.05345 	 0.00364 	 m..s
+   53 	    31 	 0.05559 	 0.00368 	 m..s
+   72 	    32 	 0.05628 	 0.00368 	 m..s
+   47 	    33 	 0.05506 	 0.00374 	 m..s
+    3 	    34 	 0.05346 	 0.00376 	 m..s
+   54 	    35 	 0.05559 	 0.00376 	 m..s
+    6 	    36 	 0.05386 	 0.00381 	 m..s
+   39 	    37 	 0.05486 	 0.00381 	 m..s
+    0 	    38 	 0.05284 	 0.00384 	 m..s
+   56 	    39 	 0.05565 	 0.00389 	 m..s
+   62 	    40 	 0.05587 	 0.00391 	 m..s
+    9 	    41 	 0.05396 	 0.00394 	 m..s
+   43 	    42 	 0.05498 	 0.00399 	 m..s
+   52 	    43 	 0.05542 	 0.00400 	 m..s
+   44 	    44 	 0.05499 	 0.00402 	 m..s
+   35 	    45 	 0.05473 	 0.00404 	 m..s
+   50 	    46 	 0.05530 	 0.00406 	 m..s
+   65 	    47 	 0.05593 	 0.00409 	 m..s
+   14 	    48 	 0.05439 	 0.00412 	 m..s
+   68 	    49 	 0.05607 	 0.00413 	 m..s
+   48 	    50 	 0.05508 	 0.00415 	 m..s
+   21 	    51 	 0.05458 	 0.00415 	 m..s
+   76 	    52 	 0.05649 	 0.00415 	 m..s
+   18 	    53 	 0.05453 	 0.00415 	 m..s
+   51 	    54 	 0.05534 	 0.00416 	 m..s
+    4 	    55 	 0.05375 	 0.00418 	 m..s
+   16 	    56 	 0.05441 	 0.00418 	 m..s
+   77 	    57 	 0.05654 	 0.00420 	 m..s
+   66 	    58 	 0.05605 	 0.00422 	 m..s
+   81 	    59 	 0.05695 	 0.00424 	 m..s
+   78 	    60 	 0.05669 	 0.00440 	 m..s
+   67 	    61 	 0.05605 	 0.00454 	 m..s
+   37 	    62 	 0.05475 	 0.00455 	 m..s
+   23 	    63 	 0.05461 	 0.00459 	 m..s
+   59 	    64 	 0.05575 	 0.00460 	 m..s
+   11 	    65 	 0.05429 	 0.00461 	 m..s
+   80 	    66 	 0.05673 	 0.00461 	 m..s
+   13 	    67 	 0.05432 	 0.00467 	 m..s
+   41 	    68 	 0.05490 	 0.00469 	 m..s
+   15 	    69 	 0.05441 	 0.00470 	 m..s
+   10 	    70 	 0.05429 	 0.00473 	 m..s
+   70 	    71 	 0.05626 	 0.00477 	 m..s
+   60 	    72 	 0.05578 	 0.00478 	 m..s
+   61 	    73 	 0.05578 	 0.00485 	 m..s
+   55 	    74 	 0.05564 	 0.00500 	 m..s
+   74 	    75 	 0.05632 	 0.00501 	 m..s
+   57 	    76 	 0.05565 	 0.00514 	 m..s
+   71 	    77 	 0.05628 	 0.00551 	 m..s
+   33 	    78 	 0.05472 	 0.00604 	 m..s
+   49 	    79 	 0.05508 	 0.00680 	 m..s
+   42 	    80 	 0.05491 	 0.00694 	 m..s
+   31 	    81 	 0.05471 	 0.00739 	 m..s
+   32 	    82 	 0.05471 	 0.00804 	 m..s
+   38 	    83 	 0.05476 	 0.01152 	 m..s
+   36 	    84 	 0.05475 	 0.01271 	 m..s
+   85 	    85 	 0.06654 	 0.02050 	 m..s
+   85 	    86 	 0.06654 	 0.02430 	 m..s
+   85 	    87 	 0.06654 	 0.02863 	 m..s
+   89 	    88 	 0.07403 	 0.02916 	 m..s
+   85 	    89 	 0.06654 	 0.02920 	 m..s
+   94 	    90 	 0.16155 	 0.12715 	 m..s
+   92 	    91 	 0.15130 	 0.12799 	 ~...
+   95 	    92 	 0.16301 	 0.13094 	 m..s
+   91 	    93 	 0.14697 	 0.13140 	 ~...
+   93 	    94 	 0.15447 	 0.13806 	 ~...
+   90 	    95 	 0.13471 	 0.14041 	 ~...
+   99 	    96 	 0.17654 	 0.17202 	 ~...
+  100 	    97 	 0.17731 	 0.17271 	 ~...
+   96 	    98 	 0.16380 	 0.17434 	 ~...
+   97 	    99 	 0.16535 	 0.17792 	 ~...
+  107 	   100 	 0.26893 	 0.18551 	 m..s
+   98 	   101 	 0.16592 	 0.18924 	 ~...
+  109 	   102 	 0.27144 	 0.19630 	 m..s
+  111 	   103 	 0.27365 	 0.20171 	 m..s
+  110 	   104 	 0.27300 	 0.21048 	 m..s
+  101 	   105 	 0.21202 	 0.22857 	 ~...
+  113 	   106 	 0.29043 	 0.22949 	 m..s
+  105 	   107 	 0.25757 	 0.23928 	 ~...
+  104 	   108 	 0.25186 	 0.24645 	 ~...
+  112 	   109 	 0.28573 	 0.25269 	 m..s
+  119 	   110 	 0.37642 	 0.25972 	 MISS
+  102 	   111 	 0.23498 	 0.26879 	 m..s
+  117 	   112 	 0.35746 	 0.27244 	 m..s
+  116 	   113 	 0.33971 	 0.28454 	 m..s
+  120 	   114 	 0.38247 	 0.29618 	 m..s
+  103 	   115 	 0.24880 	 0.30562 	 m..s
+  115 	   116 	 0.32894 	 0.31181 	 ~...
+  118 	   117 	 0.35751 	 0.31362 	 m..s
+  114 	   118 	 0.30339 	 0.31910 	 ~...
+  108 	   119 	 0.26988 	 0.33494 	 m..s
+  106 	   120 	 0.26457 	 0.34039 	 m..s
+==========================================
+r_mrr = 0.9668529033660889
+r2_mrr = 0.7525979280471802
+spearmanr_mrr@5 = 0.9464060664176941
+spearmanr_mrr@10 = 0.9818031787872314
+spearmanr_mrr@50 = 0.9888628721237183
+spearmanr_mrr@100 = 0.992598831653595
+spearmanr_mrr@All = 0.993026614189148
+==========================================
+test time: 0.726
+Done Testing dataset CoDExSmall
+Testing model with dataset DBpedia50
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.516 +- 0.380
+mrr vals (pred, true): 0.060, 0.002
+
+Evaluation for DBpedia50 on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   30 	     0 	 0.04664 	 0.00014 	 m..s
+   43 	     1 	 0.04825 	 0.00014 	 m..s
+   50 	     2 	 0.04932 	 0.00014 	 m..s
+   87 	     3 	 0.07146 	 0.00015 	 m..s
+   16 	     4 	 0.04596 	 0.00016 	 m..s
+   26 	     5 	 0.04653 	 0.00016 	 m..s
+   11 	     6 	 0.04577 	 0.00017 	 m..s
+   67 	     7 	 0.05150 	 0.00017 	 m..s
+    1 	     8 	 0.04261 	 0.00018 	 m..s
+   27 	     9 	 0.04658 	 0.00018 	 m..s
+   58 	    10 	 0.05002 	 0.00018 	 m..s
+   17 	    11 	 0.04598 	 0.00019 	 m..s
+   74 	    12 	 0.05333 	 0.00019 	 m..s
+   20 	    13 	 0.04647 	 0.00021 	 m..s
+   25 	    14 	 0.04653 	 0.00021 	 m..s
+   60 	    15 	 0.05022 	 0.00021 	 m..s
+   62 	    16 	 0.05029 	 0.00021 	 m..s
+   15 	    17 	 0.04592 	 0.00021 	 m..s
+   21 	    18 	 0.04648 	 0.00021 	 m..s
+    0 	    19 	 0.04154 	 0.00022 	 m..s
+   65 	    20 	 0.05102 	 0.00022 	 m..s
+   40 	    21 	 0.04763 	 0.00023 	 m..s
+   35 	    22 	 0.04725 	 0.00023 	 m..s
+   64 	    23 	 0.05083 	 0.00024 	 m..s
+   36 	    24 	 0.04738 	 0.00024 	 m..s
+   68 	    25 	 0.05155 	 0.00024 	 m..s
+   69 	    26 	 0.05165 	 0.00024 	 m..s
+   19 	    27 	 0.04645 	 0.00024 	 m..s
+   10 	    28 	 0.04532 	 0.00024 	 m..s
+   45 	    29 	 0.04901 	 0.00025 	 m..s
+   33 	    30 	 0.04690 	 0.00025 	 m..s
+    7 	    31 	 0.04455 	 0.00025 	 m..s
+   24 	    32 	 0.04652 	 0.00026 	 m..s
+   55 	    33 	 0.04976 	 0.00026 	 m..s
+   72 	    34 	 0.05237 	 0.00027 	 m..s
+    8 	    35 	 0.04490 	 0.00027 	 m..s
+    4 	    36 	 0.04391 	 0.00028 	 m..s
+   57 	    37 	 0.04985 	 0.00028 	 m..s
+   32 	    38 	 0.04689 	 0.00028 	 m..s
+   56 	    39 	 0.04980 	 0.00029 	 m..s
+   28 	    40 	 0.04658 	 0.00029 	 m..s
+   31 	    41 	 0.04682 	 0.00029 	 m..s
+   48 	    42 	 0.04915 	 0.00030 	 m..s
+    9 	    43 	 0.04493 	 0.00030 	 m..s
+   51 	    44 	 0.04936 	 0.00030 	 m..s
+   47 	    45 	 0.04902 	 0.00031 	 m..s
+   59 	    46 	 0.05021 	 0.00031 	 m..s
+   61 	    47 	 0.05025 	 0.00032 	 m..s
+   18 	    48 	 0.04614 	 0.00032 	 m..s
+   22 	    49 	 0.04648 	 0.00033 	 m..s
+   37 	    50 	 0.04748 	 0.00034 	 m..s
+   12 	    51 	 0.04579 	 0.00034 	 m..s
+    2 	    52 	 0.04323 	 0.00034 	 m..s
+   66 	    53 	 0.05103 	 0.00035 	 m..s
+    6 	    54 	 0.04431 	 0.00036 	 m..s
+   54 	    55 	 0.04975 	 0.00037 	 m..s
+   52 	    56 	 0.04940 	 0.00037 	 m..s
+    5 	    57 	 0.04406 	 0.00038 	 m..s
+   71 	    58 	 0.05231 	 0.00038 	 m..s
+   44 	    59 	 0.04856 	 0.00039 	 m..s
+   75 	    60 	 0.05440 	 0.00039 	 m..s
+   34 	    61 	 0.04719 	 0.00039 	 m..s
+   70 	    62 	 0.05227 	 0.00039 	 m..s
+   46 	    63 	 0.04901 	 0.00043 	 m..s
+    3 	    64 	 0.04324 	 0.00043 	 m..s
+   13 	    65 	 0.04585 	 0.00046 	 m..s
+   63 	    66 	 0.05076 	 0.00049 	 m..s
+   29 	    67 	 0.04662 	 0.00050 	 m..s
+   73 	    68 	 0.05320 	 0.00052 	 m..s
+   38 	    69 	 0.04760 	 0.00053 	 m..s
+   41 	    70 	 0.04764 	 0.00055 	 m..s
+   42 	    71 	 0.04813 	 0.00056 	 m..s
+   39 	    72 	 0.04761 	 0.00057 	 m..s
+   14 	    73 	 0.04591 	 0.00076 	 m..s
+   23 	    74 	 0.04649 	 0.00079 	 m..s
+   49 	    75 	 0.04917 	 0.00084 	 m..s
+   53 	    76 	 0.04950 	 0.00129 	 m..s
+   78 	    77 	 0.05976 	 0.00171 	 m..s
+   81 	    78 	 0.06058 	 0.00789 	 m..s
+   93 	    79 	 0.08578 	 0.04857 	 m..s
+   77 	    80 	 0.05686 	 0.06447 	 ~...
+   88 	    81 	 0.07580 	 0.07961 	 ~...
+   86 	    82 	 0.06886 	 0.08371 	 ~...
+   79 	    83 	 0.06024 	 0.08488 	 ~...
+   85 	    84 	 0.06319 	 0.08803 	 ~...
+   99 	    85 	 0.09442 	 0.08860 	 ~...
+   95 	    86 	 0.09363 	 0.08867 	 ~...
+   94 	    87 	 0.08639 	 0.09060 	 ~...
+   89 	    88 	 0.08087 	 0.09126 	 ~...
+   82 	    89 	 0.06165 	 0.09149 	 ~...
+   92 	    90 	 0.08511 	 0.09180 	 ~...
+   80 	    91 	 0.06026 	 0.09286 	 m..s
+   84 	    92 	 0.06255 	 0.09363 	 m..s
+  100 	    93 	 0.09795 	 0.09460 	 ~...
+   76 	    94 	 0.05679 	 0.09532 	 m..s
+  102 	    95 	 0.11305 	 0.09535 	 ~...
+  103 	    96 	 0.11964 	 0.09764 	 ~...
+   83 	    97 	 0.06213 	 0.10902 	 m..s
+  101 	    98 	 0.11156 	 0.12319 	 ~...
+   95 	    99 	 0.09363 	 0.13164 	 m..s
+   95 	   100 	 0.09363 	 0.13674 	 m..s
+  108 	   101 	 0.18457 	 0.13680 	 m..s
+   90 	   102 	 0.08136 	 0.13810 	 m..s
+   95 	   103 	 0.09363 	 0.14653 	 m..s
+   91 	   104 	 0.08504 	 0.15318 	 m..s
+  104 	   105 	 0.12951 	 0.16378 	 m..s
+  107 	   106 	 0.18010 	 0.16586 	 ~...
+  109 	   107 	 0.19451 	 0.18204 	 ~...
+  113 	   108 	 0.19773 	 0.18503 	 ~...
+  110 	   109 	 0.19604 	 0.21574 	 ~...
+  111 	   110 	 0.19671 	 0.21666 	 ~...
+  112 	   111 	 0.19718 	 0.22657 	 ~...
+  115 	   112 	 0.28761 	 0.26914 	 ~...
+  117 	   113 	 0.30147 	 0.28706 	 ~...
+  114 	   114 	 0.25665 	 0.30486 	 m..s
+  116 	   115 	 0.29565 	 0.31033 	 ~...
+  106 	   116 	 0.16860 	 0.31527 	 MISS
+  120 	   117 	 0.34012 	 0.31960 	 ~...
+  105 	   118 	 0.15512 	 0.33534 	 MISS
+  118 	   119 	 0.33626 	 0.34767 	 ~...
+  119 	   120 	 0.33804 	 0.38203 	 m..s
+==========================================
+r_mrr = 0.9242134094238281
+r2_mrr = 0.7469213008880615
+spearmanr_mrr@5 = 0.8072133660316467
+spearmanr_mrr@10 = 0.8970555663108826
+spearmanr_mrr@50 = 0.9597756862640381
+spearmanr_mrr@100 = 0.9611503481864929
+spearmanr_mrr@All = 0.9632477760314941
+==========================================
+test time: 0.677
+Done Testing dataset DBpedia50
+Testing model with dataset OpenEA
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.521 +- 0.403
+mrr vals (pred, true): 0.052, 0.002
+
+Evaluation for OpenEA on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   87 	     0 	 0.05311 	 0.00031 	 m..s
+   15 	     1 	 0.05017 	 0.00045 	 m..s
+   12 	     2 	 0.05014 	 0.00047 	 m..s
+    4 	     3 	 0.04991 	 0.00051 	 m..s
+   34 	     4 	 0.05032 	 0.00052 	 m..s
+   62 	     5 	 0.05068 	 0.00053 	 m..s
+   43 	     6 	 0.05045 	 0.00053 	 m..s
+   53 	     7 	 0.05058 	 0.00055 	 m..s
+   61 	     8 	 0.05067 	 0.00055 	 m..s
+   52 	     9 	 0.05058 	 0.00056 	 m..s
+   14 	    10 	 0.05016 	 0.00056 	 m..s
+   36 	    11 	 0.05034 	 0.00057 	 m..s
+   69 	    12 	 0.05080 	 0.00057 	 m..s
+   70 	    13 	 0.05086 	 0.00057 	 m..s
+   11 	    14 	 0.05014 	 0.00057 	 m..s
+   33 	    15 	 0.05030 	 0.00058 	 m..s
+   66 	    16 	 0.05074 	 0.00059 	 m..s
+    2 	    17 	 0.04978 	 0.00059 	 m..s
+   44 	    18 	 0.05048 	 0.00060 	 m..s
+   23 	    19 	 0.05024 	 0.00060 	 m..s
+   10 	    20 	 0.05010 	 0.00061 	 m..s
+    0 	    21 	 0.04949 	 0.00064 	 m..s
+   73 	    22 	 0.05096 	 0.00068 	 m..s
+    3 	    23 	 0.04978 	 0.00069 	 m..s
+   37 	    24 	 0.05035 	 0.00069 	 m..s
+   58 	    25 	 0.05066 	 0.00070 	 m..s
+   29 	    26 	 0.05025 	 0.00071 	 m..s
+   47 	    27 	 0.05053 	 0.00072 	 m..s
+   74 	    28 	 0.05099 	 0.00073 	 m..s
+   42 	    29 	 0.05044 	 0.00073 	 m..s
+   49 	    30 	 0.05054 	 0.00075 	 m..s
+   30 	    31 	 0.05025 	 0.00076 	 m..s
+   13 	    32 	 0.05015 	 0.00076 	 m..s
+   26 	    33 	 0.05024 	 0.00076 	 m..s
+   21 	    34 	 0.05023 	 0.00077 	 m..s
+   32 	    35 	 0.05028 	 0.00078 	 m..s
+   39 	    36 	 0.05037 	 0.00078 	 m..s
+   60 	    37 	 0.05067 	 0.00080 	 m..s
+   59 	    38 	 0.05066 	 0.00081 	 m..s
+   67 	    39 	 0.05079 	 0.00081 	 m..s
+   20 	    40 	 0.05023 	 0.00087 	 m..s
+   27 	    41 	 0.05024 	 0.00088 	 m..s
+   40 	    42 	 0.05037 	 0.00091 	 m..s
+   25 	    43 	 0.05024 	 0.00092 	 m..s
+   54 	    44 	 0.05061 	 0.00101 	 m..s
+   75 	    45 	 0.05105 	 0.00103 	 m..s
+    5 	    46 	 0.04991 	 0.00104 	 m..s
+   18 	    47 	 0.05019 	 0.00106 	 m..s
+   51 	    48 	 0.05057 	 0.00108 	 m..s
+   63 	    49 	 0.05072 	 0.00112 	 m..s
+   16 	    50 	 0.05017 	 0.00115 	 m..s
+   57 	    51 	 0.05062 	 0.00116 	 m..s
+   71 	    52 	 0.05086 	 0.00116 	 m..s
+   65 	    53 	 0.05074 	 0.00118 	 m..s
+   35 	    54 	 0.05033 	 0.00120 	 m..s
+   19 	    55 	 0.05023 	 0.00122 	 m..s
+   68 	    56 	 0.05079 	 0.00123 	 m..s
+   45 	    57 	 0.05053 	 0.00133 	 m..s
+   55 	    58 	 0.05061 	 0.00136 	 m..s
+   48 	    59 	 0.05054 	 0.00137 	 m..s
+   41 	    60 	 0.05037 	 0.00139 	 m..s
+    8 	    61 	 0.05002 	 0.00142 	 m..s
+   46 	    62 	 0.05053 	 0.00142 	 m..s
+   24 	    63 	 0.05024 	 0.00143 	 m..s
+    7 	    64 	 0.04999 	 0.00146 	 m..s
+   56 	    65 	 0.05062 	 0.00153 	 m..s
+    1 	    66 	 0.04968 	 0.00156 	 m..s
+   72 	    67 	 0.05087 	 0.00161 	 m..s
+   31 	    68 	 0.05027 	 0.00170 	 m..s
+   22 	    69 	 0.05024 	 0.00186 	 m..s
+    9 	    70 	 0.05002 	 0.00194 	 m..s
+   28 	    71 	 0.05025 	 0.00195 	 m..s
+   17 	    72 	 0.05018 	 0.00196 	 m..s
+   50 	    73 	 0.05056 	 0.00199 	 m..s
+    6 	    74 	 0.04995 	 0.00200 	 m..s
+   64 	    75 	 0.05072 	 0.00200 	 m..s
+   38 	    76 	 0.05037 	 0.00224 	 m..s
+   78 	    77 	 0.05189 	 0.00249 	 m..s
+   81 	    78 	 0.05193 	 0.00459 	 m..s
+   76 	    79 	 0.05170 	 0.04959 	 ~...
+   77 	    80 	 0.05171 	 0.05253 	 ~...
+   93 	    81 	 0.05654 	 0.06381 	 ~...
+   86 	    82 	 0.05280 	 0.07113 	 ~...
+   89 	    83 	 0.05414 	 0.07360 	 ~...
+   82 	    84 	 0.05199 	 0.07464 	 ~...
+   96 	    85 	 0.08125 	 0.07469 	 ~...
+   94 	    86 	 0.05673 	 0.07542 	 ~...
+   91 	    87 	 0.05456 	 0.07636 	 ~...
+   79 	    88 	 0.05191 	 0.07648 	 ~...
+   95 	    89 	 0.05716 	 0.07650 	 ~...
+   80 	    90 	 0.05191 	 0.07667 	 ~...
+   84 	    91 	 0.05239 	 0.07719 	 ~...
+   83 	    92 	 0.05201 	 0.07971 	 ~...
+  103 	    93 	 0.13250 	 0.08036 	 m..s
+   92 	    94 	 0.05469 	 0.08403 	 ~...
+   90 	    95 	 0.05456 	 0.08523 	 m..s
+   85 	    96 	 0.05279 	 0.08922 	 m..s
+   88 	    97 	 0.05321 	 0.08956 	 m..s
+  100 	    98 	 0.09824 	 0.09360 	 ~...
+   96 	    99 	 0.08125 	 0.09838 	 ~...
+  102 	   100 	 0.11472 	 0.10039 	 ~...
+  106 	   101 	 0.15720 	 0.11871 	 m..s
+   96 	   102 	 0.08125 	 0.12857 	 m..s
+  110 	   103 	 0.16513 	 0.12860 	 m..s
+  104 	   104 	 0.15115 	 0.13637 	 ~...
+  105 	   105 	 0.15559 	 0.13818 	 ~...
+  111 	   106 	 0.17534 	 0.17068 	 ~...
+   96 	   107 	 0.08125 	 0.17901 	 m..s
+  109 	   108 	 0.16046 	 0.18394 	 ~...
+  108 	   109 	 0.15955 	 0.18588 	 ~...
+  107 	   110 	 0.15851 	 0.18649 	 ~...
+  115 	   111 	 0.23920 	 0.21233 	 ~...
+  116 	   112 	 0.25343 	 0.21589 	 m..s
+  101 	   113 	 0.11236 	 0.22307 	 MISS
+  117 	   114 	 0.27271 	 0.27717 	 ~...
+  114 	   115 	 0.22574 	 0.28122 	 m..s
+  113 	   116 	 0.19290 	 0.28885 	 m..s
+  112 	   117 	 0.18185 	 0.29363 	 MISS
+  118 	   118 	 0.32335 	 0.31774 	 ~...
+  119 	   119 	 0.32733 	 0.34668 	 ~...
+  120 	   120 	 0.33508 	 0.34919 	 ~...
+==========================================
+r_mrr = 0.9119783639907837
+r2_mrr = 0.7025831341743469
+spearmanr_mrr@5 = 0.9281098246574402
+spearmanr_mrr@10 = 0.9745740294456482
+spearmanr_mrr@50 = 0.9620660543441772
+spearmanr_mrr@100 = 0.9497177600860596
+spearmanr_mrr@All = 0.9499818682670593
+==========================================
+test time: 0.709
+Done Testing dataset OpenEA
+total time taken: 3114.3064119815826
+training time taken: 3052.573291540146
+TWIG out ;))

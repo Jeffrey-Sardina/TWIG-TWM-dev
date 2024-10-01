@@ -87,7 +87,7 @@ def get_mrrs_by_struct_cuttoff(rank_data, local_data, struct_ft):
     struct_ft_vals = []
     for triple_id in local_data:
         struct_ft_vals.append(local_data[triple_id][struct_ft])
-    struct_ft_median = np.percentile(struct_ft_vals, 0.5)
+    struct_ft_median = np.median(struct_ft_vals)
 
     rank_data_below_median = {}
     rank_data_above_median = {}

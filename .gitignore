@@ -1,17 +1,11 @@
 .vscode/
 *.gz
 docker_up.log
-twig.json
-twig.log
 *.pyc
 *.pt
 *.pkl
-*.negstats
 *.grid
 *.res
-*.log
-twig/TWIG/data_save/
 *.svg
 *.gexf
 __pycache__/
-results_save/
