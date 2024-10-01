@@ -2,7 +2,7 @@
 from load_data import _do_load
 from trainer import _train_and_eval
 from twig_nn import *
-from kge_pipeline import _run_kge_pipeline
+from kge_pipeline import run_kge_pipeline
 from twm_app import start_twm_app
 
 # external imports

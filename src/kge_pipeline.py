@@ -283,7 +283,7 @@ def write_id_to_hps(grid, out_file):
         for run_id, hps in grid:
             print(f'{run_id} --> {hps}', file=out)
 
-def _run_kge_pipeline(
+def run_kge_pipeline(
         grid_file,
         results_write_obj,
         out_dir,
