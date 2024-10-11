@@ -99,8 +99,7 @@ def load_optimizer(optimizer, model, optimizer_args):
     return optimizer
 
 def do_job(
-        datasets_to_load,
-        kge_model_name,
+        data_to_load,
         test_ratio=0.1,
         valid_ratio=0.0,
         normalisation='zscore',
@@ -109,27 +108,26 @@ def do_job(
         model_kwargs=None,
         optimizer='adam',
         optimizer_args={'lr': 5e-3},
-        epochs=[2, 3],
-        mrr_loss_coeffs=[0, 10],
+        epochs=[10, 0],
+        mrr_loss_coeffs=[10, 10],
         rank_dist_loss_coeffs=[1, 1],
         rescale_mrr_loss=False,
         rescale_rank_dist_loss=False,
         verbose=True,
         tag='TWIG-job',
-        seed=17
+        seed=None
     ):
     # configure seed
     if type(seed) == int:
         set_seed(seed)
     else:
-        seed = set_seed(2**32 - 1)
+        seed = set_seed(int(random.random() * 10**16))
 
     if verbose:
         print('Starting TWIG!')
     start = time.time()
     twig_data = _do_load(
-        datasets_to_load=datasets_to_load,
-        model_name=kge_model_name,
+        data_to_load=data_to_load,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio,
         normalisation=normalisation,
@@ -148,7 +146,7 @@ def do_job(
         optimizer_args=optimizer_args
     )
     checkpoint_id = str(int(random.random() * 10**16))
-    model_name_prefix = f'chkpt-ID_{checkpoint_id}_tag_{tag}_{"-".join(d for d in datasets_to_load.keys())}'
+    model_name_prefix = f'chkpt-ID_{checkpoint_id}_tag_{tag}'
     if verbose:
         print('the checkpoint ID for this run is: ', checkpoint_id)
         print('the save name prefix for this run is: ', model_name_prefix)
@@ -157,7 +155,7 @@ def do_job(
     checkpoint_config_name = os.path.join(checkpoint_dir, model_name_prefix + '.pkl')
     with open(checkpoint_config_name, 'wb') as cache:
         to_save = {
-            'kge_model_name': kge_model_name,
+            'data_to_load': data_to_load,
             'test_ratio': test_ratio,
             'valid_ratio': valid_ratio,
             'normalisation': normalisation,
@@ -202,15 +200,14 @@ def load_config(model_config_path):
     return model_config
 
 def finetune_job(
-        datasets_to_load,
-        kge_model_name,
+        data_to_load,
         model_save_path,
         model_config_path,
         test_ratio=None,
         valid_ratio=None,
         optimizer=None,
         optimizer_args=None,
-        epochs=[2, 3],
+        epochs=[10, 0],
         mrr_loss_coeffs=None,
         rank_dist_loss_coeffs=None,
         rescale_mrr_loss=None,
@@ -223,8 +220,8 @@ def finetune_job(
     model_config = load_config(model_config_path)
 
     # allow some items to be overwritten (and apply defaults if needed)
-    if kge_model_name:
-        model_config['kge_model_name'] = kge_model_name
+    if data_to_load:
+        model_config['data_to_load'] = data_to_load
     if test_ratio:
         model_config['test_ratio'] = test_ratio
     if valid_ratio:
@@ -246,8 +243,7 @@ def finetune_job(
 
     # run job
     metric_results, mrr_preds_all, mrr_trues_all = do_job(
-        datasets_to_load=datasets_to_load,
-        kge_model_name=kge_model_name,
+        data_to_load=data_to_load,
         test_ratio=model_config['test_ratio'],
         valid_ratio=model_config['valid_ratio'],
         normalisation=model_config['normalisation'],
@@ -267,8 +263,7 @@ def finetune_job(
     return metric_results, mrr_preds_all, mrr_trues_all
 
 def ablation_job(
-        datasets_to_load,
-        kge_model_name,
+        data_to_load,
         test_ratio=0.1,
         valid_ratio=0.0,
         normalisation=['zscore', 'minmax'],
@@ -282,7 +277,7 @@ def ablation_job(
             {'lr': 5e-5}
         ],
         epochs=[
-            [2, 3]
+            [10, 0]
         ],
         mrr_loss_coeffs=[
             [0, 10]
@@ -405,8 +400,7 @@ def ablation_job(
 
         # run the experiment
         metric_results, mrr_preds_all, mrr_trues_all = do_job(
-            datasets_to_load=datasets_to_load,
-            kge_model_name=kge_model_name,
+            data_to_load=data_to_load,
             test_ratio=test_ratio,
             valid_ratio=valid_ratio,
             normalisation=normalisation_val,
@@ -466,8 +460,7 @@ def ablation_job(
         # train and eval final model
         print('Now training your final model!')
         metric_results, mrr_preds_all, mrr_trues_all = do_job(
-            datasets_to_load=datasets_to_load,
-            kge_model_name=kge_model_name,
+            data_to_load=data_to_load,
             test_ratio=test_ratio,
             valid_ratio=valid_ratio,
             normalisation=best_settings['normalisation'],
@@ -487,8 +480,7 @@ def ablation_job(
         return metric_results, mrr_preds_all, mrr_trues_all
         
 def finetune_ablation_job(
-        datasets_to_load,
-        kge_model_name,
+        data_to_load,
         model_save_path,
         model_config_path,
         test_ratio=0.1,
@@ -502,7 +494,7 @@ def finetune_ablation_job(
             {'lr': 5e-5}
         ],
         epochs=[
-            [2, 3]
+            [10, 0]
         ],
         mrr_loss_coeffs=[
             [0, 10]
@@ -533,8 +525,8 @@ def finetune_ablation_job(
     model_config = load_config(model_config_path)
 
     # replace None with previous value
-    if kge_model_name == None:
-        kge_model_name = model_config['kge_model_name']
+    if data_to_load == None:
+        data_to_load = model_config['data_to_load']
     if test_ratio == None:
         test_ratio = model_config['test_ratio']
     if valid_ratio == None:
@@ -560,8 +552,7 @@ def finetune_ablation_job(
     
     # run the ablation
     results = ablation_job(
-        datasets_to_load=datasets_to_load,
-        kge_model_name=kge_model_name,
+        data_to_load=data_to_load,
         test_ratio=test_ratio,
         valid_ratio=valid_ratio,
         normalisation=normalisation,
@@ -598,7 +589,7 @@ def kge_data_job(
     if type(seed) == int:
         set_seed(seed)
     else:
-        seed = set_seed( 2**32 - 1)
+        seed = set_seed(int(random.random() * 10**16))
 
     run_name = f"{dataset_name}-{kge_model}-TWM-run{run_id}"
     run_dir = os.path.join('output/', dataset_name, run_name)
@@ -609,7 +600,7 @@ def kge_data_job(
     grid_file = os.path.join(run_dir, run_name + '.grid')
     results_file = os.path.join(run_dir, run_name + '.res')
     with open(results_file, 'w') as results_write_obj:
-        _run_kge_pipeline(
+        run_kge_pipeline(
             grid_file=grid_file,
             results_write_obj=results_write_obj,
             out_dir=run_dir,
@@ -636,29 +627,6 @@ def do_app_job(
     )
 
 if __name__ == '__main__':
-    # do_job(
-    #     datasets_to_load={
-    #         "UMLS": ["2.1", "2.2"],
-    #         # "CoDExSmall": ["2.1", "2.2"],
-    #         # "DBpedia50": ["2.1", "2.2"],
-    #         # "Kinships": ["2.1", "2.3"],
-    #         # "OpenEA": ["2.1", "2.2"],
-    #     },
-    #     kge_model_name='ComplEx',
-    #     test_ratio=0.5,
-    #     valid_ratio=0.0,
-    #     normalisation='zscore',
-    #     n_bins=30,
-    #     model_or_version='base',
-    #     optimizer='adam',
-    #     optimizer_args={'lr': 5e-3},
-    #     epochs=[1, 1],
-    #     mrr_loss_coeffs=[0, 10],
-    #     rank_dist_loss_coeffs=[1, 1],
-    #     verbose=True,
-    #     tag='TWIG-job'
-    # )
-
     do_app_job(
         hyps_dict_path="output/CoDExSmall/CoDExSmall-ComplEx-TWM-run2.1/CoDExSmall-TWM-run2.1.grid",
         kge_model_name='ComplEx',

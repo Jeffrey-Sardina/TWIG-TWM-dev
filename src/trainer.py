@@ -154,12 +154,13 @@ def _train_epoch(
     # tested on UMLS (2 runs of 1215 exps) with epochs = [2,3]
     epoch_batches = twig_data.get_train_epoch(
         shuffle=True,
-        stratify_by_dataset=True
+        stratify_by='dataset'
     ) # must shuffle to allow learning on multipl KGs at once
     for batch_num, batch_data in enumerate(epoch_batches):
         # load batch data
-        dataset_name, run_id, exp_id = batch_data
+        model_name, dataset_name, run_id, exp_id = batch_data
         struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
+            model_name=model_name,
             dataset_name=dataset_name,
             run_id=run_id,
             exp_id=exp_id,
@@ -168,7 +169,7 @@ def _train_epoch(
 
         # run batch
         if batch_num % print_batch_on == 0:
-            print(f'running batch: {batch_num} / {len(epoch_batches)} and superbatch({superbatch}); data from {dataset_name}, run {run_id}, exp {exp_id}')
+            print(f'running batch: {batch_num} / {len(epoch_batches)} and superbatch({superbatch}); data from {model_name}, {dataset_name}, run {run_id}, exp {exp_id}')
         loss, mrrl, rdl, _, _ = _do_batch(
             model=model,
             mrr_loss=mrr_loss,
@@ -209,6 +210,7 @@ def _train_epoch(
 def _eval(
         model,
         twig_data,
+        model_name,
         dataset_name,
         mrr_loss,
         mrr_loss_coeff,
@@ -231,13 +233,15 @@ def _eval(
     with torch.no_grad():
         epoch_batches = twig_data.get_eval_epoch(
             mode=mode,
+            model_name=model_name,
             dataset_name=dataset_name
         )
-        for dataset_name, run_id, exp_id in epoch_batches:
+        for model_name, dataset_name, run_id, exp_id in epoch_batches:
             if do_print and batch_num % print_batch_on == 0:
                 print(f'running batch: {batch_num}')
 
             struct_tensor, hyps_tensor, mrr_true, rank_dist_true = twig_data.get_batch(
+                model_name=model_name,
                 dataset_name=dataset_name,
                 run_id=run_id,
                 exp_id=exp_id,
@@ -408,34 +412,36 @@ def _train_and_eval(
     }
     mrr_preds_all = {}
     mrr_trues_all = {}
-    for dataset_name in twig_data.dataset_names:
-        if do_print:
-            print(f'Testing model with dataset {dataset_name}')
-        r2_mrr, r_mrr, spearman_mrrs, test_loss, mrr_preds, mrr_trues =_eval(
-            model=model,
-            twig_data=twig_data,
-            dataset_name=dataset_name,
-            mrr_loss=mrr_loss,
-            mrr_loss_coeff=mrr_loss_coeff,
-            rescale_mrr_loss=rescale_mrr_loss,
-            rank_dist_loss=rank_dist_loss,
-            rank_dist_loss_coeff=rank_dist_loss_coeff,
-            rescale_rank_dist_loss=rescale_rank_dist_loss,
-            mode='test',
-            do_print=do_print
-        )
-        if do_print:
-            print(f"Done Testing dataset {dataset_name}")
+    for model_name in twig_data.kgems:
+        for dataset_name in twig_data.dataset_names:
+            if do_print:
+                print(f'Testing model with KGEM {model_name} and KG {dataset_name}')
+            r2_mrr, r_mrr, spearman_mrrs, test_loss, mrr_preds, mrr_trues =_eval(
+                model=model,
+                twig_data=twig_data,
+                model_name=model_name,
+                dataset_name=dataset_name,
+                mrr_loss=mrr_loss,
+                mrr_loss_coeff=mrr_loss_coeff,
+                rescale_mrr_loss=rescale_mrr_loss,
+                rank_dist_loss=rank_dist_loss,
+                rank_dist_loss_coeff=rank_dist_loss_coeff,
+                rescale_rank_dist_loss=rescale_rank_dist_loss,
+                mode='test',
+                do_print=do_print
+            )
+            if do_print:
+                print(f"Done Testing dataset {dataset_name}")
 
-        metric_results['r_mrr'][dataset_name] = r_mrr
-        metric_results['r2_mrr'][dataset_name] = r2_mrr
-        metric_results['spearmanr_mrr@5'][dataset_name] = spearman_mrrs[5]
-        metric_results['spearmanr_mrr@10'][dataset_name] = spearman_mrrs[10]
-        metric_results['spearmanr_mrr@50'][dataset_name] = spearman_mrrs[50]
-        metric_results['spearmanr_mrr@100'][dataset_name] = spearman_mrrs[100]
-        metric_results['spearmanr_mrr@All'][dataset_name] = spearman_mrrs['All']
-        metric_results['test_loss'][dataset_name] = test_loss
-        mrr_preds_all[dataset_name] = mrr_preds
-        mrr_trues_all[dataset_name] = mrr_trues
+            metric_results['r_mrr'][dataset_name] = r_mrr
+            metric_results['r2_mrr'][dataset_name] = r2_mrr
+            metric_results['spearmanr_mrr@5'][dataset_name] = spearman_mrrs[5]
+            metric_results['spearmanr_mrr@10'][dataset_name] = spearman_mrrs[10]
+            metric_results['spearmanr_mrr@50'][dataset_name] = spearman_mrrs[50]
+            metric_results['spearmanr_mrr@100'][dataset_name] = spearman_mrrs[100]
+            metric_results['spearmanr_mrr@All'][dataset_name] = spearman_mrrs['All']
+            metric_results['test_loss'][dataset_name] = test_loss
+            mrr_preds_all[dataset_name] = mrr_preds
+            mrr_trues_all[dataset_name] = mrr_trues
 
     return metric_results, mrr_preds_all, mrr_trues_all

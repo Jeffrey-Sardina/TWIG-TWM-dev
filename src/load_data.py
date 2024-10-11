@@ -23,7 +23,8 @@ class TWIG_Data:
             valid_ids,
             normaliser,
             run_ids,
-            n_bins
+            n_bins,
+            kgems
         ):
         # constants
         self.HIST_MIN = 0
@@ -38,6 +39,7 @@ class TWIG_Data:
         self.valid_ids = valid_ids
         self.normaliser = normaliser
         self.run_ids = run_ids
+        self.kgems = kgems
 
         # deleted later
         self.structs = structs
@@ -47,7 +49,13 @@ class TWIG_Data:
         # calculated vars
         self.dataset_names = list(run_ids.keys())
         self.num_struct_fts = structs[self.dataset_names[0]].shape[1] + 1 # all tensors have the same shape. +1 since we add one later to tell which side this is
-        self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
+        self.use_kgem_data = len(self.kgems) > 1
+        if self.use_kgem_data:
+            hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
+            kgem_fts = kgems[list(kgems.keys())[0]].shape[0]
+            self.num_hyp_fts = hyp_fts + kgem_fts
+        else:
+            self.num_hyp_fts = list(hyps['train'].values())[0].shape[0] # mode = train, exp_id = 0. all tensors have the same shape so which one we access does not matter
         self.struct_data, self.rank_lists, self.mrrs, self.rank_dists = self.precalc_train_data()
 
     def precalc_train_data(self):
@@ -73,33 +81,37 @@ class TWIG_Data:
         rank_lists = {}
         mrrs = {}
         rank_dists = {}
-        for dataset_name in self.dataset_names:
-            rank_lists[dataset_name] = {}
-            mrrs[dataset_name] = {}
-            rank_dists[dataset_name] = {}
-            for run_id in self.head_ranks[dataset_name]:
-                rank_lists[dataset_name][run_id] = {}
-                mrrs[dataset_name][run_id] = {}
-                rank_dists[dataset_name][run_id] = {}
-                for mode in self.head_ranks[dataset_name][run_id]:
-                    rank_lists[dataset_name][run_id][mode] = {}
-                    mrrs[dataset_name][run_id][mode] = {}
-                    rank_dists[dataset_name][run_id][mode] = {}
-                    for exp_id in self.head_ranks[dataset_name][run_id][mode]:
-                        head_rank = self.head_ranks[dataset_name][run_id][mode][exp_id]
-                        tail_rank = self.tail_ranks[dataset_name][run_id][mode][exp_id]
-                        rank_list = torch.concat(
-                            [head_rank, tail_rank],
-                            dim=0
-                        )
-                        rank_lists[dataset_name][run_id][mode][exp_id] = rank_list
-                        mrrs[dataset_name][run_id][mode][exp_id] = torch.mean(1 / (rank_list * self.max_ranks[dataset_name]))
-                        rank_dists[dataset_name][run_id][mode][exp_id] = _d_hist(
-                            X=rank_list,
-                            n_bins=self.N_BINS,
-                            min_val=self.HIST_MIN,
-                            max_val=self.HIST_MAX
-                        )
+        for model_name in self.kgems:
+            rank_lists[model_name] = {}
+            mrrs[model_name] = {}
+            rank_dists[model_name] = {}
+            for dataset_name in self.dataset_names:
+                rank_lists[model_name][dataset_name] = {}
+                mrrs[model_name][dataset_name] = {}
+                rank_dists[model_name][dataset_name] = {}
+                for run_id in self.head_ranks[model_name][dataset_name]:
+                    rank_lists[model_name][dataset_name][run_id] = {}
+                    mrrs[model_name][dataset_name][run_id] = {}
+                    rank_dists[model_name][dataset_name][run_id] = {}
+                    for mode in self.head_ranks[model_name][dataset_name][run_id]:
+                        rank_lists[model_name][dataset_name][run_id][mode] = {}
+                        mrrs[model_name][dataset_name][run_id][mode] = {}
+                        rank_dists[model_name][dataset_name][run_id][mode] = {}
+                        for exp_id in self.head_ranks[model_name][dataset_name][run_id][mode]:
+                            head_rank = self.head_ranks[model_name][dataset_name][run_id][mode][exp_id]
+                            tail_rank = self.tail_ranks[model_name][dataset_name][run_id][mode][exp_id]
+                            rank_list = torch.concat(
+                                [head_rank, tail_rank],
+                                dim=0
+                            )
+                            rank_lists[model_name][dataset_name][run_id][mode][exp_id] = rank_list
+                            mrrs[model_name][dataset_name][run_id][mode][exp_id] = torch.mean(1 / (rank_list * self.max_ranks[dataset_name]))
+                            rank_dists[model_name][dataset_name][run_id][mode][exp_id] = _d_hist(
+                                X=rank_list,
+                                n_bins=self.N_BINS,
+                                min_val=self.HIST_MIN,
+                                max_val=self.HIST_MAX
+                            )
                         
         # delete vars we no longer need
         del self.structs
@@ -108,28 +120,32 @@ class TWIG_Data:
 
         return struct_data, rank_lists, mrrs, rank_dists
 
-    def get_train_epoch(self, shuffle, stratify_by_dataset):
-        if not stratify_by_dataset:
+    def get_train_epoch(self, shuffle, stratify_by=None):
+        if not stratify_by:
             epoch_data = []
-            for dataset_name in self.dataset_names:
-                for run_id in self.run_ids[dataset_name]:
-                    for exp_id in self.train_ids:
-                        epoch_data.append((dataset_name, run_id, exp_id))
+            for model_name in self.kgems:
+                for dataset_name in self.dataset_names:
+                    for run_id in self.run_ids[dataset_name]:
+                        for exp_id in self.train_ids:
+                            epoch_data.append((model_name, dataset_name, run_id, exp_id))
             if shuffle:
                 random.shuffle(epoch_data)
-        else:
+
+        elif stratify_by == 'dataset': # and secondarily by kgem
             # get all data, randomise within each dataset block
             epoch_data_by_dataset = {}
             for dataset_name in self.dataset_names:
-                epoch_data_by_dataset[dataset_name] = []
-                dataset_epoch_data = []
-                for run_id in self.run_ids[dataset_name]:
-                    for exp_id in self.train_ids:
-                        dataset_epoch_data.append((dataset_name, run_id, exp_id))
-                if shuffle:
-                    random.shuffle(dataset_epoch_data)
-                epoch_data_by_dataset[dataset_name] = dataset_epoch_data
-            
+                epoch_data_by_dataset[dataset_name] = {}
+                for model_name in self.kgems:
+                    epoch_data_by_dataset[dataset_name][model_name] = []
+                    dataset_epoch_data = []
+                    for run_id in self.run_ids[dataset_name]:
+                        for exp_id in self.train_ids:
+                            dataset_epoch_data.append((model_name, dataset_name, run_id, exp_id))
+                    if shuffle:
+                        random.shuffle(dataset_epoch_data)
+                    epoch_data_by_dataset[dataset_name][model_name] = dataset_epoch_data
+
             # now, extract all data in a stratified format
             epoch_data = []
             finished_datasets = set()
@@ -138,14 +154,47 @@ class TWIG_Data:
                     assert finished_datasets == set(epoch_data_by_dataset.keys())
                     break
                 for dataset_name in epoch_data_by_dataset:
-                    if len(epoch_data_by_dataset[dataset_name]) > 0:
-                        epoch_data.append(epoch_data_by_dataset[dataset_name].pop())
-                    else:
-                        finished_datasets.add(dataset_name)
-                
+                    for model_name in epoch_data_by_dataset[dataset_name]:
+                        if len(epoch_data_by_dataset[dataset_name][model_name]) > 0:
+                            epoch_data.append(epoch_data_by_dataset[dataset_name][model_name].pop())
+                        else:
+                            finished_datasets.add(dataset_name)
+
+        elif stratify_by == 'kgem': # and secondarily by dataset
+            # get all data, randomise within each kgem block
+            epoch_data_by_kgem = {}
+            for model_name in self.kgems:
+                epoch_data_by_kgem[model_name] = {}
+                for dataset_name in self.dataset_names:
+                    epoch_data_by_kgem[model_name][dataset_name] = []
+                    kgem_epoch_data = []
+                    for run_id in self.run_ids[dataset_name]:
+                        for exp_id in self.train_ids:
+                            kgem_epoch_data.append((model_name, dataset_name, run_id, exp_id))
+                    if shuffle:
+                        random.shuffle(kgem_epoch_data)
+                    epoch_data_by_kgem[model_name][dataset_name] = kgem_epoch_data
+
+            # now, extract all data in a stratified format
+            epoch_data = []
+            finished_kgems = set()
+            while True:
+                if len(finished_kgems) == len(epoch_data_by_kgem):
+                    assert finished_kgems == set(epoch_data_by_kgem.keys())
+                    break
+                for model_name in epoch_data_by_kgem:
+                    for dataset_name in epoch_data_by_kgem[model_name]:
+                        if len(epoch_data_by_kgem[model_name][dataset_name]) > 0:
+                            epoch_data.append(epoch_data_by_kgem[model_name][dataset_name].pop())
+                        else:
+                            finished_kgems.add(dataset_name)
+
+        else:
+            assert False, f"unknown stratification procedure: {stratify_by}"
+
         return epoch_data
     
-    def get_eval_epoch(self, mode, dataset_name):
+    def get_eval_epoch(self, mode, model_name, dataset_name):
         if mode == 'train':
             exp_ids = self.train_ids
             print('WARNING: Eval running on the TRAIN set. This WILL have overfitting and SHOULD NOT be cited!')
@@ -159,21 +208,27 @@ class TWIG_Data:
         epoch_data = []
         for run_id in self.run_ids[dataset_name]:
             for exp_id in exp_ids:
-                epoch_data.append((dataset_name, run_id, exp_id))
+                epoch_data.append((model_name, dataset_name, run_id, exp_id))
 
         return epoch_data
     
-    def get_batch(self, dataset_name, run_id, exp_id, mode):
+    def get_batch(self, model_name, dataset_name, run_id, exp_id, mode):
         # get struct data
         struct_tensor = self.struct_data[dataset_name]
 
         # get hyps data
         hyps_tensor = self.hyps[mode][exp_id]
+        if self.use_kgem_data: # only add KGEM one-hot data if more than one KGEM is in use!
+            kgem_tensor = self.kgems[model_name]
+            hyps_tensor = torch.cat(
+                [hyps_tensor, kgem_tensor],
+                dim=0
+            )
         hyps_tensor = hyps_tensor.repeat(struct_tensor.shape[0], 1)
         
         # get precalc'd rank data
-        mrr_true = self.mrrs[dataset_name][run_id][mode][exp_id]
-        rank_dists_true = self.rank_dists[dataset_name][run_id][mode][exp_id]
+        mrr_true = self.mrrs[model_name][dataset_name][run_id][mode][exp_id]
+        rank_dists_true = self.rank_dists[model_name][dataset_name][run_id][mode][exp_id]
         
         return struct_tensor, hyps_tensor, mrr_true, rank_dists_true
 
@@ -293,9 +348,9 @@ def load_hyperparamter_data(grid):
                 hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
                 bin_str = np.binary_repr(hp_val_id) #get binary val (one-hot proto-vector)
                 bin_str = bin_str.rjust(onehot_len, '0') # pad with 0s to constant length (full one-hot vector)
-                for oneshot_idx in range(onehot_len):
-                    oneshot_name = hp_name + str(oneshot_idx)
-                    hyperparameter_data[exp_id][oneshot_name] = int(bin_str[oneshot_idx])
+                for onehot_idx in range(onehot_len):
+                    onehot_name = hp_name + str(onehot_idx)
+                    hyperparameter_data[exp_id][onehot_name] = int(bin_str[onehot_idx])
     
     return hyperparameter_data
 
@@ -310,35 +365,58 @@ def load_simulation_dataset(dataset_name, model_name, run_id):
     hyperparameter_data = load_hyperparamter_data(grid=grid)
     return global_data, local_data, hyperparameter_data, rank_data
 
-def load_simulation_datasets(datasets_to_load, model_name, do_print):
+def load_simulation_datasets(data_to_load, do_print):
     global_data = {}
     local_data = {}
     rank_data = {}
+    kgem_data = {}
     hyperparameter_data = None
-    for dataset_name in datasets_to_load:
+
+    # load KGEM data
+    model_names_list = list(data_to_load)
+    if len(model_names_list) == 1:
+        model_onehot_codes = None
+        kgem_data[model_names_list[0]] = model_onehot_codes
+    else:
+        model_onehot_codes = {}
+        model_onehot_len = len(model_names_list) - 1
+        for model_name_id, model_name in enumerate(model_names_list):
+            bin_str = np.binary_repr(model_name_id) #get binary val (one-hot proto-vector)
+            bin_str = bin_str.rjust(model_onehot_len, '0') # pad with 0s to constant length (full one-hot vector)
+            for model_onehot_idx in range(len(bin_str)):
+                model_onehot_name = "KGEM" + str(model_onehot_idx)
+                model_onehot_codes[model_onehot_name] = int(bin_str[model_onehot_idx])
+            kgem_data[model_name] = model_onehot_codes
+
+    # load KG and hyperparameter data
+    for model_name in data_to_load:
         if do_print:
-            print(f'Loading {dataset_name}...')
-        rank_data[dataset_name] = {}
-        for run_id in datasets_to_load[dataset_name]:
+            print(f'Loading {model_name}...')
+        rank_data[model_name] = {}
+        for dataset_name in data_to_load[model_name]:
             if do_print:
-                print(f'- loading run {run_id}...')
-            global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
-                dataset_name=dataset_name,
-                model_name=model_name,
-                run_id=run_id
-            )
-            rank_data[dataset_name][run_id] = rank_data_kg
-        if not dataset_name in global_data:
-            global_data[dataset_name] = global_data_kg
-        if not dataset_name in local_data:
-            local_data[dataset_name] = local_data_kg
-        if not hyperparameter_data:
-            hyperparameter_data = hyperparameter_data_kg
-        else:
-            assert hyperparameter_data.keys() == hyperparameter_data_kg.keys()
-            for key in hyperparameter_data:
-                assert hyperparameter_data[key] == hyperparameter_data_kg[key]
-    return global_data, local_data, hyperparameter_data, rank_data
+                print(f'Loading {dataset_name}...')
+            rank_data[model_name][dataset_name] = {}
+            for run_id in data_to_load[model_name][dataset_name]:
+                if do_print:
+                    print(f'- loading run {run_id}...')
+                global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
+                    dataset_name=dataset_name,
+                    model_name=model_name,
+                    run_id=run_id
+                )
+                rank_data[model_name][dataset_name][run_id] = rank_data_kg
+            if not dataset_name in global_data:
+                global_data[dataset_name] = global_data_kg
+            if not dataset_name in local_data:
+                local_data[dataset_name] = local_data_kg
+            if not hyperparameter_data:
+                hyperparameter_data = hyperparameter_data_kg
+            else:
+                assert hyperparameter_data.keys() == hyperparameter_data_kg.keys()
+                for key in hyperparameter_data:
+                    assert hyperparameter_data[key] == hyperparameter_data_kg[key]
+    return global_data, local_data, hyperparameter_data, kgem_data, rank_data
 
 def split_by_hyperparameters(exp_ids, test_ratio, valid_ratio):
     random_ids = [x for x in exp_ids]
@@ -361,20 +439,22 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
 
     # split rank data
     rank_split_data = {}
-    for dataset_name in rank_data:
-        rank_split_data[dataset_name] = {}
-        for run_id in rank_data[dataset_name]:
-            rank_split_data[dataset_name][run_id] = {
-                'train': {},
-                'test': {},
-                'valid': {}
-            }
-            for train_id in train_ids:
-                rank_split_data[dataset_name][run_id]['train'][train_id] = rank_data[dataset_name][run_id][train_id]
-            for test_id in test_ids:
-                rank_split_data[dataset_name][run_id]['test'][test_id] = rank_data[dataset_name][run_id][test_id]
-            for valid_id in valid_ids:
-                rank_split_data[dataset_name][run_id]['valid'][valid_id] = rank_data[dataset_name][run_id][valid_id]
+    for model_name in rank_data:
+        rank_split_data[model_name] = {}
+        for dataset_name in rank_data[model_name]:
+            rank_split_data[model_name][dataset_name] = {}
+            for run_id in rank_data[model_name][dataset_name]:
+                rank_split_data[model_name][dataset_name][run_id] = {
+                    'train': {},
+                    'test': {},
+                    'valid': {}
+                }
+                for train_id in train_ids:
+                    rank_split_data[model_name][dataset_name][run_id]['train'][train_id] = rank_data[model_name][dataset_name][run_id][train_id]
+                for test_id in test_ids:
+                    rank_split_data[model_name][dataset_name][run_id]['test'][test_id] = rank_data[model_name][dataset_name][run_id][test_id]
+                for valid_id in valid_ids:
+                    rank_split_data[model_name][dataset_name][run_id]['valid'][valid_id] = rank_data[model_name][dataset_name][run_id][valid_id]
 
     # split hyperparamter data
     hyp_split_data = {
@@ -391,7 +471,7 @@ def train_test_split(hyperparameter_data, rank_data, test_ratio, valid_ratio):
 
     return hyp_split_data, rank_split_data, train_ids, test_ids, valid_ids
 
-def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
+def to_tensors(global_data, local_data, kgem_data, hyp_split_data, rank_split_data):
     # make sure we iterate over everything in the same order, even if dicts have different orders
     dataset_names_canonical = sorted(list(global_data.keys()))
     triple_ids_canonical = {}
@@ -402,8 +482,10 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
     for mode in modes_canonical:
         exp_ids_canonical[mode] = sorted(list(hyp_split_data[mode]))
     run_ids_canonical = {}
-    for dataset_name in dataset_names_canonical:
-        run_ids_canonical[dataset_name] = sorted(list(rank_split_data[dataset_name]))
+    for model_name in kgem_data:
+        for dataset_name in dataset_names_canonical:
+            run_ids_canonical[dataset_name] = sorted(list(rank_split_data[model_name][dataset_name]))
+    model_names_canonical = sorted(list(kgem_data.keys()))
 
     # get global max trank data for each dataset
     max_ranks = {}
@@ -426,7 +508,7 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
             device=device
         )
 
-    # get hyperparameter datat for each experiment (exp_id)
+    # get hyperparameter data for each experiment (exp_id)
     hyps = {}
     for mode in modes_canonical:
         hyps[mode] = {}
@@ -437,44 +519,59 @@ def to_tensors(global_data, local_data, hyp_split_data, rank_split_data):
                 device=device
             )
 
+    # get kgem data 
+    kgems = {}
+    for kgem in kgem_data:
+        if len(kgem_data) > 1:
+            local_vec = list(kgem_data[kgem].values())
+            kgems[kgem] = torch.tensor(
+                local_vec,
+                dtype=torch.float32,
+                device=device
+            )
+        else:
+            kgems[kgem] = None
+
     # get rank data for all dataset, run_id, exp_id combinations in all training modes
     head_ranks = {}
     tail_ranks = {}
-    for dataset_name in dataset_names_canonical:
-        head_ranks[dataset_name] = {}
-        tail_ranks[dataset_name] = {}
-        for run_id in run_ids_canonical[dataset_name]:
-            head_ranks[dataset_name][run_id] = {}
-            tail_ranks[dataset_name][run_id] = {}
-            for mode in modes_canonical:
-                head_ranks[dataset_name][run_id][mode] = {}
-                tail_ranks[dataset_name][run_id][mode] = {}
-                for exp_id in exp_ids_canonical[mode]:
-                    head_ranks[dataset_name][run_id][mode][exp_id] = []
-                    tail_ranks[dataset_name][run_id][mode][exp_id] = []
-                    for triple_id in triple_ids_canonical[dataset_name]:
-                        head_ranks[dataset_name][run_id][mode][exp_id].append(
-                            rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['head_rank']
+    for model_name in model_names_canonical:
+        head_ranks[model_name] = {}
+        tail_ranks[model_name] = {}
+        for dataset_name in dataset_names_canonical:
+            head_ranks[model_name][dataset_name] = {}
+            tail_ranks[model_name][dataset_name] = {}
+            for run_id in run_ids_canonical[dataset_name]:
+                head_ranks[model_name][dataset_name][run_id] = {}
+                tail_ranks[model_name][dataset_name][run_id] = {}
+                for mode in modes_canonical:
+                    head_ranks[model_name][dataset_name][run_id][mode] = {}
+                    tail_ranks[model_name][dataset_name][run_id][mode] = {}
+                    for exp_id in exp_ids_canonical[mode]:
+                        head_ranks[model_name][dataset_name][run_id][mode][exp_id] = []
+                        tail_ranks[model_name][dataset_name][run_id][mode][exp_id] = []
+                        for triple_id in triple_ids_canonical[dataset_name]:
+                            head_ranks[model_name][dataset_name][run_id][mode][exp_id].append(
+                                rank_split_data[model_name][dataset_name][run_id][mode][exp_id][triple_id]['head_rank']
+                            )
+                            tail_ranks[model_name][dataset_name][run_id][mode][exp_id].append(
+                                rank_split_data[model_name][dataset_name][run_id][mode][exp_id][triple_id]['tail_rank']
+                            )
+                        head_ranks[model_name][dataset_name][run_id][mode][exp_id] = torch.tensor(
+                            head_ranks[model_name][dataset_name][run_id][mode][exp_id],
+                            dtype=torch.float32,
+                            device=device
                         )
-                        tail_ranks[dataset_name][run_id][mode][exp_id].append(
-                            rank_split_data[dataset_name][run_id][mode][exp_id][triple_id]['tail_rank']
+                        tail_ranks[model_name][dataset_name][run_id][mode][exp_id] = torch.tensor(
+                            tail_ranks[model_name][dataset_name][run_id][mode][exp_id],
+                            dtype=torch.float32,
+                            device=device
                         )
-                    head_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
-                        head_ranks[dataset_name][run_id][mode][exp_id],
-                        dtype=torch.float32,
-                        device=device
-                    )
-                    tail_ranks[dataset_name][run_id][mode][exp_id] = torch.tensor(
-                        tail_ranks[dataset_name][run_id][mode][exp_id],
-                        dtype=torch.float32,
-                        device=device
-                    )
 
-    return structs, max_ranks, hyps, head_ranks, tail_ranks
+    return structs, max_ranks, hyps, kgems, head_ranks, tail_ranks
 
 def _do_load(
-    datasets_to_load,
-    model_name,
+    data_to_load,
     test_ratio,
     valid_ratio,
     normalisation,
@@ -485,7 +582,7 @@ def _do_load(
     do_load() loads all data.
 
     The arguments it accepts are:
-        - datasets_to_load (dict of str -> list<str>): A dict that maps all dataset names to the run IDs of all KGE simulations done on those datasets
+        - data_to_load (dict of str -> str -> list<str>): A dict that maps all KGEM names to dataset names to the run IDs of all KGE simulations done on those datasets
         - test_ratio (float): the proportion of hyperparameter combinations to hold out for the test set
         - valid_ratio (float): the proportion of hyperparameter combinations to hold out for the valid set
         - normalisation (str): the normalisation to use for input data (not ranks). Options are "zscore", "minmax", and "none"
@@ -493,12 +590,19 @@ def _do_load(
     The values it returns are:
         - twig_data (TWIG_Data): a TWIG_Data object containing all data needed to load and run batches for TWIG.
     '''
+    # make sure same datasets are sued in all cases -- this is a technical limitation of the current implementation
+    datasets_used = None
+    for model_name in data_to_load:
+        datasets_used_local = set(data_to_load[model_name].keys())
+        if not datasets_used:
+            datasets_used = datasets_used_local
+        assert datasets_used == datasets_used_local, "when using multiple KGEMs all *must* be run on the same set of datasets. This is a technical limitation of the current implementation and amy be fixed later."
+
     if do_print:
         print('Loading datasets')
-    global_data, local_data, hyperparameter_data, rank_data = load_simulation_datasets(
-        datasets_to_load=datasets_to_load,
-        model_name=model_name,
-        do_print=do_print
+    global_data, local_data, hyperparameter_data, kgem_data, rank_data = load_simulation_datasets(
+        data_to_load=data_to_load,
+        do_print=do_print,
     )
     
     if do_print:
@@ -517,9 +621,10 @@ def _do_load(
 
     if do_print:
         print('Converting data to tensors')
-    structs, max_ranks, hyps, head_ranks, tail_ranks = to_tensors(
+    structs, max_ranks, hyps, kgems, head_ranks, tail_ranks = to_tensors(
         global_data=global_data,
         local_data=local_data,
+        kgem_data=kgem_data,
         hyp_split_data=hyp_split_data,
         rank_split_data=rank_split_data
     )
@@ -530,11 +635,13 @@ def _do_load(
         method=normalisation,
         structs=structs,
         hyps=hyps,
+        kgems=kgems,
         max_ranks=max_ranks
     )
-    structs, hyps, head_ranks, tail_ranks = normaliser.normalise(
+    structs, hyps, kgems, head_ranks, tail_ranks = normaliser.normalise(
         structs=structs,
         hyps=hyps,
+        kgems=kgems,
         head_ranks=head_ranks,
         tail_ranks=tail_ranks
     )
@@ -551,7 +658,8 @@ def _do_load(
         test_ids=test_ids,
         valid_ids=valid_ids,
         normaliser=normaliser,
-        run_ids=datasets_to_load,
-        n_bins=n_bins
+        run_ids=data_to_load[list(data_to_load.keys())[0]],
+        n_bins=n_bins,
+        kgems=kgems
     )
     return twig_data

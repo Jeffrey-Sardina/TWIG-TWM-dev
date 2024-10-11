@@ -59,7 +59,9 @@ def twm_demo():
                 twm_true_image=true_img,
                 twm_text=twm_text,
             )
+        assert False , "Not ready for newest TWIG version"
         img_pred, img_true, graph_save_url, mrr_pred, mrr_true, exp_id_wanted = do_twm(
+            model_name="None",
             dataset_name=dataset,
             kge_model_name=kge_model_name,
             run_id=run_id,

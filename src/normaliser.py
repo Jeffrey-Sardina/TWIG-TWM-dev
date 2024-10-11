@@ -3,10 +3,11 @@ import torch
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class Normaliser:
-    def __init__(self, method, structs, hyps, max_ranks):
+    def __init__(self, method, structs, hyps, kgems, max_ranks):
         self.valid_norm_methods = ('zscore', 'minmax', 'none')
         assert method in self.valid_norm_methods, f"normalisation method must be one of {self.valid_norm_methods} but is {method}"
         self.method = method
+        self.kgems = kgems
         self.max_ranks = max_ranks
 
         # calc num lp quries we are simulatuig per dataset. 2*structs since structs holds the number of triples
@@ -73,11 +74,38 @@ class Normaliser:
                 (1 / (num_samples - 1)) * hyp_std
             )
 
+            # get the average of all kgem data values
+            kgem_avg = None
+            kgem_std = None
+            if len(kgems) > 1:
+                num_samples = 0
+                for kgem in kgems:
+                    kgem_data = kgems[kgem]
+                    num_samples += 1
+                    if kgem_avg is None:
+                        kgem_avg = kgem_data
+                    else:
+                        kgem_avg += kgem_data
+                kgem_avg /= num_samples
+
+                # get the standard deviation of all kgem data values
+                for kgem in kgems:
+                    kgem_data = kgems[kgem]
+                    if kgem_std is None:
+                        kgem_std = (kgem_data - kgem_avg) ** 2
+                    else:
+                        kgem_std += (kgem_data - kgem_avg) ** 2
+                kgem_std = torch.sqrt(
+                    (1 / (num_samples - 1)) * kgem_std
+                )
+
             # save the resultant values for use in normalisation
             self.hyp_avg = hyp_avg
             self.hyp_std = hyp_std
             self.struct_avg = struct_avg
             self.struct_std = struct_std
+            self.kgem_avg = kgem_avg
+            self.kgem_std = kgem_std
         elif method == 'minmax':
             # get the min and max of all structural values
             struct_min = None
@@ -103,7 +131,7 @@ class Normaliser:
                         dim=0
                     ).values
 
-            # get the min and max of allo hyperparameters values
+            # get the min and max of all hyperparameters values
             hyp_min = None
             hyp_max = None
             for exp_id in hyps['train']:
@@ -127,16 +155,43 @@ class Normaliser:
                         dim=0
                     ).values
 
+            # get the min and max of all kgem values
+            kgem_min = None
+            kgem_max = None
+            if len(kgems) > 1:
+                for kgem in kgems:
+                    kgem_data = kgems[kgem]
+                    if kgem_min is None:
+                        kgem_min = kgem_data
+                    else:
+                        kgem_min = torch.min(
+                            torch.stack(
+                                [kgem_data, kgem_min]
+                            ),
+                            dim=0
+                        ).values
+                    if kgem_max is None:
+                        kgem_max = kgem_data
+                    else:
+                        kgem_max = torch.max(
+                            torch.stack(
+                                [kgem_data, kgem_max]
+                            ),
+                            dim=0
+                        ).values
+
             self.struct_min = struct_min
             self.struct_max = struct_max
             self.hyp_min = hyp_min
             self.hyp_max = hyp_max
+            self.kgem_min = kgem_min
+            self.kgem_max = kgem_max
         elif method == 'none':
             pass
         else:
             assert False, f"normalisation method must be one of {self.valid_norm_methods} but is {method}"
 
-    def _zscore_norm_func(self, structs, hyps):
+    def _zscore_norm_func(self, structs, hyps, kgems):
         structs_norm = {}
         for dataset_name in structs:
             struct_data = structs[dataset_name]
@@ -151,10 +206,19 @@ class Normaliser:
                 hyp_norm = (hyps[mode][exp_id] - self.hyp_avg) / self.hyp_std
                 hyp_norm = torch.nan_to_num(hyp_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
                 hyps_norm[mode][exp_id] = hyp_norm
-        
-        return structs_norm, hyps_norm
 
-    def _minmax_score_func(self, structs, hyps):
+        kgems_norm = {}
+        if len(kgems) > 1:
+            for kgem in kgems:
+                kgem_norm = (kgems[kgem] - self.kgem_avg) / self.kgem_std
+                kgem_norm = torch.nan_to_num(kgem_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
+                kgems_norm[kgem] = kgem_norm
+        else:
+            kgems_norm = kgems
+        
+        return structs_norm, hyps_norm, kgems_norm
+
+    def _minmax_score_func(self, structs, hyps, kgems):
         structs_norm = {}
         for dataset_name in structs:
             struct_data = structs[dataset_name]
@@ -169,42 +233,55 @@ class Normaliser:
                 hyp_norm = (hyps[mode][exp_id] - self.hyp_min) / (self.hyp_max - self.hyp_min)
                 hyp_norm = torch.nan_to_num(hyp_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
                 hyps_norm[mode][exp_id] = hyp_norm
+
+        kgems_norm = {}
+        if len(kgems) > 1:
+            for kgem in kgems:
+                kgem_norm = (kgems[kgem] - self.kgem_min) / (self.kgem_max - self.kgem_min)
+                kgem_norm = torch.nan_to_num(kgem_norm, nan=0.0, posinf=0.0, neginf=0.0) # if we had nans (i.e. min = max) set them all to 0 (average)
+                kgems_norm[kgem] = kgem_norm
+        else:
+            kgems_norm = kgems
             
-        return structs_norm, hyps_norm
+        return structs_norm, hyps_norm, kgems_norm
 
     def _do_rescale_ranks(self, ranks):
         rescaled_ranks = {}
-        for dataset_name in ranks:
-            rescaled_ranks[dataset_name] = {}
-            for run_id in ranks[dataset_name]:
-                rescaled_ranks[dataset_name][run_id] = {}
-                for mode in ranks[dataset_name][run_id]:
-                    rescaled_ranks[dataset_name][run_id][mode] = {}
-                    for exp_id in ranks[dataset_name][run_id][mode]:
-                        rescaled_rank = ranks[dataset_name][run_id][mode][exp_id] / self.max_ranks[dataset_name]
-                        rescaled_ranks[dataset_name][run_id][mode][exp_id] = rescaled_rank
+        for model_name in ranks:
+            rescaled_ranks[model_name] = {}
+            for dataset_name in ranks[model_name]:
+                rescaled_ranks[model_name][dataset_name] = {}
+                for run_id in ranks[model_name][dataset_name]:
+                    rescaled_ranks[model_name][dataset_name][run_id] = {}
+                    for mode in ranks[model_name][dataset_name][run_id]:
+                        rescaled_ranks[model_name][dataset_name][run_id][mode] = {}
+                        for exp_id in ranks[model_name][dataset_name][run_id][mode]:
+                            rescaled_rank = ranks[model_name][dataset_name][run_id][mode][exp_id] / self.max_ranks[dataset_name]
+                            rescaled_ranks[model_name][dataset_name][run_id][mode][exp_id] = rescaled_rank
         return rescaled_ranks
 
-    def normalise(self, structs, hyps, head_ranks, tail_ranks):
+    def normalise(self, structs, hyps, kgems, head_ranks, tail_ranks):
         if self.method == 'zscore':
-            structs_norm, hyps_norm = self._zscore_norm_func(
+            structs_norm, hyps_norm, kgems_norm = self._zscore_norm_func(
                 structs=structs,
-                hyps=hyps
+                hyps=hyps,
+                kgems=kgems
             )
         elif self.method == 'minmax':
-            structs_norm, hyps_norm = self._minmax_score_func(
+            structs_norm, hyps_norm, kgems_norm = self._minmax_score_func(
                 structs=structs,
-                hyps=hyps
+                hyps=hyps,
+                kgems=kgems
             )
         elif self.method == 'none':
-            structs_norm, hyps_norm = structs, hyps
+            structs_norm, hyps_norm, kgems_norm = structs, hyps, kgems
         else:
             assert False, f"normalisation method must be one of {self.valid_norm_methods} but is {self.method}"
 
         head_ranks_norm = self._do_rescale_ranks(head_ranks)
         tail_ranks_norm = self._do_rescale_ranks(tail_ranks)
         
-        return structs_norm, hyps_norm, head_ranks_norm, tail_ranks_norm
+        return structs_norm, hyps_norm, kgems_norm, head_ranks_norm, tail_ranks_norm
 
     def _get_lp_side_flags(self, num_triples):
         if self.method == 'zscore':

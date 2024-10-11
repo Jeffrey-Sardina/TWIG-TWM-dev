@@ -46,6 +46,7 @@ def invert_dict(dict_kv):
     return dict_vk
 
 def create_TWM_graph(
+        model_name,
         dataset_name,
         run_id,
         twig_data,
@@ -69,11 +70,12 @@ def create_TWM_graph(
         TWIG_model.eval()
     
     struct_tensor, hyps_tensor, mrr_true, _ = twig_data.get_batch(
-            dataset_name=dataset_name,
-            run_id=run_id,
-            exp_id=exp_id_wanted,
-            mode='train'
-        )
+        model_name=model_name,
+        dataset_name=dataset_name,
+        run_id=run_id,
+        exp_id=exp_id_wanted,
+        mode='train'
+    )
     rank_list_pred = TWIG_model(struct_tensor, hyps_tensor)
     rank_list_true = twig_data.rank_lists[dataset_name][run_id]['train'][exp_id_wanted]
 
@@ -232,6 +234,7 @@ def add_gexf_metadata(gexf_file_path, description="", creator="", keywords=""):
             print(line, file=out)
 
 def do_twm(
+        model_name,
         dataset_name,
         kge_model_name,
         run_id,
@@ -268,6 +271,7 @@ def do_twm(
     TWIG_model = torch.load(model_save_path).to(device)
     TWIG_model.eval()
     twm, mrr_pred, mrr_true = create_TWM_graph(
+        model_name=model_name,
         dataset_name=dataset_name,
         run_id=run_id,
         twig_data=twig_data,
