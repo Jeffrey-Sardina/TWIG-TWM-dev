@@ -10,4 +10,6 @@ docker_up.log
 *.gexf
 __pycache__/
 results_save/
-temp*
+temp.py
+temp.log
+temp.*
