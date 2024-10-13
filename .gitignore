@@ -9,3 +9,5 @@ docker_up.log
 *.svg
 *.gexf
 __pycache__/
+results_save/
+temp*

@@ -16,6 +16,7 @@ import itertools
 import copy
 
 # Reproducibility
+checkpoint_dir = 'checkpoints/'
 def set_seed(seed):
     print(f'Using random seed: {seed}')
     global random_seed
@@ -24,7 +25,18 @@ def set_seed(seed):
     random.seed(seed)
     return seed
 
-checkpoint_dir = 'checkpoints/'
+def print_header(tag):
+    message = f'Running a TWIG experiment with tag: {tag}'
+    message_len = len(message)
+    print('=' * message_len)
+    print('-' * message_len)
+    print(message)
+    print('-' * message_len)
+    print('=' * message_len)
+
+def print_footer():
+    print('\n' * 5, end='')
+
 
 def load_nn(model_or_version, twig_data, model_kwargs):
     '''
@@ -115,8 +127,13 @@ def do_job(
         rescale_rank_dist_loss=False,
         verbose=True,
         tag='TWIG-job',
-        seed=None
+        seed=None,
+        print_exp_meta=True
     ):
+    # print header info if not done already
+    if print_exp_meta:
+        print_header(tag)
+
     # configure seed
     if type(seed) == int:
         set_seed(seed)
@@ -213,8 +230,13 @@ def finetune_job(
         rescale_mrr_loss=None,
         rescale_rank_dist_loss=None,
         verbose=True,
-        tag='Finetune-job'
+        tag='Finetune-job',
+        print_exp_meta=True
 ):
+    # print header info if not done already
+    if print_exp_meta:
+        print_header(tag)
+
     # load the pretrained model
     pretrained_model = torch.load(model_save_path)
     model_config = load_config(model_config_path)
@@ -258,7 +280,8 @@ def finetune_job(
         rescale_mrr_loss=model_config['rescale_mrr_loss'],
         rescale_rank_dist_loss=model_config['rescale_rank_dist_loss'],
         verbose=verbose,
-        tag=tag
+        tag=tag,
+        print_exp_meta=False
     )
     return metric_results, mrr_preds_all, mrr_trues_all
 
@@ -298,8 +321,13 @@ def ablation_job(
             'epochs': [2, 3],
             'verbose': True,
             'tag': 'Post-Ablation-Train-job'
-        }
+        },
+        print_exp_meta=True
     ):
+    # print header info if not done already
+    if print_exp_meta:
+        print_header(tag)
+
     # correct input
     if type(normalisation) == str:
         normalisation = [normalisation]
@@ -397,7 +425,6 @@ def ablation_job(
             "rescale_rank_dist_loss": rescale_rank_dist_loss_val
         }
 
-
         # run the experiment
         metric_results, mrr_preds_all, mrr_trues_all = do_job(
             data_to_load=data_to_load,
@@ -415,13 +442,15 @@ def ablation_job(
             rescale_mrr_loss=rescale_mrr_loss_val,
             rescale_rank_dist_loss=rescale_rank_dist_loss_val,
             verbose=verbose,
-            tag=tag
+            tag=tag,
+            print_exp_meta=False
         )
 
         # process results (and record them!)
         metrics = []
-        for dataset_name in datasets_to_load:
-            metrics.append(metric_results[ablation_metric][dataset_name])
+        for model_name in metric_results[ablation_metric]:
+            for dataset_name in metric_results[ablation_metric][model_name]:
+                metrics.append(metric_results[ablation_metric][model_name][dataset_name])
         metric_avg = sum(metrics) / len(metrics)
         if metric_avg > best_metric:
             best_metric = metric_avg
@@ -515,8 +544,13 @@ def finetune_ablation_job(
             'epochs': [2, 3],
             'verbose': True,
             'tag': 'Post-Ablation-Train-job'
-        }
+        },
+        print_exp_meta=True
     ):
+    # print header info if not done already
+    if print_exp_meta:
+        print_header(tag)
+
     checkpoint_id = model_save_path.split('_')[1]
     tag += "-from-" + checkpoint_id
 
@@ -573,7 +607,8 @@ def finetune_ablation_job(
         timeout=timeout,
         max_iterations=max_iterations,
         train_and_eval_after=train_and_eval_after,
-        train_and_eval_args=train_and_eval_args
+        train_and_eval_args=train_and_eval_args,
+        print_exp_meta=False
     )
     return results
 

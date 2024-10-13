@@ -401,17 +401,17 @@ def _train_and_eval(
     # Testing
     model.eval()
     metric_results = {
-        'r_mrr': {},
-        'r2_mrr': {},
-        'spearmanr_mrr@5': {},
-        'spearmanr_mrr@10': {},
-        'spearmanr_mrr@50': {},
-        'spearmanr_mrr@100': {},
-        'spearmanr_mrr@All': {},
-        'test_loss': {}
+        'r_mrr': {model_name: {} for model_name in twig_data.kgems},
+        'r2_mrr': {model_name: {} for model_name in twig_data.kgems},
+        'spearmanr_mrr@5': {model_name: {} for model_name in twig_data.kgems},
+        'spearmanr_mrr@10': {model_name: {} for model_name in twig_data.kgems},
+        'spearmanr_mrr@50': {model_name: {} for model_name in twig_data.kgems},
+        'spearmanr_mrr@100': {model_name: {} for model_name in twig_data.kgems},
+        'spearmanr_mrr@All': {model_name: {} for model_name in twig_data.kgems},
+        'test_loss': {model_name: {} for model_name in twig_data.kgems}
     }
-    mrr_preds_all = {}
-    mrr_trues_all = {}
+    mrr_preds_all = {model_name: {} for model_name in twig_data.kgems}
+    mrr_trues_all = {model_name: {} for model_name in twig_data.kgems}
     for model_name in twig_data.kgems:
         for dataset_name in twig_data.dataset_names:
             if do_print:
@@ -433,15 +433,15 @@ def _train_and_eval(
             if do_print:
                 print(f"Done Testing dataset {dataset_name}")
 
-            metric_results['r_mrr'][dataset_name] = r_mrr
-            metric_results['r2_mrr'][dataset_name] = r2_mrr
-            metric_results['spearmanr_mrr@5'][dataset_name] = spearman_mrrs[5]
-            metric_results['spearmanr_mrr@10'][dataset_name] = spearman_mrrs[10]
-            metric_results['spearmanr_mrr@50'][dataset_name] = spearman_mrrs[50]
-            metric_results['spearmanr_mrr@100'][dataset_name] = spearman_mrrs[100]
-            metric_results['spearmanr_mrr@All'][dataset_name] = spearman_mrrs['All']
-            metric_results['test_loss'][dataset_name] = test_loss
-            mrr_preds_all[dataset_name] = mrr_preds
-            mrr_trues_all[dataset_name] = mrr_trues
+            metric_results['r_mrr'][model_name][dataset_name] = r_mrr
+            metric_results['r2_mrr'][model_name][dataset_name] = r2_mrr
+            metric_results['spearmanr_mrr@5'][model_name][dataset_name] = spearman_mrrs[5]
+            metric_results['spearmanr_mrr@10'][model_name][dataset_name] = spearman_mrrs[10]
+            metric_results['spearmanr_mrr@50'][model_name][dataset_name] = spearman_mrrs[50]
+            metric_results['spearmanr_mrr@100'][model_name][dataset_name] = spearman_mrrs[100]
+            metric_results['spearmanr_mrr@All'][model_name][dataset_name] = spearman_mrrs['All']
+            metric_results['test_loss'][model_name][dataset_name] = test_loss
+            mrr_preds_all[model_name][dataset_name] = mrr_preds
+            mrr_trues_all[model_name][dataset_name] = mrr_trues
 
     return metric_results, mrr_preds_all, mrr_trues_all
