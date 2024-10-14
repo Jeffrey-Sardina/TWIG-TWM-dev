@@ -37,7 +37,6 @@ def print_header(tag):
 def print_footer():
     print('\n' * 5, end='')
 
-
 def load_nn(model_or_version, twig_data, model_kwargs):
     '''
     Load the specified TWIG neural network implementation.
