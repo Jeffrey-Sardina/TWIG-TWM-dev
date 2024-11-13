@@ -119,8 +119,8 @@ def do_job(
         model_kwargs=None,
         optimizer='adam',
         optimizer_args={'lr': 5e-3},
-        epochs=[10, 0],
-        mrr_loss_coeffs=[10, 10],
+        epochs=[5, 10],
+        mrr_loss_coeffs=[0, 10],
         rank_dist_loss_coeffs=[1, 1],
         rescale_mrr_loss=False,
         rescale_rank_dist_loss=False,
@@ -223,7 +223,7 @@ def finetune_job(
         valid_ratio=None,
         optimizer=None,
         optimizer_args=None,
-        epochs=[10, 0],
+        epochs=[5, 10],
         mrr_loss_coeffs=None,
         rank_dist_loss_coeffs=None,
         rescale_mrr_loss=None,
@@ -299,7 +299,7 @@ def ablation_job(
             {'lr': 5e-5}
         ],
         epochs=[
-            [10, 0]
+            [5, 10]
         ],
         mrr_loss_coeffs=[
             [0, 10]
@@ -317,7 +317,7 @@ def ablation_job(
         max_iterations=-1,
         train_and_eval_after=False,
         train_and_eval_args={
-            'epochs': [2, 3],
+            'epochs': [5, 10],
             'verbose': True,
             'tag': 'Post-Ablation-Train-job'
         },
@@ -522,7 +522,7 @@ def finetune_ablation_job(
             {'lr': 5e-5}
         ],
         epochs=[
-            [10, 0]
+            [5, 10]
         ],
         mrr_loss_coeffs=[
             [0, 10]
@@ -540,7 +540,7 @@ def finetune_ablation_job(
         max_iterations=-1,
         train_and_eval_after=False,
         train_and_eval_args={
-            'epochs': [2, 3],
+            'epochs': [5, 10],
             'verbose': True,
             'tag': 'Post-Ablation-Train-job'
         },

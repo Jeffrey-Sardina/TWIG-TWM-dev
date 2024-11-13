@@ -1,0 +1,4336 @@
+==================================================
+--------------------------------------------------
+Running a TWIG experiment with tag: CoDExSmall-all
+--------------------------------------------------
+==================================================
+Using random seed: 5219839097124932
+Starting TWIG!
+Loading datasets
+Loading ComplEx...
+Loading CoDExSmall...
+- loading run 2.1...
+Loading DistMult...
+Loading CoDExSmall...
+- loading run 2.1...
+Loading TransE...
+Loading CoDExSmall...
+- loading run 2.1...
+Creating the train-test split
+using splits:
+test_ids (121): [996, 718, 636, 982, 882, 867, 688, 287, 488, 729, 625, 106, 93, 90, 59, 314, 851, 1067, 880, 544, 1042, 977, 918, 583, 687, 721, 413, 319, 985, 472, 550, 403, 166, 948, 380, 1050, 445, 1059, 375, 848, 15, 150, 777, 364, 1055, 338, 483, 513, 551, 565, 991, 1151, 1025, 9, 960, 846, 611, 1179, 707, 1154, 117, 661, 1148, 760, 507, 68, 241, 874, 98, 35, 919, 705, 836, 758, 670, 466, 1004, 1103, 1170, 1160, 752, 856, 669, 101, 350, 81, 441, 87, 622, 439, 731, 136, 92, 1144, 558, 766, 529, 339, 737, 966, 579, 863, 456, 111, 809, 223, 467, 5, 621, 933, 930, 574, 73, 491, 992, 248, 790, 941, 494, 177, 336]
+valid_ids (0): []
+train_ids (1094): [684, 686, 1199, 335, 746, 431, 34, 373, 1188, 566, 1077, 50, 1073, 1196, 843, 182, 143, 1048, 635, 564, 653, 440, 516, 1205, 1128, 459, 586, 668, 1121, 104, 842, 22, 601, 202, 963, 590, 797, 807, 976, 1190, 172, 449, 218, 678, 1017, 97, 185, 831, 105, 819, 554, 840, 1031, 58, 176, 402, 51, 1141, 1119, 386, 608, 452, 11, 776, 1189, 257, 340, 1000, 916, 348, 135, 527, 894, 1020, 480, 799, 514, 39, 597, 304, 161, 675, 951, 262, 272, 1052, 1043, 691, 1209, 525, 193, 289, 852, 538, 306, 76, 1172, 895, 627, 572, 32, 454, 288, 147, 1127, 1117, 242, 1081, 376, 773, 878, 291, 194, 141, 595, 944, 757, 1138, 968, 473, 643, 806, 1191, 1165, 363, 553, 292, 365, 213, 765, 645, 710, 748, 99, 871, 1069, 978, 256, 165, 351, 74, 835, 56, 868, 461, 716, 424, 630, 311, 372, 156, 522, 349, 250, 1, 952, 1161, 609, 235, 649, 832, 762, 486, 258, 315, 94, 639, 821, 134, 224, 128, 374, 186, 1192, 692, 210, 66, 95, 619, 666, 602, 1082, 548, 824, 132, 753, 453, 405, 70, 1065, 534, 1036, 169, 866, 942, 1201, 1005, 232, 317, 352, 725, 109, 16, 1168, 754, 151, 1078, 893, 1146, 395, 273, 632, 873, 1093, 460, 530, 723, 612, 929, 493, 158, 1098, 384, 646, 316, 401, 359, 533, 444, 389, 361, 302, 642, 764, 88, 1058, 945, 75, 667, 681, 1212, 1203, 103, 436, 301, 980, 730, 532, 1028, 787, 344, 1032, 568, 665, 537, 1132, 211, 29, 276, 618, 927, 497, 260, 1034, 594, 183, 1094, 249, 531, 973, 327, 499, 604, 734, 33, 333, 330, 167, 610, 903, 475, 305, 704, 854, 261, 415, 450, 334, 383, 1011, 465, 429, 1111, 118, 253, 801, 769, 139, 286, 406, 780, 1198, 898, 1051, 1171, 180, 750, 936, 1030, 323, 872, 294, 956, 1007, 21, 1193, 495, 421, 598, 393, 1169, 100, 1114, 149, 822, 796, 458, 658, 366, 307, 1136, 240, 295, 805, 508, 12, 837, 899, 370, 85, 703, 159, 228, 849, 244, 1027, 209, 673, 251, 217, 237, 616, 733, 1100, 4, 157, 556, 410, 1149, 972, 802, 744, 512, 770, 962, 86, 771, 813, 1023, 119, 798, 122, 222, 382, 360, 607, 971, 783, 540, 362, 647, 577, 1210, 524, 198, 975, 570, 652, 1163, 404, 255, 197, 42, 1064, 275, 1095, 883, 1175, 1142, 447, 502, 408, 476, 407, 64, 909, 923, 1075, 786, 1118, 277, 280, 23, 65, 1038, 430, 252, 814, 55, 953, 656, 25, 782, 367, 221, 448, 215, 912, 1021, 1153, 504, 1070, 726, 371, 346, 369, 815, 308, 743, 506, 907, 641, 888, 714, 416, 20, 397, 188, 693, 113, 500, 477, 542, 1057, 496, 859, 19, 788, 212, 672, 1174, 1143, 219, 736, 71, 318, 283, 584, 1029, 1214, 1099, 997, 478, 14, 205, 1158, 592, 322, 269, 546, 747, 120, 426, 266, 394, 633, 216, 624, 300, 175, 425, 1104, 126, 1182, 1054, 152, 560, 1084, 60, 140, 745, 662, 358, 877, 381, 18, 664, 1040, 605, 541, 234, 1072, 701, 435, 881, 489, 751, 901, 715, 785, 274, 246, 391, 1024, 588, 549, 178, 463, 593, 679, 983, 690, 233, 192, 932, 131, 184, 1003, 321, 67, 481, 950, 284, 1112, 28, 887, 471, 1130, 1106, 123, 839, 412, 293, 1035, 680, 54, 312, 57, 634, 63, 626, 812, 759, 144, 1180, 791, 886, 904, 133, 268, 1197, 41, 428, 1150, 778, 870, 271, 127, 46, 148, 26, 468, 345, 921, 1088, 523, 171, 238, 420, 713, 332, 578, 231, 949, 955, 720, 7, 1008, 79, 45, 379, 855, 1194, 694, 1044, 884, 582, 519, 925, 1120, 700, 937, 173, 897, 580, 1107, 1178, 423, 671, 857, 278, 229, 830, 959, 1026, 44, 1018, 208, 521, 1002, 230, 1076, 697, 187, 1156, 1089, 297, 6, 1206, 536, 575, 826, 201, 1200, 890, 265, 969, 433, 1173, 1183, 1110, 1091, 816, 1097, 329, 1010, 1126, 355, 168, 650, 8, 834, 1009, 543, 1012, 89, 712, 1113, 162, 518, 706, 1157, 27, 663, 1092, 946, 1211, 591, 451, 484, 61, 470, 676, 638, 585, 685, 264, 154, 981, 1083, 236, 803, 1131, 492, 555, 1101, 954, 889, 1213, 357, 644, 629, 49, 995, 1105, 928, 1162, 337, 908, 1116, 853, 943, 935, 779, 1145, 91, 1066, 617, 245, 823, 164, 1176, 227, 207, 1019, 775, 377, 767, 443, 974, 865, 40, 53, 1186, 587, 220, 1063, 838, 225, 37, 72, 1152, 279, 309, 987, 829, 112, 130, 993, 989, 596, 719, 206, 957, 891, 1087, 1096, 1053, 696, 1166, 434, 793, 196, 199, 285, 174, 387, 48, 505, 761, 1139, 38, 742, 702, 267, 398, 1047, 810, 396, 474, 170, 539, 1185, 1060, 727, 979, 299, 17, 469, 399, 1014, 437, 864, 847, 818, 325, 557, 892, 1202, 1123, 1129, 683, 270, 442, 990, 190, 189, 243, 559, 110, 1167, 1071, 845, 695, 958, 254, 709, 390, 820, 576, 931, 947, 571, 1039, 482, 988, 47, 828, 446, 732, 414, 1045, 347, 939, 724, 107, 545, 655, 552, 749, 0, 774, 487, 43, 160, 153, 869, 657, 77, 1125, 800, 682, 637, 226, 1006, 772, 1049, 1208, 1033, 290, 654, 498, 756, 78, 817, 994, 965, 567, 1037, 998, 1085, 281, 784, 457, 698, 3, 515, 858, 940, 80, 1090, 385, 741, 677, 1080, 501, 967, 142, 400, 922, 62, 310, 1124, 137, 792, 353, 204, 1015, 628, 82, 1133, 1016, 422, 526, 69, 569, 1184, 910, 781, 1086, 1147, 689, 1181, 419, 115, 1074, 503, 1109, 620, 31, 509, 1041, 485, 200, 844, 879, 511, 1135, 961, 615, 906, 1056, 924, 561, 614, 535, 1155, 520, 331, 342, 862, 1079, 298, 547, 934, 999, 660, 885, 392, 984, 313, 1022, 181, 841, 432, 794, 827, 455, 84, 1068, 146, 263, 648, 717, 722, 356, 1177, 708, 354, 739, 102, 623, 905, 2, 1102, 36, 599, 603, 613, 259, 417, 247, 83, 24, 850, 914, 214, 464, 239, 490, 970, 341, 1195, 438, 600, 808, 964, 191, 938, 328, 1159, 155, 631, 96, 427, 30, 145, 711, 1134, 573, 114, 728, 1122, 1164, 1187, 303, 1108, 1001, 1207, 825, 876, 108, 163, 699, 674, 179, 562, 203, 13, 735, 917, 10, 795, 915, 462, 1204, 388, 116, 986, 125, 1062, 755, 902, 738, 1046, 138, 740, 811, 900, 195, 563, 804, 913, 1115, 52, 659, 1013, 418, 860, 920, 411, 326, 510, 581, 640, 479, 833, 606, 589, 926, 517, 911, 282, 651, 896, 409, 343, 124, 1140, 875, 378, 861, 763, 789, 1061, 768, 320, 324, 528, 296, 1137, 121, 129, 368]
+Converting data to tensors
+Normalising data
+Finalising data preprocessing
+the checkpoint ID for this run is:  2531937323629027
+the save name prefix for this run is:  chkpt-ID_2531937323629027_tag_CoDExSmall-all
+running TWIG with settings:
+data_to_load: {'ComplEx': {'CoDExSmall': ['2.1']}, 'DistMult': {'CoDExSmall': ['2.1']}, 'TransE': {'CoDExSmall': ['2.1']}}
+test_ratio: 0.1
+valid_ratio: 0.0
+normalisation: zscore
+n_bins: 30
+optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.005
+    maximize: False
+    weight_decay: 0
+)
+optimizer_args: {'lr': 0.005}
+mrr_loss_coeffs: [0, 10]
+rank_dist_loss_coeffs: [1, 1]
+rescale_mrr_loss: False
+rescale_rank_dist_loss: False
+RUnning with TWIG model:
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=11, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 148
+rank avg (pred): 0.437 +- 0.008
+mrr vals (pred, true): 0.001, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0001193178
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 400
+rank avg (pred): 0.338 +- 0.173
+mrr vals (pred, true): 0.114, 0.171
+batch losses (mrrl, rdl): 0.0, 0.0011869924
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 297
+rank avg (pred): 0.050 +- 0.030
+mrr vals (pred, true): 0.220, 0.209
+batch losses (mrrl, rdl): 0.0, 2.3125e-06
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 404
+rank avg (pred): 0.294 +- 0.220
+mrr vals (pred, true): 0.273, 0.005
+batch losses (mrrl, rdl): 0.0, 0.0004269088
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 358
+rank avg (pred): 0.326 +- 0.245
+mrr vals (pred, true): 0.293, 0.149
+batch losses (mrrl, rdl): 0.0, 0.0008107903
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 56
+rank avg (pred): 0.059 +- 0.048
+mrr vals (pred, true): 0.349, 0.195
+batch losses (mrrl, rdl): 0.0, 3.1474e-06
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1198
+rank avg (pred): 0.352 +- 0.288
+mrr vals (pred, true): 0.329, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0001908322
+
+Epoch over!
+epoch time: 37.663
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 417
+rank avg (pred): 0.330 +- 0.276
+mrr vals (pred, true): 0.346, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0002225796
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 898
+rank avg (pred): 0.358 +- 0.303
+mrr vals (pred, true): 0.351, 0.028
+batch losses (mrrl, rdl): 0.0, 0.0015789587
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1035
+rank avg (pred): 0.325 +- 0.269
+mrr vals (pred, true): 0.352, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0002720875
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 16
+rank avg (pred): 0.068 +- 0.058
+mrr vals (pred, true): 0.382, 0.234
+batch losses (mrrl, rdl): 0.0, 1.22247e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 256
+rank avg (pred): 0.021 +- 0.018
+mrr vals (pred, true): 0.403, 0.226
+batch losses (mrrl, rdl): 0.0, 2.03521e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 463
+rank avg (pred): 0.280 +- 0.246
+mrr vals (pred, true): 0.385, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0005567769
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 170
+rank avg (pred): 0.311 +- 0.266
+mrr vals (pred, true): 0.373, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0003520447
+
+Epoch over!
+epoch time: 36.728
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 484
+rank avg (pred): 0.305 +- 0.265
+mrr vals (pred, true): 0.385, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0003455083
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 724
+rank avg (pred): 0.351 +- 0.305
+mrr vals (pred, true): 0.387, 0.003
+batch losses (mrrl, rdl): 0.0, 0.0001868002
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 415
+rank avg (pred): 0.310 +- 0.269
+mrr vals (pred, true): 0.389, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0003325798
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 428
+rank avg (pred): 0.312 +- 0.274
+mrr vals (pred, true): 0.392, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0002824292
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 854
+rank avg (pred): 0.370 +- 0.313
+mrr vals (pred, true): 0.362, 0.171
+batch losses (mrrl, rdl): 0.0, 0.0018943407
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 796
+rank avg (pred): 0.363 +- 0.317
+mrr vals (pred, true): 0.392, 0.005
+batch losses (mrrl, rdl): 0.0, 0.000103955
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 875
+rank avg (pred): 0.326 +- 0.286
+mrr vals (pred, true): 0.394, 0.006
+batch losses (mrrl, rdl): 0.0, 0.0002452167
+
+Epoch over!
+epoch time: 36.38
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 865
+rank avg (pred): 0.355 +- 0.305
+mrr vals (pred, true): 0.378, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0001327162
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 815
+rank avg (pred): 0.078 +- 0.069
+mrr vals (pred, true): 0.406, 0.153
+batch losses (mrrl, rdl): 0.0, 5.1546e-06
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 799
+rank avg (pred): 0.375 +- 0.322
+mrr vals (pred, true): 0.374, 0.006
+batch losses (mrrl, rdl): 0.0, 6.51469e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 284
+rank avg (pred): 0.057 +- 0.051
+mrr vals (pred, true): 0.417, 0.210
+batch losses (mrrl, rdl): 0.0, 1.23926e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 256
+rank avg (pred): 0.057 +- 0.050
+mrr vals (pred, true): 0.399, 0.226
+batch losses (mrrl, rdl): 0.0, 3.3319e-06
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 703
+rank avg (pred): 0.370 +- 0.315
+mrr vals (pred, true): 0.369, 0.005
+batch losses (mrrl, rdl): 0.0, 0.0001110382
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1032
+rank avg (pred): 0.304 +- 0.270
+mrr vals (pred, true): 0.403, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0003701083
+
+Epoch over!
+epoch time: 36.683
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 815
+rank avg (pred): 0.043 +- 0.039
+mrr vals (pred, true): 0.432, 0.296
+batch losses (mrrl, rdl): 0.0, 4.3434e-06
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 520
+rank avg (pred): 0.269 +- 0.233
+mrr vals (pred, true): 0.372, 0.022
+batch losses (mrrl, rdl): 0.0, 0.0001796355
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 854
+rank avg (pred): 0.371 +- 0.319
+mrr vals (pred, true): 0.372, 0.038
+batch losses (mrrl, rdl): 0.0, 0.0001149893
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 168
+rank avg (pred): 0.321 +- 0.282
+mrr vals (pred, true): 0.382, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0003352707
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 316
+rank avg (pred): 0.062 +- 0.055
+mrr vals (pred, true): 0.400, 0.253
+batch losses (mrrl, rdl): 0.0, 8.5541e-06
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 601
+rank avg (pred): 0.359 +- 0.307
+mrr vals (pred, true): 0.359, 0.138
+batch losses (mrrl, rdl): 0.0, 0.000823233
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 120
+rank avg (pred): 0.312 +- 0.276
+mrr vals (pred, true): 0.384, 0.004
+batch losses (mrrl, rdl): 0.0, 0.0002698166
+
+Epoch over!
+epoch time: 37.227
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1127
+rank avg (pred): 0.330 +- 0.286
+mrr vals (pred, true): 0.369, 0.004
+batch losses (mrrl, rdl): 1.0198897123, 0.0002142074
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 995
+rank avg (pred): 0.085 +- 0.049
+mrr vals (pred, true): 0.154, 0.244
+batch losses (mrrl, rdl): 0.0818384811, 4.16557e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 929
+rank avg (pred): 0.352 +- 0.139
+mrr vals (pred, true): 0.054, 0.001
+batch losses (mrrl, rdl): 0.000172659, 0.0034848717
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 361
+rank avg (pred): 0.473 +- 0.242
+mrr vals (pred, true): 0.095, 0.004
+batch losses (mrrl, rdl): 0.0206041634, 3.12982e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 173
+rank avg (pred): 0.435 +- 0.210
+mrr vals (pred, true): 0.094, 0.004
+batch losses (mrrl, rdl): 0.0197066367, 2.55513e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 462
+rank avg (pred): 0.450 +- 0.227
+mrr vals (pred, true): 0.092, 0.003
+batch losses (mrrl, rdl): 0.0179416351, 1.65631e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1075
+rank avg (pred): 0.017 +- 0.010
+mrr vals (pred, true): 0.214, 0.234
+batch losses (mrrl, rdl): 0.0039658761, 3.88597e-05
+
+Epoch over!
+epoch time: 40.151
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 904
+rank avg (pred): 0.339 +- 0.142
+mrr vals (pred, true): 0.062, 0.001
+batch losses (mrrl, rdl): 0.0015171431, 0.0016659758
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 593
+rank avg (pred): 0.371 +- 0.149
+mrr vals (pred, true): 0.072, 0.019
+batch losses (mrrl, rdl): 0.0047432533, 0.0001492466
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 926
+rank avg (pred): 0.358 +- 0.143
+mrr vals (pred, true): 0.035, 0.001
+batch losses (mrrl, rdl): 0.0021622549, 0.0035310346
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 709
+rank avg (pred): 0.393 +- 0.154
+mrr vals (pred, true): 0.074, 0.003
+batch losses (mrrl, rdl): 0.0056429803, 0.0001437428
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 912
+rank avg (pred): 0.367 +- 0.144
+mrr vals (pred, true): 0.069, 0.142
+batch losses (mrrl, rdl): 0.0530391559, 0.0021666172
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 148
+rank avg (pred): 0.366 +- 0.171
+mrr vals (pred, true): 0.085, 0.220
+batch losses (mrrl, rdl): 0.1825277656, 0.0021876723
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 213
+rank avg (pred): 0.334 +- 0.168
+mrr vals (pred, true): 0.104, 0.004
+batch losses (mrrl, rdl): 0.0294996835, 0.0003584835
+
+Epoch over!
+epoch time: 38.486
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 487
+rank avg (pred): 0.380 +- 0.149
+mrr vals (pred, true): 0.070, 0.024
+batch losses (mrrl, rdl): 0.00404259, 7.95615e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 680
+rank avg (pred): 0.410 +- 0.154
+mrr vals (pred, true): 0.056, 0.004
+batch losses (mrrl, rdl): 0.0004023374, 0.0001209108
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 605
+rank avg (pred): 0.401 +- 0.149
+mrr vals (pred, true): 0.063, 0.165
+batch losses (mrrl, rdl): 0.1040862948, 0.0011486233
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 732
+rank avg (pred): 0.172 +- 0.097
+mrr vals (pred, true): 0.165, 0.262
+batch losses (mrrl, rdl): 0.0935239047, 0.0004486867
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 2
+rank avg (pred): 0.015 +- 0.008
+mrr vals (pred, true): 0.210, 0.202
+batch losses (mrrl, rdl): 0.0007150001, 2.12708e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 80
+rank avg (pred): 0.033 +- 0.019
+mrr vals (pred, true): 0.214, 0.218
+batch losses (mrrl, rdl): 0.0001537379, 7.9463e-06
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1193
+rank avg (pred): 0.418 +- 0.164
+mrr vals (pred, true): 0.061, 0.004
+batch losses (mrrl, rdl): 0.0012546177, 0.0001118198
+
+Epoch over!
+epoch time: 39.4
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 109
+rank avg (pred): 0.383 +- 0.167
+mrr vals (pred, true): 0.071, 0.004
+batch losses (mrrl, rdl): 0.0042400593, 0.0001588998
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 699
+rank avg (pred): 0.383 +- 0.155
+mrr vals (pred, true): 0.063, 0.003
+batch losses (mrrl, rdl): 0.0016194116, 0.0002453342
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 938
+rank avg (pred): 0.415 +- 0.158
+mrr vals (pred, true): 0.057, 0.001
+batch losses (mrrl, rdl): 0.0005056894, 0.002412501
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1199
+rank avg (pred): 0.381 +- 0.164
+mrr vals (pred, true): 0.062, 0.003
+batch losses (mrrl, rdl): 0.001450262, 0.0002385274
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 51
+rank avg (pred): 0.061 +- 0.034
+mrr vals (pred, true): 0.179, 0.184
+batch losses (mrrl, rdl): 0.000282439, 3.6051e-06
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 163
+rank avg (pred): 0.359 +- 0.159
+mrr vals (pred, true): 0.072, 0.005
+batch losses (mrrl, rdl): 0.0050622206, 0.0002551623
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 664
+rank avg (pred): 0.360 +- 0.162
+mrr vals (pred, true): 0.070, 0.005
+batch losses (mrrl, rdl): 0.0041885544, 0.0002691011
+
+Epoch over!
+epoch time: 38.403
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 512
+rank avg (pred): 0.398 +- 0.164
+mrr vals (pred, true): 0.064, 0.022
+batch losses (mrrl, rdl): 0.0018293262, 7.4292e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 1012
+rank avg (pred): 0.289 +- 0.142
+mrr vals (pred, true): 0.102, 0.204
+batch losses (mrrl, rdl): 0.1034817398, 0.0009048529
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1054
+rank avg (pred): 0.004 +- 0.003
+mrr vals (pred, true): 0.297, 0.253
+batch losses (mrrl, rdl): 0.0188632533, 3.6507e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 732
+rank avg (pred): 0.424 +- 0.239
+mrr vals (pred, true): 0.162, 0.262
+batch losses (mrrl, rdl): 0.0998599902, 0.0035231996
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 265
+rank avg (pred): 0.007 +- 0.004
+mrr vals (pred, true): 0.260, 0.244
+batch losses (mrrl, rdl): 0.0027441783, 2.94782e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 443
+rank avg (pred): 0.363 +- 0.171
+mrr vals (pred, true): 0.086, 0.004
+batch losses (mrrl, rdl): 0.0131459618, 0.0002401931
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 727
+rank avg (pred): 0.406 +- 0.189
+mrr vals (pred, true): 0.062, 0.004
+batch losses (mrrl, rdl): 0.0015350293, 0.0001648612
+
+Epoch over!
+epoch time: 38.992
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1171
+rank avg (pred): 0.386 +- 0.202
+mrr vals (pred, true): 0.073, 0.003
+batch losses (mrrl, rdl): 0.0051909769, 0.0002249447
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 530
+rank avg (pred): 0.393 +- 0.198
+mrr vals (pred, true): 0.074, 0.036
+batch losses (mrrl, rdl): 0.0057030213, 0.0011476374
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1061
+rank avg (pred): 0.007 +- 0.004
+mrr vals (pred, true): 0.271, 0.314
+batch losses (mrrl, rdl): 0.0185431801, 1.15369e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 949
+rank avg (pred): 0.370 +- 0.196
+mrr vals (pred, true): 0.051, 0.003
+batch losses (mrrl, rdl): 1.02335e-05, 0.0002735436
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 405
+rank avg (pred): 0.307 +- 0.162
+mrr vals (pred, true): 0.090, 0.004
+batch losses (mrrl, rdl): 0.016261138, 0.0004816965
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 274
+rank avg (pred): 0.076 +- 0.044
+mrr vals (pred, true): 0.209, 0.226
+batch losses (mrrl, rdl): 0.0031385315, 1.18742e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 534
+rank avg (pred): 0.369 +- 0.217
+mrr vals (pred, true): 0.075, 0.007
+batch losses (mrrl, rdl): 0.0062119234, 5.974e-05
+
+Epoch over!
+epoch time: 39.195
+
+Epoch 7 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 646
+rank avg (pred): 0.410 +- 0.205
+mrr vals (pred, true): 0.065, 0.004
+batch losses (mrrl, rdl): 0.0023784905, 0.0001876188
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 105
+rank avg (pred): 0.321 +- 0.164
+mrr vals (pred, true): 0.090, 0.112
+batch losses (mrrl, rdl): 0.0050373226, 0.0007968681
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1111
+rank avg (pred): 0.223 +- 0.121
+mrr vals (pred, true): 0.106, 0.005
+batch losses (mrrl, rdl): 0.0315528214, 0.0014240092
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 137
+rank avg (pred): 0.379 +- 0.182
+mrr vals (pred, true): 0.082, 0.004
+batch losses (mrrl, rdl): 0.0104695447, 0.0002077821
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 431
+rank avg (pred): 0.347 +- 0.160
+mrr vals (pred, true): 0.095, 0.004
+batch losses (mrrl, rdl): 0.0198394507, 0.0002492868
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1188
+rank avg (pred): 0.378 +- 0.224
+mrr vals (pred, true): 0.070, 0.005
+batch losses (mrrl, rdl): 0.003960283, 0.0002806592
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 826
+rank avg (pred): 0.103 +- 0.061
+mrr vals (pred, true): 0.218, 0.312
+batch losses (mrrl, rdl): 0.0884142369, 7.80507e-05
+
+Epoch over!
+epoch time: 38.989
+
+Epoch 8 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 909
+rank avg (pred): 0.415 +- 0.233
+mrr vals (pred, true): 0.059, 0.001
+batch losses (mrrl, rdl): 0.0008244742, 0.000839747
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 788
+rank avg (pred): 0.361 +- 0.237
+mrr vals (pred, true): 0.085, 0.004
+batch losses (mrrl, rdl): 0.0119256498, 0.0002514648
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1046
+rank avg (pred): 0.387 +- 0.214
+mrr vals (pred, true): 0.091, 0.004
+batch losses (mrrl, rdl): 0.0170573443, 0.0002360426
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 714
+rank avg (pred): 0.462 +- 0.213
+mrr vals (pred, true): 0.051, 0.004
+batch losses (mrrl, rdl): 2.23157e-05, 3.9045e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 500
+rank avg (pred): 0.299 +- 0.224
+mrr vals (pred, true): 0.066, 0.029
+batch losses (mrrl, rdl): 0.0026509853, 0.0003250878
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 102
+rank avg (pred): 0.357 +- 0.237
+mrr vals (pred, true): 0.078, 0.232
+batch losses (mrrl, rdl): 0.2377727777, 0.0017838576
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 328
+rank avg (pred): 0.332 +- 0.175
+mrr vals (pred, true): 0.094, 0.005
+batch losses (mrrl, rdl): 0.0190813057, 0.000437097
+
+Epoch over!
+epoch time: 38.405
+
+Epoch 9 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 503
+rank avg (pred): 0.264 +- 0.224
+mrr vals (pred, true): 0.075, 0.021
+batch losses (mrrl, rdl): 0.0060444996, 0.0003935851
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 424
+rank avg (pred): 0.360 +- 0.180
+mrr vals (pred, true): 0.087, 0.005
+batch losses (mrrl, rdl): 0.0136744324, 0.0002336716
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 710
+rank avg (pred): 0.367 +- 0.242
+mrr vals (pred, true): 0.062, 0.004
+batch losses (mrrl, rdl): 0.0014178029, 0.0003112244
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1195
+rank avg (pred): 0.394 +- 0.222
+mrr vals (pred, true): 0.065, 0.004
+batch losses (mrrl, rdl): 0.0022016775, 0.0001923281
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 889
+rank avg (pred): 0.375 +- 0.260
+mrr vals (pred, true): 0.077, 0.004
+batch losses (mrrl, rdl): 0.0073640021, 0.0002150873
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 805
+rank avg (pred): 0.380 +- 0.263
+mrr vals (pred, true): 0.072, 0.004
+batch losses (mrrl, rdl): 0.0046402924, 0.0002107106
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 1101
+rank avg (pred): 0.260 +- 0.165
+mrr vals (pred, true): 0.106, 0.004
+batch losses (mrrl, rdl): 0.0311862864, 0.0009087535
+
+Epoch over!
+epoch time: 37.833
+
+Epoch 10 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 603
+rank avg (pred): 0.365 +- 0.248
+mrr vals (pred, true): 0.068, 0.003
+batch losses (mrrl, rdl): 0.003330024, 0.0003408805
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 616
+rank avg (pred): 0.366 +- 0.247
+mrr vals (pred, true): 0.078, 0.011
+batch losses (mrrl, rdl): 0.0078018201, 3.02414e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 538
+rank avg (pred): 0.385 +- 0.274
+mrr vals (pred, true): 0.069, 0.039
+batch losses (mrrl, rdl): 0.003514153, 0.000340151
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 744
+rank avg (pred): 0.301 +- 0.179
+mrr vals (pred, true): 0.199, 0.254
+batch losses (mrrl, rdl): 0.0301157162, 0.0015509183
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, CoDExSmall, run 2.1, exp 1063
+rank avg (pred): 0.036 +- 0.021
+mrr vals (pred, true): 0.222, 0.203
+batch losses (mrrl, rdl): 0.0036066575, 2.5585e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, CoDExSmall, run 2.1, exp 1091
+rank avg (pred): 0.292 +- 0.167
+mrr vals (pred, true): 0.127, 0.200
+batch losses (mrrl, rdl): 0.0538574308, 0.0012093964
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, CoDExSmall, run 2.1, exp 965
+rank avg (pred): 0.438 +- 0.198
+mrr vals (pred, true): 0.055, 0.004
+batch losses (mrrl, rdl): 0.0002944173, 0.0001009961
+
+Epoch over!
+epoch time: 37.959
+
+Saving checkpoint at [1] epoch 10
+Done training phase:  1
+Testing model with KGEM ComplEx and KG CoDExSmall
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.034 +- 0.021
+mrr vals (pred, true): 0.236, 0.316
+
+Evaluation for CoDExSmall on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    4 	     0 	 0.05401 	 0.00101 	 m..s
+    9 	     1 	 0.05591 	 0.00194 	 m..s
+    7 	     2 	 0.05562 	 0.00212 	 m..s
+   30 	     3 	 0.06733 	 0.00246 	 m..s
+   49 	     4 	 0.07494 	 0.00250 	 m..s
+   18 	     5 	 0.06449 	 0.00253 	 m..s
+    2 	     6 	 0.04876 	 0.00263 	 m..s
+    1 	     7 	 0.04869 	 0.00266 	 m..s
+   25 	     8 	 0.06585 	 0.00282 	 m..s
+   15 	     9 	 0.06404 	 0.00289 	 m..s
+   60 	    10 	 0.07654 	 0.00296 	 m..s
+   59 	    11 	 0.07646 	 0.00297 	 m..s
+   12 	    12 	 0.05721 	 0.00297 	 m..s
+   10 	    13 	 0.05655 	 0.00300 	 m..s
+   23 	    14 	 0.06542 	 0.00318 	 m..s
+   22 	    15 	 0.06507 	 0.00321 	 m..s
+   70 	    16 	 0.08450 	 0.00331 	 m..s
+   56 	    17 	 0.07536 	 0.00334 	 m..s
+   79 	    18 	 0.08841 	 0.00334 	 m..s
+   31 	    19 	 0.06760 	 0.00334 	 m..s
+   57 	    20 	 0.07551 	 0.00336 	 m..s
+    0 	    21 	 0.04822 	 0.00343 	 m..s
+   63 	    22 	 0.07773 	 0.00344 	 m..s
+   21 	    23 	 0.06500 	 0.00345 	 m..s
+   53 	    24 	 0.07519 	 0.00347 	 m..s
+   13 	    25 	 0.05758 	 0.00347 	 m..s
+   70 	    26 	 0.08450 	 0.00350 	 m..s
+   48 	    27 	 0.07459 	 0.00358 	 m..s
+   75 	    28 	 0.08504 	 0.00361 	 m..s
+   70 	    29 	 0.08450 	 0.00363 	 m..s
+    3 	    30 	 0.05395 	 0.00366 	 m..s
+   46 	    31 	 0.07317 	 0.00369 	 m..s
+   84 	    32 	 0.08994 	 0.00371 	 m..s
+   47 	    33 	 0.07416 	 0.00376 	 m..s
+   50 	    34 	 0.07518 	 0.00377 	 m..s
+    5 	    35 	 0.05487 	 0.00377 	 m..s
+   28 	    36 	 0.06701 	 0.00380 	 m..s
+   24 	    37 	 0.06549 	 0.00380 	 m..s
+    8 	    38 	 0.05562 	 0.00381 	 m..s
+   26 	    39 	 0.06604 	 0.00381 	 m..s
+    6 	    40 	 0.05531 	 0.00384 	 m..s
+   70 	    41 	 0.08450 	 0.00385 	 m..s
+   93 	    42 	 0.09623 	 0.00387 	 m..s
+   90 	    43 	 0.09264 	 0.00387 	 m..s
+   61 	    44 	 0.07676 	 0.00387 	 m..s
+   16 	    45 	 0.06438 	 0.00389 	 m..s
+   85 	    46 	 0.09000 	 0.00391 	 m..s
+   17 	    47 	 0.06449 	 0.00398 	 m..s
+   67 	    48 	 0.08177 	 0.00399 	 m..s
+   68 	    49 	 0.08245 	 0.00401 	 m..s
+   80 	    50 	 0.08869 	 0.00404 	 m..s
+   29 	    51 	 0.06720 	 0.00413 	 m..s
+   88 	    52 	 0.09250 	 0.00414 	 m..s
+   87 	    53 	 0.09205 	 0.00415 	 m..s
+   52 	    54 	 0.07519 	 0.00415 	 m..s
+   96 	    55 	 0.09750 	 0.00418 	 m..s
+   14 	    56 	 0.06274 	 0.00428 	 m..s
+   11 	    57 	 0.05695 	 0.00433 	 m..s
+   69 	    58 	 0.08338 	 0.00434 	 m..s
+   89 	    59 	 0.09254 	 0.00438 	 m..s
+   58 	    60 	 0.07643 	 0.00439 	 m..s
+   62 	    61 	 0.07689 	 0.00441 	 m..s
+   95 	    62 	 0.09713 	 0.00442 	 m..s
+   78 	    63 	 0.08838 	 0.00445 	 m..s
+   64 	    64 	 0.07981 	 0.00448 	 m..s
+   77 	    65 	 0.08767 	 0.00450 	 m..s
+   81 	    66 	 0.08972 	 0.00453 	 m..s
+   92 	    67 	 0.09425 	 0.00455 	 m..s
+   82 	    68 	 0.08987 	 0.00458 	 m..s
+   20 	    69 	 0.06482 	 0.00464 	 m..s
+   83 	    70 	 0.08990 	 0.00466 	 m..s
+   51 	    71 	 0.07519 	 0.00469 	 m..s
+   66 	    72 	 0.08171 	 0.00472 	 m..s
+   86 	    73 	 0.09108 	 0.00484 	 m..s
+   91 	    74 	 0.09282 	 0.00486 	 m..s
+   44 	    75 	 0.07304 	 0.00493 	 m..s
+   19 	    76 	 0.06455 	 0.00515 	 m..s
+   65 	    77 	 0.08069 	 0.00533 	 m..s
+   70 	    78 	 0.08450 	 0.00545 	 m..s
+   76 	    79 	 0.08593 	 0.00579 	 m..s
+   36 	    80 	 0.07020 	 0.00601 	 m..s
+   39 	    81 	 0.07205 	 0.00656 	 m..s
+   34 	    82 	 0.06945 	 0.00729 	 m..s
+   43 	    83 	 0.07296 	 0.00850 	 m..s
+   38 	    84 	 0.07185 	 0.00858 	 m..s
+   40 	    85 	 0.07232 	 0.01178 	 m..s
+   37 	    86 	 0.07163 	 0.01206 	 m..s
+   35 	    87 	 0.07012 	 0.01781 	 m..s
+   42 	    88 	 0.07277 	 0.01930 	 m..s
+   33 	    89 	 0.06887 	 0.01957 	 m..s
+   45 	    90 	 0.07307 	 0.02050 	 m..s
+   32 	    91 	 0.06861 	 0.02182 	 m..s
+   41 	    92 	 0.07258 	 0.02455 	 m..s
+   54 	    93 	 0.07530 	 0.02920 	 m..s
+   55 	    94 	 0.07533 	 0.03130 	 m..s
+   27 	    95 	 0.06681 	 0.04296 	 ~...
+   98 	    96 	 0.10534 	 0.05291 	 m..s
+  100 	    97 	 0.17385 	 0.13821 	 m..s
+  107 	    98 	 0.21012 	 0.13846 	 m..s
+  101 	    99 	 0.18635 	 0.14041 	 m..s
+  108 	   100 	 0.21014 	 0.15098 	 m..s
+  103 	   101 	 0.19087 	 0.15237 	 m..s
+  106 	   102 	 0.20362 	 0.15473 	 m..s
+  114 	   103 	 0.23103 	 0.17117 	 m..s
+  105 	   104 	 0.20303 	 0.17383 	 ~...
+   99 	   105 	 0.13502 	 0.19630 	 m..s
+  112 	   106 	 0.22774 	 0.19794 	 ~...
+  113 	   107 	 0.22790 	 0.19906 	 ~...
+  111 	   108 	 0.22272 	 0.21732 	 ~...
+  104 	   109 	 0.20132 	 0.23383 	 m..s
+  102 	   110 	 0.18961 	 0.23552 	 m..s
+  115 	   111 	 0.23620 	 0.23886 	 ~...
+  119 	   112 	 0.25002 	 0.24879 	 ~...
+  109 	   113 	 0.21374 	 0.26233 	 m..s
+   94 	   114 	 0.09679 	 0.26513 	 MISS
+   97 	   115 	 0.09982 	 0.27244 	 MISS
+  110 	   116 	 0.21403 	 0.29612 	 m..s
+  117 	   117 	 0.23809 	 0.29973 	 m..s
+  118 	   118 	 0.23816 	 0.30213 	 m..s
+  120 	   119 	 0.28269 	 0.31468 	 m..s
+  116 	   120 	 0.23626 	 0.31567 	 m..s
+==========================================
+r_mrr = 0.8975183367729187
+r2_mrr = 0.4102289080619812
+spearmanr_mrr@5 = 0.8144868016242981
+spearmanr_mrr@10 = 0.7584529519081116
+spearmanr_mrr@50 = 0.9737390279769897
+spearmanr_mrr@100 = 0.9795502424240112
+spearmanr_mrr@All = 0.9740023612976074
+==========================================
+test time: 0.413
+Done Testing dataset CoDExSmall
+Testing model with KGEM DistMult and KG CoDExSmall
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.034 +- 0.021
+mrr vals (pred, true): 0.236, 0.291
+
+Evaluation for CoDExSmall on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    9 	     0 	 0.05591 	 0.00073 	 m..s
+    7 	     1 	 0.05562 	 0.00074 	 m..s
+    4 	     2 	 0.05401 	 0.00076 	 m..s
+   98 	     3 	 0.10534 	 0.00104 	 MISS
+    1 	     4 	 0.04869 	 0.00249 	 m..s
+   11 	     5 	 0.05695 	 0.00277 	 m..s
+    2 	     6 	 0.04876 	 0.00284 	 m..s
+   63 	     7 	 0.07773 	 0.00310 	 m..s
+   78 	     8 	 0.08838 	 0.00342 	 m..s
+   70 	     9 	 0.08450 	 0.00343 	 m..s
+   84 	    10 	 0.08994 	 0.00344 	 m..s
+   29 	    11 	 0.06720 	 0.00345 	 m..s
+   90 	    12 	 0.09264 	 0.00347 	 m..s
+    8 	    13 	 0.05562 	 0.00348 	 m..s
+   86 	    14 	 0.09108 	 0.00350 	 m..s
+   28 	    15 	 0.06701 	 0.00353 	 m..s
+   89 	    16 	 0.09254 	 0.00354 	 m..s
+   76 	    17 	 0.08593 	 0.00359 	 m..s
+   19 	    18 	 0.06455 	 0.00371 	 m..s
+   96 	    19 	 0.09750 	 0.00385 	 m..s
+   17 	    20 	 0.06449 	 0.00390 	 m..s
+   26 	    21 	 0.06604 	 0.00394 	 m..s
+   95 	    22 	 0.09713 	 0.00400 	 m..s
+    0 	    23 	 0.04822 	 0.00403 	 m..s
+   14 	    24 	 0.06274 	 0.00407 	 m..s
+   79 	    25 	 0.08841 	 0.00411 	 m..s
+   77 	    26 	 0.08767 	 0.00417 	 m..s
+   50 	    27 	 0.07518 	 0.00421 	 m..s
+   15 	    28 	 0.06404 	 0.00437 	 m..s
+   52 	    29 	 0.07519 	 0.00438 	 m..s
+    6 	    30 	 0.05531 	 0.00451 	 m..s
+   83 	    31 	 0.08990 	 0.00457 	 m..s
+   88 	    32 	 0.09250 	 0.00463 	 m..s
+   46 	    33 	 0.07317 	 0.00467 	 m..s
+    5 	    34 	 0.05487 	 0.00483 	 m..s
+    3 	    35 	 0.05395 	 0.00489 	 m..s
+   44 	    36 	 0.07304 	 0.00498 	 m..s
+   31 	    37 	 0.06760 	 0.00528 	 m..s
+   61 	    38 	 0.07676 	 0.00532 	 m..s
+   20 	    39 	 0.06482 	 0.00559 	 m..s
+   30 	    40 	 0.06733 	 0.02123 	 m..s
+   34 	    41 	 0.06945 	 0.02871 	 m..s
+   36 	    42 	 0.07020 	 0.03628 	 m..s
+   49 	    43 	 0.07494 	 0.03688 	 m..s
+   38 	    44 	 0.07185 	 0.03829 	 m..s
+   53 	    45 	 0.07519 	 0.04165 	 m..s
+   39 	    46 	 0.07205 	 0.04300 	 ~...
+   43 	    47 	 0.07296 	 0.04484 	 ~...
+   47 	    48 	 0.07416 	 0.04576 	 ~...
+   40 	    49 	 0.07232 	 0.04740 	 ~...
+   37 	    50 	 0.07163 	 0.04999 	 ~...
+   55 	    51 	 0.07533 	 0.05249 	 ~...
+   54 	    52 	 0.07530 	 0.05279 	 ~...
+   56 	    53 	 0.07536 	 0.05678 	 ~...
+   57 	    54 	 0.07551 	 0.05706 	 ~...
+   51 	    55 	 0.07519 	 0.05797 	 ~...
+   42 	    56 	 0.07277 	 0.05810 	 ~...
+   45 	    57 	 0.07307 	 0.05918 	 ~...
+   41 	    58 	 0.07258 	 0.06077 	 ~...
+   48 	    59 	 0.07459 	 0.07497 	 ~...
+   13 	    60 	 0.05758 	 0.10585 	 m..s
+   94 	    61 	 0.09679 	 0.10812 	 ~...
+   18 	    62 	 0.06449 	 0.12552 	 m..s
+   97 	    63 	 0.09982 	 0.12614 	 ~...
+   12 	    64 	 0.05721 	 0.12878 	 m..s
+   16 	    65 	 0.06438 	 0.13780 	 m..s
+   24 	    66 	 0.06549 	 0.14181 	 m..s
+   23 	    67 	 0.06542 	 0.14931 	 m..s
+   21 	    68 	 0.06500 	 0.14977 	 m..s
+   10 	    69 	 0.05655 	 0.15121 	 m..s
+   27 	    70 	 0.06681 	 0.15737 	 m..s
+   99 	    71 	 0.13502 	 0.15748 	 ~...
+   22 	    72 	 0.06507 	 0.15954 	 m..s
+   35 	    73 	 0.07012 	 0.16374 	 m..s
+   32 	    74 	 0.06861 	 0.16551 	 m..s
+   33 	    75 	 0.06887 	 0.16622 	 m..s
+   25 	    76 	 0.06585 	 0.16654 	 MISS
+   75 	    77 	 0.08504 	 0.17776 	 m..s
+   65 	    78 	 0.08069 	 0.17849 	 m..s
+   82 	    79 	 0.08987 	 0.17922 	 m..s
+   87 	    80 	 0.09205 	 0.18342 	 m..s
+   85 	    81 	 0.09000 	 0.18495 	 m..s
+  101 	    82 	 0.18635 	 0.19153 	 ~...
+  100 	    83 	 0.17385 	 0.19248 	 ~...
+   69 	    84 	 0.08338 	 0.19394 	 MISS
+   66 	    85 	 0.08171 	 0.19576 	 MISS
+  106 	    86 	 0.20362 	 0.19589 	 ~...
+   81 	    87 	 0.08972 	 0.19766 	 MISS
+  108 	    88 	 0.21014 	 0.20587 	 ~...
+   59 	    89 	 0.07646 	 0.20811 	 MISS
+  105 	    90 	 0.20303 	 0.20837 	 ~...
+  103 	    91 	 0.19087 	 0.21020 	 ~...
+   62 	    92 	 0.07689 	 0.21117 	 MISS
+   70 	    93 	 0.08450 	 0.21238 	 MISS
+   67 	    94 	 0.08177 	 0.21270 	 MISS
+   70 	    95 	 0.08450 	 0.21748 	 MISS
+   92 	    96 	 0.09425 	 0.21920 	 MISS
+   93 	    97 	 0.09623 	 0.21969 	 MISS
+  107 	    98 	 0.21012 	 0.21991 	 ~...
+  117 	    99 	 0.23809 	 0.22001 	 ~...
+   80 	   100 	 0.08869 	 0.22485 	 MISS
+   70 	   101 	 0.08450 	 0.22550 	 MISS
+   70 	   102 	 0.08450 	 0.22649 	 MISS
+   58 	   103 	 0.07643 	 0.22727 	 MISS
+   64 	   104 	 0.07981 	 0.22931 	 MISS
+   60 	   105 	 0.07654 	 0.22971 	 MISS
+   68 	   106 	 0.08245 	 0.23224 	 MISS
+  110 	   107 	 0.21403 	 0.23662 	 ~...
+  111 	   108 	 0.22272 	 0.23733 	 ~...
+   91 	   109 	 0.09282 	 0.24461 	 MISS
+  102 	   110 	 0.18961 	 0.24796 	 m..s
+  119 	   111 	 0.25002 	 0.25028 	 ~...
+  109 	   112 	 0.21374 	 0.25578 	 m..s
+  104 	   113 	 0.20132 	 0.25648 	 m..s
+  115 	   114 	 0.23620 	 0.25867 	 ~...
+  112 	   115 	 0.22774 	 0.26103 	 m..s
+  113 	   116 	 0.22790 	 0.27652 	 m..s
+  114 	   117 	 0.23103 	 0.28464 	 m..s
+  116 	   118 	 0.23626 	 0.29138 	 m..s
+  118 	   119 	 0.23816 	 0.30466 	 m..s
+  120 	   120 	 0.28269 	 0.31564 	 m..s
+==========================================
+r_mrr = 0.652763843536377
+r2_mrr = 0.4057357907295227
+spearmanr_mrr@5 = 0.8910306096076965
+spearmanr_mrr@10 = 0.8757153153419495
+spearmanr_mrr@50 = 0.8952232003211975
+spearmanr_mrr@100 = 0.7653141021728516
+spearmanr_mrr@All = 0.7946537733078003
+==========================================
+test time: 0.421
+Done Testing dataset CoDExSmall
+Testing model with KGEM TransE and KG CoDExSmall
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.034 +- 0.021
+mrr vals (pred, true): 0.236, 0.258
+
+Evaluation for CoDExSmall on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   14 	     0 	 0.06274 	 0.00315 	 m..s
+   20 	     1 	 0.06482 	 0.00338 	 m..s
+   89 	     2 	 0.09254 	 0.00347 	 m..s
+   11 	     3 	 0.05695 	 0.00350 	 m..s
+   86 	     4 	 0.09108 	 0.00351 	 m..s
+   83 	     5 	 0.08990 	 0.00352 	 m..s
+   77 	     6 	 0.08767 	 0.00353 	 m..s
+    6 	     7 	 0.05531 	 0.00356 	 m..s
+   84 	     8 	 0.08994 	 0.00366 	 m..s
+   28 	     9 	 0.06701 	 0.00370 	 m..s
+   61 	    10 	 0.07676 	 0.00371 	 m..s
+   19 	    11 	 0.06455 	 0.00378 	 m..s
+   76 	    12 	 0.08593 	 0.00380 	 m..s
+   70 	    13 	 0.08450 	 0.00391 	 m..s
+   63 	    14 	 0.07773 	 0.00393 	 m..s
+   46 	    15 	 0.07317 	 0.00394 	 m..s
+   29 	    16 	 0.06720 	 0.00398 	 m..s
+   15 	    17 	 0.06404 	 0.00409 	 m..s
+   95 	    18 	 0.09713 	 0.00412 	 m..s
+   78 	    19 	 0.08838 	 0.00416 	 m..s
+   90 	    20 	 0.09264 	 0.00420 	 m..s
+   17 	    21 	 0.06449 	 0.00429 	 m..s
+    0 	    22 	 0.04822 	 0.00430 	 m..s
+   88 	    23 	 0.09250 	 0.00435 	 m..s
+   44 	    24 	 0.07304 	 0.00441 	 m..s
+    5 	    25 	 0.05487 	 0.00442 	 m..s
+   50 	    26 	 0.07518 	 0.00442 	 m..s
+    3 	    27 	 0.05395 	 0.00464 	 m..s
+   96 	    28 	 0.09750 	 0.00468 	 m..s
+   26 	    29 	 0.06604 	 0.00472 	 m..s
+    8 	    30 	 0.05562 	 0.00488 	 m..s
+   79 	    31 	 0.08841 	 0.00492 	 m..s
+   52 	    32 	 0.07519 	 0.00522 	 m..s
+   18 	    33 	 0.06449 	 0.00724 	 m..s
+   16 	    34 	 0.06438 	 0.00750 	 m..s
+   10 	    35 	 0.05655 	 0.00972 	 m..s
+   24 	    36 	 0.06549 	 0.01020 	 m..s
+   12 	    37 	 0.05721 	 0.01032 	 m..s
+   22 	    38 	 0.06507 	 0.01044 	 m..s
+   23 	    39 	 0.06542 	 0.01077 	 m..s
+   13 	    40 	 0.05758 	 0.01118 	 m..s
+   21 	    41 	 0.06500 	 0.01207 	 m..s
+   27 	    42 	 0.06681 	 0.01271 	 m..s
+   34 	    43 	 0.06945 	 0.01713 	 m..s
+   37 	    44 	 0.07163 	 0.01976 	 m..s
+   39 	    45 	 0.07205 	 0.01991 	 m..s
+   40 	    46 	 0.07232 	 0.02094 	 m..s
+   38 	    47 	 0.07185 	 0.02142 	 m..s
+   41 	    48 	 0.07258 	 0.02394 	 m..s
+   54 	    49 	 0.07530 	 0.02424 	 m..s
+   55 	    50 	 0.07533 	 0.02452 	 m..s
+   36 	    51 	 0.07020 	 0.02471 	 m..s
+   33 	    52 	 0.06887 	 0.02540 	 m..s
+   25 	    53 	 0.06585 	 0.02563 	 m..s
+   45 	    54 	 0.07307 	 0.02681 	 m..s
+   35 	    55 	 0.07012 	 0.02777 	 m..s
+   32 	    56 	 0.06861 	 0.02949 	 m..s
+   42 	    57 	 0.07277 	 0.02953 	 m..s
+   43 	    58 	 0.07296 	 0.04216 	 m..s
+   98 	    59 	 0.10534 	 0.05027 	 m..s
+   62 	    60 	 0.07689 	 0.09528 	 ~...
+   70 	    61 	 0.08450 	 0.10008 	 ~...
+   59 	    62 	 0.07646 	 0.10026 	 ~...
+   58 	    63 	 0.07643 	 0.10045 	 ~...
+   60 	    64 	 0.07654 	 0.10533 	 ~...
+   70 	    65 	 0.08450 	 0.10834 	 ~...
+   70 	    66 	 0.08450 	 0.10903 	 ~...
+   64 	    67 	 0.07981 	 0.11933 	 m..s
+   68 	    68 	 0.08245 	 0.12266 	 m..s
+   70 	    69 	 0.08450 	 0.13455 	 m..s
+   97 	    70 	 0.09982 	 0.13475 	 m..s
+   94 	    71 	 0.09679 	 0.13483 	 m..s
+   91 	    72 	 0.09282 	 0.13521 	 m..s
+   67 	    73 	 0.08177 	 0.13539 	 m..s
+   99 	    74 	 0.13502 	 0.14879 	 ~...
+   30 	    75 	 0.06733 	 0.15392 	 m..s
+   56 	    76 	 0.07536 	 0.15816 	 m..s
+  104 	    77 	 0.20132 	 0.16218 	 m..s
+    1 	    78 	 0.04869 	 0.16279 	 MISS
+   51 	    79 	 0.07519 	 0.16373 	 m..s
+   47 	    80 	 0.07416 	 0.16385 	 m..s
+   57 	    81 	 0.07551 	 0.16467 	 m..s
+   53 	    82 	 0.07519 	 0.16469 	 m..s
+   80 	    83 	 0.08869 	 0.16489 	 m..s
+    2 	    84 	 0.04876 	 0.16626 	 MISS
+   48 	    85 	 0.07459 	 0.16632 	 m..s
+   65 	    86 	 0.08069 	 0.16773 	 m..s
+   31 	    87 	 0.06760 	 0.17114 	 MISS
+   75 	    88 	 0.08504 	 0.17175 	 m..s
+   66 	    89 	 0.08171 	 0.17219 	 m..s
+   85 	    90 	 0.09000 	 0.17260 	 m..s
+  102 	    91 	 0.18961 	 0.17536 	 ~...
+   92 	    92 	 0.09425 	 0.17544 	 m..s
+    4 	    93 	 0.05401 	 0.17614 	 MISS
+   49 	    94 	 0.07494 	 0.17829 	 MISS
+   82 	    95 	 0.08987 	 0.18105 	 m..s
+    9 	    96 	 0.05591 	 0.18122 	 MISS
+    7 	    97 	 0.05562 	 0.18550 	 MISS
+  117 	    98 	 0.23809 	 0.18788 	 m..s
+  119 	    99 	 0.25002 	 0.18868 	 m..s
+   87 	   100 	 0.09205 	 0.18910 	 m..s
+  110 	   101 	 0.21403 	 0.19419 	 ~...
+  111 	   102 	 0.22272 	 0.19721 	 ~...
+   81 	   103 	 0.08972 	 0.19838 	 MISS
+  105 	   104 	 0.20303 	 0.20033 	 ~...
+   69 	   105 	 0.08338 	 0.20081 	 MISS
+  108 	   106 	 0.21014 	 0.20093 	 ~...
+  106 	   107 	 0.20362 	 0.20331 	 ~...
+  100 	   108 	 0.17385 	 0.20554 	 m..s
+  101 	   109 	 0.18635 	 0.20723 	 ~...
+  107 	   110 	 0.21012 	 0.21020 	 ~...
+   93 	   111 	 0.09623 	 0.21971 	 MISS
+  103 	   112 	 0.19087 	 0.23008 	 m..s
+  115 	   113 	 0.23620 	 0.23807 	 ~...
+  118 	   114 	 0.23816 	 0.23887 	 ~...
+  112 	   115 	 0.22774 	 0.24137 	 ~...
+  113 	   116 	 0.22790 	 0.24340 	 ~...
+  109 	   117 	 0.21374 	 0.24540 	 m..s
+  114 	   118 	 0.23103 	 0.25626 	 ~...
+  116 	   119 	 0.23626 	 0.25834 	 ~...
+  120 	   120 	 0.28269 	 0.26909 	 ~...
+==========================================
+r_mrr = 0.6675043702125549
+r2_mrr = 0.44005775451660156
+spearmanr_mrr@5 = 0.8758208751678467
+spearmanr_mrr@10 = 0.8692095279693604
+spearmanr_mrr@50 = 0.9241428375244141
+spearmanr_mrr@100 = 0.773097813129425
+spearmanr_mrr@All = 0.8024880886077881
+==========================================
+test time: 0.47
+Done Testing dataset CoDExSmall
+total time taken: 605.1181001663208
+training time taken: 574.0126719474792
+TWIG out ;))
+=================================================
+-------------------------------------------------
+Running a TWIG experiment with tag: DBpedia50-all
+-------------------------------------------------
+=================================================
+Using random seed: 4672380493002803
+Starting TWIG!
+Loading datasets
+Loading ComplEx...
+Loading DBpedia50...
+- loading run 2.1...
+Loading DistMult...
+Loading DBpedia50...
+- loading run 2.1...
+Loading TransE...
+Loading DBpedia50...
+- loading run 2.1...
+Creating the train-test split
+using splits:
+test_ids (121): [286, 155, 489, 596, 1189, 1147, 1171, 1038, 144, 960, 26, 813, 1081, 192, 696, 385, 396, 580, 555, 864, 914, 239, 1197, 391, 433, 250, 775, 1094, 861, 569, 645, 442, 1098, 305, 962, 525, 1165, 207, 10, 531, 757, 149, 536, 1004, 417, 509, 1179, 75, 781, 85, 718, 1150, 332, 187, 863, 103, 38, 774, 604, 477, 122, 903, 595, 711, 1014, 629, 891, 400, 831, 196, 942, 490, 868, 658, 716, 284, 782, 166, 511, 7, 394, 449, 387, 821, 755, 505, 810, 879, 632, 228, 638, 794, 1002, 681, 450, 276, 339, 1099, 783, 713, 1082, 156, 951, 578, 610, 661, 380, 1061, 274, 938, 154, 36, 1080, 321, 1154, 367, 46, 912, 915, 297, 544]
+valid_ids (0): []
+train_ids (1094): [140, 213, 507, 1102, 812, 457, 1211, 404, 907, 127, 805, 725, 594, 889, 139, 764, 345, 235, 326, 249, 974, 1027, 778, 302, 229, 418, 924, 293, 2, 244, 381, 1030, 545, 25, 472, 247, 301, 13, 1079, 570, 1043, 614, 983, 1070, 841, 105, 830, 123, 529, 618, 317, 919, 672, 24, 1089, 454, 373, 1084, 1146, 1133, 1013, 386, 742, 1015, 1049, 434, 468, 486, 845, 533, 199, 435, 969, 425, 1181, 420, 1066, 1093, 1198, 341, 0, 368, 1018, 856, 431, 808, 1161, 147, 427, 1213, 61, 234, 997, 245, 527, 248, 86, 152, 622, 1148, 225, 28, 640, 900, 1136, 1137, 564, 898, 928, 631, 762, 931, 1193, 441, 729, 419, 943, 479, 575, 328, 506, 646, 877, 643, 1207, 1000, 605, 872, 74, 1121, 753, 313, 953, 669, 994, 730, 484, 689, 846, 1134, 102, 849, 253, 1110, 1091, 21, 1132, 131, 233, 1202, 252, 890, 579, 308, 857, 261, 842, 11, 892, 15, 20, 838, 733, 487, 322, 1141, 539, 1186, 266, 893, 1188, 390, 607, 48, 35, 429, 87, 799, 1057, 818, 982, 682, 985, 705, 880, 1158, 148, 1053, 403, 916, 191, 515, 350, 780, 5, 106, 325, 134, 217, 654, 1106, 423, 151, 364, 1127, 738, 1149, 281, 793, 462, 171, 516, 554, 1022, 735, 1077, 771, 181, 264, 22, 453, 189, 796, 600, 179, 270, 3, 475, 1172, 542, 699, 169, 357, 1129, 369, 161, 948, 990, 1083, 33, 398, 382, 1160, 363, 918, 1059, 1125, 558, 63, 502, 78, 1087, 16, 998, 283, 1096, 143, 494, 802, 133, 337, 206, 242, 822, 377, 39, 288, 884, 1164, 1131, 1001, 180, 1182, 695, 834, 184, 111, 758, 214, 809, 937, 956, 1016, 378, 836, 523, 1178, 1185, 954, 623, 503, 71, 1107, 333, 1012, 411, 871, 732, 690, 987, 1196, 1140, 1035, 736, 1212, 1139, 467, 905, 496, 637, 52, 1101, 182, 1116, 739, 320, 714, 965, 68, 761, 712, 54, 883, 116, 957, 820, 124, 839, 899, 1019, 104, 1025, 296, 500, 224, 445, 324, 656, 336, 522, 581, 1128, 585, 19, 458, 56, 875, 677, 1044, 844, 966, 370, 806, 911, 647, 521, 407, 840, 37, 941, 926, 565, 1103, 379, 1176, 648, 335, 944, 674, 866, 428, 760, 451, 1177, 469, 53, 621, 698, 759, 703, 847, 107, 1156, 243, 414, 1074, 680, 947, 1051, 859, 1024, 395, 447, 4, 827, 979, 76, 744, 91, 747, 501, 204, 664, 1078, 591, 94, 897, 426, 1208, 62, 362, 510, 8, 306, 671, 399, 513, 1166, 815, 109, 44, 6, 1130, 1020, 666, 354, 298, 904, 851, 584, 792, 448, 1167, 870, 787, 740, 352, 277, 1180, 727, 852, 163, 1209, 255, 23, 174, 303, 287, 330, 375, 1, 45, 409, 1028, 406, 660, 49, 750, 176, 675, 1003, 981, 473, 1210, 361, 478, 887, 921, 644, 205, 112, 553, 828, 1100, 60, 566, 488, 784, 920, 1054, 850, 9, 466, 1115, 1006, 959, 508, 537, 989, 100, 153, 238, 636, 51, 291, 819, 1036, 460, 1122, 726, 1076, 1173, 137, 340, 617, 439, 421, 1142, 743, 613, 1058, 210, 1108, 401, 440, 30, 79, 12, 480, 589, 315, 432, 461, 459, 254, 700, 117, 43, 616, 823, 202, 587, 1055, 929, 651, 512, 1029, 854, 572, 67, 120, 413, 1021, 865, 571, 791, 59, 1123, 972, 177, 1009, 777, 84, 708, 995, 855, 371, 1124, 80, 1175, 73, 1072, 590, 444, 481, 476, 549, 807, 1119, 1162, 1114, 843, 452, 319, 688, 532, 304, 1071, 227, 285, 162, 908, 412, 402, 237, 272, 988, 561, 896, 294, 81, 800, 212, 1144, 485, 1010, 113, 963, 331, 1120, 936, 601, 722, 676, 356, 132, 814, 392, 92, 630, 101, 882, 559, 327, 316, 615, 785, 538, 860, 687, 1104, 909, 832, 788, 1203, 1168, 628, 825, 119, 1046, 388, 719, 789, 702, 824, 952, 66, 655, 1042, 158, 975, 353, 876, 437, 881, 72, 701, 405, 609, 723, 222, 576, 518, 748, 1088, 88, 811, 624, 967, 495, 653, 482, 397, 346, 262, 1073, 216, 1138, 268, 146, 768, 41, 968, 1097, 720, 721, 351, 267, 913, 961, 930, 1117, 668, 282, 136, 574, 779, 568, 1187, 34, 256, 307, 541, 203, 312, 275, 138, 58, 958, 499, 118, 980, 415, 543, 260, 650, 98, 183, 365, 251, 910, 208, 927, 230, 1184, 1201, 190, 692, 232, 1095, 273, 934, 1143, 89, 582, 231, 670, 383, 1194, 1191, 194, 358, 329, 334, 665, 534, 1113, 314, 906, 766, 1017, 299, 634, 737, 470, 504, 1170, 175, 295, 359, 1032, 1190, 29, 991, 1064, 465, 940, 197, 693, 593, 344, 710, 973, 663, 1163, 925, 463, 1056, 1105, 626, 772, 1060, 492, 639, 848, 1034, 200, 185, 309, 374, 1069, 27, 55, 829, 389, 97, 236, 520, 673, 606, 410, 801, 342, 986, 945, 279, 443, 1205, 946, 745, 659, 1204, 164, 456, 96, 611, 767, 172, 627, 573, 93, 878, 667, 47, 556, 869, 679, 765, 323, 707, 145, 756, 552, 69, 798, 271, 1085, 338, 347, 557, 922, 141, 540, 135, 932, 803, 186, 519, 620, 1126, 923, 577, 280, 491, 548, 1068, 886, 874, 1067, 1026, 416, 776, 652, 715, 1159, 1195, 724, 691, 195, 372, 218, 219, 173, 90, 917, 833, 263, 853, 816, 240, 126, 64, 471, 901, 1005, 1135, 150, 497, 978, 376, 438, 188, 241, 1169, 348, 318, 526, 992, 310, 311, 82, 685, 1039, 31, 1199, 223, 1062, 1183, 1145, 366, 1112, 422, 160, 835, 976, 826, 1075, 662, 873, 763, 949, 790, 955, 1052, 278, 246, 817, 70, 178, 517, 157, 77, 862, 602, 641, 209, 535, 612, 193, 455, 770, 1007, 32, 592, 1151, 1050, 546, 550, 221, 786, 269, 563, 129, 797, 964, 446, 1048, 474, 168, 115, 128, 483, 588, 1200, 1008, 635, 1109, 754, 734, 1065, 14, 970, 1092, 167, 709, 1086, 436, 514, 65, 678, 17, 551, 560, 547, 562, 694, 50, 619, 265, 1040, 292, 121, 95, 198, 258, 257, 343, 683, 769, 1045, 215, 751, 108, 804, 524, 950, 1023, 746, 528, 1214, 165, 1063, 939, 657, 114, 1047, 1206, 902, 300, 1118, 1192, 493, 984, 608, 130, 211, 977, 259, 424, 867, 290, 1111, 18, 697, 686, 583, 858, 597, 885, 42, 464, 1153, 393, 355, 1174, 1090, 935, 530, 159, 1031, 40, 971, 1033, 567, 752, 731, 933, 226, 125, 201, 289, 993, 649, 170, 99, 57, 642, 625, 773, 498, 741, 1152, 795, 706, 1155, 1157, 360, 728, 684, 633, 83, 1037, 894, 220, 704, 110, 996, 599, 598, 408, 749, 586, 999, 1041, 895, 384, 837, 1011, 888, 717, 430, 349, 603, 142]
+Converting data to tensors
+Normalising data
+Finalising data preprocessing
+the checkpoint ID for this run is:  7855243648152573
+the save name prefix for this run is:  chkpt-ID_7855243648152573_tag_DBpedia50-all
+running TWIG with settings:
+data_to_load: {'ComplEx': {'DBpedia50': ['2.1']}, 'DistMult': {'DBpedia50': ['2.1']}, 'TransE': {'DBpedia50': ['2.1']}}
+test_ratio: 0.1
+valid_ratio: 0.0
+normalisation: zscore
+n_bins: 30
+optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.005
+    maximize: False
+    weight_decay: 0
+)
+optimizer_args: {'lr': 0.005}
+mrr_loss_coeffs: [0, 10]
+rank_dist_loss_coeffs: [1, 1]
+rescale_mrr_loss: False
+rescale_rank_dist_loss: False
+RUnning with TWIG model:
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=11, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 689
+rank avg (pred): 0.428 +- 0.004
+mrr vals (pred, true): 0.000, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001857231
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 1084
+rank avg (pred): 0.394 +- 0.302
+mrr vals (pred, true): 0.065, 0.189
+batch losses (mrrl, rdl): 0.0, 0.0010303903
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 1162
+rank avg (pred): 0.426 +- 0.330
+mrr vals (pred, true): 0.077, 0.133
+batch losses (mrrl, rdl): 0.0, 6.96488e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 523
+rank avg (pred): 0.310 +- 0.254
+mrr vals (pred, true): 0.156, 0.085
+batch losses (mrrl, rdl): 0.0, 5.97696e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 855
+rank avg (pred): 0.409 +- 0.325
+mrr vals (pred, true): 0.120, 0.161
+batch losses (mrrl, rdl): 0.0, 0.0013704546
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 133
+rank avg (pred): 0.415 +- 0.333
+mrr vals (pred, true): 0.187, 0.162
+batch losses (mrrl, rdl): 0.0, 0.0002893647
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 496
+rank avg (pred): 0.318 +- 0.260
+mrr vals (pred, true): 0.182, 0.147
+batch losses (mrrl, rdl): 0.0, 4.13549e-05
+
+Epoch over!
+epoch time: 38.473
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1159
+rank avg (pred): 0.303 +- 0.251
+mrr vals (pred, true): 0.243, 0.114
+batch losses (mrrl, rdl): 0.0, 1.49436e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 138
+rank avg (pred): 0.376 +- 0.305
+mrr vals (pred, true): 0.237, 0.011
+batch losses (mrrl, rdl): 0.0, 0.0004431809
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 460
+rank avg (pred): 0.388 +- 0.312
+mrr vals (pred, true): 0.219, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001562988
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1141
+rank avg (pred): 0.242 +- 0.199
+mrr vals (pred, true): 0.265, 0.195
+batch losses (mrrl, rdl): 0.0, 0.0001262846
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 778
+rank avg (pred): 0.358 +- 0.298
+mrr vals (pred, true): 0.301, 0.166
+batch losses (mrrl, rdl): 0.0, 0.00073523
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 426
+rank avg (pred): 0.391 +- 0.307
+mrr vals (pred, true): 0.233, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001011707
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 21
+rank avg (pred): 0.182 +- 0.148
+mrr vals (pred, true): 0.270, 0.311
+batch losses (mrrl, rdl): 0.0, 0.0001258249
+
+Epoch over!
+epoch time: 38.744
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 811
+rank avg (pred): 0.166 +- 0.136
+mrr vals (pred, true): 0.264, 0.295
+batch losses (mrrl, rdl): 0.0, 6.56202e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 246
+rank avg (pred): 0.171 +- 0.142
+mrr vals (pred, true): 0.274, 0.102
+batch losses (mrrl, rdl): 0.0, 5.90317e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 911
+rank avg (pred): 0.449 +- 0.363
+mrr vals (pred, true): 0.259, 0.018
+batch losses (mrrl, rdl): 0.0, 9.15738e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 152
+rank avg (pred): 0.351 +- 0.293
+mrr vals (pred, true): 0.294, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0002510069
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 171
+rank avg (pred): 0.374 +- 0.309
+mrr vals (pred, true): 0.274, 0.001
+batch losses (mrrl, rdl): 0.0, 8.18533e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 1058
+rank avg (pred): 0.098 +- 0.082
+mrr vals (pred, true): 0.329, 0.372
+batch losses (mrrl, rdl): 0.0, 6.20189e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1053
+rank avg (pred): 0.161 +- 0.134
+mrr vals (pred, true): 0.322, 0.123
+batch losses (mrrl, rdl): 0.0, 0.0005182018
+
+Epoch over!
+epoch time: 37.958
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1013
+rank avg (pred): 0.386 +- 0.309
+mrr vals (pred, true): 0.257, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001884552
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 513
+rank avg (pred): 0.292 +- 0.242
+mrr vals (pred, true): 0.282, 0.028
+batch losses (mrrl, rdl): 0.0, 6.21567e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 880
+rank avg (pred): 0.441 +- 0.344
+mrr vals (pred, true): 0.207, 0.000
+batch losses (mrrl, rdl): 0.0, 2.07019e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 630
+rank avg (pred): 0.409 +- 0.324
+mrr vals (pred, true): 0.217, 0.001
+batch losses (mrrl, rdl): 0.0, 2.32247e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 1121
+rank avg (pred): 0.358 +- 0.296
+mrr vals (pred, true): 0.277, 0.001
+batch losses (mrrl, rdl): 0.0, 3.0833e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 927
+rank avg (pred): 0.451 +- 0.362
+mrr vals (pred, true): 0.255, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0001686677
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1071
+rank avg (pred): 0.135 +- 0.113
+mrr vals (pred, true): 0.328, 0.113
+batch losses (mrrl, rdl): 0.0, 0.0007467961
+
+Epoch over!
+epoch time: 40.226
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 492
+rank avg (pred): 0.278 +- 0.229
+mrr vals (pred, true): 0.285, 0.063
+batch losses (mrrl, rdl): 0.0, 2.24086e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 730
+rank avg (pred): 0.159 +- 0.134
+mrr vals (pred, true): 0.344, 0.080
+batch losses (mrrl, rdl): 0.0, 7.40414e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 866
+rank avg (pred): 0.380 +- 0.314
+mrr vals (pred, true): 0.250, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001565879
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 714
+rank avg (pred): 0.388 +- 0.317
+mrr vals (pred, true): 0.250, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0001754426
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 312
+rank avg (pred): 0.164 +- 0.138
+mrr vals (pred, true): 0.230, 0.077
+batch losses (mrrl, rdl): 0.0, 7.53902e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 888
+rank avg (pred): 0.410 +- 0.324
+mrr vals (pred, true): 0.192, 0.000
+batch losses (mrrl, rdl): 0.0, 0.0001307103
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 991
+rank avg (pred): 0.173 +- 0.144
+mrr vals (pred, true): 0.303, 0.068
+batch losses (mrrl, rdl): 0.0, 0.0003775242
+
+Epoch over!
+epoch time: 39.344
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1118
+rank avg (pred): 0.391 +- 0.312
+mrr vals (pred, true): 0.273, 0.000
+batch losses (mrrl, rdl): 0.4968772531, 4.66918e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 358
+rank avg (pred): 0.513 +- 0.190
+mrr vals (pred, true): 0.059, 0.066
+batch losses (mrrl, rdl): 0.00078058, 0.0013879581
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 145
+rank avg (pred): 0.503 +- 0.181
+mrr vals (pred, true): 0.062, 0.158
+batch losses (mrrl, rdl): 0.0919493213, 0.0008494827
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 195
+rank avg (pred): 0.490 +- 0.185
+mrr vals (pred, true): 0.070, 0.000
+batch losses (mrrl, rdl): 0.003852183, 4.33636e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 213
+rank avg (pred): 0.506 +- 0.173
+mrr vals (pred, true): 0.055, 0.000
+batch losses (mrrl, rdl): 0.000271763, 5.49754e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 830
+rank avg (pred): 0.055 +- 0.036
+mrr vals (pred, true): 0.142, 0.143
+batch losses (mrrl, rdl): 1.8215e-05, 0.0002252509
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 246
+rank avg (pred): 0.007 +- 0.005
+mrr vals (pred, true): 0.182, 0.098
+batch losses (mrrl, rdl): 0.1749242693, 0.0014377347
+
+Epoch over!
+epoch time: 39.056
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 597
+rank avg (pred): 0.477 +- 0.180
+mrr vals (pred, true): 0.073, 0.000
+batch losses (mrrl, rdl): 0.0054295128, 6.34246e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 195
+rank avg (pred): 0.467 +- 0.196
+mrr vals (pred, true): 0.084, 0.000
+batch losses (mrrl, rdl): 0.0114698811, 3.98596e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 5
+rank avg (pred): 0.007 +- 0.005
+mrr vals (pred, true): 0.174, 0.345
+batch losses (mrrl, rdl): 0.2926327586, 0.0002887008
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1039
+rank avg (pred): 0.462 +- 0.184
+mrr vals (pred, true): 0.078, 0.000
+batch losses (mrrl, rdl): 0.0077319699, 0.0002011374
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 656
+rank avg (pred): 0.444 +- 0.184
+mrr vals (pred, true): 0.088, 0.001
+batch losses (mrrl, rdl): 0.014608942, 4.16043e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 63
+rank avg (pred): 0.060 +- 0.040
+mrr vals (pred, true): 0.152, 0.217
+batch losses (mrrl, rdl): 0.0431700423, 0.000363763
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 441
+rank avg (pred): 0.454 +- 0.179
+mrr vals (pred, true): 0.079, 0.000
+batch losses (mrrl, rdl): 0.0082913619, 5.28023e-05
+
+Epoch over!
+epoch time: 40.146
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1062
+rank avg (pred): 0.012 +- 0.008
+mrr vals (pred, true): 0.152, 0.082
+batch losses (mrrl, rdl): 0.1043333039, 0.0021841223
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 221
+rank avg (pred): 0.472 +- 0.153
+mrr vals (pred, true): 0.062, 0.000
+batch losses (mrrl, rdl): 0.0015210717, 8.80169e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 201
+rank avg (pred): 0.477 +- 0.157
+mrr vals (pred, true): 0.061, 0.000
+batch losses (mrrl, rdl): 0.0012319243, 9.48807e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 389
+rank avg (pred): 0.447 +- 0.177
+mrr vals (pred, true): 0.078, 0.005
+batch losses (mrrl, rdl): 0.0080642086, 0.0001051893
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 147
+rank avg (pred): 0.462 +- 0.161
+mrr vals (pred, true): 0.068, 0.010
+batch losses (mrrl, rdl): 0.0031811311, 0.0009292757
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 495
+rank avg (pred): 0.271 +- 0.178
+mrr vals (pred, true): 0.132, 0.296
+batch losses (mrrl, rdl): 0.2699964046, 0.0001174403
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 971
+rank avg (pred): 0.474 +- 0.149
+mrr vals (pred, true): 0.057, 0.001
+batch losses (mrrl, rdl): 0.0005097379, 6.85806e-05
+
+Epoch over!
+epoch time: 40.752
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 279
+rank avg (pred): 0.070 +- 0.046
+mrr vals (pred, true): 0.141, 0.138
+batch losses (mrrl, rdl): 0.0001085519, 0.00132898
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 272
+rank avg (pred): 0.086 +- 0.055
+mrr vals (pred, true): 0.130, 0.099
+batch losses (mrrl, rdl): 0.0635033622, 2.90282e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 378
+rank avg (pred): 0.474 +- 0.152
+mrr vals (pred, true): 0.061, 0.131
+batch losses (mrrl, rdl): 0.0496496633, 0.0006147824
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1023
+rank avg (pred): 0.398 +- 0.204
+mrr vals (pred, true): 0.089, 0.000
+batch losses (mrrl, rdl): 0.0151814511, 0.0001040707
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 105
+rank avg (pred): 0.465 +- 0.158
+mrr vals (pred, true): 0.065, 0.019
+batch losses (mrrl, rdl): 0.0023977438, 0.0013086397
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 758
+rank avg (pred): 0.475 +- 0.147
+mrr vals (pred, true): 0.057, 0.001
+batch losses (mrrl, rdl): 0.0005196371, 6.9615e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1016
+rank avg (pred): 0.387 +- 0.212
+mrr vals (pred, true): 0.092, 0.000
+batch losses (mrrl, rdl): 0.0178970899, 9.08144e-05
+
+Epoch over!
+epoch time: 39.524
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1140
+rank avg (pred): 0.123 +- 0.083
+mrr vals (pred, true): 0.131, 0.184
+batch losses (mrrl, rdl): 0.0281475447, 0.0006206595
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 769
+rank avg (pred): 0.449 +- 0.153
+mrr vals (pred, true): 0.065, 0.146
+batch losses (mrrl, rdl): 0.0650275797, 0.0012360817
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 899
+rank avg (pred): 0.509 +- 0.270
+mrr vals (pred, true): 0.093, 0.000
+batch losses (mrrl, rdl): 0.0182792731, 0.0016560723
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 745
+rank avg (pred): 0.012 +- 0.007
+mrr vals (pred, true): 0.172, 0.256
+batch losses (mrrl, rdl): 0.0709141865, 0.000644288
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 822
+rank avg (pred): 0.048 +- 0.030
+mrr vals (pred, true): 0.162, 0.209
+batch losses (mrrl, rdl): 0.0220941231, 4.27661e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 1198
+rank avg (pred): 0.445 +- 0.168
+mrr vals (pred, true): 0.075, 0.000
+batch losses (mrrl, rdl): 0.0063614249, 5.79424e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1073
+rank avg (pred): 0.007 +- 0.004
+mrr vals (pred, true): 0.186, 0.094
+batch losses (mrrl, rdl): 0.1843173057, 0.0023808295
+
+Epoch over!
+epoch time: 39.925
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 988
+rank avg (pred): 0.002 +- 0.002
+mrr vals (pred, true): 0.209, 0.166
+batch losses (mrrl, rdl): 0.0189807974, 0.0020055056
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 254
+rank avg (pred): 0.002 +- 0.001
+mrr vals (pred, true): 0.234, 0.191
+batch losses (mrrl, rdl): 0.0187223293, 0.0001436933
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 1030
+rank avg (pred): 0.431 +- 0.178
+mrr vals (pred, true): 0.079, 0.000
+batch losses (mrrl, rdl): 0.0084849792, 6.82431e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 277
+rank avg (pred): 0.107 +- 0.070
+mrr vals (pred, true): 0.141, 0.068
+batch losses (mrrl, rdl): 0.0825875327, 0.0011222336
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 107
+rank avg (pred): 0.443 +- 0.172
+mrr vals (pred, true): 0.073, 0.068
+batch losses (mrrl, rdl): 0.0053040022, 0.0011392761
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 430
+rank avg (pred): 0.438 +- 0.168
+mrr vals (pred, true): 0.074, 0.000
+batch losses (mrrl, rdl): 0.0058567692, 6.04225e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 948
+rank avg (pred): 0.466 +- 0.138
+mrr vals (pred, true): 0.060, 0.000
+batch losses (mrrl, rdl): 0.0009819663, 4.49196e-05
+
+Epoch over!
+epoch time: 38.68
+
+Epoch 7 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 515
+rank avg (pred): 0.367 +- 0.226
+mrr vals (pred, true): 0.106, 0.106
+batch losses (mrrl, rdl): 1.1727e-06, 2.59931e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 827
+rank avg (pred): 0.042 +- 0.027
+mrr vals (pred, true): 0.148, 0.222
+batch losses (mrrl, rdl): 0.0546409562, 2.46348e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 925
+rank avg (pred): 0.465 +- 0.134
+mrr vals (pred, true): 0.056, 0.000
+batch losses (mrrl, rdl): 0.0003211752, 0.0025943723
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 111
+rank avg (pred): 0.467 +- 0.143
+mrr vals (pred, true): 0.063, 0.000
+batch losses (mrrl, rdl): 0.0017985863, 7.48319e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 210
+rank avg (pred): 0.455 +- 0.163
+mrr vals (pred, true): 0.072, 0.000
+batch losses (mrrl, rdl): 0.0049412437, 6.79617e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 999
+rank avg (pred): 0.458 +- 0.168
+mrr vals (pred, true): 0.072, 0.164
+batch losses (mrrl, rdl): 0.085357286, 0.000523118
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 60
+rank avg (pred): 0.315 +- 0.196
+mrr vals (pred, true): 0.101, 0.098
+batch losses (mrrl, rdl): 0.0260748602, 7.04698e-05
+
+Epoch over!
+epoch time: 39.831
+
+Epoch 8 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 365
+rank avg (pred): 0.463 +- 0.152
+mrr vals (pred, true): 0.069, 0.000
+batch losses (mrrl, rdl): 0.0037816679, 0.000115712
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 1035
+rank avg (pred): 0.412 +- 0.189
+mrr vals (pred, true): 0.079, 0.000
+batch losses (mrrl, rdl): 0.0085007083, 0.0001136248
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 423
+rank avg (pred): 0.462 +- 0.151
+mrr vals (pred, true): 0.066, 0.000
+batch losses (mrrl, rdl): 0.0024701813, 9.47957e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 848
+rank avg (pred): 0.461 +- 0.150
+mrr vals (pred, true): 0.068, 0.000
+batch losses (mrrl, rdl): 0.0030793357, 5.61814e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 778
+rank avg (pred): 0.446 +- 0.151
+mrr vals (pred, true): 0.076, 0.166
+batch losses (mrrl, rdl): 0.0810403749, 0.0014338876
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 210
+rank avg (pred): 0.458 +- 0.149
+mrr vals (pred, true): 0.070, 0.000
+batch losses (mrrl, rdl): 0.00399291, 7.66856e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 1137
+rank avg (pred): 0.187 +- 0.134
+mrr vals (pred, true): 0.169, 0.178
+batch losses (mrrl, rdl): 0.0007877458, 0.0002889045
+
+Epoch over!
+epoch time: 38.143
+
+Epoch 9 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 981
+rank avg (pred): 0.010 +- 0.006
+mrr vals (pred, true): 0.169, 0.107
+batch losses (mrrl, rdl): 0.0388634428, 0.0022756136
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 1157
+rank avg (pred): 0.165 +- 0.105
+mrr vals (pred, true): 0.139, 0.102
+batch losses (mrrl, rdl): 0.0136464015, 0.0001481849
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 1071
+rank avg (pred): 0.008 +- 0.005
+mrr vals (pred, true): 0.195, 0.273
+batch losses (mrrl, rdl): 0.0605471432, 0.0003790389
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 566
+rank avg (pred): 0.362 +- 0.220
+mrr vals (pred, true): 0.110, 0.067
+batch losses (mrrl, rdl): 0.0355281085, 4.869e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 1044
+rank avg (pred): 0.438 +- 0.159
+mrr vals (pred, true): 0.071, 0.001
+batch losses (mrrl, rdl): 0.0044769212, 0.0001887801
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 734
+rank avg (pred): 0.209 +- 0.131
+mrr vals (pred, true): 0.129, 0.010
+batch losses (mrrl, rdl): 0.061901357, 0.0001365731
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 180
+rank avg (pred): 0.457 +- 0.148
+mrr vals (pred, true): 0.068, 0.000
+batch losses (mrrl, rdl): 0.0031750319, 0.0001183875
+
+Epoch over!
+epoch time: 38.428
+
+Epoch 10 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 119
+rank avg (pred): 0.460 +- 0.137
+mrr vals (pred, true): 0.065, 0.000
+batch losses (mrrl, rdl): 0.0023597886, 0.0001161205
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 109
+rank avg (pred): 0.462 +- 0.134
+mrr vals (pred, true): 0.065, 0.022
+batch losses (mrrl, rdl): 0.0022817515, 0.0010281891
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 451
+rank avg (pred): 0.434 +- 0.171
+mrr vals (pred, true): 0.089, 0.000
+batch losses (mrrl, rdl): 0.0150843328, 6.20388e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 333
+rank avg (pred): 0.455 +- 0.155
+mrr vals (pred, true): 0.071, 0.001
+batch losses (mrrl, rdl): 0.0042175646, 9.44945e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, DBpedia50, run 2.1, exp 128
+rank avg (pred): 0.460 +- 0.145
+mrr vals (pred, true): 0.066, 0.068
+batch losses (mrrl, rdl): 0.0027082043, 0.0016725986
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, DBpedia50, run 2.1, exp 112
+rank avg (pred): 0.470 +- 0.135
+mrr vals (pred, true): 0.064, 0.145
+batch losses (mrrl, rdl): 0.0665656179, 0.0006614725
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, DBpedia50, run 2.1, exp 917
+rank avg (pred): 0.358 +- 0.217
+mrr vals (pred, true): 0.131, 0.000
+batch losses (mrrl, rdl): 0.065425247, 0.0011984935
+
+Epoch over!
+epoch time: 39.363
+
+Saving checkpoint at [1] epoch 10
+Done training phase:  1
+Testing model with KGEM ComplEx and KG DBpedia50
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.163 +- 0.099
+mrr vals (pred, true): 0.124, 0.124
+
+Evaluation for DBpedia50 on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   18 	     0 	 0.06161 	 0.00015 	 m..s
+   42 	     1 	 0.06446 	 0.00015 	 m..s
+   28 	     2 	 0.06359 	 0.00015 	 m..s
+   14 	     3 	 0.06088 	 0.00016 	 m..s
+   69 	     4 	 0.06656 	 0.00016 	 m..s
+   75 	     5 	 0.07228 	 0.00016 	 m..s
+   46 	     6 	 0.06473 	 0.00017 	 m..s
+    2 	     7 	 0.05554 	 0.00017 	 m..s
+   71 	     8 	 0.06773 	 0.00017 	 m..s
+   26 	     9 	 0.06322 	 0.00018 	 m..s
+   58 	    10 	 0.06514 	 0.00019 	 m..s
+    8 	    11 	 0.05821 	 0.00019 	 m..s
+   47 	    12 	 0.06473 	 0.00019 	 m..s
+   40 	    13 	 0.06428 	 0.00020 	 m..s
+    5 	    14 	 0.05736 	 0.00020 	 m..s
+    1 	    15 	 0.05490 	 0.00020 	 m..s
+   37 	    16 	 0.06407 	 0.00020 	 m..s
+   63 	    17 	 0.06538 	 0.00021 	 m..s
+   11 	    18 	 0.05965 	 0.00021 	 m..s
+   38 	    19 	 0.06420 	 0.00021 	 m..s
+   19 	    20 	 0.06163 	 0.00021 	 m..s
+   61 	    21 	 0.06527 	 0.00021 	 m..s
+   51 	    22 	 0.06490 	 0.00021 	 m..s
+    4 	    23 	 0.05734 	 0.00022 	 m..s
+   53 	    24 	 0.06500 	 0.00022 	 m..s
+   21 	    25 	 0.06178 	 0.00022 	 m..s
+   25 	    26 	 0.06265 	 0.00023 	 m..s
+   31 	    27 	 0.06370 	 0.00023 	 m..s
+    9 	    28 	 0.05825 	 0.00023 	 m..s
+   74 	    29 	 0.07194 	 0.00024 	 m..s
+   68 	    30 	 0.06642 	 0.00024 	 m..s
+   85 	    31 	 0.09649 	 0.00024 	 m..s
+   80 	    32 	 0.07527 	 0.00024 	 m..s
+   50 	    33 	 0.06488 	 0.00025 	 m..s
+   29 	    34 	 0.06361 	 0.00025 	 m..s
+   10 	    35 	 0.05862 	 0.00026 	 m..s
+   35 	    36 	 0.06390 	 0.00026 	 m..s
+   52 	    37 	 0.06495 	 0.00026 	 m..s
+    7 	    38 	 0.05821 	 0.00026 	 m..s
+   30 	    39 	 0.06364 	 0.00027 	 m..s
+   22 	    40 	 0.06186 	 0.00027 	 m..s
+   64 	    41 	 0.06581 	 0.00027 	 m..s
+   62 	    42 	 0.06528 	 0.00027 	 m..s
+   17 	    43 	 0.06155 	 0.00028 	 m..s
+   72 	    44 	 0.06928 	 0.00028 	 m..s
+   33 	    45 	 0.06383 	 0.00028 	 m..s
+   12 	    46 	 0.05996 	 0.00029 	 m..s
+    3 	    47 	 0.05708 	 0.00029 	 m..s
+   16 	    48 	 0.06122 	 0.00029 	 m..s
+   76 	    49 	 0.07266 	 0.00029 	 m..s
+   49 	    50 	 0.06486 	 0.00029 	 m..s
+   43 	    51 	 0.06447 	 0.00030 	 m..s
+   48 	    52 	 0.06481 	 0.00031 	 m..s
+   56 	    53 	 0.06508 	 0.00034 	 m..s
+   86 	    54 	 0.10482 	 0.00034 	 MISS
+   20 	    55 	 0.06178 	 0.00035 	 m..s
+   70 	    56 	 0.06749 	 0.00036 	 m..s
+   73 	    57 	 0.07031 	 0.00038 	 m..s
+   59 	    58 	 0.06519 	 0.00038 	 m..s
+   65 	    59 	 0.06600 	 0.00038 	 m..s
+   55 	    60 	 0.06504 	 0.00041 	 m..s
+   77 	    61 	 0.07280 	 0.00042 	 m..s
+   34 	    62 	 0.06386 	 0.00045 	 m..s
+   39 	    63 	 0.06423 	 0.00045 	 m..s
+   24 	    64 	 0.06246 	 0.00049 	 m..s
+   54 	    65 	 0.06502 	 0.00049 	 m..s
+    6 	    66 	 0.05789 	 0.00053 	 m..s
+   82 	    67 	 0.07961 	 0.00055 	 m..s
+    0 	    68 	 0.04865 	 0.00055 	 m..s
+   36 	    69 	 0.06404 	 0.00056 	 m..s
+   15 	    70 	 0.06112 	 0.00058 	 m..s
+   67 	    71 	 0.06623 	 0.00058 	 m..s
+   41 	    72 	 0.06445 	 0.00063 	 m..s
+   83 	    73 	 0.09406 	 0.00066 	 m..s
+   57 	    74 	 0.06513 	 0.00067 	 m..s
+   23 	    75 	 0.06231 	 0.00074 	 m..s
+   60 	    76 	 0.06526 	 0.00074 	 m..s
+   78 	    77 	 0.07284 	 0.00079 	 m..s
+   79 	    78 	 0.07411 	 0.00089 	 m..s
+   84 	    79 	 0.09589 	 0.00110 	 m..s
+   27 	    80 	 0.06359 	 0.00118 	 m..s
+   13 	    81 	 0.06037 	 0.00127 	 m..s
+   66 	    82 	 0.06610 	 0.00129 	 m..s
+   44 	    83 	 0.06461 	 0.00139 	 m..s
+   45 	    84 	 0.06470 	 0.00161 	 m..s
+   32 	    85 	 0.06381 	 0.00169 	 m..s
+   81 	    86 	 0.07653 	 0.04774 	 ~...
+   87 	    87 	 0.10579 	 0.06341 	 m..s
+   91 	    88 	 0.10678 	 0.07248 	 m..s
+  108 	    89 	 0.14666 	 0.07649 	 m..s
+   94 	    90 	 0.11321 	 0.07888 	 m..s
+  103 	    91 	 0.12858 	 0.07961 	 m..s
+  107 	    92 	 0.14459 	 0.08013 	 m..s
+   99 	    93 	 0.11992 	 0.08257 	 m..s
+  105 	    94 	 0.13485 	 0.08837 	 m..s
+   98 	    95 	 0.11955 	 0.08867 	 m..s
+   87 	    96 	 0.10579 	 0.08873 	 ~...
+   87 	    97 	 0.10579 	 0.09009 	 ~...
+  104 	    98 	 0.13176 	 0.09224 	 m..s
+   97 	    99 	 0.11949 	 0.09380 	 ~...
+  101 	   100 	 0.12598 	 0.09582 	 m..s
+   87 	   101 	 0.10579 	 0.09774 	 ~...
+  116 	   102 	 0.19784 	 0.09781 	 MISS
+   92 	   103 	 0.11044 	 0.10491 	 ~...
+   95 	   104 	 0.11387 	 0.11013 	 ~...
+  106 	   105 	 0.14033 	 0.11203 	 ~...
+  118 	   106 	 0.21424 	 0.11464 	 m..s
+  102 	   107 	 0.12652 	 0.12300 	 ~...
+  100 	   108 	 0.12395 	 0.12355 	 ~...
+  110 	   109 	 0.16098 	 0.12598 	 m..s
+  112 	   110 	 0.16666 	 0.15318 	 ~...
+  115 	   111 	 0.18991 	 0.15961 	 m..s
+  113 	   112 	 0.16902 	 0.17422 	 ~...
+  109 	   113 	 0.15283 	 0.19092 	 m..s
+  119 	   114 	 0.26342 	 0.20834 	 m..s
+  111 	   115 	 0.16630 	 0.22629 	 m..s
+  114 	   116 	 0.18522 	 0.24339 	 m..s
+  117 	   117 	 0.20864 	 0.24594 	 m..s
+   96 	   118 	 0.11499 	 0.30273 	 MISS
+   93 	   119 	 0.11161 	 0.30324 	 MISS
+  120 	   120 	 0.28672 	 0.31073 	 ~...
+==========================================
+r_mrr = 0.8514542579650879
+r2_mrr = 0.20578092336654663
+spearmanr_mrr@5 = 0.7791130542755127
+spearmanr_mrr@10 = 0.9002951979637146
+spearmanr_mrr@50 = 0.976068913936615
+spearmanr_mrr@100 = 0.9838181138038635
+spearmanr_mrr@All = 0.9825372695922852
+==========================================
+test time: 0.465
+Done Testing dataset DBpedia50
+Testing model with KGEM DistMult and KG DBpedia50
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.163 +- 0.099
+mrr vals (pred, true): 0.124, 0.258
+
+Evaluation for DBpedia50 on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   14 	     0 	 0.06088 	 5e-0500 	 m..s
+   43 	     1 	 0.06447 	 0.00011 	 m..s
+   63 	     2 	 0.06538 	 0.00012 	 m..s
+   10 	     3 	 0.05862 	 0.00014 	 m..s
+   64 	     4 	 0.06581 	 0.00015 	 m..s
+   58 	     5 	 0.06514 	 0.00015 	 m..s
+   57 	     6 	 0.06513 	 0.00017 	 m..s
+   37 	     7 	 0.06407 	 0.00018 	 m..s
+   54 	     8 	 0.06502 	 0.00019 	 m..s
+   41 	     9 	 0.06445 	 0.00021 	 m..s
+   28 	    10 	 0.06359 	 0.00021 	 m..s
+   48 	    11 	 0.06481 	 0.00021 	 m..s
+   23 	    12 	 0.06231 	 0.00021 	 m..s
+   36 	    13 	 0.06404 	 0.00022 	 m..s
+   35 	    14 	 0.06390 	 0.00024 	 m..s
+    5 	    15 	 0.05736 	 0.00027 	 m..s
+   66 	    16 	 0.06610 	 0.00028 	 m..s
+    0 	    17 	 0.04865 	 0.00028 	 m..s
+   55 	    18 	 0.06504 	 0.00030 	 m..s
+   16 	    19 	 0.06122 	 0.00031 	 m..s
+   45 	    20 	 0.06470 	 0.00033 	 m..s
+   25 	    21 	 0.06265 	 0.00034 	 m..s
+   22 	    22 	 0.06186 	 0.00034 	 m..s
+   13 	    23 	 0.06037 	 0.00036 	 m..s
+    4 	    24 	 0.05734 	 0.00036 	 m..s
+   78 	    25 	 0.07284 	 0.00038 	 m..s
+   81 	    26 	 0.07653 	 0.00042 	 m..s
+   15 	    27 	 0.06112 	 0.00044 	 m..s
+    3 	    28 	 0.05708 	 0.00045 	 m..s
+    1 	    29 	 0.05490 	 0.00050 	 m..s
+   67 	    30 	 0.06623 	 0.00051 	 m..s
+   47 	    31 	 0.06473 	 0.00053 	 m..s
+   32 	    32 	 0.06381 	 0.00063 	 m..s
+   12 	    33 	 0.05996 	 0.00071 	 m..s
+   27 	    34 	 0.06359 	 0.00179 	 m..s
+    2 	    35 	 0.05554 	 0.00267 	 m..s
+   19 	    36 	 0.06163 	 0.00441 	 m..s
+   69 	    37 	 0.06656 	 0.00823 	 m..s
+   59 	    38 	 0.06519 	 0.00828 	 m..s
+   53 	    39 	 0.06500 	 0.00963 	 m..s
+   86 	    40 	 0.10482 	 0.00969 	 m..s
+   24 	    41 	 0.06246 	 0.00980 	 m..s
+   61 	    42 	 0.06527 	 0.01370 	 m..s
+   84 	    43 	 0.09589 	 0.01728 	 m..s
+   85 	    44 	 0.09649 	 0.03414 	 m..s
+   96 	    45 	 0.11499 	 0.03525 	 m..s
+   93 	    46 	 0.11161 	 0.03790 	 m..s
+   83 	    47 	 0.09406 	 0.03967 	 m..s
+    6 	    48 	 0.05789 	 0.10737 	 m..s
+   65 	    49 	 0.06600 	 0.11810 	 m..s
+   17 	    50 	 0.06155 	 0.12252 	 m..s
+   18 	    51 	 0.06161 	 0.12381 	 m..s
+   21 	    52 	 0.06178 	 0.12393 	 m..s
+   20 	    53 	 0.06178 	 0.12681 	 m..s
+   30 	    54 	 0.06364 	 0.12701 	 m..s
+   31 	    55 	 0.06370 	 0.12856 	 m..s
+   75 	    56 	 0.07228 	 0.13157 	 m..s
+    8 	    57 	 0.05821 	 0.13244 	 m..s
+    7 	    58 	 0.05821 	 0.13507 	 m..s
+   68 	    59 	 0.06642 	 0.13563 	 m..s
+   72 	    60 	 0.06928 	 0.13683 	 m..s
+   29 	    61 	 0.06361 	 0.13755 	 m..s
+   79 	    62 	 0.07411 	 0.13874 	 m..s
+    9 	    63 	 0.05825 	 0.13896 	 m..s
+   11 	    64 	 0.05965 	 0.13909 	 m..s
+   44 	    65 	 0.06461 	 0.14050 	 m..s
+  109 	    66 	 0.15283 	 0.14152 	 ~...
+   80 	    67 	 0.07527 	 0.14228 	 m..s
+   60 	    68 	 0.06526 	 0.14309 	 m..s
+   42 	    69 	 0.06446 	 0.14423 	 m..s
+   77 	    70 	 0.07280 	 0.14441 	 m..s
+   26 	    71 	 0.06322 	 0.14590 	 m..s
+   51 	    72 	 0.06490 	 0.14663 	 m..s
+   71 	    73 	 0.06773 	 0.14995 	 m..s
+   38 	    74 	 0.06420 	 0.15177 	 m..s
+   56 	    75 	 0.06508 	 0.15180 	 m..s
+   46 	    76 	 0.06473 	 0.15565 	 m..s
+  114 	    77 	 0.18522 	 0.15591 	 ~...
+   62 	    78 	 0.06528 	 0.15711 	 m..s
+   34 	    79 	 0.06386 	 0.15815 	 m..s
+  111 	    80 	 0.16630 	 0.15939 	 ~...
+   73 	    81 	 0.07031 	 0.15999 	 m..s
+   39 	    82 	 0.06423 	 0.16041 	 m..s
+   76 	    83 	 0.07266 	 0.16490 	 m..s
+   33 	    84 	 0.06383 	 0.16703 	 MISS
+   82 	    85 	 0.07961 	 0.16757 	 m..s
+   52 	    86 	 0.06495 	 0.16800 	 MISS
+   50 	    87 	 0.06488 	 0.17173 	 MISS
+   87 	    88 	 0.10579 	 0.17470 	 m..s
+   40 	    89 	 0.06428 	 0.17491 	 MISS
+   87 	    90 	 0.10579 	 0.17576 	 m..s
+   95 	    91 	 0.11387 	 0.17592 	 m..s
+   49 	    92 	 0.06486 	 0.17704 	 MISS
+   74 	    93 	 0.07194 	 0.17787 	 MISS
+   70 	    94 	 0.06749 	 0.17827 	 MISS
+   87 	    95 	 0.10579 	 0.18736 	 m..s
+   98 	    96 	 0.11955 	 0.19747 	 m..s
+   87 	    97 	 0.10579 	 0.19917 	 m..s
+  102 	    98 	 0.12652 	 0.20586 	 m..s
+   99 	    99 	 0.11992 	 0.20604 	 m..s
+   94 	   100 	 0.11321 	 0.21094 	 m..s
+  110 	   101 	 0.16098 	 0.22010 	 m..s
+  108 	   102 	 0.14666 	 0.23077 	 m..s
+  105 	   103 	 0.13485 	 0.23125 	 m..s
+  103 	   104 	 0.12858 	 0.23948 	 MISS
+   91 	   105 	 0.10678 	 0.24231 	 MISS
+  101 	   106 	 0.12598 	 0.25479 	 MISS
+  112 	   107 	 0.16666 	 0.25706 	 m..s
+  100 	   108 	 0.12395 	 0.25823 	 MISS
+  106 	   109 	 0.14033 	 0.26095 	 MISS
+   97 	   110 	 0.11949 	 0.26312 	 MISS
+  104 	   111 	 0.13176 	 0.26378 	 MISS
+   92 	   112 	 0.11044 	 0.26759 	 MISS
+  115 	   113 	 0.18991 	 0.27797 	 m..s
+  107 	   114 	 0.14459 	 0.28041 	 MISS
+  113 	   115 	 0.16902 	 0.28735 	 MISS
+  116 	   116 	 0.19784 	 0.32804 	 MISS
+  117 	   117 	 0.20864 	 0.35340 	 MISS
+  118 	   118 	 0.21424 	 0.36096 	 MISS
+  120 	   119 	 0.28672 	 0.37136 	 m..s
+  119 	   120 	 0.26342 	 0.39385 	 MISS
+==========================================
+r_mrr = 0.7275775074958801
+r2_mrr = 0.3680812120437622
+spearmanr_mrr@5 = 0.9163476824760437
+spearmanr_mrr@10 = 0.9179195165634155
+spearmanr_mrr@50 = 0.9758774638175964
+spearmanr_mrr@100 = 0.8493549823760986
+spearmanr_mrr@All = 0.8525351881980896
+==========================================
+test time: 0.442
+Done Testing dataset DBpedia50
+Testing model with KGEM TransE and KG DBpedia50
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.163 +- 0.099
+mrr vals (pred, true): 0.124, 0.088
+
+Evaluation for DBpedia50 on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   10 	     0 	 0.05862 	 0.00021 	 m..s
+   35 	     1 	 0.06390 	 0.00022 	 m..s
+    1 	     2 	 0.05490 	 0.00022 	 m..s
+   78 	     3 	 0.07284 	 0.00024 	 m..s
+   19 	     4 	 0.06163 	 0.00024 	 m..s
+   48 	     5 	 0.06481 	 0.00025 	 m..s
+   64 	     6 	 0.06581 	 0.00026 	 m..s
+   27 	     7 	 0.06359 	 0.00026 	 m..s
+   67 	     8 	 0.06623 	 0.00026 	 m..s
+   54 	     9 	 0.06502 	 0.00026 	 m..s
+   22 	    10 	 0.06186 	 0.00028 	 m..s
+   15 	    11 	 0.06112 	 0.00028 	 m..s
+   58 	    12 	 0.06514 	 0.00028 	 m..s
+   25 	    13 	 0.06265 	 0.00030 	 m..s
+   57 	    14 	 0.06513 	 0.00030 	 m..s
+    4 	    15 	 0.05734 	 0.00030 	 m..s
+    0 	    16 	 0.04865 	 0.00031 	 m..s
+   66 	    17 	 0.06610 	 0.00031 	 m..s
+    3 	    18 	 0.05708 	 0.00032 	 m..s
+   55 	    19 	 0.06504 	 0.00032 	 m..s
+   13 	    20 	 0.06037 	 0.00037 	 m..s
+    5 	    21 	 0.05736 	 0.00038 	 m..s
+   37 	    22 	 0.06407 	 0.00038 	 m..s
+   23 	    23 	 0.06231 	 0.00040 	 m..s
+   47 	    24 	 0.06473 	 0.00041 	 m..s
+   28 	    25 	 0.06359 	 0.00045 	 m..s
+   16 	    26 	 0.06122 	 0.00045 	 m..s
+   12 	    27 	 0.05996 	 0.00058 	 m..s
+   45 	    28 	 0.06470 	 0.00073 	 m..s
+   32 	    29 	 0.06381 	 0.00089 	 m..s
+   36 	    30 	 0.06404 	 0.00136 	 m..s
+   41 	    31 	 0.06445 	 0.00194 	 m..s
+   11 	    32 	 0.05965 	 0.00277 	 m..s
+   17 	    33 	 0.06155 	 0.00571 	 m..s
+   21 	    34 	 0.06178 	 0.00793 	 m..s
+    8 	    35 	 0.05821 	 0.01079 	 m..s
+    9 	    36 	 0.05825 	 0.01115 	 m..s
+   42 	    37 	 0.06446 	 0.01251 	 m..s
+   44 	    38 	 0.06461 	 0.01959 	 m..s
+    6 	    39 	 0.05789 	 0.02020 	 m..s
+   60 	    40 	 0.06526 	 0.02069 	 m..s
+   18 	    41 	 0.06161 	 0.02537 	 m..s
+   29 	    42 	 0.06361 	 0.02604 	 m..s
+   49 	    43 	 0.06486 	 0.02723 	 m..s
+   40 	    44 	 0.06428 	 0.02825 	 m..s
+   20 	    45 	 0.06178 	 0.02900 	 m..s
+   87 	    46 	 0.10579 	 0.02901 	 m..s
+   70 	    47 	 0.06749 	 0.02952 	 m..s
+    7 	    48 	 0.05821 	 0.03172 	 ~...
+   87 	    49 	 0.10579 	 0.03357 	 m..s
+   30 	    50 	 0.06364 	 0.03660 	 ~...
+   62 	    51 	 0.06528 	 0.03767 	 ~...
+   87 	    52 	 0.10579 	 0.03931 	 m..s
+   97 	    53 	 0.11949 	 0.04324 	 m..s
+   52 	    54 	 0.06495 	 0.04325 	 ~...
+   87 	    55 	 0.10579 	 0.04716 	 m..s
+   65 	    56 	 0.06600 	 0.04913 	 ~...
+   94 	    57 	 0.11321 	 0.04998 	 m..s
+   68 	    58 	 0.06642 	 0.05005 	 ~...
+  113 	    59 	 0.16902 	 0.05032 	 MISS
+  112 	    60 	 0.16666 	 0.05634 	 MISS
+   95 	    61 	 0.11387 	 0.05661 	 m..s
+  101 	    62 	 0.12598 	 0.05919 	 m..s
+   26 	    63 	 0.06322 	 0.06036 	 ~...
+   31 	    64 	 0.06370 	 0.06677 	 ~...
+   38 	    65 	 0.06420 	 0.06687 	 ~...
+   46 	    66 	 0.06473 	 0.06811 	 ~...
+   34 	    67 	 0.06386 	 0.06900 	 ~...
+   50 	    68 	 0.06488 	 0.06992 	 ~...
+   92 	    69 	 0.11044 	 0.07021 	 m..s
+   33 	    70 	 0.06383 	 0.07218 	 ~...
+   99 	    71 	 0.11992 	 0.07237 	 m..s
+   81 	    72 	 0.07653 	 0.07377 	 ~...
+   93 	    73 	 0.11161 	 0.07414 	 m..s
+   56 	    74 	 0.06508 	 0.07569 	 ~...
+  118 	    75 	 0.21424 	 0.08187 	 MISS
+   96 	    76 	 0.11499 	 0.08454 	 m..s
+  100 	    77 	 0.12395 	 0.08798 	 m..s
+  102 	    78 	 0.12652 	 0.09117 	 m..s
+   39 	    79 	 0.06423 	 0.09317 	 ~...
+   91 	    80 	 0.10678 	 0.09750 	 ~...
+  115 	    81 	 0.18991 	 0.09751 	 m..s
+  105 	    82 	 0.13485 	 0.09974 	 m..s
+  103 	    83 	 0.12858 	 0.10188 	 ~...
+  110 	    84 	 0.16098 	 0.10243 	 m..s
+   98 	    85 	 0.11955 	 0.10353 	 ~...
+   51 	    86 	 0.06490 	 0.10673 	 m..s
+  108 	    87 	 0.14666 	 0.11015 	 m..s
+   71 	    88 	 0.06773 	 0.11124 	 m..s
+  104 	    89 	 0.13176 	 0.11589 	 ~...
+  107 	    90 	 0.14459 	 0.12441 	 ~...
+  116 	    91 	 0.19784 	 0.12925 	 m..s
+   84 	    92 	 0.09589 	 0.12979 	 m..s
+  117 	    93 	 0.20864 	 0.13405 	 m..s
+   85 	    94 	 0.09649 	 0.13498 	 m..s
+   77 	    95 	 0.07280 	 0.14383 	 m..s
+   86 	    96 	 0.10482 	 0.14493 	 m..s
+   83 	    97 	 0.09406 	 0.14530 	 m..s
+  109 	    98 	 0.15283 	 0.14541 	 ~...
+   73 	    99 	 0.07031 	 0.14586 	 m..s
+   14 	   100 	 0.06088 	 0.15099 	 m..s
+   76 	   101 	 0.07266 	 0.15352 	 m..s
+  106 	   102 	 0.14033 	 0.15451 	 ~...
+   80 	   103 	 0.07527 	 0.15681 	 m..s
+   61 	   104 	 0.06527 	 0.15702 	 m..s
+   59 	   105 	 0.06519 	 0.15868 	 m..s
+   79 	   106 	 0.07411 	 0.15935 	 m..s
+   24 	   107 	 0.06246 	 0.16341 	 MISS
+   63 	   108 	 0.06538 	 0.16352 	 m..s
+   53 	   109 	 0.06500 	 0.16360 	 m..s
+    2 	   110 	 0.05554 	 0.16796 	 MISS
+   43 	   111 	 0.06447 	 0.16866 	 MISS
+   69 	   112 	 0.06656 	 0.16959 	 MISS
+   75 	   113 	 0.07228 	 0.17044 	 m..s
+   72 	   114 	 0.06928 	 0.18320 	 MISS
+   74 	   115 	 0.07194 	 0.18981 	 MISS
+  120 	   116 	 0.28672 	 0.20138 	 m..s
+  111 	   117 	 0.16630 	 0.20346 	 m..s
+   82 	   118 	 0.07961 	 0.20862 	 MISS
+  114 	   119 	 0.18522 	 0.23564 	 m..s
+  119 	   120 	 0.26342 	 0.30290 	 m..s
+==========================================
+r_mrr = 0.4957903027534485
+r2_mrr = 0.14312398433685303
+spearmanr_mrr@5 = 0.9270793199539185
+spearmanr_mrr@10 = 0.9633403420448303
+spearmanr_mrr@50 = 0.9722724556922913
+spearmanr_mrr@100 = 0.9131698608398438
+spearmanr_mrr@All = 0.9111976027488708
+==========================================
+test time: 0.497
+Done Testing dataset DBpedia50
+total time taken: 606.8112325668335
+training time taken: 590.1430435180664
+TWIG out ;))
+================================================
+------------------------------------------------
+Running a TWIG experiment with tag: Kinships-all
+------------------------------------------------
+================================================
+Using random seed: 1100450259379113
+Starting TWIG!
+Loading datasets
+Loading ComplEx...
+Loading Kinships...
+- loading run 2.1...
+Loading DistMult...
+Loading Kinships...
+- loading run 2.1...
+Loading TransE...
+Loading Kinships...
+- loading run 2.1...
+Creating the train-test split
+using splits:
+test_ids (121): [918, 199, 384, 26, 434, 577, 226, 839, 1135, 907, 798, 1049, 903, 642, 286, 1029, 1108, 450, 71, 398, 1051, 817, 402, 990, 244, 139, 1054, 1183, 715, 324, 672, 587, 448, 945, 270, 253, 1090, 158, 154, 13, 830, 778, 1072, 1210, 236, 69, 174, 568, 867, 489, 50, 979, 731, 792, 1132, 1138, 869, 519, 992, 73, 1201, 484, 952, 787, 339, 909, 327, 763, 141, 781, 818, 816, 170, 176, 8, 46, 332, 138, 678, 700, 955, 1158, 325, 107, 840, 873, 525, 759, 441, 863, 942, 191, 370, 553, 1182, 1141, 165, 256, 1031, 930, 97, 237, 482, 857, 760, 194, 203, 896, 462, 622, 1189, 413, 929, 202, 959, 1159, 1034, 1089, 1157, 281, 636]
+valid_ids (0): []
+train_ids (1094): [377, 953, 784, 147, 250, 424, 755, 15, 229, 844, 826, 243, 499, 861, 84, 976, 598, 33, 305, 146, 856, 712, 405, 35, 72, 214, 615, 939, 355, 1011, 315, 527, 118, 1164, 608, 972, 1207, 807, 890, 493, 1077, 56, 628, 347, 1131, 762, 837, 879, 372, 782, 820, 512, 805, 811, 738, 603, 963, 292, 178, 479, 388, 537, 426, 668, 231, 282, 679, 392, 538, 1200, 557, 974, 364, 517, 507, 263, 569, 7, 529, 872, 485, 785, 385, 937, 182, 571, 451, 508, 248, 302, 494, 948, 283, 1018, 610, 197, 29, 536, 110, 960, 381, 443, 1101, 9, 886, 356, 822, 75, 710, 734, 606, 255, 836, 1056, 1123, 683, 187, 1021, 1006, 838, 808, 183, 350, 108, 500, 487, 91, 345, 544, 330, 359, 810, 277, 766, 151, 681, 1184, 59, 242, 969, 467, 341, 888, 1024, 547, 719, 1202, 765, 633, 463, 122, 621, 1083, 846, 899, 871, 11, 121, 779, 193, 987, 228, 171, 934, 1124, 897, 184, 150, 725, 1032, 148, 233, 249, 177, 752, 363, 38, 673, 592, 1030, 336, 927, 617, 498, 319, 1112, 497, 651, 757, 1165, 638, 397, 680, 565, 1096, 742, 1035, 914, 1203, 213, 732, 1093, 665, 220, 518, 164, 1081, 988, 447, 124, 854, 931, 999, 620, 1206, 92, 793, 406, 43, 227, 19, 1076, 526, 1061, 1099, 523, 1, 480, 626, 812, 824, 552, 465, 1098, 299, 268, 259, 912, 720, 756, 832, 1153, 724, 67, 739, 163, 575, 137, 893, 96, 743, 85, 422, 433, 395, 515, 1088, 868, 474, 298, 296, 326, 457, 311, 1005, 677, 637, 593, 265, 986, 582, 696, 949, 1140, 492, 823, 740, 1128, 866, 722, 1087, 641, 958, 996, 797, 613, 291, 564, 175, 1092, 456, 390, 858, 632, 1045, 713, 90, 189, 600, 520, 799, 351, 650, 83, 454, 257, 1147, 585, 1136, 542, 30, 780, 584, 366, 746, 60, 689, 851, 964, 847, 711, 730, 1195, 783, 865, 736, 1111, 272, 1079, 968, 264, 230, 1102, 382, 269, 66, 267, 1060, 352, 594, 371, 1094, 86, 691, 1172, 1037, 224, 221, 1180, 503, 1015, 814, 431, 966, 819, 957, 1063, 348, 254, 172, 429, 635, 1163, 750, 530, 37, 956, 831, 458, 1114, 1028, 1152, 773, 365, 82, 116, 423, 379, 978, 105, 333, 554, 663, 1187, 260, 307, 53, 801, 1095, 161, 360, 629, 1166, 541, 192, 875, 605, 45, 985, 1039, 658, 970, 142, 509, 923, 1134, 241, 218, 983, 200, 246, 198, 1002, 936, 63, 1122, 813, 578, 560, 1176, 898, 747, 210, 735, 726, 644, 188, 337, 627, 534, 77, 599, 415, 328, 506, 946, 167, 904, 549, 1001, 630, 279, 1194, 601, 563, 795, 40, 401, 323, 1190, 789, 87, 921, 488, 860, 99, 0, 616, 1007, 892, 733, 741, 68, 694, 449, 440, 664, 1058, 100, 1130, 1104, 357, 340, 539, 843, 1025, 572, 749, 758, 159, 1013, 1209, 376, 369, 1020, 634, 655, 389, 686, 460, 303, 271, 532, 721, 998, 21, 211, 1041, 1198, 652, 1168, 880, 1185, 1121, 435, 1171, 453, 113, 65, 583, 1197, 42, 24, 674, 362, 168, 284, 329, 882, 481, 1205, 1120, 262, 804, 16, 1142, 1192, 727, 876, 12, 412, 1080, 411, 619, 580, 611, 841, 1196, 469, 1160, 225, 859, 416, 209, 295, 39, 486, 1110, 714, 954, 25, 911, 1019, 81, 266, 140, 775, 624, 842, 640, 1023, 335, 1155, 596, 693, 902, 612, 562, 1059, 723, 208, 906, 115, 699, 777, 470, 1062, 396, 215, 751, 917, 47, 947, 1154, 201, 803, 1175, 919, 353, 52, 707, 688, 806, 708, 403, 104, 478, 51, 455, 975, 130, 943, 317, 313, 614, 155, 1109, 1156, 754, 204, 288, 89, 535, 427, 1161, 504, 1143, 4, 705, 238, 555, 169, 111, 1186, 1117, 1179, 676, 623, 1040, 1103, 387, 767, 675, 1119, 579, 815, 1178, 511, 514, 609, 1082, 864, 883, 436, 728, 314, 247, 133, 913, 993, 273, 920, 702, 1052, 127, 428, 476, 1036, 414, 524, 275, 78, 692, 657, 769, 195, 905, 932, 533, 697, 595, 18, 654, 10, 378, 1100, 120, 417, 1127, 546, 1097, 64, 205, 251, 1047, 531, 490, 790, 971, 354, 114, 802, 910, 938, 1048, 1038, 1057, 941, 461, 410, 588, 573, 123, 135, 496, 232, 475, 358, 695, 729, 289, 98, 20, 309, 419, 321, 753, 745, 922, 217, 995, 196, 439, 977, 776, 540, 660, 827, 131, 604, 34, 1042, 55, 870, 991, 276, 375, 95, 647, 900, 1067, 925, 94, 794, 143, 556, 28, 1064, 513, 477, 132, 373, 1106, 23, 1167, 698, 27, 1116, 206, 885, 1014, 744, 1177, 748, 502, 821, 223, 649, 134, 926, 136, 22, 58, 367, 1053, 895, 570, 591, 495, 961, 887, 1118, 290, 1065, 112, 853, 473, 374, 459, 93, 768, 287, 667, 1145, 102, 1050, 432, 1068, 1151, 80, 709, 786, 1150, 342, 2, 421, 386, 126, 285, 383, 425, 240, 1066, 344, 129, 119, 850, 510, 1113, 639, 1003, 166, 74, 306, 318, 791, 862, 1009, 101, 399, 889, 1170, 982, 924, 788, 852, 32, 437, 57, 391, 928, 944, 1086, 716, 1017, 393, 1149, 501, 128, 153, 561, 31, 891, 581, 445, 528, 117, 258, 293, 338, 1071, 157, 984, 222, 670, 483, 491, 1204, 310, 1085, 661, 828, 468, 566, 796, 430, 301, 1084, 331, 545, 1173, 368, 894, 874, 219, 516, 916, 701, 1199, 704, 855, 690, 407, 394, 5, 687, 316, 349, 643, 216, 312, 14, 1174, 1026, 1008, 1208, 1074, 602, 915, 404, 245, 666, 771, 88, 1012, 567, 845, 848, 1078, 294, 997, 280, 550, 576, 1213, 44, 446, 418, 76, 442, 543, 908, 718, 940, 6, 1137, 656, 1016, 774, 901, 1181, 1069, 308, 671, 1004, 1115, 1144, 981, 645, 48, 300, 849, 980, 1075, 466, 1010, 809, 659, 343, 669, 278, 558, 149, 950, 274, 589, 452, 444, 239, 190, 235, 625, 61, 420, 304, 103, 145, 1022, 1125, 1033, 186, 162, 962, 3, 70, 829, 764, 409, 181, 1214, 717, 835, 438, 994, 1091, 1133, 1044, 1070, 1043, 833, 54, 1188, 521, 551, 825, 1148, 770, 156, 586, 1169, 207, 1212, 361, 1105, 877, 49, 1193, 41, 109, 559, 62, 1191, 1046, 878, 252, 1027, 800, 761, 548, 234, 618, 684, 346, 180, 522, 505, 212, 597, 160, 1129, 144, 1146, 1055, 152, 400, 106, 685, 79, 322, 125, 967, 1211, 706, 464, 653, 472, 380, 1073, 607, 951, 408, 648, 173, 179, 1126, 973, 884, 334, 297, 933, 881, 590, 682, 631, 1107, 261, 320, 36, 703, 574, 646, 471, 834, 185, 772, 1139, 989, 17, 935, 737, 965, 662, 1162, 1000]
+Converting data to tensors
+Normalising data
+Finalising data preprocessing
+the checkpoint ID for this run is:  3666416855943797
+the save name prefix for this run is:  chkpt-ID_3666416855943797_tag_Kinships-all
+running TWIG with settings:
+data_to_load: {'ComplEx': {'Kinships': ['2.1']}, 'DistMult': {'Kinships': ['2.1']}, 'TransE': {'Kinships': ['2.1']}}
+test_ratio: 0.1
+valid_ratio: 0.0
+normalisation: zscore
+n_bins: 30
+optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.005
+    maximize: False
+    weight_decay: 0
+)
+optimizer_args: {'lr': 0.005}
+mrr_loss_coeffs: [0, 10]
+rank_dist_loss_coeffs: [1, 1]
+rescale_mrr_loss: False
+rescale_rank_dist_loss: False
+RUnning with TWIG model:
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=11, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 415
+rank avg (pred): 0.472 +- 0.007
+mrr vals (pred, true): 0.020, 0.054
+batch losses (mrrl, rdl): 0.0, 8.44571e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 330
+rank avg (pred): 0.364 +- 0.095
+mrr vals (pred, true): 0.035, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0001697511
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 19
+rank avg (pred): 0.094 +- 0.048
+mrr vals (pred, true): 0.197, 0.434
+batch losses (mrrl, rdl): 0.0, 3.28853e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 303
+rank avg (pred): 0.063 +- 0.045
+mrr vals (pred, true): 0.340, 0.326
+batch losses (mrrl, rdl): 0.0, 3.73771e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 1019
+rank avg (pred): 0.359 +- 0.265
+mrr vals (pred, true): 0.239, 0.049
+batch losses (mrrl, rdl): 0.0, 5.44769e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 571
+rank avg (pred): 0.377 +- 0.277
+mrr vals (pred, true): 0.240, 0.203
+batch losses (mrrl, rdl): 0.0, 0.0013003855
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 641
+rank avg (pred): 0.360 +- 0.268
+mrr vals (pred, true): 0.243, 0.059
+batch losses (mrrl, rdl): 0.0, 8.85246e-05
+
+Epoch over!
+epoch time: 38.852
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 985
+rank avg (pred): 0.072 +- 0.056
+mrr vals (pred, true): 0.361, 0.453
+batch losses (mrrl, rdl): 0.0, 2.4849e-06
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 20
+rank avg (pred): 0.091 +- 0.068
+mrr vals (pred, true): 0.325, 0.277
+batch losses (mrrl, rdl): 0.0, 1.65285e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 264
+rank avg (pred): 0.114 +- 0.088
+mrr vals (pred, true): 0.330, 0.436
+batch losses (mrrl, rdl): 0.0, 8.56318e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 611
+rank avg (pred): 0.411 +- 0.283
+mrr vals (pred, true): 0.200, 0.051
+batch losses (mrrl, rdl): 0.0, 1.85192e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 1088
+rank avg (pred): 0.353 +- 0.267
+mrr vals (pred, true): 0.257, 0.057
+batch losses (mrrl, rdl): 0.0, 2.83758e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 444
+rank avg (pred): 0.372 +- 0.273
+mrr vals (pred, true): 0.239, 0.054
+batch losses (mrrl, rdl): 0.0, 0.0001044946
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 586
+rank avg (pred): 0.380 +- 0.273
+mrr vals (pred, true): 0.220, 0.052
+batch losses (mrrl, rdl): 0.0, 6.53232e-05
+
+Epoch over!
+epoch time: 40.14
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 1091
+rank avg (pred): 0.331 +- 0.262
+mrr vals (pred, true): 0.287, 0.058
+batch losses (mrrl, rdl): 0.0, 0.0001798227
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 276
+rank avg (pred): 0.059 +- 0.048
+mrr vals (pred, true): 0.397, 0.308
+batch losses (mrrl, rdl): 0.0, 3.04853e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 791
+rank avg (pred): 0.448 +- 0.289
+mrr vals (pred, true): 0.178, 0.053
+batch losses (mrrl, rdl): 0.0, 1.08801e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 566
+rank avg (pred): 0.127 +- 0.100
+mrr vals (pred, true): 0.330, 0.220
+batch losses (mrrl, rdl): 0.0, 3.96344e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 18
+rank avg (pred): 0.080 +- 0.061
+mrr vals (pred, true): 0.342, 0.280
+batch losses (mrrl, rdl): 0.0, 5.8887e-06
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 548
+rank avg (pred): 0.092 +- 0.072
+mrr vals (pred, true): 0.345, 0.375
+batch losses (mrrl, rdl): 0.0, 1.80069e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 437
+rank avg (pred): 0.340 +- 0.266
+mrr vals (pred, true): 0.272, 0.052
+batch losses (mrrl, rdl): 0.0, 0.0001991525
+
+Epoch over!
+epoch time: 41.426
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 505
+rank avg (pred): 0.129 +- 0.102
+mrr vals (pred, true): 0.327, 0.216
+batch losses (mrrl, rdl): 0.0, 7.7126e-06
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 90
+rank avg (pred): 0.348 +- 0.271
+mrr vals (pred, true): 0.261, 0.049
+batch losses (mrrl, rdl): 0.0, 8.98821e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 573
+rank avg (pred): 0.402 +- 0.280
+mrr vals (pred, true): 0.192, 0.257
+batch losses (mrrl, rdl): 0.0, 0.0021556157
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 159
+rank avg (pred): 0.359 +- 0.278
+mrr vals (pred, true): 0.263, 0.051
+batch losses (mrrl, rdl): 0.0, 0.0001346335
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 557
+rank avg (pred): 0.100 +- 0.080
+mrr vals (pred, true): 0.356, 0.224
+batch losses (mrrl, rdl): 0.0, 1.82414e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 153
+rank avg (pred): 0.370 +- 0.271
+mrr vals (pred, true): 0.227, 0.241
+batch losses (mrrl, rdl): 0.0, 0.0018890953
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 931
+rank avg (pred): 0.448 +- 0.279
+mrr vals (pred, true): 0.178, 0.055
+batch losses (mrrl, rdl): 0.0, 6.9884e-06
+
+Epoch over!
+epoch time: 39.346
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 529
+rank avg (pred): 0.099 +- 0.078
+mrr vals (pred, true): 0.343, 0.212
+batch losses (mrrl, rdl): 0.0, 6.85677e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 494
+rank avg (pred): 0.104 +- 0.081
+mrr vals (pred, true): 0.334, 0.219
+batch losses (mrrl, rdl): 0.0, 4.11873e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 1099
+rank avg (pred): 0.365 +- 0.274
+mrr vals (pred, true): 0.255, 0.254
+batch losses (mrrl, rdl): 0.0, 0.0018452777
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 6
+rank avg (pred): 0.100 +- 0.083
+mrr vals (pred, true): 0.374, 0.319
+batch losses (mrrl, rdl): 0.0, 5.8848e-06
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 346
+rank avg (pred): 0.387 +- 0.288
+mrr vals (pred, true): 0.239, 0.052
+batch losses (mrrl, rdl): 0.0, 1.01142e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 466
+rank avg (pred): 0.354 +- 0.274
+mrr vals (pred, true): 0.278, 0.058
+batch losses (mrrl, rdl): 0.0, 0.0001243999
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 401
+rank avg (pred): 0.351 +- 0.272
+mrr vals (pred, true): 0.264, 0.056
+batch losses (mrrl, rdl): 0.0, 0.0001705532
+
+Epoch over!
+epoch time: 37.498
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 185
+rank avg (pred): 0.360 +- 0.276
+mrr vals (pred, true): 0.268, 0.053
+batch losses (mrrl, rdl): 0.4760151803, 9.55855e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 305
+rank avg (pred): 0.049 +- 0.033
+mrr vals (pred, true): 0.330, 0.300
+batch losses (mrrl, rdl): 0.0085403919, 0.0001029438
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 736
+rank avg (pred): 0.213 +- 0.139
+mrr vals (pred, true): 0.189, 0.021
+batch losses (mrrl, rdl): 0.1931164563, 0.0011923336
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 709
+rank avg (pred): 0.431 +- 0.201
+mrr vals (pred, true): 0.109, 0.053
+batch losses (mrrl, rdl): 0.0350893028, 2.36757e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 361
+rank avg (pred): 0.455 +- 0.182
+mrr vals (pred, true): 0.091, 0.052
+batch losses (mrrl, rdl): 0.0164963901, 7.08841e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 274
+rank avg (pred): 0.068 +- 0.047
+mrr vals (pred, true): 0.305, 0.419
+batch losses (mrrl, rdl): 0.130150184, 4.3451e-06
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 601
+rank avg (pred): 0.467 +- 0.170
+mrr vals (pred, true): 0.076, 0.051
+batch losses (mrrl, rdl): 0.0067997021, 3.30341e-05
+
+Epoch over!
+epoch time: 38.231
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 630
+rank avg (pred): 0.460 +- 0.175
+mrr vals (pred, true): 0.082, 0.055
+batch losses (mrrl, rdl): 0.0105441408, 3.84927e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 741
+rank avg (pred): 0.099 +- 0.070
+mrr vals (pred, true): 0.289, 0.249
+batch losses (mrrl, rdl): 0.0159907565, 0.0001026526
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 575
+rank avg (pred): 0.448 +- 0.186
+mrr vals (pred, true): 0.097, 0.238
+batch losses (mrrl, rdl): 0.1983623207, 0.0027738374
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 405
+rank avg (pred): 0.480 +- 0.149
+mrr vals (pred, true): 0.069, 0.051
+batch losses (mrrl, rdl): 0.0035765918, 4.50102e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 1174
+rank avg (pred): 0.445 +- 0.177
+mrr vals (pred, true): 0.093, 0.049
+batch losses (mrrl, rdl): 0.0181010757, 2.74817e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 703
+rank avg (pred): 0.468 +- 0.162
+mrr vals (pred, true): 0.078, 0.053
+batch losses (mrrl, rdl): 0.0080410438, 3.18721e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 575
+rank avg (pred): 0.479 +- 0.146
+mrr vals (pred, true): 0.069, 0.054
+batch losses (mrrl, rdl): 0.0036947392, 5.39777e-05
+
+Epoch over!
+epoch time: 39.123
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 42
+rank avg (pred): 0.108 +- 0.081
+mrr vals (pred, true): 0.321, 0.266
+batch losses (mrrl, rdl): 0.0293405131, 1.87536e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 42
+rank avg (pred): 0.094 +- 0.073
+mrr vals (pred, true): 0.347, 0.293
+batch losses (mrrl, rdl): 0.0289173909, 1.7482e-06
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 997
+rank avg (pred): 0.052 +- 0.038
+mrr vals (pred, true): 0.367, 0.462
+batch losses (mrrl, rdl): 0.0903193206, 5.209e-07
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 145
+rank avg (pred): 0.464 +- 0.155
+mrr vals (pred, true): 0.078, 0.053
+batch losses (mrrl, rdl): 0.0080155171, 3.90932e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 686
+rank avg (pred): 0.459 +- 0.160
+mrr vals (pred, true): 0.082, 0.044
+batch losses (mrrl, rdl): 0.0101394169, 3.46599e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 599
+rank avg (pred): 0.464 +- 0.148
+mrr vals (pred, true): 0.079, 0.233
+batch losses (mrrl, rdl): 0.2391242087, 0.0024809793
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 732
+rank avg (pred): 0.196 +- 0.160
+mrr vals (pred, true): 0.323, 0.626
+batch losses (mrrl, rdl): 0.9173345566, 0.000633759
+
+Epoch over!
+epoch time: 38.289
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 463
+rank avg (pred): 0.462 +- 0.142
+mrr vals (pred, true): 0.079, 0.050
+batch losses (mrrl, rdl): 0.0081539499, 4.36987e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 891
+rank avg (pred): 0.245 +- 0.193
+mrr vals (pred, true): 0.300, 0.147
+batch losses (mrrl, rdl): 0.2360706776, 1.26469e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 316
+rank avg (pred): 0.166 +- 0.138
+mrr vals (pred, true): 0.344, 0.446
+batch losses (mrrl, rdl): 0.1049832553, 0.0003226444
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 1172
+rank avg (pred): 0.455 +- 0.128
+mrr vals (pred, true): 0.076, 0.059
+batch losses (mrrl, rdl): 0.006583414, 6.07923e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 844
+rank avg (pred): 0.467 +- 0.114
+mrr vals (pred, true): 0.067, 0.045
+batch losses (mrrl, rdl): 0.002993281, 5.75577e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 1194
+rank avg (pred): 0.450 +- 0.133
+mrr vals (pred, true): 0.078, 0.050
+batch losses (mrrl, rdl): 0.0077287471, 6.23939e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 870
+rank avg (pred): 0.465 +- 0.096
+mrr vals (pred, true): 0.045, 0.057
+batch losses (mrrl, rdl): 0.0002072674, 6.73113e-05
+
+Epoch over!
+epoch time: 37.914
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 6
+rank avg (pred): 0.205 +- 0.167
+mrr vals (pred, true): 0.326, 0.319
+batch losses (mrrl, rdl): 0.00051499, 0.0002377903
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 611
+rank avg (pred): 0.417 +- 0.147
+mrr vals (pred, true): 0.090, 0.049
+batch losses (mrrl, rdl): 0.015835518, 6.30066e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 984
+rank avg (pred): 0.078 +- 0.065
+mrr vals (pred, true): 0.401, 0.446
+batch losses (mrrl, rdl): 0.0205535628, 1.22774e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 517
+rank avg (pred): 0.306 +- 0.230
+mrr vals (pred, true): 0.282, 0.228
+batch losses (mrrl, rdl): 0.0290001146, 0.0006868913
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 1076
+rank avg (pred): 0.120 +- 0.101
+mrr vals (pred, true): 0.391, 0.339
+batch losses (mrrl, rdl): 0.0273014326, 1.92283e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 624
+rank avg (pred): 0.390 +- 0.130
+mrr vals (pred, true): 0.088, 0.225
+batch losses (mrrl, rdl): 0.1872553676, 0.0018599202
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 650
+rank avg (pred): 0.410 +- 0.127
+mrr vals (pred, true): 0.084, 0.056
+batch losses (mrrl, rdl): 0.0115046185, 8.84953e-05
+
+Epoch over!
+epoch time: 37.867
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 400
+rank avg (pred): 0.432 +- 0.120
+mrr vals (pred, true): 0.078, 0.055
+batch losses (mrrl, rdl): 0.007607257, 8.08455e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 225
+rank avg (pred): 0.423 +- 0.112
+mrr vals (pred, true): 0.075, 0.044
+batch losses (mrrl, rdl): 0.006164602, 0.0001009713
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 357
+rank avg (pred): 0.413 +- 0.108
+mrr vals (pred, true): 0.076, 0.225
+batch losses (mrrl, rdl): 0.2223318815, 0.0020974444
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 761
+rank avg (pred): 0.443 +- 0.085
+mrr vals (pred, true): 0.045, 0.047
+batch losses (mrrl, rdl): 0.0002748424, 8.04869e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 647
+rank avg (pred): 0.434 +- 0.119
+mrr vals (pred, true): 0.077, 0.051
+batch losses (mrrl, rdl): 0.0071647726, 5.75699e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 331
+rank avg (pred): 0.428 +- 0.111
+mrr vals (pred, true): 0.076, 0.209
+batch losses (mrrl, rdl): 0.177139014, 0.0020845972
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 623
+rank avg (pred): 0.386 +- 0.114
+mrr vals (pred, true): 0.083, 0.050
+batch losses (mrrl, rdl): 0.0110196983, 0.0001931255
+
+Epoch over!
+epoch time: 38.855
+
+Epoch 7 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 875
+rank avg (pred): 0.431 +- 0.092
+mrr vals (pred, true): 0.051, 0.049
+batch losses (mrrl, rdl): 1.27171e-05, 8.71566e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 1091
+rank avg (pred): 0.364 +- 0.105
+mrr vals (pred, true): 0.080, 0.052
+batch losses (mrrl, rdl): 0.0092453221, 0.0001495066
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 330
+rank avg (pred): 0.371 +- 0.116
+mrr vals (pred, true): 0.088, 0.230
+batch losses (mrrl, rdl): 0.2018906474, 0.0015406775
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 125
+rank avg (pred): 0.374 +- 0.109
+mrr vals (pred, true): 0.083, 0.053
+batch losses (mrrl, rdl): 0.010692602, 0.0001949546
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 148
+rank avg (pred): 0.374 +- 0.113
+mrr vals (pred, true): 0.086, 0.047
+batch losses (mrrl, rdl): 0.0128765106, 0.000135495
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 565
+rank avg (pred): 0.307 +- 0.215
+mrr vals (pred, true): 0.252, 0.370
+batch losses (mrrl, rdl): 0.1398608238, 0.001445242
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 180
+rank avg (pred): 0.410 +- 0.107
+mrr vals (pred, true): 0.076, 0.066
+batch losses (mrrl, rdl): 0.0069925832, 0.0001030244
+
+Epoch over!
+epoch time: 38.573
+
+Epoch 8 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 336
+rank avg (pred): 0.413 +- 0.112
+mrr vals (pred, true): 0.079, 0.057
+batch losses (mrrl, rdl): 0.008689166, 0.0001209497
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 637
+rank avg (pred): 0.401 +- 0.111
+mrr vals (pred, true): 0.081, 0.044
+batch losses (mrrl, rdl): 0.0097377216, 0.0001136986
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 410
+rank avg (pred): 0.407 +- 0.108
+mrr vals (pred, true): 0.079, 0.058
+batch losses (mrrl, rdl): 0.0085222702, 0.0001080188
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 726
+rank avg (pred): 0.405 +- 0.108
+mrr vals (pred, true): 0.079, 0.051
+batch losses (mrrl, rdl): 0.0083859228, 0.0001549999
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 656
+rank avg (pred): 0.382 +- 0.124
+mrr vals (pred, true): 0.090, 0.047
+batch losses (mrrl, rdl): 0.0158887766, 0.0001743381
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 507
+rank avg (pred): 0.282 +- 0.207
+mrr vals (pred, true): 0.299, 0.389
+batch losses (mrrl, rdl): 0.0812886581, 0.0012151644
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 535
+rank avg (pred): 0.289 +- 0.205
+mrr vals (pred, true): 0.264, 0.214
+batch losses (mrrl, rdl): 0.0244019385, 0.0003975656
+
+Epoch over!
+epoch time: 37.646
+
+Epoch 9 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 48
+rank avg (pred): 0.324 +- 0.259
+mrr vals (pred, true): 0.336, 0.258
+batch losses (mrrl, rdl): 0.0601063706, 0.0009272023
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 605
+rank avg (pred): 0.404 +- 0.102
+mrr vals (pred, true): 0.074, 0.050
+batch losses (mrrl, rdl): 0.0058014197, 8.70494e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 833
+rank avg (pred): 0.236 +- 0.191
+mrr vals (pred, true): 0.372, 0.432
+batch losses (mrrl, rdl): 0.0359234065, 0.0008202643
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 314
+rank avg (pred): 0.196 +- 0.162
+mrr vals (pred, true): 0.388, 0.297
+batch losses (mrrl, rdl): 0.0816781446, 0.0001798763
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 204
+rank avg (pred): 0.376 +- 0.113
+mrr vals (pred, true): 0.086, 0.042
+batch losses (mrrl, rdl): 0.0131669268, 0.0002404218
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 25
+rank avg (pred): 0.271 +- 0.216
+mrr vals (pred, true): 0.344, 0.451
+batch losses (mrrl, rdl): 0.1153494567, 0.0012229045
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 420
+rank avg (pred): 0.392 +- 0.102
+mrr vals (pred, true): 0.079, 0.055
+batch losses (mrrl, rdl): 0.0083797015, 0.0002003685
+
+Epoch over!
+epoch time: 38.035
+
+Epoch 10 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 272
+rank avg (pred): 0.297 +- 0.239
+mrr vals (pred, true): 0.352, 0.332
+batch losses (mrrl, rdl): 0.0038500761, 0.0009864259
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 891
+rank avg (pred): 0.280 +- 0.202
+mrr vals (pred, true): 0.279, 0.147
+batch losses (mrrl, rdl): 0.1743136197, 6.52435e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 664
+rank avg (pred): 0.375 +- 0.100
+mrr vals (pred, true): 0.081, 0.056
+batch losses (mrrl, rdl): 0.0097698886, 0.0001828368
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 1128
+rank avg (pred): 0.386 +- 0.095
+mrr vals (pred, true): 0.072, 0.053
+batch losses (mrrl, rdl): 0.0048275623, 0.0002094915
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, Kinships, run 2.1, exp 586
+rank avg (pred): 0.375 +- 0.096
+mrr vals (pred, true): 0.079, 0.044
+batch losses (mrrl, rdl): 0.0083454875, 0.0002074284
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, Kinships, run 2.1, exp 41
+rank avg (pred): 0.271 +- 0.219
+mrr vals (pred, true): 0.356, 0.443
+batch losses (mrrl, rdl): 0.0757111311, 0.0011999281
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, Kinships, run 2.1, exp 847
+rank avg (pred): 0.403 +- 0.071
+mrr vals (pred, true): 0.046, 0.059
+batch losses (mrrl, rdl): 0.0001834339, 0.0001537363
+
+Epoch over!
+epoch time: 37.338
+
+Saving checkpoint at [1] epoch 10
+Done training phase:  1
+Testing model with KGEM ComplEx and KG Kinships
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.080
+mrr vals (pred, true): 0.054, 0.058
+
+Evaluation for Kinships on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    6 	     0 	 0.05283 	 0.04420 	 ~...
+   28 	     1 	 0.07909 	 0.04716 	 m..s
+   80 	     2 	 0.08706 	 0.04727 	 m..s
+   30 	     3 	 0.07941 	 0.04747 	 m..s
+   44 	     4 	 0.08047 	 0.04783 	 m..s
+   24 	     5 	 0.07837 	 0.04851 	 ~...
+   16 	     6 	 0.05456 	 0.04922 	 ~...
+   12 	     7 	 0.05406 	 0.04931 	 ~...
+   41 	     8 	 0.08017 	 0.04947 	 m..s
+    1 	     9 	 0.04882 	 0.04968 	 ~...
+   26 	    10 	 0.07850 	 0.04989 	 ~...
+   27 	    11 	 0.07883 	 0.05006 	 ~...
+   68 	    12 	 0.08316 	 0.05011 	 m..s
+    2 	    13 	 0.04941 	 0.05016 	 ~...
+   69 	    14 	 0.08361 	 0.05025 	 m..s
+   45 	    15 	 0.08054 	 0.05028 	 m..s
+   55 	    16 	 0.08167 	 0.05059 	 m..s
+    7 	    17 	 0.05303 	 0.05119 	 ~...
+   62 	    18 	 0.08286 	 0.05177 	 m..s
+   52 	    19 	 0.08135 	 0.05179 	 ~...
+   77 	    20 	 0.08560 	 0.05193 	 m..s
+    5 	    21 	 0.05173 	 0.05201 	 ~...
+    4 	    22 	 0.04992 	 0.05207 	 ~...
+   37 	    23 	 0.07985 	 0.05207 	 ~...
+   75 	    24 	 0.08407 	 0.05221 	 m..s
+   71 	    25 	 0.08382 	 0.05227 	 m..s
+   72 	    26 	 0.08388 	 0.05239 	 m..s
+   76 	    27 	 0.08489 	 0.05248 	 m..s
+    0 	    28 	 0.04771 	 0.05261 	 ~...
+   43 	    29 	 0.08047 	 0.05263 	 ~...
+   60 	    30 	 0.08247 	 0.05275 	 ~...
+   22 	    31 	 0.05911 	 0.05277 	 ~...
+    8 	    32 	 0.05318 	 0.05277 	 ~...
+   79 	    33 	 0.08576 	 0.05279 	 m..s
+   21 	    34 	 0.05796 	 0.05286 	 ~...
+   32 	    35 	 0.07943 	 0.05287 	 ~...
+   63 	    36 	 0.08294 	 0.05300 	 ~...
+   15 	    37 	 0.05456 	 0.05330 	 ~...
+   59 	    38 	 0.08229 	 0.05340 	 ~...
+   70 	    39 	 0.08375 	 0.05360 	 m..s
+   67 	    40 	 0.08314 	 0.05364 	 ~...
+   40 	    41 	 0.08012 	 0.05370 	 ~...
+   36 	    42 	 0.07974 	 0.05374 	 ~...
+   31 	    43 	 0.07941 	 0.05391 	 ~...
+    3 	    44 	 0.04945 	 0.05392 	 ~...
+   73 	    45 	 0.08392 	 0.05392 	 m..s
+   64 	    46 	 0.08299 	 0.05397 	 ~...
+   48 	    47 	 0.08069 	 0.05425 	 ~...
+   51 	    48 	 0.08126 	 0.05440 	 ~...
+   14 	    49 	 0.05456 	 0.05454 	 ~...
+   11 	    50 	 0.05395 	 0.05464 	 ~...
+   39 	    51 	 0.07998 	 0.05487 	 ~...
+   17 	    52 	 0.05489 	 0.05493 	 ~...
+   23 	    53 	 0.07767 	 0.05510 	 ~...
+   29 	    54 	 0.07935 	 0.05523 	 ~...
+   54 	    55 	 0.08156 	 0.05528 	 ~...
+   46 	    56 	 0.08068 	 0.05528 	 ~...
+   66 	    57 	 0.08313 	 0.05529 	 ~...
+    9 	    58 	 0.05356 	 0.05534 	 ~...
+   50 	    59 	 0.08098 	 0.05547 	 ~...
+   35 	    60 	 0.07972 	 0.05595 	 ~...
+   61 	    61 	 0.08267 	 0.05596 	 ~...
+   65 	    62 	 0.08303 	 0.05599 	 ~...
+   47 	    63 	 0.08069 	 0.05628 	 ~...
+   49 	    64 	 0.08080 	 0.05660 	 ~...
+   13 	    65 	 0.05414 	 0.05668 	 ~...
+   20 	    66 	 0.05697 	 0.05687 	 ~...
+   42 	    67 	 0.08021 	 0.05689 	 ~...
+   74 	    68 	 0.08406 	 0.05693 	 ~...
+   38 	    69 	 0.07985 	 0.05709 	 ~...
+   81 	    70 	 0.08830 	 0.05714 	 m..s
+   34 	    71 	 0.07971 	 0.05749 	 ~...
+   82 	    72 	 0.09202 	 0.05766 	 m..s
+   53 	    73 	 0.08145 	 0.05796 	 ~...
+   10 	    74 	 0.05371 	 0.05846 	 ~...
+   78 	    75 	 0.08561 	 0.05888 	 ~...
+   18 	    76 	 0.05519 	 0.05901 	 ~...
+   58 	    77 	 0.08201 	 0.05941 	 ~...
+   25 	    78 	 0.07842 	 0.05969 	 ~...
+   57 	    79 	 0.08196 	 0.05982 	 ~...
+   19 	    80 	 0.05523 	 0.05988 	 ~...
+   33 	    81 	 0.07954 	 0.06021 	 ~...
+   56 	    82 	 0.08169 	 0.06353 	 ~...
+   86 	    83 	 0.23137 	 0.15084 	 m..s
+   84 	    84 	 0.20993 	 0.15938 	 m..s
+   85 	    85 	 0.21540 	 0.16633 	 m..s
+   83 	    86 	 0.17149 	 0.16879 	 ~...
+   87 	    87 	 0.28533 	 0.20561 	 m..s
+   87 	    88 	 0.28533 	 0.21072 	 m..s
+   87 	    89 	 0.28533 	 0.21280 	 m..s
+   87 	    90 	 0.28533 	 0.22226 	 m..s
+   87 	    91 	 0.28533 	 0.23429 	 m..s
+   87 	    92 	 0.28533 	 0.25136 	 m..s
+  103 	    93 	 0.33605 	 0.27241 	 m..s
+  101 	    94 	 0.33000 	 0.28022 	 m..s
+   97 	    95 	 0.31628 	 0.28091 	 m..s
+   95 	    96 	 0.31605 	 0.28148 	 m..s
+   99 	    97 	 0.32993 	 0.28999 	 m..s
+   94 	    98 	 0.31314 	 0.29150 	 ~...
+   96 	    99 	 0.31614 	 0.29398 	 ~...
+  104 	   100 	 0.33865 	 0.29619 	 m..s
+  108 	   101 	 0.34207 	 0.30095 	 m..s
+  111 	   102 	 0.34619 	 0.30284 	 m..s
+  102 	   103 	 0.33186 	 0.30681 	 ~...
+  105 	   104 	 0.34097 	 0.30932 	 m..s
+  106 	   105 	 0.34164 	 0.30980 	 m..s
+   98 	   106 	 0.31818 	 0.31009 	 ~...
+  100 	   107 	 0.32999 	 0.31687 	 ~...
+  107 	   108 	 0.34173 	 0.32141 	 ~...
+  109 	   109 	 0.34217 	 0.32216 	 ~...
+  115 	   110 	 0.35490 	 0.33010 	 ~...
+  114 	   111 	 0.35336 	 0.33063 	 ~...
+  110 	   112 	 0.34353 	 0.34735 	 ~...
+  117 	   113 	 0.38438 	 0.35834 	 ~...
+  118 	   114 	 0.38997 	 0.37521 	 ~...
+  119 	   115 	 0.39174 	 0.38526 	 ~...
+  116 	   116 	 0.38104 	 0.38537 	 ~...
+  112 	   117 	 0.34664 	 0.40488 	 m..s
+   93 	   118 	 0.28628 	 0.48279 	 MISS
+  120 	   119 	 0.40176 	 0.52550 	 MISS
+  113 	   120 	 0.35094 	 0.61786 	 MISS
+==========================================
+r_mrr = 0.9503821730613708
+r2_mrr = 0.8818753361701965
+spearmanr_mrr@5 = 0.9906889796257019
+spearmanr_mrr@10 = 0.8691659569740295
+spearmanr_mrr@50 = 0.9401184320449829
+spearmanr_mrr@100 = 0.9696249961853027
+spearmanr_mrr@All = 0.9692237973213196
+==========================================
+test time: 0.411
+Done Testing dataset Kinships
+Testing model with KGEM DistMult and KG Kinships
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.080
+mrr vals (pred, true): 0.054, 0.047
+
+Evaluation for Kinships on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   85 	     0 	 0.21540 	 0.02078 	 MISS
+   86 	     1 	 0.23137 	 0.02078 	 MISS
+   84 	     2 	 0.20993 	 0.02078 	 MISS
+   93 	     3 	 0.28628 	 0.02078 	 MISS
+    3 	     4 	 0.04945 	 0.04299 	 ~...
+   12 	     5 	 0.05406 	 0.04509 	 ~...
+    4 	     6 	 0.04992 	 0.04684 	 ~...
+   10 	     7 	 0.05371 	 0.04720 	 ~...
+   17 	     8 	 0.05489 	 0.04720 	 ~...
+   11 	     9 	 0.05395 	 0.04763 	 ~...
+   57 	    10 	 0.08196 	 0.04802 	 m..s
+    2 	    11 	 0.04941 	 0.04832 	 ~...
+   29 	    12 	 0.07935 	 0.04853 	 m..s
+   32 	    13 	 0.07943 	 0.04878 	 m..s
+   20 	    14 	 0.05697 	 0.04927 	 ~...
+   81 	    15 	 0.08830 	 0.04950 	 m..s
+   13 	    16 	 0.05414 	 0.04958 	 ~...
+   25 	    17 	 0.07842 	 0.04958 	 ~...
+   59 	    18 	 0.08229 	 0.05013 	 m..s
+   18 	    19 	 0.05519 	 0.05088 	 ~...
+   70 	    20 	 0.08375 	 0.05112 	 m..s
+    5 	    21 	 0.05173 	 0.05112 	 ~...
+   67 	    22 	 0.08314 	 0.05181 	 m..s
+   75 	    23 	 0.08407 	 0.05196 	 m..s
+    9 	    24 	 0.05356 	 0.05212 	 ~...
+   15 	    25 	 0.05456 	 0.05233 	 ~...
+   14 	    26 	 0.05456 	 0.05262 	 ~...
+   43 	    27 	 0.08047 	 0.05262 	 ~...
+   38 	    28 	 0.07985 	 0.05296 	 ~...
+   55 	    29 	 0.08167 	 0.05297 	 ~...
+   64 	    30 	 0.08299 	 0.05324 	 ~...
+   63 	    31 	 0.08294 	 0.05324 	 ~...
+    0 	    32 	 0.04771 	 0.05331 	 ~...
+   41 	    33 	 0.08017 	 0.05340 	 ~...
+   69 	    34 	 0.08361 	 0.05356 	 m..s
+    1 	    35 	 0.04882 	 0.05363 	 ~...
+   22 	    36 	 0.05911 	 0.05374 	 ~...
+   16 	    37 	 0.05456 	 0.05382 	 ~...
+   76 	    38 	 0.08489 	 0.05391 	 m..s
+   21 	    39 	 0.05796 	 0.05411 	 ~...
+   42 	    40 	 0.08021 	 0.05423 	 ~...
+   19 	    41 	 0.05523 	 0.05460 	 ~...
+   30 	    42 	 0.07941 	 0.05483 	 ~...
+    7 	    43 	 0.05303 	 0.05498 	 ~...
+    8 	    44 	 0.05318 	 0.05498 	 ~...
+   58 	    45 	 0.08201 	 0.05519 	 ~...
+   35 	    46 	 0.07972 	 0.05570 	 ~...
+   53 	    47 	 0.08145 	 0.05574 	 ~...
+   23 	    48 	 0.07767 	 0.05595 	 ~...
+   80 	    49 	 0.08706 	 0.05612 	 m..s
+    6 	    50 	 0.05283 	 0.05620 	 ~...
+   33 	    51 	 0.07954 	 0.05657 	 ~...
+   73 	    52 	 0.08392 	 0.05728 	 ~...
+   39 	    53 	 0.07998 	 0.05789 	 ~...
+   28 	    54 	 0.07909 	 0.05797 	 ~...
+   47 	    55 	 0.08069 	 0.05828 	 ~...
+   66 	    56 	 0.08313 	 0.05840 	 ~...
+   60 	    57 	 0.08247 	 0.05917 	 ~...
+   82 	    58 	 0.09202 	 0.06102 	 m..s
+   62 	    59 	 0.08286 	 0.06144 	 ~...
+   36 	    60 	 0.07974 	 0.06470 	 ~...
+   83 	    61 	 0.17149 	 0.09433 	 m..s
+   24 	    62 	 0.07837 	 0.18591 	 MISS
+   65 	    63 	 0.08303 	 0.20396 	 MISS
+   44 	    64 	 0.08047 	 0.20531 	 MISS
+   72 	    65 	 0.08388 	 0.21466 	 MISS
+   79 	    66 	 0.08576 	 0.22142 	 MISS
+   61 	    67 	 0.08267 	 0.22845 	 MISS
+   27 	    68 	 0.07883 	 0.23037 	 MISS
+   26 	    69 	 0.07850 	 0.23155 	 MISS
+   31 	    70 	 0.07941 	 0.23238 	 MISS
+   68 	    71 	 0.08316 	 0.23242 	 MISS
+   51 	    72 	 0.08126 	 0.23413 	 MISS
+   48 	    73 	 0.08069 	 0.23480 	 MISS
+   52 	    74 	 0.08135 	 0.23549 	 MISS
+   56 	    75 	 0.08169 	 0.23710 	 MISS
+   78 	    76 	 0.08561 	 0.23713 	 MISS
+   74 	    77 	 0.08406 	 0.23799 	 MISS
+   46 	    78 	 0.08068 	 0.24474 	 MISS
+   45 	    79 	 0.08054 	 0.24547 	 MISS
+   34 	    80 	 0.07971 	 0.24708 	 MISS
+   50 	    81 	 0.08098 	 0.24718 	 MISS
+   49 	    82 	 0.08080 	 0.24722 	 MISS
+   71 	    83 	 0.08382 	 0.24799 	 MISS
+   54 	    84 	 0.08156 	 0.25189 	 MISS
+   37 	    85 	 0.07985 	 0.25617 	 MISS
+   40 	    86 	 0.08012 	 0.26720 	 MISS
+   77 	    87 	 0.08560 	 0.27501 	 MISS
+  113 	    88 	 0.35094 	 0.30657 	 m..s
+   87 	    89 	 0.28533 	 0.35817 	 m..s
+   87 	    90 	 0.28533 	 0.36137 	 m..s
+   87 	    91 	 0.28533 	 0.36751 	 m..s
+   87 	    92 	 0.28533 	 0.37263 	 m..s
+   97 	    93 	 0.31628 	 0.37401 	 m..s
+   87 	    94 	 0.28533 	 0.37807 	 m..s
+   95 	    95 	 0.31605 	 0.37994 	 m..s
+   87 	    96 	 0.28533 	 0.39224 	 MISS
+   96 	    97 	 0.31614 	 0.39255 	 m..s
+   94 	    98 	 0.31314 	 0.39325 	 m..s
+  117 	    99 	 0.38438 	 0.40942 	 ~...
+  100 	   100 	 0.32999 	 0.41636 	 m..s
+   98 	   101 	 0.31818 	 0.41782 	 m..s
+  112 	   102 	 0.34664 	 0.41783 	 m..s
+  115 	   103 	 0.35490 	 0.42358 	 m..s
+  116 	   104 	 0.38104 	 0.42492 	 m..s
+  114 	   105 	 0.35336 	 0.42959 	 m..s
+  118 	   106 	 0.38997 	 0.43176 	 m..s
+  106 	   107 	 0.34164 	 0.43261 	 m..s
+  109 	   108 	 0.34217 	 0.43412 	 m..s
+  105 	   109 	 0.34097 	 0.43543 	 m..s
+  103 	   110 	 0.33605 	 0.43550 	 m..s
+  101 	   111 	 0.33000 	 0.43877 	 MISS
+  102 	   112 	 0.33186 	 0.43940 	 MISS
+  108 	   113 	 0.34207 	 0.44534 	 MISS
+  110 	   114 	 0.34353 	 0.44612 	 MISS
+  104 	   115 	 0.33865 	 0.44649 	 MISS
+  107 	   116 	 0.34173 	 0.44691 	 MISS
+  111 	   117 	 0.34619 	 0.44712 	 MISS
+   99 	   118 	 0.32993 	 0.44730 	 MISS
+  119 	   119 	 0.39174 	 0.46137 	 m..s
+  120 	   120 	 0.40176 	 0.47721 	 m..s
+==========================================
+r_mrr = 0.8373924493789673
+r2_mrr = 0.6320174336433411
+spearmanr_mrr@5 = 0.917390763759613
+spearmanr_mrr@10 = 0.766092836856842
+spearmanr_mrr@50 = 0.9467214941978455
+spearmanr_mrr@100 = 0.9102684855461121
+spearmanr_mrr@All = 0.9234908819198608
+==========================================
+test time: 0.435
+Done Testing dataset Kinships
+Testing model with KGEM TransE and KG Kinships
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.080
+mrr vals (pred, true): 0.054, 0.042
+
+Evaluation for Kinships on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    0 	     0 	 0.04771 	 0.04134 	 ~...
+   80 	     1 	 0.08706 	 0.04188 	 m..s
+   10 	     2 	 0.05371 	 0.04198 	 ~...
+   30 	     3 	 0.07941 	 0.04200 	 m..s
+   43 	     4 	 0.08047 	 0.04207 	 m..s
+   63 	     5 	 0.08294 	 0.04207 	 m..s
+   22 	     6 	 0.05911 	 0.04209 	 ~...
+   47 	     7 	 0.08069 	 0.04217 	 m..s
+   59 	     8 	 0.08229 	 0.04225 	 m..s
+   76 	     9 	 0.08489 	 0.04231 	 m..s
+    8 	    10 	 0.05318 	 0.04232 	 ~...
+   38 	    11 	 0.07985 	 0.04245 	 m..s
+    2 	    12 	 0.04941 	 0.04276 	 ~...
+    1 	    13 	 0.04882 	 0.04282 	 ~...
+   70 	    14 	 0.08375 	 0.04289 	 m..s
+   16 	    15 	 0.05456 	 0.04296 	 ~...
+   42 	    16 	 0.08021 	 0.04298 	 m..s
+   66 	    17 	 0.08313 	 0.04310 	 m..s
+   14 	    18 	 0.05456 	 0.04313 	 ~...
+   67 	    19 	 0.08314 	 0.04316 	 m..s
+   39 	    20 	 0.07998 	 0.04341 	 m..s
+   69 	    21 	 0.08361 	 0.04363 	 m..s
+   33 	    22 	 0.07954 	 0.04369 	 m..s
+    7 	    23 	 0.05303 	 0.04369 	 ~...
+   58 	    24 	 0.08201 	 0.04371 	 m..s
+   55 	    25 	 0.08167 	 0.04383 	 m..s
+   53 	    26 	 0.08145 	 0.04392 	 m..s
+   12 	    27 	 0.05406 	 0.04408 	 ~...
+   21 	    28 	 0.05796 	 0.04409 	 ~...
+   11 	    29 	 0.05395 	 0.04416 	 ~...
+    9 	    30 	 0.05356 	 0.04418 	 ~...
+   54 	    31 	 0.08156 	 0.04422 	 m..s
+   15 	    32 	 0.05456 	 0.04423 	 ~...
+    6 	    33 	 0.05283 	 0.04433 	 ~...
+    4 	    34 	 0.04992 	 0.04438 	 ~...
+   57 	    35 	 0.08196 	 0.04454 	 m..s
+   32 	    36 	 0.07943 	 0.04462 	 m..s
+   81 	    37 	 0.08830 	 0.04473 	 m..s
+   28 	    38 	 0.07909 	 0.04494 	 m..s
+   13 	    39 	 0.05414 	 0.04497 	 ~...
+   62 	    40 	 0.08286 	 0.04498 	 m..s
+   75 	    41 	 0.08407 	 0.04500 	 m..s
+   64 	    42 	 0.08299 	 0.04514 	 m..s
+   19 	    43 	 0.05523 	 0.04517 	 ~...
+   79 	    44 	 0.08576 	 0.04528 	 m..s
+   17 	    45 	 0.05489 	 0.04536 	 ~...
+   44 	    46 	 0.08047 	 0.04546 	 m..s
+   36 	    47 	 0.07974 	 0.04570 	 m..s
+   25 	    48 	 0.07842 	 0.04571 	 m..s
+   60 	    49 	 0.08247 	 0.04593 	 m..s
+   23 	    50 	 0.07767 	 0.04598 	 m..s
+   34 	    51 	 0.07971 	 0.04606 	 m..s
+   72 	    52 	 0.08388 	 0.04616 	 m..s
+   73 	    53 	 0.08392 	 0.04639 	 m..s
+   35 	    54 	 0.07972 	 0.04644 	 m..s
+   27 	    55 	 0.07883 	 0.04651 	 m..s
+   82 	    56 	 0.09202 	 0.04659 	 m..s
+   45 	    57 	 0.08054 	 0.04677 	 m..s
+   41 	    58 	 0.08017 	 0.04715 	 m..s
+   51 	    59 	 0.08126 	 0.04725 	 m..s
+   29 	    60 	 0.07935 	 0.04760 	 m..s
+   61 	    61 	 0.08267 	 0.04797 	 m..s
+   18 	    62 	 0.05519 	 0.04830 	 ~...
+    3 	    63 	 0.04945 	 0.04831 	 ~...
+   20 	    64 	 0.05697 	 0.04846 	 ~...
+   74 	    65 	 0.08406 	 0.04905 	 m..s
+   31 	    66 	 0.07941 	 0.04910 	 m..s
+   24 	    67 	 0.07837 	 0.04955 	 ~...
+   49 	    68 	 0.08080 	 0.04970 	 m..s
+   48 	    69 	 0.08069 	 0.05004 	 m..s
+   68 	    70 	 0.08316 	 0.05017 	 m..s
+   56 	    71 	 0.08169 	 0.05091 	 m..s
+    5 	    72 	 0.05173 	 0.05095 	 ~...
+   46 	    73 	 0.08068 	 0.05214 	 ~...
+   77 	    74 	 0.08560 	 0.05245 	 m..s
+   78 	    75 	 0.08561 	 0.05247 	 m..s
+   50 	    76 	 0.08098 	 0.05271 	 ~...
+   71 	    77 	 0.08382 	 0.05295 	 m..s
+   40 	    78 	 0.08012 	 0.05335 	 ~...
+   37 	    79 	 0.07985 	 0.05373 	 ~...
+   26 	    80 	 0.07850 	 0.05405 	 ~...
+   65 	    81 	 0.08303 	 0.05460 	 ~...
+   52 	    82 	 0.08135 	 0.05514 	 ~...
+   84 	    83 	 0.20993 	 0.10078 	 MISS
+   85 	    84 	 0.21540 	 0.10280 	 MISS
+   86 	    85 	 0.23137 	 0.11025 	 MISS
+   87 	    86 	 0.28533 	 0.13946 	 MISS
+  113 	    87 	 0.35094 	 0.17582 	 MISS
+   93 	    88 	 0.28628 	 0.18648 	 m..s
+  112 	    89 	 0.34664 	 0.19455 	 MISS
+   87 	    90 	 0.28533 	 0.19718 	 m..s
+   87 	    91 	 0.28533 	 0.21053 	 m..s
+   87 	    92 	 0.28533 	 0.21095 	 m..s
+   83 	    93 	 0.17149 	 0.21959 	 m..s
+   87 	    94 	 0.28533 	 0.22121 	 m..s
+   87 	    95 	 0.28533 	 0.22159 	 m..s
+   95 	    96 	 0.31605 	 0.22608 	 m..s
+   94 	    97 	 0.31314 	 0.25490 	 m..s
+  105 	    98 	 0.34097 	 0.25525 	 m..s
+   97 	    99 	 0.31628 	 0.25812 	 m..s
+  109 	   100 	 0.34217 	 0.26028 	 m..s
+   98 	   101 	 0.31818 	 0.26123 	 m..s
+  101 	   102 	 0.33000 	 0.26409 	 m..s
+  107 	   103 	 0.34173 	 0.27106 	 m..s
+   99 	   104 	 0.32993 	 0.27160 	 m..s
+   96 	   105 	 0.31614 	 0.27167 	 m..s
+  108 	   106 	 0.34207 	 0.27470 	 m..s
+  104 	   107 	 0.33865 	 0.28167 	 m..s
+  114 	   108 	 0.35336 	 0.28280 	 m..s
+  100 	   109 	 0.32999 	 0.28336 	 m..s
+  106 	   110 	 0.34164 	 0.28497 	 m..s
+  111 	   111 	 0.34619 	 0.28547 	 m..s
+  115 	   112 	 0.35490 	 0.28894 	 m..s
+  102 	   113 	 0.33186 	 0.28951 	 m..s
+  103 	   114 	 0.33605 	 0.29285 	 m..s
+  110 	   115 	 0.34353 	 0.29520 	 m..s
+  118 	   116 	 0.38997 	 0.30382 	 m..s
+  117 	   117 	 0.38438 	 0.30903 	 m..s
+  116 	   118 	 0.38104 	 0.31732 	 m..s
+  119 	   119 	 0.39174 	 0.31930 	 m..s
+  120 	   120 	 0.40176 	 0.33146 	 m..s
+==========================================
+r_mrr = 0.9742532968521118
+r2_mrr = 0.7115365266799927
+spearmanr_mrr@5 = 0.997745156288147
+spearmanr_mrr@10 = 0.9720489978790283
+spearmanr_mrr@50 = 0.9839152097702026
+spearmanr_mrr@100 = 0.9923110604286194
+spearmanr_mrr@All = 0.9901754856109619
+==========================================
+test time: 0.438
+Done Testing dataset Kinships
+total time taken: 601.8570957183838
+training time taken: 580.565596818924
+TWIG out ;))
+==============================================
+----------------------------------------------
+Running a TWIG experiment with tag: OpenEA-all
+----------------------------------------------
+==============================================
+Using random seed: 9988898625206078
+Starting TWIG!
+Loading datasets
+Loading ComplEx...
+Loading OpenEA...
+- loading run 2.1...
+Loading DistMult...
+Loading OpenEA...
+- loading run 2.1...
+Loading TransE...
+Loading OpenEA...
+- loading run 2.1...
+Creating the train-test split
+using splits:
+test_ids (121): [639, 331, 57, 916, 619, 287, 434, 314, 293, 485, 557, 624, 905, 23, 569, 678, 1012, 65, 645, 948, 201, 673, 911, 760, 500, 793, 553, 930, 1030, 1028, 635, 1073, 623, 863, 892, 167, 1105, 1198, 1110, 1017, 919, 596, 217, 40, 1152, 577, 1005, 721, 150, 360, 1081, 797, 886, 658, 438, 872, 188, 247, 446, 562, 762, 720, 515, 460, 1052, 713, 382, 1009, 373, 1034, 657, 560, 1044, 1079, 602, 372, 332, 211, 1211, 1111, 804, 585, 1191, 240, 195, 454, 346, 1026, 269, 99, 1210, 1130, 1007, 803, 1000, 995, 630, 408, 1037, 1164, 274, 89, 436, 834, 548, 272, 546, 381, 1084, 31, 716, 453, 80, 203, 652, 990, 590, 257, 907, 1128, 971]
+valid_ids (0): []
+train_ids (1094): [877, 1075, 278, 252, 170, 821, 1155, 1126, 956, 794, 194, 838, 253, 967, 176, 1161, 556, 633, 791, 63, 946, 873, 708, 347, 676, 55, 702, 329, 648, 1129, 593, 92, 977, 638, 875, 1114, 1194, 693, 912, 660, 663, 132, 684, 922, 616, 773, 197, 976, 427, 355, 961, 118, 1068, 238, 440, 416, 295, 859, 429, 974, 202, 745, 626, 640, 72, 528, 1071, 936, 1048, 357, 631, 147, 1184, 674, 695, 106, 1047, 1066, 813, 918, 1040, 931, 733, 575, 134, 1058, 108, 60, 953, 3, 46, 165, 423, 218, 535, 634, 462, 468, 1100, 178, 830, 305, 378, 1163, 186, 113, 39, 1113, 255, 116, 476, 1133, 999, 304, 890, 412, 1099, 212, 1078, 464, 320, 517, 277, 1204, 84, 125, 140, 248, 302, 1162, 161, 495, 1141, 850, 550, 1117, 1165, 149, 168, 1171, 325, 488, 337, 815, 598, 143, 148, 1170, 164, 422, 613, 191, 158, 522, 292, 979, 644, 242, 138, 694, 752, 362, 744, 761, 1183, 1088, 1057, 1153, 1010, 44, 430, 516, 507, 662, 379, 737, 1134, 183, 736, 641, 5, 691, 75, 221, 1098, 47, 643, 764, 81, 649, 833, 636, 1193, 769, 725, 227, 597, 441, 1104, 958, 559, 920, 160, 1061, 409, 853, 983, 962, 944, 162, 142, 370, 848, 669, 393, 204, 551, 163, 1185, 822, 28, 786, 917, 475, 312, 672, 538, 69, 700, 750, 970, 989, 1031, 1209, 654, 1214, 173, 1074, 266, 135, 932, 271, 1020, 627, 313, 22, 457, 855, 724, 77, 153, 671, 520, 363, 309, 888, 518, 230, 719, 1091, 418, 895, 1019, 1178, 407, 198, 1175, 432, 399, 10, 1003, 478, 818, 661, 350, 701, 817, 192, 297, 968, 364, 1146, 991, 980, 236, 94, 264, 756, 632, 377, 480, 986, 508, 115, 1, 154, 501, 1123, 361, 1181, 319, 112, 30, 876, 1115, 929, 210, 184, 157, 169, 869, 994, 229, 452, 79, 487, 1159, 403, 308, 921, 1160, 52, 1145, 543, 499, 400, 1090, 841, 18, 1051, 703, 392, 29, 497, 88, 1144, 591, 45, 469, 237, 683, 710, 891, 37, 831, 260, 139, 699, 303, 1053, 792, 86, 1021, 267, 128, 316, 778, 523, 908, 301, 1206, 885, 127, 832, 1025, 389, 981, 126, 775, 734, 530, 353, 7, 525, 1121, 730, 425, 1097, 226, 899, 529, 849, 33, 334, 607, 959, 338, 366, 356, 972, 1106, 1166, 1015, 105, 1158, 294, 1187, 70, 510, 479, 826, 98, 1027, 1076, 174, 618, 824, 788, 526, 386, 38, 1002, 901, 883, 394, 1150, 461, 997, 866, 472, 664, 599, 509, 486, 801, 939, 181, 213, 172, 1195, 73, 491, 715, 896, 27, 988, 1116, 581, 880, 349, 879, 1087, 442, 285, 1065, 1212, 1050, 1132, 223, 952, 207, 82, 1138, 97, 179, 914, 414, 992, 692, 748, 1188, 898, 1157, 145, 503, 608, 504, 689, 93, 882, 612, 326, 200, 588, 697, 531, 842, 310, 120, 83, 315, 1011, 251, 1147, 646, 67, 728, 718, 43, 190, 187, 411, 881, 851, 14, 159, 571, 330, 951, 595, 17, 433, 385, 59, 937, 1154, 390, 963, 1203, 1169, 133, 505, 816, 739, 754, 1038, 1101, 668, 1174, 1042, 152, 521, 785, 32, 1035, 365, 415, 897, 263, 1069, 506, 620, 348, 387, 90, 141, 481, 704, 789, 650, 625, 1122, 887, 111, 406, 155, 177, 975, 175, 894, 757, 341, 862, 42, 74, 216, 321, 768, 759, 1056, 449, 307, 91, 85, 609, 1013, 861, 1086, 714, 351, 354, 245, 594, 482, 1196, 647, 246, 802, 586, 473, 232, 100, 1131, 87, 926, 1039, 20, 933, 1124, 1023, 1142, 969, 1201, 435, 388, 984, 617, 579, 1041, 805, 1094, 404, 1070, 451, 352, 199, 698, 317, 751, 196, 299, 741, 811, 35, 670, 1172, 843, 935, 276, 763, 383, 825, 282, 1072, 1167, 749, 823, 629, 910, 600, 1119, 755, 874, 375, 502, 840, 549, 494, 1092, 254, 964, 722, 954, 568, 1182, 455, 1208, 776, 726, 1135, 666, 1173, 580, 731, 456, 64, 847, 0, 589, 798, 709, 1059, 243, 101, 398, 76, 124, 570, 552, 1063, 300, 19, 858, 966, 78, 410, 812, 565, 915, 290, 941, 1109, 151, 58, 241, 688, 572, 545, 8, 53, 1197, 62, 1006, 765, 193, 119, 893, 48, 547, 447, 1049, 706, 903, 651, 1055, 957, 66, 610, 71, 800, 1036, 50, 614, 810, 1179, 732, 973, 51, 819, 965, 820, 463, 36, 705, 766, 16, 421, 780, 465, 1014, 25, 6, 845, 592, 342, 265, 987, 401, 864, 982, 470, 1199, 806, 604, 611, 868, 524, 1060, 306, 605, 1022, 61, 738, 298, 206, 333, 189, 318, 368, 459, 323, 856, 171, 444, 740, 1205, 1118, 344, 1067, 114, 219, 448, 268, 1125, 322, 790, 542, 519, 205, 1149, 772, 782, 837, 807, 4, 835, 21, 583, 233, 144, 665, 675, 283, 420, 582, 180, 450, 727, 846, 279, 1046, 712, 621, 11, 659, 795, 787, 1148, 533, 511, 280, 685, 474, 224, 374, 249, 358, 391, 860, 296, 1190, 774, 1085, 902, 467, 328, 578, 603, 554, 783, 1008, 747, 584, 1001, 483, 484, 576, 156, 96, 729, 371, 960, 555, 166, 934, 1083, 1151, 13, 259, 945, 1082, 369, 996, 514, 878, 439, 574, 405, 146, 655, 512, 1186, 273, 311, 1176, 606, 615, 814, 924, 458, 527, 771, 622, 345, 1108, 1095, 746, 288, 258, 1045, 235, 56, 492, 493, 925, 1054, 289, 215, 225, 1033, 489, 681, 950, 261, 182, 413, 770, 758, 940, 34, 1168, 680, 735, 781, 913, 857, 808, 717, 906, 1180, 102, 1156, 443, 286, 431, 376, 49, 1202, 947, 567, 679, 743, 1107, 667, 335, 68, 900, 1102, 558, 24, 687, 417, 445, 998, 214, 767, 561, 1096, 537, 686, 637, 532, 796, 1192, 871, 827, 222, 829, 541, 867, 336, 12, 779, 539, 419, 256, 284, 402, 490, 923, 54, 928, 123, 1080, 656, 1189, 466, 185, 339, 1043, 949, 1064, 130, 231, 1137, 696, 324, 642, 628, 978, 1089, 690, 471, 397, 784, 809, 1103, 753, 15, 327, 1140, 993, 340, 828, 534, 1024, 103, 104, 942, 262, 884, 601, 563, 1062, 839, 281, 854, 573, 955, 1213, 367, 909, 1077, 1120, 122, 384, 564, 852, 943, 498, 424, 395, 707, 742, 1016, 544, 220, 985, 1177, 250, 275, 536, 1029, 870, 208, 1207, 437, 107, 777, 799, 927, 239, 587, 209, 1200, 1139, 131, 121, 117, 653, 1143, 1032, 244, 129, 426, 836, 359, 95, 291, 844, 711, 428, 137, 1127, 889, 723, 477, 270, 26, 938, 41, 109, 9, 1004, 1093, 2, 1018, 682, 677, 136, 396, 496, 513, 540, 904, 1112, 228, 1136, 110, 234, 865, 343, 380, 566]
+Converting data to tensors
+Normalising data
+Finalising data preprocessing
+the checkpoint ID for this run is:  9375846517354464
+the save name prefix for this run is:  chkpt-ID_9375846517354464_tag_OpenEA-all
+running TWIG with settings:
+data_to_load: {'ComplEx': {'OpenEA': ['2.1']}, 'DistMult': {'OpenEA': ['2.1']}, 'TransE': {'OpenEA': ['2.1']}}
+test_ratio: 0.1
+valid_ratio: 0.0
+normalisation: zscore
+n_bins: 30
+optimizer: Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    differentiable: False
+    eps: 1e-08
+    foreach: None
+    fused: None
+    lr: 0.005
+    maximize: False
+    weight_decay: 0
+)
+optimizer_args: {'lr': 0.005}
+mrr_loss_coeffs: [0, 10]
+rank_dist_loss_coeffs: [1, 1]
+rescale_mrr_loss: False
+rescale_rank_dist_loss: False
+RUnning with TWIG model:
+TWIG_Base(
+  (linear_struct_1): Linear(in_features=23, out_features=10, bias=True)
+  (relu_1): ReLU()
+  (linear_struct_2): Linear(in_features=10, out_features=10, bias=True)
+  (relu_2): ReLU()
+  (linear_hps_1): Linear(in_features=11, out_features=6, bias=True)
+  (relu_3): ReLU()
+  (linear_integrate_1): Linear(in_features=16, out_features=8, bias=True)
+  (relu_4): ReLU()
+  (linear_final): Linear(in_features=8, out_features=1, bias=True)
+  (sigmoid_final): Sigmoid()
+)
+Training with epochs in stages 1: 5 and 2: 10
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 526
+rank avg (pred): 0.416 +- 0.002
+mrr vals (pred, true): 0.000, 0.079
+batch losses (mrrl, rdl): 0.0, 0.0002071877
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 749
+rank avg (pred): 0.219 +- 0.004
+mrr vals (pred, true): 0.000, 0.085
+batch losses (mrrl, rdl): 0.0, 0.0005596885
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 418
+rank avg (pred): 0.428 +- 0.002
+mrr vals (pred, true): 0.000, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0002495463
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1021
+rank avg (pred): 0.386 +- 0.002
+mrr vals (pred, true): 0.000, 0.002
+batch losses (mrrl, rdl): 0.0, 0.0003371636
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 538
+rank avg (pred): 0.324 +- 0.003
+mrr vals (pred, true): 0.000, 0.076
+batch losses (mrrl, rdl): 0.0, 0.0004264571
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1180
+rank avg (pred): 0.453 +- 0.003
+mrr vals (pred, true): 0.000, 0.056
+batch losses (mrrl, rdl): 0.0, 0.0003136521
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 727
+rank avg (pred): 0.476 +- 0.038
+mrr vals (pred, true): 0.000, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0001180532
+
+Epoch over!
+epoch time: 37.509
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 699
+rank avg (pred): 0.449 +- 0.174
+mrr vals (pred, true): 0.030, 0.001
+batch losses (mrrl, rdl): 0.0, 7.78211e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 151
+rank avg (pred): 0.394 +- 0.269
+mrr vals (pred, true): 0.170, 0.023
+batch losses (mrrl, rdl): 0.0, 0.0006682771
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 351
+rank avg (pred): 0.349 +- 0.291
+mrr vals (pred, true): 0.257, 0.052
+batch losses (mrrl, rdl): 0.0, 2.02435e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 93
+rank avg (pred): 0.369 +- 0.298
+mrr vals (pred, true): 0.255, 0.002
+batch losses (mrrl, rdl): 0.0, 0.0001520872
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 798
+rank avg (pred): 0.444 +- 0.337
+mrr vals (pred, true): 0.238, 0.007
+batch losses (mrrl, rdl): 0.0, 2.3742e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 503
+rank avg (pred): 0.188 +- 0.148
+mrr vals (pred, true): 0.252, 0.264
+batch losses (mrrl, rdl): 0.0, 6.88069e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 110
+rank avg (pred): 0.367 +- 0.300
+mrr vals (pred, true): 0.267, 0.001
+batch losses (mrrl, rdl): 0.0, 0.000171873
+
+Epoch over!
+epoch time: 38.125
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 732
+rank avg (pred): 0.149 +- 0.122
+mrr vals (pred, true): 0.270, 0.342
+batch losses (mrrl, rdl): 0.0, 0.0001322499
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 683
+rank avg (pred): 0.397 +- 0.313
+mrr vals (pred, true): 0.249, 0.007
+batch losses (mrrl, rdl): 0.0, 7.77423e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1080
+rank avg (pred): 0.413 +- 0.302
+mrr vals (pred, true): 0.190, 0.061
+batch losses (mrrl, rdl): 0.0, 0.0001774947
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 688
+rank avg (pred): 0.412 +- 0.315
+mrr vals (pred, true): 0.239, 0.001
+batch losses (mrrl, rdl): 0.0, 4.57046e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 921
+rank avg (pred): 0.456 +- 0.333
+mrr vals (pred, true): 0.215, 0.092
+batch losses (mrrl, rdl): 0.0, 0.0007368267
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 708
+rank avg (pred): 0.405 +- 0.316
+mrr vals (pred, true): 0.239, 0.001
+batch losses (mrrl, rdl): 0.0, 6.11407e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 283
+rank avg (pred): 0.228 +- 0.185
+mrr vals (pred, true): 0.244, 0.087
+batch losses (mrrl, rdl): 0.0, 0.0002723001
+
+Epoch over!
+epoch time: 36.784
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 825
+rank avg (pred): 0.129 +- 0.107
+mrr vals (pred, true): 0.279, 0.216
+batch losses (mrrl, rdl): 0.0, 0.0001835649
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1046
+rank avg (pred): 0.382 +- 0.311
+mrr vals (pred, true): 0.249, 0.007
+batch losses (mrrl, rdl): 0.0, 9.50632e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1213
+rank avg (pred): 0.409 +- 0.317
+mrr vals (pred, true): 0.234, 0.001
+batch losses (mrrl, rdl): 0.0, 6.22772e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 427
+rank avg (pred): 0.390 +- 0.311
+mrr vals (pred, true): 0.228, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0001037012
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1021
+rank avg (pred): 0.403 +- 0.311
+mrr vals (pred, true): 0.191, 0.089
+batch losses (mrrl, rdl): 0.0, 0.0011256943
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 178
+rank avg (pred): 0.353 +- 0.303
+mrr vals (pred, true): 0.245, 0.001
+batch losses (mrrl, rdl): 0.0, 0.0002499486
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 642
+rank avg (pred): 0.423 +- 0.318
+mrr vals (pred, true): 0.204, 0.002
+batch losses (mrrl, rdl): 0.0, 4.13107e-05
+
+Epoch over!
+epoch time: 36.616
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 213
+rank avg (pred): 0.389 +- 0.316
+mrr vals (pred, true): 0.236, 0.001
+batch losses (mrrl, rdl): 0.0, 9.82098e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1148
+rank avg (pred): 0.231 +- 0.191
+mrr vals (pred, true): 0.236, 0.106
+batch losses (mrrl, rdl): 0.0, 0.0001950281
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 303
+rank avg (pred): 0.159 +- 0.138
+mrr vals (pred, true): 0.263, 0.144
+batch losses (mrrl, rdl): 0.0, 6.53077e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 772
+rank avg (pred): 0.403 +- 0.316
+mrr vals (pred, true): 0.223, 0.001
+batch losses (mrrl, rdl): 0.0, 8.33857e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 128
+rank avg (pred): 0.394 +- 0.312
+mrr vals (pred, true): 0.185, 0.043
+batch losses (mrrl, rdl): 0.0, 0.0009325385
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1056
+rank avg (pred): 0.137 +- 0.122
+mrr vals (pred, true): 0.248, 0.314
+batch losses (mrrl, rdl): 0.0, 0.0001614758
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1140
+rank avg (pred): 0.238 +- 0.205
+mrr vals (pred, true): 0.217, 0.183
+batch losses (mrrl, rdl): 0.0, 5.05887e-05
+
+Epoch over!
+epoch time: 36.633
+
+Saving checkpoint at [1] epoch 5
+Done training phase:  0
+Epoch 1 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 889
+rank avg (pred): 0.436 +- 0.314
+mrr vals (pred, true): 0.155, 0.001
+batch losses (mrrl, rdl): 0.1098781005, 3.4189e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 732
+rank avg (pred): 0.051 +- 0.035
+mrr vals (pred, true): 0.141, 0.073
+batch losses (mrrl, rdl): 0.0819389373, 4.6985e-06
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 805
+rank avg (pred): 0.538 +- 0.202
+mrr vals (pred, true): 0.041, 0.001
+batch losses (mrrl, rdl): 0.0007873259, 0.0001002342
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 670
+rank avg (pred): 0.508 +- 0.212
+mrr vals (pred, true): 0.047, 0.001
+batch losses (mrrl, rdl): 9.25364e-05, 4.62264e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 400
+rank avg (pred): 0.456 +- 0.237
+mrr vals (pred, true): 0.066, 0.039
+batch losses (mrrl, rdl): 0.0024918378, 0.001368136
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 249
+rank avg (pred): 0.025 +- 0.017
+mrr vals (pred, true): 0.142, 0.283
+batch losses (mrrl, rdl): 0.2001529187, 2.57942e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 197
+rank avg (pred): 0.448 +- 0.224
+mrr vals (pred, true): 0.056, 0.000
+batch losses (mrrl, rdl): 0.0003404471, 3.58885e-05
+
+Epoch over!
+epoch time: 37.295
+
+Epoch 2 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 28
+rank avg (pred): 0.154 +- 0.105
+mrr vals (pred, true): 0.102, 0.079
+batch losses (mrrl, rdl): 0.0274300408, 0.0008760686
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 290
+rank avg (pred): 0.069 +- 0.048
+mrr vals (pred, true): 0.132, 0.272
+batch losses (mrrl, rdl): 0.1960958242, 1.26923e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1014
+rank avg (pred): 0.290 +- 0.180
+mrr vals (pred, true): 0.073, 0.070
+batch losses (mrrl, rdl): 0.0052585425, 7.96196e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 342
+rank avg (pred): 0.442 +- 0.205
+mrr vals (pred, true): 0.056, 0.001
+batch losses (mrrl, rdl): 0.0003221852, 6.05685e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 79
+rank avg (pred): 0.085 +- 0.066
+mrr vals (pred, true): 0.160, 0.157
+batch losses (mrrl, rdl): 6.92119e-05, 1.90745e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 743
+rank avg (pred): 0.186 +- 0.142
+mrr vals (pred, true): 0.116, 0.158
+batch losses (mrrl, rdl): 0.0178070534, 7.62592e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 984
+rank avg (pred): 0.106 +- 0.102
+mrr vals (pred, true): 0.185, 0.104
+batch losses (mrrl, rdl): 0.0663916096, 0.0011088692
+
+Epoch over!
+epoch time: 36.942
+
+Epoch 3 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 850
+rank avg (pred): 0.431 +- 0.181
+mrr vals (pred, true): 0.047, 0.001
+batch losses (mrrl, rdl): 8.34623e-05, 0.0001021418
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 271
+rank avg (pred): 0.263 +- 0.186
+mrr vals (pred, true): 0.089, 0.073
+batch losses (mrrl, rdl): 0.0154427439, 0.0006252233
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 763
+rank avg (pred): 0.485 +- 0.190
+mrr vals (pred, true): 0.044, 0.001
+batch losses (mrrl, rdl): 0.0004089651, 4.08173e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 7
+rank avg (pred): 0.071 +- 0.079
+mrr vals (pred, true): 0.180, 0.094
+batch losses (mrrl, rdl): 0.1688029617, 0.0010026078
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 928
+rank avg (pred): 0.454 +- 0.183
+mrr vals (pred, true): 0.041, 0.095
+batch losses (mrrl, rdl): 0.0008735456, 0.0008376348
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1171
+rank avg (pred): 0.376 +- 0.201
+mrr vals (pred, true): 0.065, 0.052
+batch losses (mrrl, rdl): 0.0023871576, 6.8482e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 146
+rank avg (pred): 0.423 +- 0.252
+mrr vals (pred, true): 0.049, 0.001
+batch losses (mrrl, rdl): 1.11453e-05, 8.25934e-05
+
+Epoch over!
+epoch time: 37.121
+
+Epoch 4 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 282
+rank avg (pred): 0.214 +- 0.154
+mrr vals (pred, true): 0.109, 0.077
+batch losses (mrrl, rdl): 0.0343656391, 0.0004268264
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 792
+rank avg (pred): 0.370 +- 0.198
+mrr vals (pred, true): 0.047, 0.007
+batch losses (mrrl, rdl): 7.58601e-05, 0.0002582061
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1173
+rank avg (pred): 0.390 +- 0.215
+mrr vals (pred, true): 0.046, 0.063
+batch losses (mrrl, rdl): 0.0002018924, 9.29438e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1106
+rank avg (pred): 0.359 +- 0.210
+mrr vals (pred, true): 0.055, 0.004
+batch losses (mrrl, rdl): 0.0002573219, 0.0002943978
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 258
+rank avg (pred): 0.181 +- 0.171
+mrr vals (pred, true): 0.168, 0.124
+batch losses (mrrl, rdl): 0.0188629124, 0.0002026315
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 464
+rank avg (pred): 0.432 +- 0.290
+mrr vals (pred, true): 0.050, 0.001
+batch losses (mrrl, rdl): 7.396e-07, 7.64194e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 361
+rank avg (pred): 0.456 +- 0.287
+mrr vals (pred, true): 0.049, 0.002
+batch losses (mrrl, rdl): 5.4633e-06, 1.63215e-05
+
+Epoch over!
+epoch time: 37.169
+
+Epoch 5 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 731
+rank avg (pred): 0.222 +- 0.185
+mrr vals (pred, true): 0.157, 0.318
+batch losses (mrrl, rdl): 0.2583936155, 0.00018827
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 685
+rank avg (pred): 0.388 +- 0.274
+mrr vals (pred, true): 0.056, 0.007
+batch losses (mrrl, rdl): 0.0003746544, 0.000174438
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 236
+rank avg (pred): 0.431 +- 0.293
+mrr vals (pred, true): 0.058, 0.000
+batch losses (mrrl, rdl): 0.0006614899, 5.25547e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1048
+rank avg (pred): 0.356 +- 0.288
+mrr vals (pred, true): 0.063, 0.001
+batch losses (mrrl, rdl): 0.0015742995, 0.0003199612
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 252
+rank avg (pred): 0.164 +- 0.157
+mrr vals (pred, true): 0.189, 0.109
+batch losses (mrrl, rdl): 0.0625858158, 0.0001390391
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 364
+rank avg (pred): 0.431 +- 0.290
+mrr vals (pred, true): 0.048, 0.052
+batch losses (mrrl, rdl): 2.30526e-05, 9.80539e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 279
+rank avg (pred): 0.239 +- 0.191
+mrr vals (pred, true): 0.117, 0.074
+batch losses (mrrl, rdl): 0.0450264663, 0.0002487967
+
+Epoch over!
+epoch time: 37.122
+
+Saving checkpoint at [1] epoch 5
+Epoch 6 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 956
+rank avg (pred): 0.427 +- 0.217
+mrr vals (pred, true): 0.054, 0.001
+batch losses (mrrl, rdl): 0.0001794721, 6.8636e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1093
+rank avg (pred): 0.440 +- 0.284
+mrr vals (pred, true): 0.067, 0.110
+batch losses (mrrl, rdl): 0.0184068456, 0.0013814091
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 822
+rank avg (pred): 0.212 +- 0.178
+mrr vals (pred, true): 0.118, 0.190
+batch losses (mrrl, rdl): 0.0525578931, 0.0002794523
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 129
+rank avg (pred): 0.386 +- 0.256
+mrr vals (pred, true): 0.046, 0.002
+batch losses (mrrl, rdl): 0.0001585428, 0.0001743918
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 782
+rank avg (pred): 0.440 +- 0.226
+mrr vals (pred, true): 0.043, 0.096
+batch losses (mrrl, rdl): 0.0004293461, 0.0007402962
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 423
+rank avg (pred): 0.474 +- 0.222
+mrr vals (pred, true): 0.049, 0.001
+batch losses (mrrl, rdl): 2.7647e-06, 2.63435e-05
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1170
+rank avg (pred): 0.405 +- 0.321
+mrr vals (pred, true): 0.043, 0.002
+batch losses (mrrl, rdl): 0.0004850064, 0.0001415039
+
+Epoch over!
+epoch time: 37.464
+
+Epoch 7 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 146
+rank avg (pred): 0.400 +- 0.313
+mrr vals (pred, true): 0.052, 0.001
+batch losses (mrrl, rdl): 6.12959e-05, 0.000146509
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 608
+rank avg (pred): 0.388 +- 0.314
+mrr vals (pred, true): 0.053, 0.030
+batch losses (mrrl, rdl): 0.0001143561, 9.61033e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 137
+rank avg (pred): 0.323 +- 0.310
+mrr vals (pred, true): 0.071, 0.051
+batch losses (mrrl, rdl): 0.0044136001, 2.09041e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 561
+rank avg (pred): 0.268 +- 0.217
+mrr vals (pred, true): 0.087, 0.051
+batch losses (mrrl, rdl): 0.0133626275, 0.0001808914
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 215
+rank avg (pred): 0.334 +- 0.260
+mrr vals (pred, true): 0.050, 0.006
+batch losses (mrrl, rdl): 7.749e-07, 0.0003732488
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1063
+rank avg (pred): 0.178 +- 0.180
+mrr vals (pred, true): 0.184, 0.215
+batch losses (mrrl, rdl): 0.0098699126, 0.0001515643
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 212
+rank avg (pred): 0.423 +- 0.321
+mrr vals (pred, true): 0.063, 0.001
+batch losses (mrrl, rdl): 0.0016245584, 7.12132e-05
+
+Epoch over!
+epoch time: 37.312
+
+Epoch 8 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 133
+rank avg (pred): 0.380 +- 0.278
+mrr vals (pred, true): 0.049, 0.001
+batch losses (mrrl, rdl): 1.31873e-05, 0.0001861371
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 95
+rank avg (pred): 0.347 +- 0.244
+mrr vals (pred, true): 0.052, 0.045
+batch losses (mrrl, rdl): 5.4618e-05, 0.0004840806
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1149
+rank avg (pred): 0.203 +- 0.208
+mrr vals (pred, true): 0.169, 0.223
+batch losses (mrrl, rdl): 0.0294225756, 2.16171e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 52
+rank avg (pred): 0.169 +- 0.164
+mrr vals (pred, true): 0.135, 0.083
+batch losses (mrrl, rdl): 0.0719768852, 0.0006407403
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 774
+rank avg (pred): 0.392 +- 0.242
+mrr vals (pred, true): 0.054, 0.098
+batch losses (mrrl, rdl): 0.0001918517, 0.000387611
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 406
+rank avg (pred): 0.400 +- 0.242
+mrr vals (pred, true): 0.050, 0.001
+batch losses (mrrl, rdl): 1.9934e-06, 0.000159243
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 904
+rank avg (pred): 0.276 +- 0.235
+mrr vals (pred, true): 0.072, 0.001
+batch losses (mrrl, rdl): 0.0046956446, 0.0023594624
+
+Epoch over!
+epoch time: 37.422
+
+Epoch 9 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 687
+rank avg (pred): 0.458 +- 0.300
+mrr vals (pred, true): 0.040, 0.001
+batch losses (mrrl, rdl): 0.0009228755, 4.18849e-05
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 197
+rank avg (pred): 0.467 +- 0.314
+mrr vals (pred, true): 0.049, 0.006
+batch losses (mrrl, rdl): 1.54349e-05, 1.9561e-05
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1134
+rank avg (pred): 0.231 +- 0.212
+mrr vals (pred, true): 0.150, 0.271
+batch losses (mrrl, rdl): 0.1455410123, 7.6209e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 3
+rank avg (pred): 0.208 +- 0.191
+mrr vals (pred, true): 0.173, 0.071
+batch losses (mrrl, rdl): 0.1501743197, 0.0001531427
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1190
+rank avg (pred): 0.397 +- 0.257
+mrr vals (pred, true): 0.059, 0.007
+batch losses (mrrl, rdl): 0.0007339939, 0.000126758
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 165
+rank avg (pred): 0.399 +- 0.246
+mrr vals (pred, true): 0.047, 0.001
+batch losses (mrrl, rdl): 0.0001184945, 0.0001263897
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 129
+rank avg (pred): 0.404 +- 0.269
+mrr vals (pred, true): 0.052, 0.002
+batch losses (mrrl, rdl): 3.04968e-05, 0.0001130683
+
+Epoch over!
+epoch time: 37.252
+
+Epoch 10 -- 
+running batch: 0 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 42
+rank avg (pred): 0.263 +- 0.223
+mrr vals (pred, true): 0.088, 0.088
+batch losses (mrrl, rdl): 0.0145525318, 0.0001163455
+
+running batch: 500 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 12
+rank avg (pred): 0.205 +- 0.207
+mrr vals (pred, true): 0.216, 0.095
+batch losses (mrrl, rdl): 0.2766534388, 0.0002686477
+
+running batch: 1000 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 1114
+rank avg (pred): 0.451 +- 0.260
+mrr vals (pred, true): 0.059, 0.001
+batch losses (mrrl, rdl): 0.0008536902, 1.60744e-05
+
+running batch: 1500 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 1050
+rank avg (pred): 0.422 +- 0.247
+mrr vals (pred, true): 0.056, 0.000
+batch losses (mrrl, rdl): 0.0004106569, 8.41719e-05
+
+running batch: 2000 / 3282 and superbatch(1); data from TransE, OpenEA, run 2.1, exp 1187
+rank avg (pred): 0.366 +- 0.264
+mrr vals (pred, true): 0.052, 0.065
+batch losses (mrrl, rdl): 4.09381e-05, 7.15216e-05
+
+running batch: 2500 / 3282 and superbatch(1); data from DistMult, OpenEA, run 2.1, exp 246
+rank avg (pred): 0.241 +- 0.217
+mrr vals (pred, true): 0.156, 0.279
+batch losses (mrrl, rdl): 0.1503857821, 0.0008449612
+
+running batch: 3000 / 3282 and superbatch(1); data from ComplEx, OpenEA, run 2.1, exp 984
+rank avg (pred): 0.206 +- 0.209
+mrr vals (pred, true): 0.191, 0.104
+batch losses (mrrl, rdl): 0.076158002, 0.0002880231
+
+Epoch over!
+epoch time: 37.296
+
+Saving checkpoint at [1] epoch 10
+Done training phase:  1
+Testing model with KGEM ComplEx and KG OpenEA
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.260
+mrr vals (pred, true): 0.049, 0.001
+
+Evaluation for OpenEA on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   94 	     0 	 0.08422 	 0.00031 	 m..s
+   67 	     1 	 0.05153 	 0.00043 	 m..s
+   81 	     2 	 0.06083 	 0.00047 	 m..s
+   79 	     3 	 0.05873 	 0.00049 	 m..s
+   38 	     4 	 0.05121 	 0.00049 	 m..s
+   16 	     5 	 0.04855 	 0.00049 	 m..s
+    7 	     6 	 0.04731 	 0.00051 	 m..s
+   17 	     7 	 0.04871 	 0.00051 	 m..s
+   86 	     8 	 0.06310 	 0.00053 	 m..s
+   19 	     9 	 0.04884 	 0.00053 	 m..s
+   39 	    10 	 0.05140 	 0.00053 	 m..s
+    3 	    11 	 0.04145 	 0.00054 	 m..s
+   39 	    12 	 0.05140 	 0.00055 	 m..s
+   78 	    13 	 0.05715 	 0.00056 	 m..s
+   39 	    14 	 0.05140 	 0.00056 	 m..s
+   20 	    15 	 0.04902 	 0.00057 	 m..s
+   39 	    16 	 0.05140 	 0.00057 	 m..s
+   11 	    17 	 0.04756 	 0.00057 	 m..s
+    4 	    18 	 0.04281 	 0.00058 	 m..s
+   95 	    19 	 0.08456 	 0.00058 	 m..s
+   39 	    20 	 0.05140 	 0.00058 	 m..s
+   30 	    21 	 0.05008 	 0.00058 	 m..s
+   39 	    22 	 0.05140 	 0.00059 	 m..s
+    5 	    23 	 0.04376 	 0.00059 	 m..s
+   28 	    24 	 0.04986 	 0.00060 	 m..s
+   21 	    25 	 0.04905 	 0.00060 	 m..s
+   39 	    26 	 0.05140 	 0.00060 	 m..s
+   31 	    27 	 0.05010 	 0.00060 	 m..s
+   74 	    28 	 0.05350 	 0.00062 	 m..s
+   22 	    29 	 0.04911 	 0.00063 	 m..s
+   39 	    30 	 0.05140 	 0.00064 	 m..s
+   29 	    31 	 0.05005 	 0.00064 	 m..s
+   39 	    32 	 0.05140 	 0.00064 	 m..s
+   32 	    33 	 0.05014 	 0.00065 	 m..s
+   39 	    34 	 0.05140 	 0.00067 	 m..s
+   39 	    35 	 0.05140 	 0.00067 	 m..s
+   24 	    36 	 0.04920 	 0.00068 	 m..s
+   39 	    37 	 0.05140 	 0.00070 	 m..s
+    2 	    38 	 0.03992 	 0.00070 	 m..s
+    1 	    39 	 0.03807 	 0.00071 	 m..s
+   26 	    40 	 0.04936 	 0.00072 	 m..s
+   71 	    41 	 0.05206 	 0.00073 	 m..s
+    0 	    42 	 0.03578 	 0.00074 	 m..s
+   13 	    43 	 0.04827 	 0.00075 	 m..s
+   39 	    44 	 0.05140 	 0.00075 	 m..s
+   39 	    45 	 0.05140 	 0.00076 	 m..s
+   39 	    46 	 0.05140 	 0.00077 	 m..s
+   27 	    47 	 0.04980 	 0.00077 	 m..s
+   18 	    48 	 0.04872 	 0.00080 	 m..s
+   39 	    49 	 0.05140 	 0.00081 	 m..s
+    8 	    50 	 0.04737 	 0.00082 	 m..s
+   39 	    51 	 0.05140 	 0.00083 	 m..s
+   39 	    52 	 0.05140 	 0.00083 	 m..s
+   65 	    53 	 0.05140 	 0.00084 	 m..s
+   34 	    54 	 0.05016 	 0.00084 	 m..s
+   39 	    55 	 0.05140 	 0.00084 	 m..s
+   75 	    56 	 0.05637 	 0.00085 	 m..s
+    6 	    57 	 0.04576 	 0.00087 	 m..s
+   15 	    58 	 0.04846 	 0.00088 	 m..s
+   80 	    59 	 0.05921 	 0.00090 	 m..s
+   87 	    60 	 0.06366 	 0.00090 	 m..s
+   14 	    61 	 0.04846 	 0.00091 	 m..s
+   23 	    62 	 0.04912 	 0.00095 	 m..s
+   66 	    63 	 0.05141 	 0.00100 	 m..s
+   39 	    64 	 0.05140 	 0.00100 	 m..s
+   72 	    65 	 0.05229 	 0.00101 	 m..s
+   69 	    66 	 0.05174 	 0.00110 	 m..s
+   33 	    67 	 0.05015 	 0.00112 	 m..s
+   36 	    68 	 0.05029 	 0.00114 	 m..s
+   39 	    69 	 0.05140 	 0.00115 	 m..s
+   39 	    70 	 0.05140 	 0.00115 	 m..s
+   39 	    71 	 0.05140 	 0.00116 	 m..s
+   25 	    72 	 0.04931 	 0.00116 	 m..s
+   39 	    73 	 0.05140 	 0.00133 	 m..s
+    9 	    74 	 0.04744 	 0.00135 	 m..s
+   77 	    75 	 0.05704 	 0.00142 	 m..s
+   39 	    76 	 0.05140 	 0.00153 	 m..s
+   70 	    77 	 0.05180 	 0.00156 	 m..s
+   39 	    78 	 0.05140 	 0.00164 	 m..s
+   68 	    79 	 0.05160 	 0.00165 	 m..s
+   82 	    80 	 0.06130 	 0.00170 	 m..s
+   37 	    81 	 0.05065 	 0.00174 	 m..s
+   12 	    82 	 0.04805 	 0.00181 	 m..s
+   35 	    83 	 0.05021 	 0.00194 	 m..s
+   10 	    84 	 0.04744 	 0.00195 	 m..s
+   89 	    85 	 0.06425 	 0.00196 	 m..s
+   76 	    86 	 0.05688 	 0.00200 	 m..s
+   85 	    87 	 0.06210 	 0.00245 	 m..s
+   88 	    88 	 0.06393 	 0.00249 	 m..s
+   73 	    89 	 0.05240 	 0.00268 	 m..s
+   84 	    90 	 0.06200 	 0.00319 	 m..s
+   83 	    91 	 0.06191 	 0.00637 	 m..s
+   92 	    92 	 0.07885 	 0.04540 	 m..s
+   98 	    93 	 0.08975 	 0.05495 	 m..s
+  101 	    94 	 0.10434 	 0.06172 	 m..s
+   91 	    95 	 0.07422 	 0.06676 	 ~...
+  100 	    96 	 0.10165 	 0.06712 	 m..s
+  102 	    97 	 0.10932 	 0.06887 	 m..s
+   99 	    98 	 0.09181 	 0.07079 	 ~...
+  111 	    99 	 0.17100 	 0.07334 	 m..s
+   97 	   100 	 0.08870 	 0.07528 	 ~...
+  106 	   101 	 0.12306 	 0.07611 	 m..s
+   96 	   102 	 0.08525 	 0.07621 	 ~...
+  114 	   103 	 0.17854 	 0.07874 	 m..s
+   93 	   104 	 0.08170 	 0.07936 	 ~...
+   90 	   105 	 0.06932 	 0.07971 	 ~...
+  112 	   106 	 0.17314 	 0.08027 	 m..s
+  104 	   107 	 0.11659 	 0.08157 	 m..s
+  108 	   108 	 0.12431 	 0.08451 	 m..s
+  110 	   109 	 0.15289 	 0.08565 	 m..s
+  107 	   110 	 0.12328 	 0.08811 	 m..s
+  105 	   111 	 0.12298 	 0.08832 	 m..s
+  103 	   112 	 0.11059 	 0.08922 	 ~...
+  113 	   113 	 0.17328 	 0.09997 	 m..s
+  116 	   114 	 0.19603 	 0.10850 	 m..s
+  117 	   115 	 0.22027 	 0.12476 	 m..s
+  115 	   116 	 0.18722 	 0.18426 	 ~...
+  109 	   117 	 0.14683 	 0.18508 	 m..s
+  118 	   118 	 0.22234 	 0.28885 	 m..s
+  119 	   119 	 0.25280 	 0.29526 	 m..s
+  120 	   120 	 0.25426 	 0.29555 	 m..s
+==========================================
+r_mrr = 0.918187141418457
+r2_mrr = 0.1823711395263672
+spearmanr_mrr@5 = 0.8044832348823547
+spearmanr_mrr@10 = 0.9528233408927917
+spearmanr_mrr@50 = 0.9387298226356506
+spearmanr_mrr@100 = 0.9542832374572754
+spearmanr_mrr@All = 0.9544391632080078
+==========================================
+test time: 0.455
+Done Testing dataset OpenEA
+Testing model with KGEM DistMult and KG OpenEA
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.260
+mrr vals (pred, true): 0.049, 0.064
+
+Evaluation for OpenEA on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+    7 	     0 	 0.04731 	 8e-0500 	 m..s
+   16 	     1 	 0.04855 	 0.00041 	 m..s
+   17 	     2 	 0.04871 	 0.00047 	 m..s
+   27 	     3 	 0.04980 	 0.00048 	 m..s
+   21 	     4 	 0.04905 	 0.00050 	 m..s
+   65 	     5 	 0.05140 	 0.00051 	 m..s
+   39 	     6 	 0.05140 	 0.00051 	 m..s
+    4 	     7 	 0.04281 	 0.00052 	 m..s
+   19 	     8 	 0.04884 	 0.00055 	 m..s
+   32 	     9 	 0.05014 	 0.00055 	 m..s
+   28 	    10 	 0.04986 	 0.00055 	 m..s
+   24 	    11 	 0.04920 	 0.00055 	 m..s
+   78 	    12 	 0.05715 	 0.00056 	 m..s
+    2 	    13 	 0.03992 	 0.00057 	 m..s
+   39 	    14 	 0.05140 	 0.00058 	 m..s
+   75 	    15 	 0.05637 	 0.00058 	 m..s
+   39 	    16 	 0.05140 	 0.00059 	 m..s
+   18 	    17 	 0.04872 	 0.00059 	 m..s
+   30 	    18 	 0.05008 	 0.00059 	 m..s
+   22 	    19 	 0.04911 	 0.00061 	 m..s
+   20 	    20 	 0.04902 	 0.00062 	 m..s
+   13 	    21 	 0.04827 	 0.00062 	 m..s
+   86 	    22 	 0.06310 	 0.00062 	 m..s
+   74 	    23 	 0.05350 	 0.00063 	 m..s
+   39 	    24 	 0.05140 	 0.00065 	 m..s
+   39 	    25 	 0.05140 	 0.00065 	 m..s
+    1 	    26 	 0.03807 	 0.00065 	 m..s
+   39 	    27 	 0.05140 	 0.00067 	 m..s
+   77 	    28 	 0.05704 	 0.00067 	 m..s
+   39 	    29 	 0.05140 	 0.00069 	 m..s
+   81 	    30 	 0.06083 	 0.00070 	 m..s
+   39 	    31 	 0.05140 	 0.00071 	 m..s
+   71 	    32 	 0.05206 	 0.00072 	 m..s
+   39 	    33 	 0.05140 	 0.00074 	 m..s
+   69 	    34 	 0.05174 	 0.00074 	 m..s
+   39 	    35 	 0.05140 	 0.00075 	 m..s
+   38 	    36 	 0.05121 	 0.00077 	 m..s
+   11 	    37 	 0.04756 	 0.00077 	 m..s
+    6 	    38 	 0.04576 	 0.00077 	 m..s
+    0 	    39 	 0.03578 	 0.00079 	 m..s
+   39 	    40 	 0.05140 	 0.00084 	 m..s
+   39 	    41 	 0.05140 	 0.00086 	 m..s
+   39 	    42 	 0.05140 	 0.00089 	 m..s
+   26 	    43 	 0.04936 	 0.00090 	 m..s
+   29 	    44 	 0.05005 	 0.00090 	 m..s
+   87 	    45 	 0.06366 	 0.00091 	 m..s
+   79 	    46 	 0.05873 	 0.00091 	 m..s
+   39 	    47 	 0.05140 	 0.00094 	 m..s
+    8 	    48 	 0.04737 	 0.00099 	 m..s
+    5 	    49 	 0.04376 	 0.00108 	 m..s
+   39 	    50 	 0.05140 	 0.00129 	 m..s
+   67 	    51 	 0.05153 	 0.00131 	 m..s
+   92 	    52 	 0.07885 	 0.00145 	 m..s
+   39 	    53 	 0.05140 	 0.00147 	 m..s
+    3 	    54 	 0.04145 	 0.00292 	 m..s
+   95 	    55 	 0.08456 	 0.00359 	 m..s
+   94 	    56 	 0.08422 	 0.00439 	 m..s
+   88 	    57 	 0.06393 	 0.00925 	 m..s
+   83 	    58 	 0.06191 	 0.01722 	 m..s
+   39 	    59 	 0.05140 	 0.04093 	 ~...
+   39 	    60 	 0.05140 	 0.04547 	 ~...
+   82 	    61 	 0.06130 	 0.04758 	 ~...
+   36 	    62 	 0.05029 	 0.04825 	 ~...
+   68 	    63 	 0.05160 	 0.04865 	 ~...
+   39 	    64 	 0.05140 	 0.04869 	 ~...
+   39 	    65 	 0.05140 	 0.05026 	 ~...
+   66 	    66 	 0.05141 	 0.05079 	 ~...
+   39 	    67 	 0.05140 	 0.05080 	 ~...
+   70 	    68 	 0.05180 	 0.05157 	 ~...
+   39 	    69 	 0.05140 	 0.05208 	 ~...
+   39 	    70 	 0.05140 	 0.05223 	 ~...
+   39 	    71 	 0.05140 	 0.05230 	 ~...
+   39 	    72 	 0.05140 	 0.05240 	 ~...
+   34 	    73 	 0.05016 	 0.05378 	 ~...
+   37 	    74 	 0.05065 	 0.05861 	 ~...
+   39 	    75 	 0.05140 	 0.06083 	 ~...
+   80 	    76 	 0.05921 	 0.06181 	 ~...
+    9 	    77 	 0.04744 	 0.06248 	 ~...
+   23 	    78 	 0.04912 	 0.06373 	 ~...
+   73 	    79 	 0.05240 	 0.06378 	 ~...
+   33 	    80 	 0.05015 	 0.06615 	 ~...
+   14 	    81 	 0.04846 	 0.06657 	 ~...
+   15 	    82 	 0.04846 	 0.06745 	 ~...
+   72 	    83 	 0.05229 	 0.07139 	 ~...
+   31 	    84 	 0.05010 	 0.07170 	 ~...
+   76 	    85 	 0.05688 	 0.07227 	 ~...
+   10 	    86 	 0.04744 	 0.07228 	 ~...
+   25 	    87 	 0.04931 	 0.07270 	 ~...
+   35 	    88 	 0.05021 	 0.07421 	 ~...
+   12 	    89 	 0.04805 	 0.07508 	 ~...
+   85 	    90 	 0.06210 	 0.07720 	 ~...
+   89 	    91 	 0.06425 	 0.07837 	 ~...
+   84 	    92 	 0.06200 	 0.07964 	 ~...
+   90 	    93 	 0.06932 	 0.13417 	 m..s
+   99 	    94 	 0.09181 	 0.13420 	 m..s
+   93 	    95 	 0.08170 	 0.13955 	 m..s
+  102 	    96 	 0.10932 	 0.15071 	 m..s
+  100 	    97 	 0.10165 	 0.15219 	 m..s
+   96 	    98 	 0.08525 	 0.15221 	 m..s
+  106 	    99 	 0.12306 	 0.16133 	 m..s
+   91 	   100 	 0.07422 	 0.16226 	 m..s
+  115 	   101 	 0.18722 	 0.16306 	 ~...
+   98 	   102 	 0.08975 	 0.17309 	 m..s
+   97 	   103 	 0.08870 	 0.17490 	 m..s
+  104 	   104 	 0.11659 	 0.17639 	 m..s
+  101 	   105 	 0.10434 	 0.19054 	 m..s
+  111 	   106 	 0.17100 	 0.19476 	 ~...
+  112 	   107 	 0.17314 	 0.19528 	 ~...
+  113 	   108 	 0.17328 	 0.21741 	 m..s
+  103 	   109 	 0.11059 	 0.21803 	 MISS
+  108 	   110 	 0.12431 	 0.22069 	 m..s
+  110 	   111 	 0.15289 	 0.22936 	 m..s
+  114 	   112 	 0.17854 	 0.22977 	 m..s
+  107 	   113 	 0.12328 	 0.24004 	 MISS
+  105 	   114 	 0.12298 	 0.24271 	 MISS
+  117 	   115 	 0.22027 	 0.26145 	 m..s
+  109 	   116 	 0.14683 	 0.26721 	 MISS
+  116 	   117 	 0.19603 	 0.28408 	 m..s
+  118 	   118 	 0.22234 	 0.29863 	 m..s
+  120 	   119 	 0.25426 	 0.30605 	 m..s
+  119 	   120 	 0.25280 	 0.30663 	 m..s
+==========================================
+r_mrr = 0.8770996332168579
+r2_mrr = 0.6446607112884521
+spearmanr_mrr@5 = 0.935769259929657
+spearmanr_mrr@10 = 0.9651383757591248
+spearmanr_mrr@50 = 0.9640970230102539
+spearmanr_mrr@100 = 0.9370417594909668
+spearmanr_mrr@All = 0.9394025206565857
+==========================================
+test time: 0.487
+Done Testing dataset OpenEA
+Testing model with KGEM TransE and KG OpenEA
+Running eval on the test set
+running batch: 0
+rank avg (pred): 0.390 +- 0.260
+mrr vals (pred, true): 0.049, 0.010
+
+Evaluation for OpenEA on the test set
+==========================================
+(Sorted by True MRR values)
+i_pred 	 i_true 	 Pred MRR 	 True MRR 	 Change Flag
+   38 	     0 	 0.05121 	 0.00577 	 m..s
+   39 	     1 	 0.05140 	 0.00595 	 m..s
+   75 	     2 	 0.05637 	 0.00609 	 m..s
+   39 	     3 	 0.05140 	 0.00610 	 m..s
+   39 	     4 	 0.05140 	 0.00611 	 m..s
+   39 	     5 	 0.05140 	 0.00614 	 m..s
+   39 	     6 	 0.05140 	 0.00622 	 m..s
+   77 	     7 	 0.05704 	 0.00624 	 m..s
+   39 	     8 	 0.05140 	 0.00632 	 m..s
+   22 	     9 	 0.04911 	 0.00633 	 m..s
+    6 	    10 	 0.04576 	 0.00633 	 m..s
+   39 	    11 	 0.05140 	 0.00634 	 m..s
+   20 	    12 	 0.04902 	 0.00636 	 m..s
+   65 	    13 	 0.05140 	 0.00636 	 m..s
+   39 	    14 	 0.05140 	 0.00637 	 m..s
+   19 	    15 	 0.04884 	 0.00637 	 m..s
+   32 	    16 	 0.05014 	 0.00639 	 m..s
+   39 	    17 	 0.05140 	 0.00641 	 m..s
+   78 	    18 	 0.05715 	 0.00641 	 m..s
+    8 	    19 	 0.04737 	 0.00642 	 m..s
+   86 	    20 	 0.06310 	 0.00642 	 m..s
+   11 	    21 	 0.04756 	 0.00644 	 m..s
+   27 	    22 	 0.04980 	 0.00645 	 m..s
+    4 	    23 	 0.04281 	 0.00645 	 m..s
+   39 	    24 	 0.05140 	 0.00647 	 m..s
+   79 	    25 	 0.05873 	 0.00647 	 m..s
+   30 	    26 	 0.05008 	 0.00648 	 m..s
+   74 	    27 	 0.05350 	 0.00649 	 m..s
+   39 	    28 	 0.05140 	 0.00649 	 m..s
+   71 	    29 	 0.05206 	 0.00649 	 m..s
+   13 	    30 	 0.04827 	 0.00649 	 m..s
+   39 	    31 	 0.05140 	 0.00650 	 m..s
+   28 	    32 	 0.04986 	 0.00651 	 m..s
+   39 	    33 	 0.05140 	 0.00652 	 m..s
+   21 	    34 	 0.04905 	 0.00652 	 m..s
+   39 	    35 	 0.05140 	 0.00653 	 m..s
+   18 	    36 	 0.04872 	 0.00655 	 m..s
+   69 	    37 	 0.05174 	 0.00656 	 m..s
+   39 	    38 	 0.05140 	 0.00659 	 m..s
+   29 	    39 	 0.05005 	 0.00659 	 m..s
+   24 	    40 	 0.04920 	 0.00660 	 m..s
+   39 	    41 	 0.05140 	 0.00660 	 m..s
+   26 	    42 	 0.04936 	 0.00664 	 m..s
+   87 	    43 	 0.06366 	 0.00667 	 m..s
+    0 	    44 	 0.03578 	 0.00668 	 ~...
+   17 	    45 	 0.04871 	 0.00668 	 m..s
+   81 	    46 	 0.06083 	 0.00671 	 m..s
+   67 	    47 	 0.05153 	 0.00673 	 m..s
+    2 	    48 	 0.03992 	 0.00680 	 m..s
+   39 	    49 	 0.05140 	 0.00801 	 m..s
+   39 	    50 	 0.05140 	 0.00950 	 m..s
+   23 	    51 	 0.04912 	 0.01007 	 m..s
+   14 	    52 	 0.04846 	 0.01013 	 m..s
+    9 	    53 	 0.04744 	 0.01084 	 m..s
+   39 	    54 	 0.05140 	 0.01338 	 m..s
+   25 	    55 	 0.04931 	 0.01416 	 m..s
+   31 	    56 	 0.05010 	 0.01452 	 m..s
+   15 	    57 	 0.04846 	 0.01613 	 m..s
+   39 	    58 	 0.05140 	 0.01857 	 m..s
+   39 	    59 	 0.05140 	 0.02320 	 ~...
+   39 	    60 	 0.05140 	 0.02393 	 ~...
+   36 	    61 	 0.05029 	 0.02448 	 ~...
+   33 	    62 	 0.05015 	 0.02499 	 ~...
+   39 	    63 	 0.05140 	 0.02570 	 ~...
+   39 	    64 	 0.05140 	 0.02633 	 ~...
+   39 	    65 	 0.05140 	 0.02772 	 ~...
+   37 	    66 	 0.05065 	 0.02791 	 ~...
+   39 	    67 	 0.05140 	 0.03212 	 ~...
+   72 	    68 	 0.05229 	 0.03365 	 ~...
+   34 	    69 	 0.05016 	 0.03485 	 ~...
+   12 	    70 	 0.04805 	 0.03734 	 ~...
+   35 	    71 	 0.05021 	 0.04185 	 ~...
+   90 	    72 	 0.06932 	 0.05180 	 ~...
+   70 	    73 	 0.05180 	 0.05225 	 ~...
+   68 	    74 	 0.05160 	 0.05360 	 ~...
+   10 	    75 	 0.04744 	 0.05761 	 ~...
+   92 	    76 	 0.07885 	 0.05813 	 ~...
+   66 	    77 	 0.05141 	 0.05842 	 ~...
+   80 	    78 	 0.05921 	 0.05962 	 ~...
+   83 	    79 	 0.06191 	 0.06335 	 ~...
+   99 	    80 	 0.09181 	 0.06665 	 ~...
+   82 	    81 	 0.06130 	 0.07013 	 ~...
+  102 	    82 	 0.10932 	 0.07219 	 m..s
+   91 	    83 	 0.07422 	 0.07687 	 ~...
+   98 	    84 	 0.08975 	 0.07777 	 ~...
+  100 	    85 	 0.10165 	 0.08267 	 ~...
+    1 	    86 	 0.03807 	 0.08389 	 m..s
+  101 	    87 	 0.10434 	 0.08746 	 ~...
+   73 	    88 	 0.05240 	 0.08995 	 m..s
+   96 	    89 	 0.08525 	 0.09162 	 ~...
+    5 	    90 	 0.04376 	 0.09250 	 m..s
+   88 	    91 	 0.06393 	 0.09385 	 ~...
+   93 	    92 	 0.08170 	 0.09486 	 ~...
+    7 	    93 	 0.04731 	 0.09588 	 m..s
+    3 	    94 	 0.04145 	 0.09630 	 m..s
+   16 	    95 	 0.04855 	 0.09851 	 m..s
+   97 	    96 	 0.08870 	 0.10147 	 ~...
+   89 	    97 	 0.06425 	 0.10348 	 m..s
+  116 	    98 	 0.19603 	 0.10352 	 m..s
+  109 	    99 	 0.14683 	 0.10369 	 m..s
+  104 	   100 	 0.11659 	 0.10534 	 ~...
+   85 	   101 	 0.06210 	 0.11240 	 m..s
+   95 	   102 	 0.08456 	 0.11353 	 ~...
+   76 	   103 	 0.05688 	 0.11538 	 m..s
+   94 	   104 	 0.08422 	 0.11742 	 m..s
+   84 	   105 	 0.06200 	 0.11916 	 m..s
+  106 	   106 	 0.12306 	 0.12010 	 ~...
+  103 	   107 	 0.11059 	 0.14063 	 m..s
+  107 	   108 	 0.12328 	 0.15103 	 ~...
+  105 	   109 	 0.12298 	 0.15133 	 ~...
+  108 	   110 	 0.12431 	 0.19590 	 m..s
+  115 	   111 	 0.18722 	 0.20766 	 ~...
+  111 	   112 	 0.17100 	 0.21513 	 m..s
+  112 	   113 	 0.17314 	 0.22417 	 m..s
+  118 	   114 	 0.22234 	 0.24186 	 ~...
+  119 	   115 	 0.25280 	 0.24481 	 ~...
+  113 	   116 	 0.17328 	 0.26002 	 m..s
+  110 	   117 	 0.15289 	 0.27685 	 MISS
+  114 	   118 	 0.17854 	 0.28719 	 MISS
+  120 	   119 	 0.25426 	 0.29259 	 m..s
+  117 	   120 	 0.22027 	 0.29476 	 m..s
+==========================================
+r_mrr = 0.8771088123321533
+r2_mrr = 0.6659465432167053
+spearmanr_mrr@5 = 0.9359818696975708
+spearmanr_mrr@10 = 0.9419883489608765
+spearmanr_mrr@50 = 0.9839798212051392
+spearmanr_mrr@100 = 0.9624903202056885
+spearmanr_mrr@All = 0.96368807554245
+==========================================
+test time: 0.469
+Done Testing dataset OpenEA
+total time taken: 613.9201962947845
+training time taken: 559.6175169944763
+TWIG out ;))

@@ -44,12 +44,14 @@ def get_mrrs_without(rank_data, ref_hyp_id, hyp_ft, grid):
     All hyps the same excet for the blacklisted one (hyp_ft)
     That one can be the same -- we get all 3 versions
     '''
+    hyps_and_mrrs = []
     hyp_names = list(grid[ref_hyp_id].keys()) # ['loss', 'neg_samp', 'lr', 'reg_coeff', 'npp', 'margin', 'dim']
     for hyp_id in rank_data:
         match = is_same_hyps_except(grid[ref_hyp_id], grid[hyp_id], hyp_names, hyp_ft)
         if match:
-            return hyp_id, get_mrr(rank_data, hyp_id)
-    assert False
+            hyps_and_mrrs.append((hyp_id, get_mrr(rank_data, hyp_id)))
+    assert len(hyps_and_mrrs) >= 2 # should be 2 alts in all cases
+    return hyps_and_mrrs
 
 def get_struct_correls(local_data, rank_data, hyp_id):
     best_ranks = rank_data[hyp_id]
@@ -63,25 +65,43 @@ def get_struct_correls(local_data, rank_data, hyp_id):
                 correlators[struct_ft] = {}
             if not 'structs' in correlators[struct_ft]:
                 correlators[struct_ft]['structs'] = []
+            if not 'structs_half' in correlators[struct_ft]:
+                correlators[struct_ft]['structs_half'] = []
             if not 'ranks' in correlators[struct_ft]:
                 correlators[struct_ft]['ranks'] = []
+            if not 'subj_ranks' in correlators[struct_ft]:
+                correlators[struct_ft]['subj_ranks'] = []
+            if not 'obj_ranks' in correlators[struct_ft]:
+                correlators[struct_ft]['obj_ranks'] = []
             correlators[struct_ft]['structs'].append(struct[struct_ft])
             correlators[struct_ft]['structs'].append(struct[struct_ft])
             correlators[struct_ft]['ranks'].append(head_rank)
             correlators[struct_ft]['ranks'].append(tail_rank)
+            correlators[struct_ft]['structs_half'].append(struct[struct_ft])
+            correlators[struct_ft]['subj_ranks'].append(head_rank)
+            correlators[struct_ft]['obj_ranks'].append(tail_rank)
     
     correls = {}
     for struct_ft in correlators:
-        r = stats.pearsonr(
+        # print(np.std(correlators[struct_ft]['structs']))
+        # print(np.std(correlators[struct_ft]['ranks']))
+        # print()
+        r_all = stats.pearsonr(
             x=correlators[struct_ft]['structs'],
             y=correlators[struct_ft]['ranks']
         ).statistic
-        r2 = r ** 2
+        r_subj = stats.pearsonr(
+            x=correlators[struct_ft]['structs_half'],
+            y=correlators[struct_ft]['subj_ranks']
+        ).statistic
+        r_obj = stats.pearsonr(
+            x=correlators[struct_ft]['structs_half'],
+            y=correlators[struct_ft]['obj_ranks']
+        ).statistic
         correls[struct_ft] = {
-            'r': r,
-            'r2': r2,
-            'structs': correlators[struct_ft]['structs'],
-            'ranks': correlators[struct_ft]['ranks'],
+            'r_all': r_all,
+            'r_subj': r_subj,
+            'r_obj': r_obj
         }
     return correls
 
@@ -127,8 +147,8 @@ def get_canonical_str(inp_str):
     inp_str = inp_str.replace('loss', "Loss")
     inp_str = inp_str.replace('neg_samp', "N. Samp")
     inp_str = inp_str.replace('lr', "LR")
-    inp_str = inp_str.replace('npp', "NPP")
-    inp_str = inp_str.replace('margin', "Margin")
+    inp_str = inp_str.replace('npp', "npp")
+    inp_str = inp_str.replace('margin', "Mgn")
     inp_str = inp_str.replace('dim', "Dim")
     inp_str = inp_str.replace('reg_coeff', "Reg")
     inp_str = inp_str.replace('s_deg', "s deg")
@@ -162,39 +182,51 @@ def main(dataset, kgem, run_id):
     
     print('STRUCT CORRELATION ANAYSIS')
     correls = get_struct_correls(local_data, rank_data, best_hyp_id)
-    print("\\textbf{Struct Ft}\t\\textbf{Correlation to Rank(r)}")
+    print("\\textbf{Struct Ft}\t\\textbf{All Ranks}\t\\textbf{Subject Ranks}\t\\textbf{Object Ranks}")
     for struct_ft in correls:
-        r = round(correls[struct_ft]['r'], 2)
-        r_color_indicator = int(abs(r * 100))
-        print(f"{get_canonical_str(struct_ft)}\t\\cellcolor{{blue!{r_color_indicator}}}{r}")
+        r_all = round(correls[struct_ft]['r_all'], 2)
+        r_subj = round(correls[struct_ft]['r_subj'], 2)
+        r_obj = round(correls[struct_ft]['r_obj'], 2)
+        if r_all != r_all: #NaN
+            print(f"{get_canonical_str(struct_ft)}\tN/A\tN/A\tN/A") #iput array (i.e. structs) are all the same, so r is NaN
+        else:
+            r_all_color_indicator = int(abs(r_all * 100))
+            r_subj_color_indicator = int(abs(r_subj * 100))
+            r_obj_color_indicator = int(abs(r_obj * 100))
+            print(f"{get_canonical_str(struct_ft)}\t\\cellcolor{{blue!{r_all_color_indicator}}}{r_all}\t\\cellcolor{{blue!{r_subj_color_indicator}}}{r_subj}\t\\cellcolor{{blue!{r_obj_color_indicator}}}{r_obj}")
 
     print()
     print('HYP EFFECT ANAYSIS')
     hyp_names = list(grid[1].keys())
-    print(get_canonical_str('\t'.join(f"\\textbf{{{x}}}" for x in hyp_names)),"MRR",sep='\t')
+    print(get_canonical_str('\t'.join(f"\\textbf{{{x}}}" for x in hyp_names)),"\\textbf{MRR}",sep='\t')
     hyps_best = grid[best_hyp_id]
     print(get_canonical_str('\t'.join(f"{x}" for x in hyps_best.values())), f"{round(best_mrr, 2)}", sep='\t')
-    for hyp_name in hyp_names:
+    for i, hyp_name in enumerate(hyp_names):
+        color_row = i % 2 == 0
         if hyps_best['margin'] == None and hyp_name == 'margin':
             continue # we can't find an alt to margin if margin is None, since not all losses use margin
-        hyp_id, mrr = get_mrrs_without(
+        hyps_and_mrrs = get_mrrs_without(
             rank_data,
             best_hyp_id,
             hyp_name,
             grid
         )
-        local_hyps = grid[hyp_id]
-        output_strs = []
-        for hyp_name_inner in local_hyps:
-            if hyp_name_inner == hyp_name:
-                output_strs.append(f"\\textbf{{{local_hyps[hyp_name_inner]}}}")
+        for hyp_id, mrr in hyps_and_mrrs:
+            local_hyps = grid[hyp_id]
+            output_strs = []
+            for hyp_name_inner in local_hyps:
+                if hyp_name_inner == hyp_name:
+                    output_strs.append(f"\\textbf{{{local_hyps[hyp_name_inner]}}}")
+                else:
+                    output_strs.append(f"{local_hyps[hyp_name_inner]}")
+            if color_row:
+                print("\\rowcolor{lightgray} " + get_canonical_str('\t'.join(output_strs)), round(mrr, 2), sep='\t')
             else:
-                output_strs.append(f"{local_hyps[hyp_name_inner]}")
-        print(get_canonical_str('\t'.join(output_strs)), round(mrr, 2), sep='\t')
+                print(get_canonical_str('\t'.join(output_strs)), round(mrr, 2), sep='\t')
     
     print()
     print('STRUCTURAL CUTTOFF ANALYSIS')
-    print("\\textbf{Mode}",get_canonical_str('\t'.join(f"\\textbf{{{x}}}" for x in hyp_names)),"MRR",sep='\t')
+    print("\\textbf{Mode}",get_canonical_str('\t'.join(f"\\textbf{{{x}}}" for x in hyp_names)),"\\textbf{MRR}",sep='\t')
     print('Overall', get_canonical_str('\t'.join(str(x) for x in hyps_best.values())), round(best_mrr, 2), sep='\t')
     for i, struct_ft in enumerate(correls):
         color_row = i % 2 == 0
