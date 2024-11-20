@@ -1,12 +1,8 @@
 from twig_twm import ablation_job
 
-def run_ft_ablation(ft_blacklist, ft_name):
+def run_ft_ablation(data_to_load, ft_blacklist, ft_name):
     return ablation_job(
-        data_to_load = {
-            "ComplEx": {
-                "UMLS": ["2.1"]
-            }
-        },
+        data_to_load=data_to_load, 
         test_ratio=0.1,
         valid_ratio=0.0,
         normalisation=['zscore'],
@@ -45,36 +41,43 @@ def run_ft_ablation(ft_blacklist, ft_name):
     )
 
 def main():
-    for ft_name in [
-        ("loss",),
-        ("neg_samp",),
-        ("lr",),
-        ("reg_coeff",),
-        ("npp",),
-        ("margin",),
-        ("dim",),
+    for kgem in ["ComplEx", "DistMult", "TransE"]:
+        for kg in ['CoDExSmall', 'DBpedia50', 'Kinships', 'OpenEA', 'UMLS']:
+            data_to_load = {
+                kgem: {
+                    kg: ["2.1"]
+                }
+            }
+            for ft_name in [
+                ("loss",),
+                ("neg_samp",),
+                ("lr",),
+                ("reg_coeff",),
+                ("npp",),
+                ("margin",),
+                ("dim",),
 
-        ("s_deg",),
-        ("o_deg",),
-        ("p_freq",),
-        ("s_p_cofreq",),
-        ("o_p_cofreq",),
-        ("s_o_cofreq",),
+                ("s_deg",),
+                ("o_deg",),
+                ("p_freq",),
+                ("s_p_cofreq",),
+                ("o_p_cofreq",),
+                ("s_o_cofreq",),
 
-        ("s min deg neighbnour", "o min deg neighbnour"),
-        ("s max deg neighbnour" ,"o max deg neighbnour"),
-        ("s mean deg neighbnour", "o mean deg neighbnour"),
-        ("s num neighbnours", "o num neighbnours"),
+                ("s min deg neighbnour", "o min deg neighbnour"),
+                ("s max deg neighbnour" ,"o max deg neighbnour"),
+                ("s mean deg neighbnour", "o mean deg neighbnour"),
+                ("s num neighbnours", "o num neighbnours"),
 
-        ("s min freq rel", "o min freq rel"),
-        ("s max freq rel", "o max freq rel"),
-        ("s mean freq rel", "o mean freq rel"),
-        ("s num rels", "o num rels"),
-    ]:
-        ft_blacklist = [
-            set(ft_name)
-        ]
-        run_ft_ablation(ft_blacklist, ft_name=ft_name)
+                ("s min freq rel", "o min freq rel"),
+                ("s max freq rel", "o max freq rel"),
+                ("s mean freq rel", "o mean freq rel"),
+                ("s num rels", "o num rels"),
+            ]:
+                ft_blacklist = [
+                    set(ft_name)
+                ]
+                run_ft_ablation(data_to_load, ft_blacklist, ft_name=ft_name)
 
 if __name__ == '__main__':
     main()
