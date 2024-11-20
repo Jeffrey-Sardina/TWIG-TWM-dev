@@ -22,7 +22,7 @@ def load_config(model_config_path):
         model_config = pickle.load(cache)
     return model_config
 
-def load_twig_fmt_data(dataset_name, kge_model_name, run_id, normalisation, n_bins):
+def load_twig_fmt_data(dataset_name, kge_model_name, run_id, normalisation, n_bins, ft_blacklist):
     datasets_to_load = {
         dataset_name: [run_id]
     }
@@ -33,6 +33,7 @@ def load_twig_fmt_data(dataset_name, kge_model_name, run_id, normalisation, n_bi
         valid_ratio=0.0,
         normalisation=normalisation,
         n_bins=n_bins,
+        ft_blacklist=ft_blacklist,
         do_print=False
     )
     return twig_data
@@ -261,7 +262,8 @@ def do_twm(
         kge_model_name,
         run_id,
         normalisation=model_config['normalisation'],
-        n_bins=model_config['n_bins']
+        n_bins=model_config['n_bins'],
+        ft_blacklist=model_config['ft_blacklist']
     )
     img_path_pred = os.path.join(save_path, f"{file_name_tag}-{dataset_name}-{kge_model_name}-{run_id}-pred.svg")
     img_path_true = os.path.join(save_path, f"{file_name_tag}-{dataset_name}-{kge_model_name}-{run_id}-true.svg")

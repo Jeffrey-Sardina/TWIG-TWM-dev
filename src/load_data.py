@@ -263,7 +263,7 @@ def load_global_data(graph_stats):
     }
     return global_data
 
-def load_local_data(triples_map, graph_stats):
+def load_local_data(triples_map, graph_stats, ft_blacklist):
     local_data = {}
     ents_to_triples = get_adj_data(triples_map)
     for triple_idx in triples_map:
@@ -303,9 +303,14 @@ def load_local_data(triples_map, graph_stats):
             local_data[triple_idx][f'{target_name} max freq rel'] = np.max(list(neighbour_preds.values()))
             local_data[triple_idx][f'{target_name} mean freq rel'] = np.mean(list(neighbour_preds.values()))
             local_data[triple_idx][f'{target_name} num rels'] = len(neighbour_preds)
+        
+        # remove blavcklisted structural features
+        for ft_name in ft_blacklist:
+            del local_data[triple_idx][ft_name]
+
     return local_data
 
-def load_hyperparamter_data(grid):
+def load_hyperparamter_data(grid, ft_blacklist):
     # replace none with default vals
     for exp_id in grid:
         for hp_name in grid[exp_id]:
@@ -328,44 +333,49 @@ def load_hyperparamter_data(grid):
     for hp_name in hp_names_to_vals:
         hp_names_to_vals_sorted[hp_name] = sorted(list(hp_names_to_vals[hp_name]))
     
-    # how create a hyperparamter data dict
+    # now create a hyperparamter data dict
     hyperparameter_data = {}
     for exp_id in grid:
         hyperparameter_data[exp_id] = {}
         for hp_name in grid[exp_id]:
-            hp_val = grid[exp_id][hp_name]
-            try:
-                # we can can convert to float, no need to encode
-                hp_val = float(hp_val)
-                hyperparameter_data[exp_id][hp_name] = hp_val
-            except:
-                # # if we cannot, we need to encode as a number
-                # hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
-                # hyperparameter_data[exp_id][hp_name] = hp_val_id
-                
-                # if we cannot, one-hot code as a categorical variable
-                onehot_len = len(hp_names_to_vals_sorted[hp_name]) - 1
-                hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
-                bin_str = np.binary_repr(hp_val_id) #get binary val (one-hot proto-vector)
-                bin_str = bin_str.rjust(onehot_len, '0') # pad with 0s to constant length (full one-hot vector)
-                for onehot_idx in range(onehot_len):
-                    onehot_name = hp_name + str(onehot_idx)
-                    hyperparameter_data[exp_id][onehot_name] = int(bin_str[onehot_idx])
+            if not hp_name in ft_blacklist:
+                hp_val = grid[exp_id][hp_name]
+                try:
+                    # we can can convert to float, no need to encode
+                    hp_val = float(hp_val)
+                    hyperparameter_data[exp_id][hp_name] = hp_val
+                except:
+                    # # if we cannot, we need to encode as a number
+                    # hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
+                    # hyperparameter_data[exp_id][hp_name] = hp_val_id
+                    
+                    # if we cannot, one-hot code as a categorical variable
+                    onehot_len = len(hp_names_to_vals_sorted[hp_name]) - 1
+                    hp_val_id = hp_names_to_vals_sorted[hp_name].index(hp_val)
+                    bin_str = np.binary_repr(hp_val_id) #get binary val (one-hot proto-vector)
+                    bin_str = bin_str.rjust(onehot_len, '0') # pad with 0s to constant length (full one-hot vector)
+                    for onehot_idx in range(onehot_len):
+                        onehot_name = hp_name + str(onehot_idx)
+                        hyperparameter_data[exp_id][onehot_name] = int(bin_str[onehot_idx])
     
     return hyperparameter_data
 
-def load_simulation_dataset(dataset_name, model_name, run_id):
+def load_simulation_dataset(dataset_name, model_name, run_id, ft_blacklist):
     exp_dir = get_canonical_exp_dir(dataset_name, model_name, run_id)
     _, rank_data, grid, valid_triples_map, graph_stats = gather_data(dataset_name, exp_dir)
     global_data = load_global_data(graph_stats=graph_stats)
     local_data = load_local_data(
         triples_map=valid_triples_map,
-        graph_stats=graph_stats
+        graph_stats=graph_stats.
+        ft_blacklist=ft_blacklist
     )
-    hyperparameter_data = load_hyperparamter_data(grid=grid)
+    hyperparameter_data = load_hyperparamter_data(
+        grid=grid,
+        ft_blacklist=ft_blacklist
+    )
     return global_data, local_data, hyperparameter_data, rank_data
 
-def load_simulation_datasets(data_to_load, do_print):
+def load_simulation_datasets(data_to_load, ft_blacklist, do_print):
     global_data = {}
     local_data = {}
     rank_data = {}
@@ -403,7 +413,8 @@ def load_simulation_datasets(data_to_load, do_print):
                 global_data_kg, local_data_kg, hyperparameter_data_kg, rank_data_kg = load_simulation_dataset(
                     dataset_name=dataset_name,
                     model_name=model_name,
-                    run_id=run_id
+                    run_id=run_id,
+                    ft_blacklist=ft_blacklist
                 )
                 rank_data[model_name][dataset_name][run_id] = rank_data_kg
             if not dataset_name in global_data:
@@ -576,6 +587,7 @@ def _do_load(
     valid_ratio,
     normalisation,
     n_bins,
+    ft_blacklist,
     do_print
 ):
     '''
@@ -586,6 +598,9 @@ def _do_load(
         - test_ratio (float): the proportion of hyperparameter combinations to hold out for the test set
         - valid_ratio (float): the proportion of hyperparameter combinations to hold out for the valid set
         - normalisation (str): the normalisation to use for input data (not ranks). Options are "zscore", "minmax", and "none"
+        - n_bins (int): The number of bins to use when calculating distributional data during learning
+        - ft_blacklist (list of str): a list of features that TWIG should not use (that normally are used)
+        - do_print (bool): whether the data loader should print logs as it runs
 
     The values it returns are:
         - twig_data (TWIG_Data): a TWIG_Data object containing all data needed to load and run batches for TWIG.
@@ -602,7 +617,8 @@ def _do_load(
         print('Loading datasets')
     global_data, local_data, hyperparameter_data, kgem_data, rank_data = load_simulation_datasets(
         data_to_load=data_to_load,
-        do_print=do_print,
+        ft_blacklist=ft_blacklist,
+        do_print=do_print
     )
     
     if do_print:

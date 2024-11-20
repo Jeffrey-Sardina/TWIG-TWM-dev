@@ -124,6 +124,7 @@ def do_job(
         rank_dist_loss_coeffs=[1, 1],
         rescale_mrr_loss=False,
         rescale_rank_dist_loss=False,
+        ft_blacklist=[],
         verbose=True,
         tag='TWIG-job',
         seed=None,
@@ -148,6 +149,7 @@ def do_job(
         valid_ratio=valid_ratio,
         normalisation=normalisation,
         n_bins=n_bins,
+        ft_blacklist=ft_blacklist,
         do_print=verbose
     )
     # load all nedded data
@@ -181,7 +183,8 @@ def do_job(
             'mrr_loss_coeffs': mrr_loss_coeffs,
             'rank_dist_loss_coeffs': rank_dist_loss_coeffs,
             'rescale_mrr_loss': rescale_mrr_loss,
-            'rescale_rank_dist_loss': rescale_rank_dist_loss
+            'rescale_rank_dist_loss': rescale_rank_dist_loss,
+            'ft_blacklist': ft_blacklist
         }
         pickle.dump(to_save, cache)
     print('running TWIG with settings:')
@@ -309,6 +312,9 @@ def ablation_job(
         ],
         rescale_mrr_loss=[True, False],
         rescale_rank_dist_loss=[True, False],
+        ft_blacklist=[
+            set()
+        ],
         verbose=True,
         tag='Ablation-job',
         ablation_metric='r2_mrr', #r_mrr, r2_mrr, spearmanr_mrr@5, 10, 50, 100, or All
@@ -372,7 +378,8 @@ def ablation_job(
         mrr_loss_coeffs,
         rank_dist_loss_coeffs,
         rescale_mrr_loss,
-        rescale_rank_dist_loss
+        rescale_rank_dist_loss,
+        ft_blacklist
     ))
 
     # configure ablation type settings
@@ -403,7 +410,8 @@ def ablation_job(
             mrr_loss_coeffs_val,
             rank_dist_loss_coeffs_val,
             rescale_mrr_loss_val,
-            rescale_rank_dist_loss_val
+            rescale_rank_dist_loss_val,
+            ft_blacklist_val
         ) = settings
 
         # need this so if a model type is ever re-used, we train it from its initial point, not from the last ablation!
@@ -421,7 +429,8 @@ def ablation_job(
             "mrr_loss_coeffs": mrr_loss_coeffs_val,
             "rank_dist_loss_coeffs": rank_dist_loss_coeffs_val,
             "rescale_mrr_loss": rescale_mrr_loss_val,
-            "rescale_rank_dist_loss": rescale_rank_dist_loss_val
+            "rescale_rank_dist_loss": rescale_rank_dist_loss_val,
+            "ft_blacklist": ft_blacklist_val
         }
 
         # run the experiment
@@ -440,6 +449,7 @@ def ablation_job(
             rank_dist_loss_coeffs=rank_dist_loss_coeffs_val,
             rescale_mrr_loss=rescale_mrr_loss_val,
             rescale_rank_dist_loss=rescale_rank_dist_loss_val,
+            ft_blacklist=ft_blacklist_val,
             verbose=verbose,
             tag=tag,
             print_exp_meta=False
@@ -502,6 +512,7 @@ def ablation_job(
             rank_dist_loss_coeffs=best_settings['rank_dist_loss_coeffs'],
             rescale_mrr_loss=best_settings['rescale_mrr_loss'],
             rescale_rank_dist_loss=best_settings['rescale_rank_dist_loss'],
+            ft_blacklist=best_settings['ft_blacklist'],
             verbose=train_and_eval_args['verbose'],
             tag=train_and_eval_args['tag']
         )
@@ -582,6 +593,7 @@ def finetune_ablation_job(
         rescale_mrr_loss = model_config['rescale_mrr_loss']
     if rescale_rank_dist_loss == None:
         rescale_rank_dist_loss = model_config['rescale_rank_dist_loss']
+    ft_blacklist = [model_config['ft_blacklist']] # cannot change this on a saved model since models are fdt-list dependent
     
     # run the ablation
     results = ablation_job(
@@ -599,6 +611,7 @@ def finetune_ablation_job(
         rank_dist_loss_coeffs=rank_dist_loss_coeffs,
         rescale_mrr_loss=rescale_mrr_loss,
         rescale_rank_dist_loss=rescale_rank_dist_loss,
+        ft_blacklist=ft_blacklist,
         verbose=verbose,
         tag=tag,
         ablation_metric=ablation_metric,

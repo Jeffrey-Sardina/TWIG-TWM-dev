@@ -5,6 +5,7 @@ docker_up.log
 *.pt
 *.pkl
 *.grid
+*.log
 *.res
 *.svg
 *.gexf
