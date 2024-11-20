@@ -30,7 +30,7 @@ def run_ft_ablation(blacklist):
             blacklist
         ],
         verbose=True,
-        tag=f'Ablation-job-blacklist-{'_'.join(blacklist)}',
+        tag=f'Ablation-job-blacklist-{"_".join(blacklist)}',
         ablation_metric='r2_mrr', #r_mrr, r2_mrr, spearmanr_mrr@5, 10, 50, 100, or All
         ablation_type=None, #full or rand, if given (default full)
         timeout=-1, #seconds

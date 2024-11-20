@@ -366,7 +366,7 @@ def load_simulation_dataset(dataset_name, model_name, run_id, ft_blacklist):
     global_data = load_global_data(graph_stats=graph_stats)
     local_data = load_local_data(
         triples_map=valid_triples_map,
-        graph_stats=graph_stats.
+        graph_stats=graph_stats,
         ft_blacklist=ft_blacklist
     )
     hyperparameter_data = load_hyperparamter_data(
