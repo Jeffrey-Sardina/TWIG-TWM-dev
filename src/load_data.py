@@ -304,9 +304,10 @@ def load_local_data(triples_map, graph_stats, ft_blacklist):
             local_data[triple_idx][f'{target_name} mean freq rel'] = np.mean(list(neighbour_preds.values()))
             local_data[triple_idx][f'{target_name} num rels'] = len(neighbour_preds)
         
-        # remove blavcklisted structural features
+        # remove blacklisted structural features
         for ft_name in ft_blacklist:
-            del local_data[triple_idx][ft_name]
+            if ft_name in local_data[triple_idx]:
+                del local_data[triple_idx][ft_name]
 
     return local_data
 
@@ -338,6 +339,7 @@ def load_hyperparamter_data(grid, ft_blacklist):
     for exp_id in grid:
         hyperparameter_data[exp_id] = {}
         for hp_name in grid[exp_id]:
+            # print(hp_name, ft_blacklist, not hp_name in ft_blacklist)
             if not hp_name in ft_blacklist:
                 hp_val = grid[exp_id][hp_name]
                 try:
