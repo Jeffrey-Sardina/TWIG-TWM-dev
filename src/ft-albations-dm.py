@@ -22,8 +22,8 @@ def run_ft_ablation(data_to_load, ft_blacklist, ft_name):
         rank_dist_loss_coeffs=[
             [1, 1]
         ],
-        rescale_mrr_loss=[True, False],
-        rescale_rank_dist_loss=[True, False],
+        rescale_mrr_loss=[False],
+        rescale_rank_dist_loss=[False],
         ft_blacklist=ft_blacklist,
         verbose=True,
         tag=f'Ablation-job-blacklist-{"_".join(ft_name)}',
@@ -41,7 +41,7 @@ def run_ft_ablation(data_to_load, ft_blacklist, ft_name):
     )
 
 def main():
-    for kgem in ["ComplEx", "DistMult", "TransE"]:
+    for kgem in ["DistMult"]:
         for kg in ['CoDExSmall', 'DBpedia50', 'Kinships', 'OpenEA', 'UMLS']:
             data_to_load = {
                 kgem: {
