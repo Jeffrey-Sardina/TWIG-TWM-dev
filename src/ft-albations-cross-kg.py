@@ -1,4 +1,5 @@
 from twig_twm import ablation_job
+import sys
 
 def run_ft_ablation(data_to_load, ft_blacklist, ft_name):
     return ablation_job(
@@ -41,13 +42,21 @@ def run_ft_ablation(data_to_load, ft_blacklist, ft_name):
     )
 
 def main():
-    for kgem in ["DistMult"]:
-        for kg in ['CoDExSmall', 'DBpedia50', 'Kinships', 'OpenEA', 'UMLS']:
-            data_to_load = {
-                kgem: {
-                    kg: ["2.1"]
-                }
+    kgem = sys.argv[1]
+    do_indiv = sys.argv[2] == '1'
+    do_aggr = sys.argv[3] == '1'
+
+    for kgem in [kgem]:
+        data_to_load = {
+            kgem: {
+                "CoDExSmall": ["2.1"],
+                "DBpedia50": ["2.1"],
+                "Kinships": ["2.1"],
+                "OpenEA": ["2.1"],
+                "UMLS": ["2.1"]
             }
+        }
+        if do_indiv:
             for ft_name in [
                 ("loss",),
                 ("neg_samp",),
@@ -78,6 +87,26 @@ def main():
                     set(ft_name)
                 ]
                 run_ft_ablation(data_to_load, ft_blacklist, ft_name=ft_name)
+
+        if do_aggr:
+            ft_blacklist = [
+                set((
+                    "s_deg", "o_deg", "p_freq", "s_p_cofreq", "o_p_cofreq", "s_o_cofreq"
+                ))
+            ]
+            run_ft_ablation(data_to_load, ft_blacklist, ft_name="fine-grained")
+
+            ft_blacklist = [
+                set((
+                    "s min deg neighbnour", "o min deg neighbnour", "s max deg neighbnour" ,"o max deg neighbnour", \
+                    "s mean deg neighbnour", "o mean deg neighbnour", "s num neighbnours", "o num neighbnours", \
+                    "s min freq rel", "o min freq rel", \
+                    "s max freq rel", "o max freq rel", \
+                    "s mean freq rel", "o mean freq rel", \
+                    "s num rels", "o num rels"
+                ))
+            ]
+            run_ft_ablation(data_to_load, ft_blacklist, ft_name="coarse-grained")
 
 if __name__ == '__main__':
     main()
