@@ -110,3 +110,29 @@ finetune_job(
 If we wanted to instead finetune TWIG, we just need to change the number of epochs. Note that TWIG learns in two phases -- the first typically never needs more than 30 epochs even on large datasets (often 5 - 10 works very well), and the second usually is good to set around 10 - 50. 
 
 ### Custom Data for TWIG
+Finally -- maybe you want custom data! This is also quite easy to do!
+
+```
+from twig_twm import kge_data_job
+
+dataset_name = "Your Dataset Name"
+kge_model = "Your KGE Model"
+run_id = "2.1" # you can choose any name, this is just a tag for the file output
+
+kge_data_job(
+    dataset_name=dataset_name,
+    kge_model=kge_model,
+    run_id=run_id
+)
+```
+
+If your dataset is defined in PyKEEN (https://github.com/pykeen/pykeen), then you can just give its name. Otherwise, you need to provide its train, test, and valid splits in the custom_datasets/ folder. You must name these as so:
+- datasetname.train
+- datasetname.test
+- datasetname.valid
+
+Each must be in the n-triples format, expressed as a tab-separated values (TSV) file.
+
+For the kge_model, it must be the name of a KGE model defined in PyKEEN (https://github.com/pykeen/pykeen).
+
+Running this will get all the data you need to use TWIG on the dataset you specify. Please note that, while you can change the default hyperparameter grid, this is currently no supported in the `twig_twm.py` API. See `kge_pipeline.py` if you want to do that.
