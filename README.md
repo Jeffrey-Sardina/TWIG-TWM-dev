@@ -60,67 +60,53 @@ cd twig/
 
 At this point, TWIG is fully installed, and you have a shell in TWIG's working directory with all required dependencies. At this point -- congrats! You are now ready to use TWIG!
 
-## Project Layout
-This project is divided into several components. In the project root, `install/` and `docker-compose.yml` are used to install TWIG in Docker (see the above section on installing TWIG).
+## TWIG Quickstart
+If you want to use TWIG, it's quite simple! We'll start simple -- reproducing on of TWIG's early experiments. You'll need to download TWIG's dataset (https://figshare.com/s/7b2da136e05f3548399f) and copy its contents into the src/output/ folder. This data contains a large (1215-many) hyperparameter grid, with all outputs (in terms of ranked lists and MRR values) for ComplEx, DistMult, and TransE when trained to do link prediction on any of the following 5 KGs: CoDExSmall, DBepdia50, Kinships, OpenEA, and UMLS.
 
-The `twig` folder contains all novel code and data used in the paper that presented TWIG. In `twig/` you will see the following files and directory structure:
+Suppose that we want to train TWIG to simulate the KGEM ComplEx on UMLS -- teh flagship experiment that started it all! We need to tell TWIG what data to load: (note that since multiple replicates were run, we have to specify which replicate to use. Using more replicates gets better results, but takes longer, so we'll just use one for now.)
+```
+data_to_load = {
+    "ComplEx": {
+        "UMLS": ["2.1"]
+    }
+}
 
 ```
-twig/
-    analysis/ -- contains the Jupyter notebook used to create stats and visualisations for the paper
-    output/ -- contains the raw KGE-output data that TWIG learns to simulate
-    rec_construct_1/ -- a mini-library for running TWIG itself
-    ---
-    pipeline.py -- implementation of the KGE models TWIG learns to simulate in PyKEEN
-    pipeline.sh -- high-level access to pipeline.py to run batch experiments
-    rec_pipeline.sh -- high-level access to training and evaluating TWIG itself
+
+Next, we need to load the TWIG model and tell it to learn. This is very easy.  Using TWIG's default settings, we can run:
+
+```
+from twig_twm import do_job
+do_job(data_to_load)
 ```
 
-This code has two major components: code used to create the data TWIG learns on, and code to run the TWIG NN training and inference itself.
+TWIG will run and automatically save checkpoints to src/checkpoints/.
 
-### Re-Creating the Data used by TWIG
-TWIG is not a Knowledge Graph Embedding method -- it is embedding free, and learns to *simulate* KGE methods. As such, it needs to be trained on the *output* of KGE models, not a KG itself directly. In order to obtain this data, we must first run our KGE models. 
+That's it!
 
-We run these models using `pipeline.sh`. In short, it
-- loads the UMLS KG dataset
-- defines a grid of 1215 hyperparameters to search over
-- outputs the results (ranks lists and performance metrics) to `output/`
+### Zero-shot Hyperparamter Prediction
+Suppose you have a TWIG model trained on one KG (or set of KGs) and want to use it to predict how well CompLEx will perform on an entirely new KG, and what hyperparameters to use for it there.
 
-To re-run all KGEs on UMLS, you can run
+We'll take a very simple example where we ask TWIG to predict on Kinships, based on what it learned from UMLS. This is also very simple. To do this, we use the finetune_job() function as so:
 ```
-run_nums="1 2 3 4"
-num_processes=3
-./pipeline.sh TWM $run_nums $num_processes
-```
+from twig_twm import finetune_job
 
-TWM stands for Topologically-Weighted Mapping, and is a keyword that TWIG will expect to be in the names of all output files (so please keep it -- so please do not change it!).
+data_to_load = {
+    "ComplEx": {
+        "Kinships": ["2.1"]
+    }
+}
+model_save_path = "checkpoints/chkpt-ID_48310380606809_tag_XXX_e5-e10.pt" # for example
+model_config_path = "checkpoints/chkpt-ID_48310380606809_tag_XXX.pkl" # for example
 
-This will populate the `output/` folder with the results. Note that this can take a bit of time -- between a day to several days depending on your GPU. To help reduce compute-driven emissions, please try to run this at night (when the power grid is substantially less used) as much as possible.
-
-### Re-Train TWIG on your new Data
-Once you have your new data, you will want to actually run TWIG. TWIG itself is fully implemented in `rec_construct_1/`, which is a mini-library of sorts. `rec_construct_1/` contains the following directories and files:
-```
-rec_construct_1/
-    data_save/ -- a directory used to save loaded PyTorch tensors to avoid re-computing each time TWIG is run
-    results_save/ -- a directory that stores the raw output and evaluation results of TWIG itself
-    ---
-    load_data.py -- a Python module for loading the data (generated in the previous step) that TWIG trains on
-    run_exp.py -- a high-level access point for defining and running TWIG experiments in Python
-    trainer.py -- a Python module for running TWIG's training and evaluation loops
-    twig_nn.py -- a Python module that defined TWIG's neural architecture. Two versions are defined; version 2 is much better and is the one reported in our paper.
-    utils.py -- a Python module containing useful miscellaneous functions
+finetune_job(
+    data_to_load=data_to_load,
+    model_save_path=model_save_path,
+    model_config_path=model_config_path,
+    epochs=[0, 0]
+)
 ```
 
-To train TWIG on your own custom-generated data, and ever higher-level interface is given in `twig/rec_pipeline.py`. You can run it as:
-```
-./rec_pipeline.py
-```
+If we wanted to instead finetune TWIG, we just need to change the number of epochs. Note that TWIG learns in two phases -- the first typically never needs more than 30 epochs even on large datasets (often 5 - 10 works very well), and the second usually is good to set around 10 - 50. 
 
-If you wish to modify the settings on which TWIG is run (i.e. the version of the TWIG NN) you will need to change the version number used in `./rec_pipeline.py`.
-
-### Extending TWIG
-Unfortunately, this is not a fully-fledged library. The existing codebase should work out-of-the-box for new KG datasets defined in PyKEEN (all you have to change is the UMLS tag in various files to the name of your new dataset).
-
-However, if you are looking for mode advanced functionality than reproduction of experiments, or want to use a KG dataset that is not part of PyKEEN (see their datasets here: https://github.com/pykeen/pykeen#datasets), then you will unfortunately have to go source-code diving. While I intend to create a full, extensible, applications-focussed library in the future, that is currently waiting on the conclusion of several more experiments on TWIG that may allow the inclusion of several more features.
-
-If you have any questions, or would like to contact me, please raise an issue on GitHub and I'd be very happy to help!
+### Custom Data for TWIG
