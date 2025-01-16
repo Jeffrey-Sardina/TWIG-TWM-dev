@@ -1,7 +1,9 @@
 # TWIG: Topologically Weighted Intelligence Generation
 
 ## What is TWIG?
-TWIG (Topologically-Weighted Intelligence Generation) is a novel, embedding-free paradigm for simulating Knowledge Graphs Embedding. TWIG learns weights from inputs that consist of topological features of the graph data, with no coding for latent representations of entities or edges.
+TWIG (Topologically-Weighted Intelligence Generation) is a novel, embedding-free paradigm for simulating Knowledge Graphs Embedding. TWIG learns weights from inputs that consist of topological features of the graph data, with no coding for latent representations of entities or edges. 
+
+Note that releases in some older publications draw from other repos; however, all newer publications (as well as all development) occur here, and this code is much more optimised.
 
 If you use TWIG in your work, please cite:
 ```
