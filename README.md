@@ -7,11 +7,27 @@ Note that releases in some older publications draw from other repos; however, al
 
 If you use TWIG in your work, please cite:
 ```
-TODO: citation if accepted
+@article{sardina2024extending,
+  title={Extending TWIG: Zero-Shot Predictive Hyperparameter Selection for KGEs based on Graph Structure},
+  author={Sardina, Jeffrey and Kelleher, John D and O'Sullivan, Declan},
+  journal={arXiv preprint arXiv:2412.14801},
+  year={2024}
+}
+
+@inproceedings{sardina2024twig,
+  title={TWIG: Towards pre-hoc Hyperparameter Optimisation and Cross-Graph Generalisation via Simulated KGE Models},
+  author={Sardina, Jeffrey and Kelleher, John D and O’Sullivan, Declan},
+  booktitle={2024 IEEE 18th International Conference on Semantic Computing (ICSC)},
+  pages={122--129},
+  year={2024},
+  organization={IEEE}
+}
 ```
 
 ## How do I install TWIG?
-The easiest way to install TWIG is in a Docker container -- simply pull this repo and run `docker compose up` to use the Docker configuration we provide. The container will automatically run all install instructions (in the `install/install.sh` file; a full log will be output to `install/docker_up.log`).
+The easiest way to install TWIG is using `pip install twig-twm`. TWIG has been tested with Python3.9, but any version above 3.7 should work. Note that versions before 3.7 will be unstable and give unreliable results, since TWIG relies on the new implementation of Python dictionaries as being ordered.
+
+You can also set up TWIG in a Docker container -- simply pull this repo and run `docker compose up` to use the Docker configuration we provide. The container will automatically run all install instructions (in the `install/install.sh` file; a full log will be output to `install/docker_up.log`).
 
 You can also use TWIG with a manual install. We ran TWIG in the following environment:
 ```
